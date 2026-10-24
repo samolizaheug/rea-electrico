@@ -1,0 +1,123 @@
+{
+  "id": "nom-001-sede-2012/tabla-430-52",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "motor-protection",
+  "reference": {
+    "table": "Tabla 430-52",
+    "article": "430-52",
+    "title": "Ajuste máximo de los dispositivos de protección contra cortocircuito y falla a tierra para circuitos derivados de motores"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      387
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "devices": [
+      {
+        "id": "fusible-sin-retardo",
+        "label": "Fusible sin retardo de tiempo¹"
+      },
+      {
+        "id": "fusible-doble-elemento",
+        "label": "Fusible de dos elementos¹ (con retardo de tiempo)"
+      },
+      {
+        "id": "instantaneo",
+        "label": "Interruptor automático de disparo instantáneo"
+      },
+      {
+        "id": "itm",
+        "label": "Interruptor automático de tiempo inverso²"
+      }
+    ],
+    "rows": [
+      {
+        "motorType": "monofasico",
+        "label": "Motores monofásicos",
+        "percents": [
+          300,
+          175,
+          800,
+          250
+        ]
+      },
+      {
+        "motorType": "polifasico-ca",
+        "label": "Motores polifásicos de corriente alterna distintos a los de rotor devanado",
+        "percents": [
+          300,
+          175,
+          800,
+          250
+        ]
+      },
+      {
+        "motorType": "jaula",
+        "label": "De jaula de ardilla: diferentes de los de diseño B energéticamente eficientes",
+        "percents": [
+          300,
+          175,
+          800,
+          250
+        ]
+      },
+      {
+        "motorType": "jaula-b-eficiente",
+        "label": "De diseño B energéticamente eficientes",
+        "percents": [
+          300,
+          175,
+          1100,
+          250
+        ]
+      },
+      {
+        "motorType": "sincrono",
+        "label": "Sincrónicos (nota 3)",
+        "percents": [
+          300,
+          175,
+          800,
+          250
+        ]
+      },
+      {
+        "motorType": "rotor-devanado",
+        "label": "Con rotor devanado",
+        "percents": [
+          150,
+          150,
+          800,
+          150
+        ]
+      },
+      {
+        "motorType": "cc",
+        "label": "De corriente continua (tensión constante)",
+        "percents": [
+          150,
+          150,
+          250,
+          150
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "En porcentaje de la corriente a plena carga.",
+    "¹ Los valores de la columna fusible sin retardo de tiempo se aplican a fusibles de Clase CC de acción retardada.",
+    "² Los valores de la última columna también cubren los valores nominales de los interruptores automáticos de tiempo inverso no ajustables, que se pueden modificar como se describe en 430-52(c)(1), Excepción 1 y 2.",
+    "³ Los motores sincrónicos de bajo par y baja velocidad (usualmente 450 rpm o menos) que arrancan sin carga no requieren más del 200 por ciento de la corriente a plena carga.",
+    "Para algunas excepciones a los valores especificados, ver 430-54. Excepciones de 430-52(c)(1): valor inmediato superior y aumentos máximos."
+  ],
+  "errata": []
+}

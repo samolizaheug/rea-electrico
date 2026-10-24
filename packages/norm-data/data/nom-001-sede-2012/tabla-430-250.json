@@ -1,0 +1,636 @@
+{
+  "id": "nom-001-sede-2012/tabla-430-250",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "motor-flc",
+  "reference": {
+    "table": "Tabla 430-250",
+    "article": "430-6(a)(1)",
+    "title": "Corriente a plena carga de motores trifásicos de corriente alterna"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      406
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "motorKind": "3F",
+    "groups": [
+      {
+        "id": "induccion",
+        "label": "Inducción jaula de ardilla y rotor devanado",
+        "voltagesV": [
+          115,
+          200,
+          208,
+          230,
+          460,
+          575,
+          2300
+        ]
+      },
+      {
+        "id": "sincrono-fp1",
+        "label": "Síncrono de factor de potencia unitario*",
+        "voltagesV": [
+          230,
+          460,
+          575,
+          2300
+        ]
+      }
+    ],
+    "rows": [
+      {
+        "hp": "1/2",
+        "kW": 0.37,
+        "currentsA": {
+          "induccion": [
+            4.4,
+            2.5,
+            2.4,
+            2.2,
+            1.1,
+            0.9,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "3/4",
+        "kW": 0.56,
+        "currentsA": {
+          "induccion": [
+            6.4,
+            3.7,
+            3.5,
+            3.2,
+            1.6,
+            1.3,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1",
+        "kW": 0.75,
+        "currentsA": {
+          "induccion": [
+            8.4,
+            4.8,
+            4.6,
+            4.2,
+            2.1,
+            1.7,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1 1/2",
+        "kW": 1.12,
+        "currentsA": {
+          "induccion": [
+            12,
+            6.9,
+            6.6,
+            6,
+            3,
+            2.4,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "2",
+        "kW": 1.5,
+        "currentsA": {
+          "induccion": [
+            13.6,
+            7.8,
+            7.5,
+            6.8,
+            3.4,
+            2.7,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "3",
+        "kW": 2.25,
+        "currentsA": {
+          "induccion": [
+            null,
+            11,
+            10.6,
+            9.6,
+            4.8,
+            3.9,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "5",
+        "kW": 3.75,
+        "currentsA": {
+          "induccion": [
+            null,
+            17.5,
+            16.7,
+            15.2,
+            7.6,
+            6.1,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "7 1/2",
+        "kW": 5.6,
+        "currentsA": {
+          "induccion": [
+            null,
+            25.3,
+            24.2,
+            22,
+            11,
+            9,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "10",
+        "kW": 7.5,
+        "currentsA": {
+          "induccion": [
+            null,
+            32.3,
+            30.8,
+            28,
+            14,
+            11,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "15",
+        "kW": 11.2,
+        "currentsA": {
+          "induccion": [
+            null,
+            48.3,
+            46.2,
+            42,
+            21,
+            17,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "20",
+        "kW": 14.9,
+        "currentsA": {
+          "induccion": [
+            null,
+            62.1,
+            59.4,
+            54,
+            27,
+            22,
+            null
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "25",
+        "kW": 18.7,
+        "currentsA": {
+          "induccion": [
+            null,
+            78.2,
+            74.8,
+            68,
+            34,
+            27,
+            null
+          ],
+          "sincrono-fp1": [
+            53,
+            26,
+            21,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "30",
+        "kW": 22.4,
+        "currentsA": {
+          "induccion": [
+            null,
+            92,
+            88,
+            80,
+            40,
+            32,
+            null
+          ],
+          "sincrono-fp1": [
+            63,
+            32,
+            26,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "40",
+        "kW": 29.8,
+        "currentsA": {
+          "induccion": [
+            null,
+            120,
+            114,
+            104,
+            52,
+            41,
+            null
+          ],
+          "sincrono-fp1": [
+            93,
+            41,
+            33,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "50",
+        "kW": 37.3,
+        "currentsA": {
+          "induccion": [
+            null,
+            150,
+            143,
+            130,
+            65,
+            52,
+            null
+          ],
+          "sincrono-fp1": [
+            104,
+            52,
+            42,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "60",
+        "kW": 44.8,
+        "currentsA": {
+          "induccion": [
+            null,
+            177,
+            169,
+            154,
+            77,
+            62,
+            16
+          ],
+          "sincrono-fp1": [
+            123,
+            61,
+            49,
+            12
+          ]
+        }
+      },
+      {
+        "hp": "75",
+        "kW": 56,
+        "currentsA": {
+          "induccion": [
+            null,
+            221,
+            211,
+            192,
+            96,
+            77,
+            20
+          ],
+          "sincrono-fp1": [
+            155,
+            78,
+            62,
+            15
+          ]
+        }
+      },
+      {
+        "hp": "100",
+        "kW": 75,
+        "currentsA": {
+          "induccion": [
+            null,
+            285,
+            273,
+            248,
+            124,
+            99,
+            26
+          ],
+          "sincrono-fp1": [
+            202,
+            101,
+            81,
+            20
+          ]
+        }
+      },
+      {
+        "hp": "125",
+        "kW": 93,
+        "currentsA": {
+          "induccion": [
+            null,
+            359,
+            343,
+            312,
+            156,
+            125,
+            31
+          ],
+          "sincrono-fp1": [
+            253,
+            126,
+            101,
+            25
+          ]
+        }
+      },
+      {
+        "hp": "150",
+        "kW": 112,
+        "currentsA": {
+          "induccion": [
+            null,
+            414,
+            396,
+            360,
+            180,
+            144,
+            37
+          ],
+          "sincrono-fp1": [
+            302,
+            151,
+            121,
+            30
+          ]
+        }
+      },
+      {
+        "hp": "200",
+        "kW": 150,
+        "currentsA": {
+          "induccion": [
+            null,
+            552,
+            528,
+            480,
+            240,
+            192,
+            49
+          ],
+          "sincrono-fp1": [
+            400,
+            201,
+            161,
+            40
+          ]
+        }
+      },
+      {
+        "hp": "250",
+        "kW": 187,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            302,
+            242,
+            60
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "300",
+        "kW": 224,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            361,
+            289,
+            72
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "350",
+        "kW": 261,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            414,
+            336,
+            83
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "400",
+        "kW": 298,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            477,
+            382,
+            95
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "450",
+        "kW": 336,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            515,
+            412,
+            103
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "500",
+        "kW": 373,
+        "currentsA": {
+          "induccion": [
+            null,
+            null,
+            null,
+            null,
+            590,
+            472,
+            118
+          ],
+          "sincrono-fp1": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Valores típicos para motores que funcionan a las velocidades usuales de motores con bandas y con características normales de par.",
+    "Las corrientes enumeradas se permitirán para sistemas con intervalos de tensión de 110 a 120 volts, 220 a 240 volts, 440 a 480 volts y 550 a 600 volts.",
+    "* Para factores de potencia de 90 por ciento y 80 por ciento, las cifras de los motores síncronos se deben multiplicar respectivamente por 1.10 y 1.25.",
+    "Renglón de 250 hp: la capa de texto no conserva las celdas vacías; las columnas se asignaron por coordenada horizontal en la página 406 (302 A → 460 V, 242 A → 575 V, 60 A → 2300 V; demás vacías)."
+  ],
+  "errata": [
+    {
+      "path": "rows[8].currentsA.induccion[5]",
+      "asPublished": 44,
+      "corrected": 11,
+      "reason": "44 A rompe la secuencia (7 1/2 hp = 9 A, 15 hp = 17 A); NEC 430.250 da 11 A.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    }
+  ]
+}

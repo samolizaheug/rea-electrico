@@ -1,0 +1,93 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-104-a",
+  "norm": { "id": "nom-001-sede", "edition": "2012" },
+  "kind": "insulation-types",
+  "reference": {
+    "table": "Tabla 310-104(a)",
+    "article": "310-104",
+    "title": "Aplicaciones y aislamientos de conductores de 600 volts"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [191, 192, 193],
+    "method": "transcripcion-manual"
+  },
+  "data": {
+    "rows": [
+      { "type": "RHH", "genericName": "Termofijo", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y húmedos" }] },
+      { "type": "RHW", "genericName": "Termofijo resistente a la humedad", "ratings": [{ "temperatureC": 75, "locations": "Lugares secos y mojados" }] },
+      { "type": "RHW-2", "genericName": "Termofijo resistente a la humedad", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y mojados" }] },
+      { "type": "THHN", "genericName": "Termoplástico con cubierta de nylon, resistente al calor y a la propagación de la flama", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos" }] },
+      {
+        "type": "THHW",
+        "genericName": "Termoplástico resistente a la humedad, al calor y retardante a la flama",
+        "ratings": [
+          { "temperatureC": 75, "locations": "Lugares mojados" },
+          { "temperatureC": 90, "locations": "Lugares secos" }
+        ]
+      },
+      {
+        "type": "THHW-LS",
+        "genericName": "Termoplástico resistente a la humedad, al calor, retardante a la flama, de emisión reducida de humos y gas ácido",
+        "ratings": [
+          { "temperatureC": 75, "locations": "Lugares mojados" },
+          { "temperatureC": 90, "locations": "Lugares secos" }
+        ]
+      },
+      {
+        "type": "THW",
+        "genericName": "Termoplástico retardante a la flama y resistente a la humedad y al calor",
+        "ratings": [{ "temperatureC": 75, "locations": "Lugares mojados" }],
+        "note": "La disposición del texto en la p. 192 no permite asegurar si 'Lugares secos y húmedos' corresponde también a THW o solo a THW-2. Verificar visualmente."
+      },
+      {
+        "type": "THW-2",
+        "genericName": "Termoplástico retardante a la flama y resistente a la humedad y al calor",
+        "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y húmedos" }],
+        "note": "Ver nota de THW. Las NOTAS de la tabla indican que el sufijo -2 identifica cables para 90 °C en lugares secos y mojados."
+      },
+      {
+        "type": "THW-LS",
+        "genericName": "Termoplástico resistente a la humedad, al calor, retardante a la flama, de emisión reducida de humos y de gas ácido",
+        "ratings": [{ "temperatureC": 75, "locations": "Lugares secos y mojados" }]
+      },
+      { "type": "THWN", "genericName": "Termoplástico con cubierta de nylon, resistente al calor, a la humedad y retardante a la flama", "ratings": [{ "temperatureC": 75, "locations": "Lugares secos y húmedos" }] },
+      { "type": "THWN-2", "genericName": "Termoplástico con cubierta de nylon, resistente al calor, a la humedad y retardante a la flama", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y húmedos" }] },
+      { "type": "TW", "genericName": "Termoplástico resistente a la humedad y retardante a la flama", "ratings": [{ "temperatureC": 60, "locations": "Lugares secos y mojados" }] },
+      {
+        "type": "UF",
+        "genericName": "Cable monoconductor subterráneo y circuitos derivados de un solo conductor",
+        "ratings": [
+          { "temperatureC": 60, "locations": "Ver el Artículo 340 (resistente a la humedad)" },
+          { "temperatureC": 75, "locations": "Ver el Artículo 340 (resistente a la humedad y al calor)" }
+        ],
+        "note": "Nota 5: para limitación de ampacidad, véase 340-80."
+      },
+      {
+        "type": "USE",
+        "genericName": "Cable de acometida subterránea de un solo conductor",
+        "ratings": [{ "temperatureC": 75, "locations": "Ver el Artículo 340" }],
+        "note": "Nota 5: para limitación de ampacidad, véase 340-80."
+      },
+      { "type": "USE-2", "genericName": "Cable de acometida subterránea de un solo conductor", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y mojados" }] },
+      { "type": "XHH", "genericName": "Termofijo retardante a la flama", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y húmedos" }] },
+      {
+        "type": "XHHW",
+        "genericName": "Termofijo retardante a la flama y resistente al calor y a la humedad",
+        "ratings": [
+          { "temperatureC": 90, "locations": "Lugares secos y húmedos" },
+          { "temperatureC": 75, "locations": "Lugares mojados" }
+        ]
+      },
+      { "type": "XHHW-2", "genericName": "Termofijo retardante a la flama y resistente al calor y a la humedad", "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y mojados" }] }
+    ]
+  },
+  "notes": [
+    "Transcripción parcial: se incluyen los tipos de uso general en alimentadores y circuitos derivados. Se omiten FEP/FEPB, MI, MTW, papel, PFA, PFAH, SA, SIS, TBS, TFE, Z, ZW y ZW-2 (aplicaciones especiales o alambrado de tableros).",
+    "Se permite que los tipos de cables para utilizarse en temperaturas de operación de 90 °C en lugares secos y mojados se marquen con el sufijo \"-2\" (por ejemplo THW-2, XHHW-2, RHW-2).",
+    "Los cables que se graban como \"LS\" son no propagadores del incendio y de baja emisión de humos."
+  ],
+  "errata": []
+}

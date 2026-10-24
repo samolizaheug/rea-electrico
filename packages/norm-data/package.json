@@ -1,0 +1,19 @@
+{
+  "name": "@rea/norm-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tablas normativas en JSON, con referencia a la fuente (norma, edición, tabla, artículo, página) y estado de verificación.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "extract:nom-2012": "tsx scripts/extract-text.ts nom-001-sede-2012",
+    "build:nom-2012": "tsx scripts/build-nom-001-sede-2012.ts"
+  },
+  "dependencies": {
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "4.10.38"
+  }
+}

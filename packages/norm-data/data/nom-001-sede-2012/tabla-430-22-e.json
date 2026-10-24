@@ -1,0 +1,91 @@
+{
+  "id": "nom-001-sede-2012/tabla-430-22-e",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "duty-cycle",
+  "reference": {
+    "table": "Tabla 430-22(e)",
+    "article": "430-22(e)",
+    "title": "Servicio por régimen de tiempo"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      379
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "ratings": [
+      {
+        "id": "5min",
+        "label": "Motor especificado para 5 minutos"
+      },
+      {
+        "id": "15min",
+        "label": "Motor especificado para 15 minutos"
+      },
+      {
+        "id": "30-60min",
+        "label": "Motor especificado para 30 y 60 minutos"
+      },
+      {
+        "id": "continuo",
+        "label": "Motor especificado para funcionamiento continuo"
+      }
+    ],
+    "rows": [
+      {
+        "dutyClass": "corta-duracion",
+        "label": "Servicio de corto tiempo: accionamiento de válvulas, elevación o descenso de rodillos, etc.",
+        "percents": [
+          110,
+          120,
+          150,
+          null
+        ]
+      },
+      {
+        "dutyClass": "intermitente",
+        "label": "Servicio intermitente: elevadores y montacargas, máquinas de herramientas, bombas, puentes levadizos, plataformas giratorias, etc.",
+        "percents": [
+          85,
+          85,
+          90,
+          140
+        ]
+      },
+      {
+        "dutyClass": "periodico",
+        "label": "Servicio periódico: rodillos, máquinas de manipulación de minerales y carbón, etc.",
+        "percents": [
+          85,
+          90,
+          95,
+          140
+        ]
+      },
+      {
+        "dutyClass": "variable",
+        "label": "Servicio variable",
+        "percents": [
+          110,
+          120,
+          150,
+          200
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Porcentajes del valor nominal de corriente de las placas de características.",
+    "Cualquier motor debe ser considerado como de ciclo continuo, a menos que la naturaleza de los aparatos que accione sea tal que el motor no operará continuamente con carga bajo cualquier condición de operación.",
+    "Para soldadoras de arco, ver 630-11."
+  ],
+  "errata": []
+}

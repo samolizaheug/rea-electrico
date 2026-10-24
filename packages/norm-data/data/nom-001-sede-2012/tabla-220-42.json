@@ -1,0 +1,66 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-42",
+  "norm": { "id": "nom-001-sede", "edition": "2012" },
+  "kind": "demand-factors",
+  "reference": {
+    "table": "Tabla 220-42",
+    "article": "220-42",
+    "title": "Factores de demanda de cargas de alumbrado"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [58],
+    "method": "transcripcion-manual"
+  },
+  "data": {
+    "rows": [
+      {
+        "occupancy": "almacenes",
+        "label": "Almacenes",
+        "tiers": [
+          { "upToVA": 12500, "percent": 100, "publishedText": "Primeros 12 500 o menos" },
+          { "upToVA": null, "percent": 50, "publishedText": "A partir de 12 500" }
+        ]
+      },
+      {
+        "occupancy": "hospitales",
+        "label": "Hospitales*",
+        "tiers": [
+          { "upToVA": 50000, "percent": 40, "publishedText": "Primeros 50 000 o menos" },
+          { "upToVA": null, "percent": 20, "publishedText": "A partir de 50 000" }
+        ]
+      },
+      {
+        "occupancy": "hoteles-moteles",
+        "label": "Hoteles y moteles, incluyendo los apartamentos sin cocina para los inquilinos*",
+        "tiers": [
+          { "upToVA": 20000, "percent": 50, "publishedText": "Primeros 20 000 o menos" },
+          { "upToVA": 100000, "percent": 40, "publishedText": "De 20 001 a 100 000" },
+          { "upToVA": null, "percent": 30, "publishedText": "A partir de 1 00000" }
+        ],
+        "note": "El texto publicado dice \"1 00000\" (separador de miles mal colocado); se interpreta como 100 000 VA, consistente con el escalón anterior."
+      },
+      {
+        "occupancy": "vivienda",
+        "label": "Unidades de vivienda",
+        "tiers": [
+          { "upToVA": 3000, "percent": 100, "publishedText": "Primeros 3000 o menos" },
+          { "upToVA": 120000, "percent": 35, "publishedText": "De 3001 a 120 000" },
+          { "upToVA": null, "percent": 25, "publishedText": "A partir de 120 000" }
+        ]
+      },
+      {
+        "occupancy": "otros",
+        "label": "Todos los demás",
+        "tiers": [{ "upToVA": null, "percent": 100, "publishedText": "Voltamperes totales" }]
+      }
+    ]
+  },
+  "notes": [
+    "Los factores se aplican a la parte de alumbrado general de la carga total calculada; no se deben aplicar para calcular el número de circuitos derivados para iluminación general (220-42).",
+    "* Los factores de demanda de esta Tabla no se deben aplicar a la carga calculada de los alimentadores que dan suministro a las zonas de hospitales, hoteles y moteles en las que es posible que se deba utilizar todo el alumbrado al mismo tiempo, como salas de operaciones, comedores y salas de baile."
+  ],
+  "errata": []
+}

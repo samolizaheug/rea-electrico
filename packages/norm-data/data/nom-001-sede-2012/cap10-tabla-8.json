@@ -1,0 +1,586 @@
+{
+  "id": "nom-001-sede-2012/cap10-tabla-8",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "conductor-properties",
+  "reference": {
+    "table": "Capítulo 10, Tabla 8",
+    "article": "Capítulo 10",
+    "title": "Propiedades de los conductores"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      936,
+      937
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "temperatureC": 75,
+    "rows": [
+      {
+        "designation": "18",
+        "system": "AWG",
+        "areaMm2": 0.823,
+        "areaCmil": 1620,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 1.02,
+        "overallAreaMm2": 0.823,
+        "dcResistanceOhmPerKm": {
+          "cu": 25.5,
+          "cuCoated": 26.5,
+          "al": null
+        }
+      },
+      {
+        "designation": "18",
+        "system": "AWG",
+        "areaMm2": 0.823,
+        "areaCmil": 1620,
+        "strands": 7,
+        "strandDiameterMm": 0.39,
+        "overallDiameterMm": 1.16,
+        "overallAreaMm2": 1.06,
+        "dcResistanceOhmPerKm": {
+          "cu": 26.1,
+          "cuCoated": 27.7,
+          "al": null
+        }
+      },
+      {
+        "designation": "16",
+        "system": "AWG",
+        "areaMm2": 1.31,
+        "areaCmil": 2580,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 1.29,
+        "overallAreaMm2": 1.31,
+        "dcResistanceOhmPerKm": {
+          "cu": 16,
+          "cuCoated": 16.7,
+          "al": null
+        }
+      },
+      {
+        "designation": "16",
+        "system": "AWG",
+        "areaMm2": 1.31,
+        "areaCmil": 2580,
+        "strands": 7,
+        "strandDiameterMm": 0.49,
+        "overallDiameterMm": 1.46,
+        "overallAreaMm2": 1.68,
+        "dcResistanceOhmPerKm": {
+          "cu": 16.4,
+          "cuCoated": 17.3,
+          "al": null
+        }
+      },
+      {
+        "designation": "14",
+        "system": "AWG",
+        "areaMm2": 2.08,
+        "areaCmil": 4110,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 1.63,
+        "overallAreaMm2": 2.08,
+        "dcResistanceOhmPerKm": {
+          "cu": 10.1,
+          "cuCoated": 10.4,
+          "al": null
+        }
+      },
+      {
+        "designation": "14",
+        "system": "AWG",
+        "areaMm2": 2.08,
+        "areaCmil": 4110,
+        "strands": 7,
+        "strandDiameterMm": 0.62,
+        "overallDiameterMm": 1.85,
+        "overallAreaMm2": 2.68,
+        "dcResistanceOhmPerKm": {
+          "cu": 10.3,
+          "cuCoated": 10.7,
+          "al": null
+        }
+      },
+      {
+        "designation": "12",
+        "system": "AWG",
+        "areaMm2": 3.31,
+        "areaCmil": 6530,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 2.05,
+        "overallAreaMm2": 3.31,
+        "dcResistanceOhmPerKm": {
+          "cu": 6.34,
+          "cuCoated": 6.57,
+          "al": null
+        }
+      },
+      {
+        "designation": "12",
+        "system": "AWG",
+        "areaMm2": 3.31,
+        "areaCmil": 6530,
+        "strands": 7,
+        "strandDiameterMm": 0.78,
+        "overallDiameterMm": 2.32,
+        "overallAreaMm2": 4.25,
+        "dcResistanceOhmPerKm": {
+          "cu": 6.5,
+          "cuCoated": 6.73,
+          "al": null
+        }
+      },
+      {
+        "designation": "10",
+        "system": "AWG",
+        "areaMm2": 5.261,
+        "areaCmil": 10380,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 2.588,
+        "overallAreaMm2": 5.26,
+        "dcResistanceOhmPerKm": {
+          "cu": 3.984,
+          "cuCoated": 4.148,
+          "al": null
+        }
+      },
+      {
+        "designation": "10",
+        "system": "AWG",
+        "areaMm2": 5.261,
+        "areaCmil": 10380,
+        "strands": 7,
+        "strandDiameterMm": 0.98,
+        "overallDiameterMm": 2.95,
+        "overallAreaMm2": 6.76,
+        "dcResistanceOhmPerKm": {
+          "cu": 4.07,
+          "cuCoated": 4.226,
+          "al": null
+        }
+      },
+      {
+        "designation": "8",
+        "system": "AWG",
+        "areaMm2": 8.367,
+        "areaCmil": 16510,
+        "strands": 1,
+        "strandDiameterMm": null,
+        "overallDiameterMm": 3.264,
+        "overallAreaMm2": 8.37,
+        "dcResistanceOhmPerKm": {
+          "cu": 2.506,
+          "cuCoated": 2.579,
+          "al": null
+        }
+      },
+      {
+        "designation": "8",
+        "system": "AWG",
+        "areaMm2": 8.367,
+        "areaCmil": 16510,
+        "strands": 7,
+        "strandDiameterMm": 1.23,
+        "overallDiameterMm": 3.71,
+        "overallAreaMm2": 10.76,
+        "dcResistanceOhmPerKm": {
+          "cu": 2.551,
+          "cuCoated": 2.653,
+          "al": null
+        }
+      },
+      {
+        "designation": "6",
+        "system": "AWG",
+        "areaMm2": 13.3,
+        "areaCmil": 26240,
+        "strands": 7,
+        "strandDiameterMm": 1.56,
+        "overallDiameterMm": 4.67,
+        "overallAreaMm2": 17.09,
+        "dcResistanceOhmPerKm": {
+          "cu": 1.608,
+          "cuCoated": 1.671,
+          "al": 2.652
+        }
+      },
+      {
+        "designation": "4",
+        "system": "AWG",
+        "areaMm2": 21.15,
+        "areaCmil": 41740,
+        "strands": 7,
+        "strandDiameterMm": 1.96,
+        "overallDiameterMm": 5.89,
+        "overallAreaMm2": 27.19,
+        "dcResistanceOhmPerKm": {
+          "cu": 1.01,
+          "cuCoated": 1.053,
+          "al": 1.666
+        }
+      },
+      {
+        "designation": "3",
+        "system": "AWG",
+        "areaMm2": 26.67,
+        "areaCmil": 52620,
+        "strands": 7,
+        "strandDiameterMm": 2.2,
+        "overallDiameterMm": 6.6,
+        "overallAreaMm2": 34.28,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.802,
+          "cuCoated": 0.833,
+          "al": 1.32
+        }
+      },
+      {
+        "designation": "2",
+        "system": "AWG",
+        "areaMm2": 33.62,
+        "areaCmil": 66360,
+        "strands": 7,
+        "strandDiameterMm": 2.47,
+        "overallDiameterMm": 7.42,
+        "overallAreaMm2": 43.23,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.634,
+          "cuCoated": 0.661,
+          "al": 1.045
+        }
+      },
+      {
+        "designation": "1",
+        "system": "AWG",
+        "areaMm2": 42.41,
+        "areaCmil": 83690,
+        "strands": 19,
+        "strandDiameterMm": 1.69,
+        "overallDiameterMm": 8.43,
+        "overallAreaMm2": 55.8,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.505,
+          "cuCoated": 0.524,
+          "al": 0.829
+        }
+      },
+      {
+        "designation": "1/0",
+        "system": "AWG",
+        "areaMm2": 53.49,
+        "areaCmil": 105600,
+        "strands": 19,
+        "strandDiameterMm": 1.89,
+        "overallDiameterMm": 9.45,
+        "overallAreaMm2": 70.41,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.399,
+          "cuCoated": 0.415,
+          "al": 0.66
+        }
+      },
+      {
+        "designation": "2/0",
+        "system": "AWG",
+        "areaMm2": 67.43,
+        "areaCmil": 133100,
+        "strands": 19,
+        "strandDiameterMm": 2.13,
+        "overallDiameterMm": 10.62,
+        "overallAreaMm2": 88.74,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.317,
+          "cuCoated": 0.329,
+          "al": 0.523
+        }
+      },
+      {
+        "designation": "3/0",
+        "system": "AWG",
+        "areaMm2": 85.01,
+        "areaCmil": 167800,
+        "strands": 19,
+        "strandDiameterMm": 2.39,
+        "overallDiameterMm": 11.94,
+        "overallAreaMm2": 111.9,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.2512,
+          "cuCoated": 0.261,
+          "al": 0.413
+        }
+      },
+      {
+        "designation": "4/0",
+        "system": "AWG",
+        "areaMm2": 107.2,
+        "areaCmil": 211600,
+        "strands": 19,
+        "strandDiameterMm": 2.68,
+        "overallDiameterMm": 13.41,
+        "overallAreaMm2": 141.1,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.1996,
+          "cuCoated": 0.205,
+          "al": 0.328
+        }
+      },
+      {
+        "designation": "250",
+        "system": "kcmil",
+        "areaMm2": 127,
+        "areaCmil": null,
+        "strands": 37,
+        "strandDiameterMm": 2.09,
+        "overallDiameterMm": 14.61,
+        "overallAreaMm2": 168,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.1687,
+          "cuCoated": 0.1753,
+          "al": 0.2778
+        }
+      },
+      {
+        "designation": "300",
+        "system": "kcmil",
+        "areaMm2": 152,
+        "areaCmil": null,
+        "strands": 37,
+        "strandDiameterMm": 2.29,
+        "overallDiameterMm": 16,
+        "overallAreaMm2": 201,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.1409,
+          "cuCoated": 0.1463,
+          "al": 0.2318
+        }
+      },
+      {
+        "designation": "350",
+        "system": "kcmil",
+        "areaMm2": 177,
+        "areaCmil": null,
+        "strands": 37,
+        "strandDiameterMm": 2.47,
+        "overallDiameterMm": 17.3,
+        "overallAreaMm2": 235,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.1205,
+          "cuCoated": 0.1252,
+          "al": 0.1984
+        }
+      },
+      {
+        "designation": "400",
+        "system": "kcmil",
+        "areaMm2": 203,
+        "areaCmil": null,
+        "strands": 37,
+        "strandDiameterMm": 2.64,
+        "overallDiameterMm": 18.49,
+        "overallAreaMm2": 268,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.1053,
+          "cuCoated": 0.1084,
+          "al": 0.1737
+        }
+      },
+      {
+        "designation": "500",
+        "system": "kcmil",
+        "areaMm2": 253,
+        "areaCmil": null,
+        "strands": 37,
+        "strandDiameterMm": 2.95,
+        "overallDiameterMm": 20.65,
+        "overallAreaMm2": 336,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0845,
+          "cuCoated": 0.0869,
+          "al": 0.1391
+        }
+      },
+      {
+        "designation": "600",
+        "system": "kcmil",
+        "areaMm2": 304,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 2.52,
+        "overallDiameterMm": 22.68,
+        "overallAreaMm2": 404,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0704,
+          "cuCoated": 0.0732,
+          "al": 0.1159
+        }
+      },
+      {
+        "designation": "700",
+        "system": "kcmil",
+        "areaMm2": 355,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 2.72,
+        "overallDiameterMm": 24.49,
+        "overallAreaMm2": 471,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0603,
+          "cuCoated": 0.0622,
+          "al": 0.0994
+        }
+      },
+      {
+        "designation": "750",
+        "system": "kcmil",
+        "areaMm2": 380,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 2.82,
+        "overallDiameterMm": 25.35,
+        "overallAreaMm2": 505,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0563,
+          "cuCoated": 0.0579,
+          "al": 0.0927
+        }
+      },
+      {
+        "designation": "800",
+        "system": "kcmil",
+        "areaMm2": 405,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 2.91,
+        "overallDiameterMm": 26.16,
+        "overallAreaMm2": 538,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0528,
+          "cuCoated": 0.0544,
+          "al": 0.0868
+        }
+      },
+      {
+        "designation": "900",
+        "system": "kcmil",
+        "areaMm2": 456,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 3.09,
+        "overallDiameterMm": 27.79,
+        "overallAreaMm2": 606,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.047,
+          "cuCoated": 0.0481,
+          "al": 0.077
+        }
+      },
+      {
+        "designation": "1000",
+        "system": "kcmil",
+        "areaMm2": 507,
+        "areaCmil": null,
+        "strands": 61,
+        "strandDiameterMm": 3.25,
+        "overallDiameterMm": 29.26,
+        "overallAreaMm2": 673,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0423,
+          "cuCoated": 0.0434,
+          "al": 0.0695
+        }
+      },
+      {
+        "designation": "1250",
+        "system": "kcmil",
+        "areaMm2": 633,
+        "areaCmil": null,
+        "strands": 91,
+        "strandDiameterMm": 2.98,
+        "overallDiameterMm": 32.74,
+        "overallAreaMm2": 842,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0338,
+          "cuCoated": 0.0347,
+          "al": 0.0554
+        }
+      },
+      {
+        "designation": "1500",
+        "system": "kcmil",
+        "areaMm2": 760,
+        "areaCmil": null,
+        "strands": 91,
+        "strandDiameterMm": 3.26,
+        "overallDiameterMm": 35.86,
+        "overallAreaMm2": 1011,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.02814,
+          "cuCoated": 0.02814,
+          "al": 0.0464
+        }
+      },
+      {
+        "designation": "1750",
+        "system": "kcmil",
+        "areaMm2": 887,
+        "areaCmil": null,
+        "strands": 127,
+        "strandDiameterMm": 2.98,
+        "overallDiameterMm": 38.76,
+        "overallAreaMm2": 1180,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.0241,
+          "cuCoated": 0.0241,
+          "al": 0.0397
+        }
+      },
+      {
+        "designation": "2000",
+        "system": "kcmil",
+        "areaMm2": 1013,
+        "areaCmil": null,
+        "strands": 127,
+        "strandDiameterMm": 3.19,
+        "overallDiameterMm": 41.45,
+        "overallAreaMm2": 1349,
+        "dcResistanceOhmPerKm": {
+          "cu": 0.02109,
+          "cuCoated": 0.02109,
+          "al": 0.0348
+        }
+      }
+    ]
+  },
+  "notes": [
+    "(1) Estos valores de resistencia son válidos solamente para los parámetros indicados. Al usar conductores con hilos recubiertos, de distinto tipo de trenzado y especialmente a otras temperaturas, cambia la resistencia.",
+    "(2) Fórmula para el cambio de temperatura: R2 = R1 [1 + α (T2 − 75)], donde αCu = 0.00323, αAl = 0.00330 a 75 °C.",
+    "(3) Los conductores con cableado compacto o comprimido tienen aproximadamente un 9 % y un 3 %, respectivamente, menos de diámetro del conductor desnudo que los conductores mostrados.",
+    "(4) Las conductividades usadas, según la IACS: cobre desnudo = 100 %, aluminio = 61 %.",
+    "Calibres 18 a 8 AWG aparecen en dos renglones: sólido (1 hilo) y cableado (7 hilos)."
+  ],
+  "errata": [
+    {
+      "path": "notes[1]",
+      "asPublished": "R2 = R1 [1 + (T2 - 75)]",
+      "corrected": "R2 = R1 [1 + α (T2 − 75)]",
+      "reason": "Falta el símbolo α en la fórmula publicada; la propia nota da αCu = 0.00323 y αAl = 0.00330.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    }
+  ]
+}

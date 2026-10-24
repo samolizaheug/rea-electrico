@@ -1,0 +1,646 @@
+{
+  "id": "nom-001-sede-2012/cap10-tabla-9",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "ac-impedance",
+  "reference": {
+    "table": "Capítulo 10, Tabla 9",
+    "article": "Capítulo 10",
+    "title": "Resistencia y reactancia en corriente alterna para los cables para 600 volts, 3 fases a 60 Hz y 75 °C. Tres conductores individuales en un tubo conduit"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      938
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "temperatureC": 75,
+    "frequencyHz": 60,
+    "powerFactorForZ": 0.85,
+    "rows": [
+      {
+        "designation": "14",
+        "system": "AWG",
+        "areaMm2": 2.08,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.19,
+          "acero": 0.24
+        },
+        "rCuOhmPerKm": {
+          "pvc": 10.2,
+          "aluminio": 10.2,
+          "acero": 10.2
+        },
+        "rAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        },
+        "zCuOhmPerKm": {
+          "pvc": 8.9,
+          "aluminio": 8.9,
+          "acero": 8.9
+        },
+        "zAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        }
+      },
+      {
+        "designation": "12",
+        "system": "AWG",
+        "areaMm2": 3.31,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.177,
+          "acero": 0.223
+        },
+        "rCuOhmPerKm": {
+          "pvc": 6.6,
+          "aluminio": 6.6,
+          "acero": 6.6
+        },
+        "rAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        },
+        "zCuOhmPerKm": {
+          "pvc": 5.6,
+          "aluminio": 5.6,
+          "acero": 5.6
+        },
+        "zAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        }
+      },
+      {
+        "designation": "10",
+        "system": "AWG",
+        "areaMm2": 5.26,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.164,
+          "acero": 0.207
+        },
+        "rCuOhmPerKm": {
+          "pvc": 3.9,
+          "aluminio": 3.9,
+          "acero": 3.9
+        },
+        "rAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        },
+        "zCuOhmPerKm": {
+          "pvc": 3.6,
+          "aluminio": 3.6,
+          "acero": 3.6
+        },
+        "zAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        }
+      },
+      {
+        "designation": "8",
+        "system": "AWG",
+        "areaMm2": 8.36,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.171,
+          "acero": 0.213
+        },
+        "rCuOhmPerKm": {
+          "pvc": 2.56,
+          "aluminio": 2.56,
+          "acero": 2.56
+        },
+        "rAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        },
+        "zCuOhmPerKm": {
+          "pvc": 2.26,
+          "aluminio": 2.26,
+          "acero": 2.3
+        },
+        "zAlOhmPerKm": {
+          "pvc": null,
+          "aluminio": null,
+          "acero": null
+        }
+      },
+      {
+        "designation": "6",
+        "system": "AWG",
+        "areaMm2": 13.3,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.167,
+          "acero": 0.21
+        },
+        "rCuOhmPerKm": {
+          "pvc": 1.61,
+          "aluminio": 1.61,
+          "acero": 1.61
+        },
+        "rAlOhmPerKm": {
+          "pvc": 2.66,
+          "aluminio": 2.66,
+          "acero": 2.66
+        },
+        "zCuOhmPerKm": {
+          "pvc": 1.44,
+          "aluminio": 1.48,
+          "acero": 1.48
+        },
+        "zAlOhmPerKm": {
+          "pvc": 2.33,
+          "aluminio": 2.36,
+          "acero": 2.36
+        }
+      },
+      {
+        "designation": "4",
+        "system": "AWG",
+        "areaMm2": 21.15,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.157,
+          "acero": 0.197
+        },
+        "rCuOhmPerKm": {
+          "pvc": 1.02,
+          "aluminio": 1.02,
+          "acero": 1.02
+        },
+        "rAlOhmPerKm": {
+          "pvc": 1.67,
+          "aluminio": 1.67,
+          "acero": 1.67
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.95,
+          "aluminio": 0.95,
+          "acero": 0.98
+        },
+        "zAlOhmPerKm": {
+          "pvc": 1.51,
+          "aluminio": 1.51,
+          "acero": 1.51
+        }
+      },
+      {
+        "designation": "3",
+        "system": "AWG",
+        "areaMm2": 26.67,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.154,
+          "acero": 0.194
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.82,
+          "aluminio": 0.82,
+          "acero": 0.82
+        },
+        "rAlOhmPerKm": {
+          "pvc": 1.31,
+          "aluminio": 1.35,
+          "acero": 1.31
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.75,
+          "aluminio": 0.79,
+          "acero": 0.79
+        },
+        "zAlOhmPerKm": {
+          "pvc": 1.21,
+          "aluminio": 1.21,
+          "acero": 1.21
+        }
+      },
+      {
+        "designation": "2",
+        "system": "AWG",
+        "areaMm2": 33.62,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.148,
+          "acero": 0.187
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.62,
+          "aluminio": 0.66,
+          "acero": 0.66
+        },
+        "rAlOhmPerKm": {
+          "pvc": 1.05,
+          "aluminio": 1.05,
+          "acero": 1.05
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.62,
+          "aluminio": 0.62,
+          "acero": 0.66
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.98,
+          "aluminio": 0.98,
+          "acero": 0.98
+        }
+      },
+      {
+        "designation": "1",
+        "system": "AWG",
+        "areaMm2": 42.41,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.151,
+          "acero": 0.187
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.49,
+          "aluminio": 0.52,
+          "acero": 0.52
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.82,
+          "aluminio": 0.85,
+          "acero": 0.82
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.52,
+          "aluminio": 0.52,
+          "acero": 0.52
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.79,
+          "aluminio": 0.79,
+          "acero": 0.82
+        }
+      },
+      {
+        "designation": "1/0",
+        "system": "AWG",
+        "areaMm2": 53.49,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.144,
+          "acero": 0.18
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.39,
+          "aluminio": 0.43,
+          "acero": 0.39
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.66,
+          "aluminio": 0.69,
+          "acero": 0.66
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.43,
+          "aluminio": 0.43,
+          "acero": 0.43
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.62,
+          "aluminio": 0.66,
+          "acero": 0.66
+        }
+      },
+      {
+        "designation": "2/0",
+        "system": "AWG",
+        "areaMm2": 67.43,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.141,
+          "acero": 0.177
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.33,
+          "aluminio": 0.33,
+          "acero": 0.33
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.52,
+          "aluminio": 0.52,
+          "acero": 0.52
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.36,
+          "aluminio": 0.36,
+          "acero": 0.36
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.52,
+          "aluminio": 0.52,
+          "acero": 0.52
+        }
+      },
+      {
+        "designation": "3/0",
+        "system": "AWG",
+        "areaMm2": 85.01,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.138,
+          "acero": 0.171
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.253,
+          "aluminio": 0.269,
+          "acero": 0.259
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.43,
+          "aluminio": 0.43,
+          "acero": 0.43
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.289,
+          "aluminio": 0.302,
+          "acero": 0.308
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.43,
+          "aluminio": 0.43,
+          "acero": 0.46
+        }
+      },
+      {
+        "designation": "4/0",
+        "system": "AWG",
+        "areaMm2": 107.2,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.135,
+          "acero": 0.167
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.203,
+          "aluminio": 0.22,
+          "acero": 0.207
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.33,
+          "aluminio": 0.36,
+          "acero": 0.33
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.243,
+          "aluminio": 0.256,
+          "acero": 0.262
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.36,
+          "aluminio": 0.36,
+          "acero": 0.36
+        }
+      },
+      {
+        "designation": "250",
+        "system": "kcmil",
+        "areaMm2": 127,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.135,
+          "acero": 0.171
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.171,
+          "aluminio": 0.187,
+          "acero": 0.177
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.279,
+          "aluminio": 0.295,
+          "acero": 0.282
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.217,
+          "aluminio": 0.23,
+          "acero": 0.24
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.308,
+          "aluminio": 0.322,
+          "acero": 0.33
+        }
+      },
+      {
+        "designation": "300",
+        "system": "kcmil",
+        "areaMm2": 152,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.135,
+          "acero": 0.167
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.144,
+          "aluminio": 0.161,
+          "acero": 0.148
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.233,
+          "aluminio": 0.249,
+          "acero": 0.236
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.194,
+          "aluminio": 0.207,
+          "acero": 0.213
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.269,
+          "aluminio": 0.282,
+          "acero": 0.289
+        }
+      },
+      {
+        "designation": "350",
+        "system": "kcmil",
+        "areaMm2": 177,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.131,
+          "acero": 0.164
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.125,
+          "aluminio": 0.141,
+          "acero": 0.128
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.2,
+          "aluminio": 0.217,
+          "acero": 0.207
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.174,
+          "aluminio": 0.19,
+          "acero": 0.197
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.24,
+          "aluminio": 0.253,
+          "acero": 0.262
+        }
+      },
+      {
+        "designation": "400",
+        "system": "kcmil",
+        "areaMm2": 203,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.131,
+          "acero": 0.161
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.108,
+          "aluminio": 0.125,
+          "acero": 0.115
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.177,
+          "aluminio": 0.194,
+          "acero": 0.18
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.161,
+          "aluminio": 0.174,
+          "acero": 0.184
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.217,
+          "aluminio": 0.233,
+          "acero": 0.24
+        }
+      },
+      {
+        "designation": "500",
+        "system": "kcmil",
+        "areaMm2": 253,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.128,
+          "acero": 0.157
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.089,
+          "aluminio": 0.105,
+          "acero": 0.095
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.141,
+          "aluminio": 0.157,
+          "acero": 0.148
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.141,
+          "aluminio": 0.157,
+          "acero": 0.164
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.187,
+          "aluminio": 0.2,
+          "acero": 0.21
+        }
+      },
+      {
+        "designation": "600",
+        "system": "kcmil",
+        "areaMm2": 304,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.128,
+          "acero": 0.157
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.075,
+          "aluminio": 0.092,
+          "acero": 0.082
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.118,
+          "aluminio": 0.135,
+          "acero": 0.125
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.131,
+          "aluminio": 0.144,
+          "acero": 0.154
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.167,
+          "aluminio": 0.18,
+          "acero": 0.19
+        }
+      },
+      {
+        "designation": "750",
+        "system": "kcmil",
+        "areaMm2": 380,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.125,
+          "acero": 0.157
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.062,
+          "aluminio": 0.079,
+          "acero": 0.069
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.095,
+          "aluminio": 0.112,
+          "acero": 0.102
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.118,
+          "aluminio": 0.131,
+          "acero": 0.141
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.148,
+          "aluminio": 0.161,
+          "acero": 0.171
+        }
+      },
+      {
+        "designation": "1000",
+        "system": "kcmil",
+        "areaMm2": 507,
+        "xlOhmPerKm": {
+          "pvcOAluminio": 0.121,
+          "acero": 0.151
+        },
+        "rCuOhmPerKm": {
+          "pvc": 0.049,
+          "aluminio": 0.062,
+          "acero": 0.059
+        },
+        "rAlOhmPerKm": {
+          "pvc": 0.075,
+          "aluminio": 0.089,
+          "acero": 0.082
+        },
+        "zCuOhmPerKm": {
+          "pvc": 0.105,
+          "aluminio": 0.118,
+          "acero": 0.131
+        },
+        "zAlOhmPerKm": {
+          "pvc": 0.128,
+          "aluminio": 0.138,
+          "acero": 0.151
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Ohms al neutro por kilómetro.",
+    "1. Valores basados en conductores tipo RHH con trenzado Clase B, en configuración acunada. Conductividad 100 % IACS (cobre), 61 % IACS (aluminio); conduit de aluminio 45 % IACS. No se tiene en cuenta la reactancia capacitiva. Resistencias válidas sólo a 75 °C.",
+    "2. Ze = R cos θ + X sen θ. Al multiplicar la corriente por la impedancia eficaz se obtiene una buena aproximación de la caída de tensión de línea a neutro. Para otro FP: Ze = R × FP + XL sen[arc cos(FP)].",
+    "Orden de columnas interpretado (encabezados desordenados en la capa de texto): XL (PVC o aluminio, acero); R Cu (PVC, aluminio, acero); R Al (…); Z Cu a FP 0.85 (…); Z Al (…). Comprobado con 4/0 Cu: R = 0.203/0.220/0.207 Ω/km = 0.062/0.067/0.063 Ω/kft (NEC) × 3.281."
+  ],
+  "errata": []
+}

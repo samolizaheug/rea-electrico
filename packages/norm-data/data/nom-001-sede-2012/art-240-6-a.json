@@ -1,0 +1,79 @@
+{
+  "id": "nom-001-sede-2012/art-240-6-a",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "standard-ratings",
+  "reference": {
+    "table": "240-6(a)",
+    "article": "240-6(a)",
+    "title": "Capacidades estandarizadas de fusibles e interruptores automáticos de disparo fijo"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      91
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "inverseTimeA": [
+      15,
+      16,
+      20,
+      25,
+      30,
+      32,
+      35,
+      40,
+      45,
+      50,
+      60,
+      63,
+      70,
+      80,
+      90,
+      100,
+      110,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      600,
+      700,
+      800,
+      1000,
+      1200,
+      1600,
+      2000,
+      2500,
+      3000,
+      4000,
+      5000,
+      6000
+    ],
+    "additionalFuseA": [
+      1,
+      3,
+      6,
+      10,
+      601
+    ]
+  },
+  "notes": [
+    "Se permitirá el uso de fusibles e interruptores automáticos de tiempo inverso con valores en amperes no estandarizados.",
+    "A diferencia del NEC, la lista incluye 16, 32 y 63 A."
+  ],
+  "errata": []
+}

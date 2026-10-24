@@ -1,0 +1,351 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-15-b-2-b",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "temperature-correction",
+  "reference": {
+    "table": "Tabla 310-15(b)(2)(b)",
+    "article": "310-15(b)(2)",
+    "title": "Factores de corrección basados en una temperatura ambiente de 40 °C"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      166,
+      167
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "baseAmbientC": 40,
+    "temperaturesC": [
+      60,
+      75,
+      90,
+      150,
+      200,
+      250
+    ],
+    "rows": [
+      {
+        "ambientFromC": null,
+        "ambientToC": 10,
+        "factors": [
+          1.58,
+          1.36,
+          1.26,
+          1.13,
+          1.09,
+          1.07
+        ]
+      },
+      {
+        "ambientFromC": 11,
+        "ambientToC": 15,
+        "factors": [
+          1.5,
+          1.31,
+          1.22,
+          1.11,
+          1.08,
+          1.06
+        ]
+      },
+      {
+        "ambientFromC": 16,
+        "ambientToC": 20,
+        "factors": [
+          1.41,
+          1.25,
+          1.18,
+          1.09,
+          1.06,
+          1.05
+        ]
+      },
+      {
+        "ambientFromC": 21,
+        "ambientToC": 25,
+        "factors": [
+          1.32,
+          1.2,
+          1.14,
+          1.07,
+          1.05,
+          1.04
+        ]
+      },
+      {
+        "ambientFromC": 26,
+        "ambientToC": 30,
+        "factors": [
+          1.22,
+          1.13,
+          1.1,
+          1.04,
+          1.03,
+          1.02
+        ]
+      },
+      {
+        "ambientFromC": 31,
+        "ambientToC": 35,
+        "factors": [
+          1.12,
+          1.07,
+          1.05,
+          1.02,
+          1.02,
+          1.01
+        ]
+      },
+      {
+        "ambientFromC": 36,
+        "ambientToC": 40,
+        "factors": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "ambientFromC": 41,
+        "ambientToC": 45,
+        "factors": [
+          0.87,
+          0.93,
+          0.95,
+          0.98,
+          0.98,
+          0.99
+        ]
+      },
+      {
+        "ambientFromC": 46,
+        "ambientToC": 50,
+        "factors": [
+          0.71,
+          0.85,
+          0.89,
+          0.95,
+          0.97,
+          0.98
+        ]
+      },
+      {
+        "ambientFromC": 51,
+        "ambientToC": 55,
+        "factors": [
+          0.5,
+          0.76,
+          0.84,
+          0.93,
+          0.95,
+          0.96
+        ]
+      },
+      {
+        "ambientFromC": 56,
+        "ambientToC": 60,
+        "factors": [
+          null,
+          0.65,
+          0.77,
+          0.9,
+          0.94,
+          0.95
+        ]
+      },
+      {
+        "ambientFromC": 61,
+        "ambientToC": 65,
+        "factors": [
+          null,
+          0.53,
+          0.71,
+          0.88,
+          0.92,
+          0.94
+        ]
+      },
+      {
+        "ambientFromC": 66,
+        "ambientToC": 70,
+        "factors": [
+          null,
+          0.38,
+          0.63,
+          0.85,
+          0.9,
+          0.93
+        ]
+      },
+      {
+        "ambientFromC": 71,
+        "ambientToC": 75,
+        "factors": [
+          null,
+          null,
+          0.55,
+          0.83,
+          0.88,
+          0.91
+        ]
+      },
+      {
+        "ambientFromC": 76,
+        "ambientToC": 80,
+        "factors": [
+          null,
+          null,
+          0.45,
+          0.8,
+          0.87,
+          0.9
+        ]
+      },
+      {
+        "ambientFromC": 81,
+        "ambientToC": 90,
+        "factors": [
+          null,
+          null,
+          null,
+          0.74,
+          0.83,
+          0.87
+        ]
+      },
+      {
+        "ambientFromC": 91,
+        "ambientToC": 100,
+        "factors": [
+          null,
+          null,
+          null,
+          0.67,
+          0.79,
+          0.85
+        ]
+      },
+      {
+        "ambientFromC": 101,
+        "ambientToC": 110,
+        "factors": [
+          null,
+          null,
+          null,
+          0.6,
+          0.75,
+          0.82
+        ]
+      },
+      {
+        "ambientFromC": 111,
+        "ambientToC": 120,
+        "factors": [
+          null,
+          null,
+          null,
+          0.52,
+          0.71,
+          0.79
+        ]
+      },
+      {
+        "ambientFromC": 121,
+        "ambientToC": 130,
+        "factors": [
+          null,
+          null,
+          null,
+          0.43,
+          0.66,
+          0.76
+        ]
+      },
+      {
+        "ambientFromC": 131,
+        "ambientToC": 140,
+        "factors": [
+          null,
+          null,
+          null,
+          0.3,
+          0.61,
+          0.72
+        ]
+      },
+      {
+        "ambientFromC": 141,
+        "ambientToC": 160,
+        "factors": [
+          null,
+          null,
+          null,
+          null,
+          0.5,
+          0.65
+        ]
+      },
+      {
+        "ambientFromC": 161,
+        "ambientToC": 180,
+        "factors": [
+          null,
+          null,
+          null,
+          null,
+          0.35,
+          0.58
+        ]
+      },
+      {
+        "ambientFromC": 181,
+        "ambientToC": 200,
+        "factors": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.49
+        ]
+      },
+      {
+        "ambientFromC": 201,
+        "ambientToC": 225,
+        "factors": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          0.35
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Para temperaturas ambiente distintas de 40 °C, multiplique las ampacidades permisibles por el factor correspondiente.",
+    "310-15(b)(2) permite también calcular el factor con la ecuación de esa sección."
+  ],
+  "errata": [
+    {
+      "path": "rows[13].ambientFromC",
+      "asPublished": "91-75",
+      "corrected": "71-75",
+      "reason": "El intervalo publicado \"91-75\" rompe la secuencia (…-70 → 76-…); se corrige a 71-75.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    }
+  ]
+}

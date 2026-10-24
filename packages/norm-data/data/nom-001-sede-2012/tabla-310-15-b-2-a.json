@@ -1,0 +1,191 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-15-b-2-a",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "temperature-correction",
+  "reference": {
+    "table": "Tabla 310-15(b)(2)(a)",
+    "article": "310-15(b)(2)",
+    "title": "Factores de corrección basados en una temperatura ambiente de 30 °C"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      166
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "baseAmbientC": 30,
+    "temperaturesC": [
+      60,
+      75,
+      90
+    ],
+    "rows": [
+      {
+        "ambientFromC": null,
+        "ambientToC": 10,
+        "factors": [
+          1.29,
+          1.2,
+          1.15
+        ]
+      },
+      {
+        "ambientFromC": 11,
+        "ambientToC": 15,
+        "factors": [
+          1.22,
+          1.15,
+          1.12
+        ]
+      },
+      {
+        "ambientFromC": 16,
+        "ambientToC": 20,
+        "factors": [
+          1.15,
+          1.11,
+          1.08
+        ]
+      },
+      {
+        "ambientFromC": 21,
+        "ambientToC": 25,
+        "factors": [
+          1.08,
+          1.05,
+          1.04
+        ]
+      },
+      {
+        "ambientFromC": 26,
+        "ambientToC": 30,
+        "factors": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "ambientFromC": 31,
+        "ambientToC": 35,
+        "factors": [
+          0.91,
+          0.94,
+          0.96
+        ]
+      },
+      {
+        "ambientFromC": 36,
+        "ambientToC": 40,
+        "factors": [
+          0.82,
+          0.88,
+          0.91
+        ]
+      },
+      {
+        "ambientFromC": 41,
+        "ambientToC": 45,
+        "factors": [
+          0.71,
+          0.82,
+          0.87
+        ]
+      },
+      {
+        "ambientFromC": 46,
+        "ambientToC": 50,
+        "factors": [
+          0.58,
+          0.75,
+          0.82
+        ]
+      },
+      {
+        "ambientFromC": 51,
+        "ambientToC": 55,
+        "factors": [
+          0.41,
+          0.67,
+          0.76
+        ]
+      },
+      {
+        "ambientFromC": 56,
+        "ambientToC": 60,
+        "factors": [
+          null,
+          0.58,
+          0.71
+        ]
+      },
+      {
+        "ambientFromC": 61,
+        "ambientToC": 65,
+        "factors": [
+          null,
+          0.47,
+          0.65
+        ]
+      },
+      {
+        "ambientFromC": 66,
+        "ambientToC": 70,
+        "factors": [
+          null,
+          0.33,
+          0.58
+        ]
+      },
+      {
+        "ambientFromC": 71,
+        "ambientToC": 75,
+        "factors": [
+          null,
+          null,
+          0.5
+        ]
+      },
+      {
+        "ambientFromC": 76,
+        "ambientToC": 80,
+        "factors": [
+          null,
+          null,
+          0.41
+        ]
+      },
+      {
+        "ambientFromC": 81,
+        "ambientToC": 85,
+        "factors": [
+          null,
+          null,
+          0.29
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Para temperaturas ambiente distintas de 30 °C, multiplique las ampacidades permisibles por el factor correspondiente.",
+    "310-15(b)(2) permite también calcular el factor con la ecuación de esa sección."
+  ],
+  "errata": [
+    {
+      "path": "rows[13].ambientFromC",
+      "asPublished": "91-75",
+      "corrected": "71-75",
+      "reason": "El intervalo publicado \"91-75\" rompe la secuencia (…-70 → 76-…); se corrige a 71-75.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    }
+  ]
+}

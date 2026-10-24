@@ -1,0 +1,63 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-15-b-3-a",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "adjustment-factors",
+  "reference": {
+    "table": "Tabla 310-15(b)(3)(a)",
+    "article": "310-15(b)(3)(a)",
+    "title": "Factores de ajuste para más de tres conductores portadores de corriente en una canalización o cable"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      167
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "rows": [
+      {
+        "conductorsFrom": 4,
+        "conductorsTo": 6,
+        "percent": 80
+      },
+      {
+        "conductorsFrom": 7,
+        "conductorsTo": 9,
+        "percent": 70
+      },
+      {
+        "conductorsFrom": 10,
+        "conductorsTo": 20,
+        "percent": 50
+      },
+      {
+        "conductorsFrom": 21,
+        "conductorsTo": 30,
+        "percent": 45
+      },
+      {
+        "conductorsFrom": 31,
+        "conductorsTo": 40,
+        "percent": 40
+      },
+      {
+        "conductorsFrom": 41,
+        "conductorsTo": null,
+        "percent": 35
+      }
+    ]
+  },
+  "notes": [
+    "Porcentaje de los valores de las Tablas 310-15(b)(16) a 310-15(b)(19), ajustadas por temperatura ambiente si es necesario.",
+    "¹ Número total de conductores en la canalización o cable ajustado de acuerdo con 310-15(b)(5) y (6).",
+    "No se aplica a canalizaciones de 60 cm o menos de longitud (310-15(b)(3)(a)(2))."
+  ],
+  "errata": []
+}

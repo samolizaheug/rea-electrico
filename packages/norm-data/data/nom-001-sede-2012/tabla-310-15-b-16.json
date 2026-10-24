@@ -1,0 +1,523 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-15-b-16",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "ampacity",
+  "reference": {
+    "table": "Tabla 310-15(b)(16)",
+    "article": "310-15(b)",
+    "title": "Ampacidades permisibles en conductores aislados para tensiones hasta 2000 volts y 60 °C a 90 °C. No más de tres conductores portadores de corriente en una canalización, cable o directamente enterrados, basados en una temperatura ambiente de 30 °C"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      170,
+      171
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "basis": {
+      "ambientC": 30,
+      "description": "Ampacidades permisibles en conductores aislados para tensiones hasta 2000 volts y 60 °C a 90 °C. No más de tres conductores portadores de corriente en una canalización, cable o directamente enterrados, basados en una temperatura ambiente de 30 °C"
+    },
+    "temperaturesC": [
+      60,
+      75,
+      90
+    ],
+    "rows": [
+      {
+        "designation": "18",
+        "system": "AWG",
+        "areaMm2": 0.824,
+        "cu": [
+          null,
+          null,
+          14
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": true
+      },
+      {
+        "designation": "16",
+        "system": "AWG",
+        "areaMm2": 1.31,
+        "cu": [
+          null,
+          null,
+          18
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": true
+      },
+      {
+        "designation": "14",
+        "system": "AWG",
+        "areaMm2": 2.08,
+        "cu": [
+          15,
+          20,
+          25
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": true
+      },
+      {
+        "designation": "12",
+        "system": "AWG",
+        "areaMm2": 3.31,
+        "cu": [
+          20,
+          25,
+          30
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": true
+      },
+      {
+        "designation": "10",
+        "system": "AWG",
+        "areaMm2": 5.26,
+        "cu": [
+          30,
+          35,
+          40
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": true
+      },
+      {
+        "designation": "8",
+        "system": "AWG",
+        "areaMm2": 8.37,
+        "cu": [
+          40,
+          50,
+          55
+        ],
+        "al": [
+          null,
+          null,
+          null
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "6",
+        "system": "AWG",
+        "areaMm2": 13.3,
+        "cu": [
+          55,
+          65,
+          75
+        ],
+        "al": [
+          40,
+          50,
+          55
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "4",
+        "system": "AWG",
+        "areaMm2": 21.2,
+        "cu": [
+          70,
+          85,
+          95
+        ],
+        "al": [
+          55,
+          65,
+          75
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "3",
+        "system": "AWG",
+        "areaMm2": 26.7,
+        "cu": [
+          85,
+          100,
+          115
+        ],
+        "al": [
+          65,
+          75,
+          85
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "2",
+        "system": "AWG",
+        "areaMm2": 33.6,
+        "cu": [
+          95,
+          115,
+          130
+        ],
+        "al": [
+          75,
+          90,
+          100
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1",
+        "system": "AWG",
+        "areaMm2": 42.4,
+        "cu": [
+          110,
+          130,
+          145
+        ],
+        "al": [
+          85,
+          100,
+          115
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1/0",
+        "system": "AWG",
+        "areaMm2": 53.49,
+        "cu": [
+          125,
+          150,
+          170
+        ],
+        "al": [
+          100,
+          120,
+          135
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "2/0",
+        "system": "AWG",
+        "areaMm2": 67.43,
+        "cu": [
+          145,
+          175,
+          195
+        ],
+        "al": [
+          115,
+          135,
+          150
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "3/0",
+        "system": "AWG",
+        "areaMm2": 85.01,
+        "cu": [
+          165,
+          200,
+          225
+        ],
+        "al": [
+          130,
+          155,
+          175
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "4/0",
+        "system": "AWG",
+        "areaMm2": 107.2,
+        "cu": [
+          195,
+          230,
+          260
+        ],
+        "al": [
+          150,
+          180,
+          205
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "250",
+        "system": "kcmil",
+        "areaMm2": 127,
+        "cu": [
+          215,
+          255,
+          290
+        ],
+        "al": [
+          170,
+          205,
+          230
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "300",
+        "system": "kcmil",
+        "areaMm2": 152,
+        "cu": [
+          240,
+          285,
+          320
+        ],
+        "al": [
+          195,
+          230,
+          260
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "350",
+        "system": "kcmil",
+        "areaMm2": 177,
+        "cu": [
+          260,
+          310,
+          350
+        ],
+        "al": [
+          210,
+          250,
+          280
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "400",
+        "system": "kcmil",
+        "areaMm2": 203,
+        "cu": [
+          280,
+          335,
+          380
+        ],
+        "al": [
+          225,
+          270,
+          305
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "500",
+        "system": "kcmil",
+        "areaMm2": 253,
+        "cu": [
+          320,
+          380,
+          430
+        ],
+        "al": [
+          260,
+          310,
+          350
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "600",
+        "system": "kcmil",
+        "areaMm2": 304,
+        "cu": [
+          350,
+          420,
+          475
+        ],
+        "al": [
+          285,
+          340,
+          385
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "700",
+        "system": "kcmil",
+        "areaMm2": 355,
+        "cu": [
+          385,
+          460,
+          520
+        ],
+        "al": [
+          315,
+          375,
+          425
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "750",
+        "system": "kcmil",
+        "areaMm2": 380,
+        "cu": [
+          400,
+          475,
+          535
+        ],
+        "al": [
+          320,
+          385,
+          435
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "800",
+        "system": "kcmil",
+        "areaMm2": 405,
+        "cu": [
+          410,
+          490,
+          555
+        ],
+        "al": [
+          330,
+          395,
+          445
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "900",
+        "system": "kcmil",
+        "areaMm2": 456,
+        "cu": [
+          435,
+          520,
+          585
+        ],
+        "al": [
+          355,
+          425,
+          480
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1000",
+        "system": "kcmil",
+        "areaMm2": 507,
+        "cu": [
+          455,
+          545,
+          615
+        ],
+        "al": [
+          375,
+          445,
+          500
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1250",
+        "system": "kcmil",
+        "areaMm2": 633,
+        "cu": [
+          495,
+          590,
+          665
+        ],
+        "al": [
+          405,
+          485,
+          545
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1500",
+        "system": "kcmil",
+        "areaMm2": 760,
+        "cu": [
+          525,
+          625,
+          705
+        ],
+        "al": [
+          435,
+          520,
+          585
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "1750",
+        "system": "kcmil",
+        "areaMm2": 887,
+        "cu": [
+          545,
+          650,
+          735
+        ],
+        "al": [
+          455,
+          545,
+          615
+        ],
+        "smallConductorLimit": false
+      },
+      {
+        "designation": "2000",
+        "system": "kcmil",
+        "areaMm2": 1013,
+        "cu": [
+          555,
+          665,
+          750
+        ],
+        "al": [
+          470,
+          560,
+          630
+        ],
+        "smallConductorLimit": false
+      }
+    ]
+  },
+  "notes": [
+    "* Véase 310-15(b)(2) para los factores de corrección de la ampacidad cuando la temperatura ambiente es diferente a 30 °C.",
+    "** Véase 240-4(d) para limitaciones de protección contra sobrecorriente del conductor.",
+    "Columnas 60/75/90 °C según la Tabla 310-104(a). Cobre: TW, UF (60 °C); RHW, THHW, THHW-LS, THW, THW-LS, THWN, XHHW, USE, ZW (75 °C); TBS, SA, SIS, FEP, FEPB, MI, RHH, RHW-2, THHN, THHW, THHW-LS, THW-2, THWN-2, USE-2, XHH, XHHW, XHHW-2, ZW-2 (90 °C)."
+  ],
+  "errata": []
+}

@@ -1,0 +1,264 @@
+{
+  "id": "nom-001-sede-2012/tabla-250-122",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "egc-size",
+  "reference": {
+    "table": "Tabla 250-122",
+    "article": "250-122",
+    "title": "Tamaño mínimo de los conductores de puesta a tierra para canalizaciones y equipos"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      134
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "rows": [
+      {
+        "maxRatingA": 15,
+        "cu": {
+          "designation": "14",
+          "system": "AWG",
+          "areaMm2": 2.08
+        },
+        "al": null
+      },
+      {
+        "maxRatingA": 20,
+        "cu": {
+          "designation": "12",
+          "system": "AWG",
+          "areaMm2": 3.31
+        },
+        "al": null
+      },
+      {
+        "maxRatingA": 60,
+        "cu": {
+          "designation": "10",
+          "system": "AWG",
+          "areaMm2": 5.26
+        },
+        "al": null
+      },
+      {
+        "maxRatingA": 100,
+        "cu": {
+          "designation": "8",
+          "system": "AWG",
+          "areaMm2": 8.37
+        },
+        "al": null
+      },
+      {
+        "maxRatingA": 200,
+        "cu": {
+          "designation": "6",
+          "system": "AWG",
+          "areaMm2": 13.3
+        },
+        "al": {
+          "designation": "4",
+          "system": "AWG",
+          "areaMm2": 21.2
+        }
+      },
+      {
+        "maxRatingA": 300,
+        "cu": {
+          "designation": "4",
+          "system": "AWG",
+          "areaMm2": 21.2
+        },
+        "al": {
+          "designation": "2",
+          "system": "AWG",
+          "areaMm2": 33.6
+        }
+      },
+      {
+        "maxRatingA": 400,
+        "cu": {
+          "designation": "2",
+          "system": "AWG",
+          "areaMm2": 33.6
+        },
+        "al": {
+          "designation": "1",
+          "system": "AWG",
+          "areaMm2": 42.4
+        }
+      },
+      {
+        "maxRatingA": 500,
+        "cu": {
+          "designation": "2",
+          "system": "AWG",
+          "areaMm2": 33.6
+        },
+        "al": {
+          "designation": "1/0",
+          "system": "AWG",
+          "areaMm2": 53.5
+        }
+      },
+      {
+        "maxRatingA": 600,
+        "cu": {
+          "designation": "1",
+          "system": "AWG",
+          "areaMm2": 42.4
+        },
+        "al": {
+          "designation": "2/0",
+          "system": "AWG",
+          "areaMm2": 67.4
+        }
+      },
+      {
+        "maxRatingA": 800,
+        "cu": {
+          "designation": "1/0",
+          "system": "AWG",
+          "areaMm2": 53.5
+        },
+        "al": {
+          "designation": "3/0",
+          "system": "AWG",
+          "areaMm2": 85
+        }
+      },
+      {
+        "maxRatingA": 1000,
+        "cu": {
+          "designation": "2/0",
+          "system": "AWG",
+          "areaMm2": 67.4
+        },
+        "al": {
+          "designation": "4/0",
+          "system": "AWG",
+          "areaMm2": 107
+        }
+      },
+      {
+        "maxRatingA": 1200,
+        "cu": {
+          "designation": "3/0",
+          "system": "AWG",
+          "areaMm2": 85
+        },
+        "al": {
+          "designation": "250",
+          "system": "kcmil",
+          "areaMm2": 127
+        }
+      },
+      {
+        "maxRatingA": 1600,
+        "cu": {
+          "designation": "4/0",
+          "system": "AWG",
+          "areaMm2": 107
+        },
+        "al": {
+          "designation": "350",
+          "system": "kcmil",
+          "areaMm2": 177
+        }
+      },
+      {
+        "maxRatingA": 2000,
+        "cu": {
+          "designation": "250",
+          "system": "kcmil",
+          "areaMm2": 127
+        },
+        "al": {
+          "designation": "400",
+          "system": "kcmil",
+          "areaMm2": 203
+        }
+      },
+      {
+        "maxRatingA": 2500,
+        "cu": {
+          "designation": "350",
+          "system": "kcmil",
+          "areaMm2": 177
+        },
+        "al": {
+          "designation": "600",
+          "system": "kcmil",
+          "areaMm2": 304
+        }
+      },
+      {
+        "maxRatingA": 3000,
+        "cu": {
+          "designation": "400",
+          "system": "kcmil",
+          "areaMm2": 203
+        },
+        "al": {
+          "designation": "600",
+          "system": "kcmil",
+          "areaMm2": 304
+        }
+      },
+      {
+        "maxRatingA": 4000,
+        "cu": {
+          "designation": "500",
+          "system": "kcmil",
+          "areaMm2": 253
+        },
+        "al": {
+          "designation": "750",
+          "system": "kcmil",
+          "areaMm2": 380
+        }
+      },
+      {
+        "maxRatingA": 5000,
+        "cu": {
+          "designation": "700",
+          "system": "kcmil",
+          "areaMm2": 355
+        },
+        "al": {
+          "designation": "1200",
+          "system": "kcmil",
+          "areaMm2": 608
+        }
+      },
+      {
+        "maxRatingA": 6000,
+        "cu": {
+          "designation": "800",
+          "system": "kcmil",
+          "areaMm2": 405
+        },
+        "al": {
+          "designation": "1200",
+          "system": "kcmil",
+          "areaMm2": 608
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Capacidad o ajuste del dispositivo automático de protección contra sobrecorriente en el circuito antes de los equipos, canalizaciones, etc., sin exceder de (amperes).",
+    "Para cumplir con lo establecido en 250-4(a)(5) o (b)(4), el conductor de puesta a tierra de equipos podría ser de mayor tamaño que lo especificado en esta Tabla.",
+    "250-122(a): no se exigirá que sean mayores que los conductores del circuito. 250-122(b): incremento proporcional si se incrementan los conductores de fase."
+  ],
+  "errata": []
+}

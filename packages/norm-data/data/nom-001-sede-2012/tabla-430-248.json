@@ -1,0 +1,190 @@
+{
+  "id": "nom-001-sede-2012/tabla-430-248",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "motor-flc",
+  "reference": {
+    "table": "Tabla 430-248",
+    "article": "430-6(a)(1)",
+    "title": "Corriente a plena carga de motores monofásicos de corriente alterna"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      405
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "motorKind": "1F",
+    "groups": [
+      {
+        "id": "monofasico",
+        "label": "Tensión nominal del motor",
+        "voltagesV": [
+          115,
+          127,
+          208,
+          230
+        ]
+      }
+    ],
+    "rows": [
+      {
+        "hp": "1/6",
+        "kW": 0.12,
+        "currentsA": {
+          "monofasico": [
+            4.4,
+            4,
+            2.4,
+            2.2
+          ]
+        }
+      },
+      {
+        "hp": "1/4",
+        "kW": 0.19,
+        "currentsA": {
+          "monofasico": [
+            5.8,
+            5.3,
+            3.2,
+            2.9
+          ]
+        }
+      },
+      {
+        "hp": "1/3",
+        "kW": 0.25,
+        "currentsA": {
+          "monofasico": [
+            7.2,
+            6.5,
+            4,
+            3.6
+          ]
+        }
+      },
+      {
+        "hp": "1/2",
+        "kW": 0.37,
+        "currentsA": {
+          "monofasico": [
+            9.8,
+            8.9,
+            5.4,
+            4.9
+          ]
+        }
+      },
+      {
+        "hp": "3/4",
+        "kW": 0.56,
+        "currentsA": {
+          "monofasico": [
+            13.8,
+            11.5,
+            7.6,
+            6.9
+          ]
+        }
+      },
+      {
+        "hp": "1",
+        "kW": 0.75,
+        "currentsA": {
+          "monofasico": [
+            16,
+            14,
+            8.8,
+            8
+          ]
+        }
+      },
+      {
+        "hp": "1 1/2",
+        "kW": 1.12,
+        "currentsA": {
+          "monofasico": [
+            20,
+            18,
+            11,
+            10
+          ]
+        }
+      },
+      {
+        "hp": "2",
+        "kW": 1.5,
+        "currentsA": {
+          "monofasico": [
+            24,
+            22,
+            13.2,
+            12
+          ]
+        }
+      },
+      {
+        "hp": "3",
+        "kW": 2.25,
+        "currentsA": {
+          "monofasico": [
+            34,
+            31,
+            18.7,
+            17
+          ]
+        }
+      },
+      {
+        "hp": "5",
+        "kW": 3.75,
+        "currentsA": {
+          "monofasico": [
+            56,
+            51,
+            30.8,
+            28
+          ]
+        }
+      },
+      {
+        "hp": "7 1/2",
+        "kW": 5.6,
+        "currentsA": {
+          "monofasico": [
+            80,
+            72,
+            44,
+            40
+          ]
+        }
+      },
+      {
+        "hp": "10",
+        "kW": 7.5,
+        "currentsA": {
+          "monofasico": [
+            100,
+            91,
+            55,
+            50
+          ]
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Valores para motores que funcionan a la velocidad usual y con características normales de par.",
+    "Las corrientes listadas deben utilizarse para sistemas de tensiones nominales de 110 a 120 volts y de 220 a 240 volts.",
+    "El primer renglón (0.12 kW) se lee \"16\" en la capa de texto del PDF porque la fracción 1⁄6 se compone de glifos separados; corresponde a 1/6 hp."
+  ],
+  "errata": []
+}

@@ -46,6 +46,17 @@ Extraje el texto del PDF del DOF. La capa de texto es buena: las tablas salen co
 | E6 | Tabla 8, nota 2, p. 937 | "R2 = R1 [1 + (T2 - 75)]" | R2 = R1 [1 + α(T2 − 75)] | Falta el símbolo α (αCu = 0.00323, αAl = 0.00330) |
 | E7 | Tabla 9, p. 938 | Encabezados de columnas desordenados | Orden: XL (PVC/Al, acero); R Cu (PVC, Al, acero); R Al (…); Z Cu (…); Z Al (…) | Confirmado con 4/0 Cu: 0.203/0.220/0.207 Ω/km = 0.062/0.067/0.063 Ω/kft del NEC × 3.281 |
 
+**Actualización (E2):**
+- **E5 resuelta, no era errata.** Por la coordenada horizontal del texto en la p. 406, 302 / 242 / 60 A corresponden a 460 / 575 / 2300 V. Las demás celdas del renglón de 250 hp están vacías, igual que en el NEC.
+- **E8, nueva, pendiente de aprobación.** La detectaron las pruebas de consistencia. En la Tabla 430-250, motor síncrono de 40 hp a 230 V, el DOF publica **93 A**.
+  - I·V se aparta 13 % del resto del renglón (460 V = 41 A, 575 V = 33 A).
+  - La secuencia es 30 hp = 63 A → 40 hp = ? → 50 hp = 104 A, y el NEC 430.250 da **83 A**.
+  - Corrección propuesta: 83 A. Mientras no se apruebe, se usa el valor publicado y la prueba la mantiene en la lista de anomalías pendientes.
+- **El resto de las tablas pasa todas las pruebas de consistencia:**
+  - Tabla 8: R·A dentro del rango del cobre.
+  - Tabla 9: Z publicada = R·0.85 + X·0.527 en todos los renglones.
+  - Ampacidades, factores y motores: sin otros quiebres de secuencia.
+
 Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 mm² en la Tabla 310-15(b)(16) y como 53.5 mm² en otras tablas. Se usará la **designación** (AWG/kcmil) como clave y el área de la Tabla 8.
 
 ## 2. NEC (NFPA 70): ediciones seleccionables 2020, 2023 y 2026
@@ -67,6 +78,18 @@ Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 
 
 - **No hay acceso gratuito oficial.** La IEC Webstore vende cada parte por separado; sus *previews* solo muestran el índice y el alcance.
 - **Fuentes secundarias gratuitas y legítimas** que reproducen las tablas de la 5-52: *Electrical Installation Guide* de Schneider Electric (electrical-installation.org) y *Electrical Installation Handbook* de ABB. Propongo usarlas con un estado propio, `fuente_secundaria`. El motor las aceptaría, pero la memoria lo indicaría con una nota visible hasta que se verifiquen contra la norma comprada.
+
+### 3.1 Fuentes secundarias descargadas (2026-10-24)
+
+En `referencias/normas/fuentes-secundarias/abb-electrical-installation-handbook/`, desde library.e.abb.com:
+
+| Archivo | Bytes | SHA-256 |
+|---|---|---|
+| 1SDC010001D0201.pdf | 1,642,746 | C202A18865065583F14568BD9FF594C0E1CC02E1B131DA2ABA494360FE380A3B |
+| 1SDC010001D0202.pdf | 2,252,630 | D49A6882F8C7C2F17B0C892F5FF11BB1D0573E045E10A31E67ADB328EBB0B833 |
+| 1SDC010001D0204.pdf | 1,642,486 | 88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24 |
+
+Se revisarán en la E9, al construir el módulo IEC: qué tablas de la 60364-5-52 reproducen y de qué edición.
 
 ## 4. Estados de un dato normativo
 

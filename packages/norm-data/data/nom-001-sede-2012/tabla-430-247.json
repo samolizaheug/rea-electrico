@@ -1,0 +1,307 @@
+{
+  "id": "nom-001-sede-2012/tabla-430-247",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "motor-flc",
+  "reference": {
+    "table": "Tabla 430-247",
+    "article": "430-6(a)(1)",
+    "title": "Corriente a plena carga para motores de corriente continua"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      404,
+      405
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "motorKind": "cc",
+    "groups": [
+      {
+        "id": "armadura",
+        "label": "Tensión nominal de armadura",
+        "voltagesV": [
+          120,
+          240,
+          500
+        ]
+      }
+    ],
+    "rows": [
+      {
+        "hp": "1/4",
+        "kW": 0.19,
+        "currentsA": {
+          "armadura": [
+            3.1,
+            1.6,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1/3",
+        "kW": 0.25,
+        "currentsA": {
+          "armadura": [
+            4.1,
+            2,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1/2",
+        "kW": 0.37,
+        "currentsA": {
+          "armadura": [
+            5.4,
+            2.7,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "3/4",
+        "kW": 0.56,
+        "currentsA": {
+          "armadura": [
+            7.6,
+            3.8,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1",
+        "kW": 0.75,
+        "currentsA": {
+          "armadura": [
+            9.5,
+            4.7,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "1 1/2",
+        "kW": 1.12,
+        "currentsA": {
+          "armadura": [
+            13.2,
+            6.6,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "2",
+        "kW": 1.5,
+        "currentsA": {
+          "armadura": [
+            17,
+            8.5,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "3",
+        "kW": 2.25,
+        "currentsA": {
+          "armadura": [
+            25,
+            12.2,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "5",
+        "kW": 3.75,
+        "currentsA": {
+          "armadura": [
+            40,
+            20,
+            null
+          ]
+        }
+      },
+      {
+        "hp": "7 1/2",
+        "kW": 5.6,
+        "currentsA": {
+          "armadura": [
+            58,
+            29,
+            13.6
+          ]
+        }
+      },
+      {
+        "hp": "10",
+        "kW": 7.5,
+        "currentsA": {
+          "armadura": [
+            76,
+            38,
+            18
+          ]
+        }
+      },
+      {
+        "hp": "15",
+        "kW": 11.2,
+        "currentsA": {
+          "armadura": [
+            null,
+            55,
+            27
+          ]
+        }
+      },
+      {
+        "hp": "20",
+        "kW": 14.9,
+        "currentsA": {
+          "armadura": [
+            null,
+            72,
+            34
+          ]
+        }
+      },
+      {
+        "hp": "25",
+        "kW": 18.7,
+        "currentsA": {
+          "armadura": [
+            null,
+            89,
+            43
+          ]
+        }
+      },
+      {
+        "hp": "30",
+        "kW": 22.4,
+        "currentsA": {
+          "armadura": [
+            null,
+            106,
+            51
+          ]
+        }
+      },
+      {
+        "hp": "40",
+        "kW": 29.8,
+        "currentsA": {
+          "armadura": [
+            null,
+            140,
+            67
+          ]
+        }
+      },
+      {
+        "hp": "50",
+        "kW": 37.3,
+        "currentsA": {
+          "armadura": [
+            null,
+            173,
+            83
+          ]
+        }
+      },
+      {
+        "hp": "60",
+        "kW": 44.8,
+        "currentsA": {
+          "armadura": [
+            null,
+            206,
+            99
+          ]
+        }
+      },
+      {
+        "hp": "75",
+        "kW": 56,
+        "currentsA": {
+          "armadura": [
+            null,
+            255,
+            123
+          ]
+        }
+      },
+      {
+        "hp": "100",
+        "kW": 75,
+        "currentsA": {
+          "armadura": [
+            null,
+            341,
+            164
+          ]
+        }
+      },
+      {
+        "hp": "125",
+        "kW": 93,
+        "currentsA": {
+          "armadura": [
+            null,
+            425,
+            205
+          ]
+        }
+      },
+      {
+        "hp": "150",
+        "kW": 112,
+        "currentsA": {
+          "armadura": [
+            null,
+            506,
+            246
+          ]
+        }
+      },
+      {
+        "hp": "200",
+        "kW": 149,
+        "currentsA": {
+          "armadura": [
+            null,
+            675,
+            330
+          ]
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Los valores de corriente a plena carga son para motores que funcionan a su velocidad básica.",
+    "* Estos valores son promedios para corriente continua."
+  ],
+  "errata": [
+    {
+      "path": "rows[21].currentsA.armadura[2]",
+      "asPublished": 346,
+      "corrected": 246,
+      "reason": "346 A excede el valor de 200 hp (330 A) y rompe la secuencia; NEC 430.247 da 246 A.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    }
+  ]
+}
