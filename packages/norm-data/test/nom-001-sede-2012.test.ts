@@ -8,10 +8,7 @@ const nom = getNormDataset("nom-001-sede", "2012");
  * Anomalías conocidas y PENDIENTES de decisión del usuario. Si aparece una nueva,
  * esta prueba falla para obligar a revisarla contra el PDF antes de seguir.
  */
-const PENDING_ANOMALIES = [
-  // E8 (pendiente): 430-250 síncrono 40 hp 230 V publicado 93 A; NEC 430.250 da 83 A.
-  "nom-001-sede-2012/tabla-430-250 | 40 hp, sincrono-fp1 230 V",
-];
+const PENDING_ANOMALIES: string[] = [];
 
 describe("NOM-001-SEDE-2012: conjunto de tablas", () => {
   it("está registrado y todas las tablas cumplen el formato", () => {
@@ -103,7 +100,8 @@ describe("valores de control (leídos del PDF)", () => {
     expect(row("1 1/2").currentsA.induccion).toEqual([12, 6.9, 6.6, 6, 3, 2.4, null]);
     expect(row("250").currentsA.induccion).toEqual([null, null, null, null, 302, 242, 60]);
     expect(row("250").currentsA["sincrono-fp1"]).toEqual([null, null, null, null]);
-    expect(t.errata).toHaveLength(1);
+    expect(row("40").currentsA["sincrono-fp1"]).toEqual([83, 41, 33, null]);
+    expect(t.errata.map((e) => e.asPublished)).toEqual([44, 93]);
   });
 
   it("Tabla 430-247 con la errata de 150 hp / 500 V", () => {
@@ -133,7 +131,7 @@ describe("valores de control (leídos del PDF)", () => {
 });
 
 describe("estado de verificación", () => {
-  it("toda tabla sin registro está por verificar", () => {
-    for (const id of nom.ids()) expect(nom.status(id).status).toBe("por_verificar");
+  it("todas las tablas tienen una verificación vigente (huella igual a los datos actuales)", () => {
+    for (const id of nom.ids()) expect(nom.status(id).status, id).toBe("verificado");
   });
 });

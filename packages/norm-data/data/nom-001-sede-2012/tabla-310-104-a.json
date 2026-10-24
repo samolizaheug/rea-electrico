@@ -40,13 +40,13 @@
         "type": "THW",
         "genericName": "Termoplástico retardante a la flama y resistente a la humedad y al calor",
         "ratings": [{ "temperatureC": 75, "locations": "Lugares mojados" }],
-        "note": "La disposición del texto en la p. 192 no permite asegurar si 'Lugares secos y húmedos' corresponde también a THW o solo a THW-2. Verificar visualmente."
+        "note": "Así lo publica la NOM (p. 192): THW sólo para lugares mojados; difiere del NEC, que lo admite también en lugares secos."
       },
       {
         "type": "THW-2",
         "genericName": "Termoplástico retardante a la flama y resistente a la humedad y al calor",
         "ratings": [{ "temperatureC": 90, "locations": "Lugares secos y húmedos" }],
-        "note": "Ver nota de THW. Las NOTAS de la tabla indican que el sufijo -2 identifica cables para 90 °C en lugares secos y mojados."
+        "note": "Así lo publica la NOM (p. 192). Las NOTAS de la tabla indican además que el sufijo -2 se permite para cables de 90 °C en lugares secos y mojados."
       },
       {
         "type": "THW-LS",
@@ -60,10 +60,10 @@
         "type": "UF",
         "genericName": "Cable monoconductor subterráneo y circuitos derivados de un solo conductor",
         "ratings": [
-          { "temperatureC": 60, "locations": "Ver el Artículo 340 (resistente a la humedad)" },
-          { "temperatureC": 75, "locations": "Ver el Artículo 340 (resistente a la humedad y al calor)" }
+          { "temperatureC": 60, "locations": "Ver el Artículo 340 (aislamiento resistente a la humedad)" },
+          { "temperatureC": 75, "locations": "Ver el Artículo 340 (aislamiento resistente a la humedad y al calor)" }
         ],
-        "note": "Nota 5: para limitación de ampacidad, véase 340-80."
+        "note": "Nota 4 (60 °C): incluye una cubierta integral. Nota 5 (75 °C): para limitación de ampacidad, véase 340-80."
       },
       {
         "type": "USE",

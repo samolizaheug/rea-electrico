@@ -51,7 +51,13 @@ Extraje el texto del PDF del DOF. La capa de texto es buena: las tablas salen co
 - **E8, nueva, pendiente de aprobación.** La detectaron las pruebas de consistencia. En la Tabla 430-250, motor síncrono de 40 hp a 230 V, el DOF publica **93 A**.
   - I·V se aparta 13 % del resto del renglón (460 V = 41 A, 575 V = 33 A).
   - La secuencia es 30 hp = 63 A → 40 hp = ? → 50 hp = 104 A, y el NEC 430.250 da **83 A**.
-  - Corrección propuesta: 83 A. Mientras no se apruebe, se usa el valor publicado y la prueba la mantiene en la lista de anomalías pendientes.
+  - Corrección: 83 A, **aprobada por el usuario el 2026-10-24** y aplicada.
+
+**Verificación (2026-10-24):** a petición del usuario, Claude comparó celda por celda las 17 tablas contra las páginas del PDF renderizadas como imagen. Es un método independiente de la capa de texto que usó la extracción.
+- Todas coinciden. Las imágenes confirman que E1–E4, E6 y E8 son valores publicados así en el DOF.
+- La imagen de la p. 192 resuelve la duda de la 310-104(a): **THW = 75 °C sólo en lugares mojados; THW-2 = 90 °C en lugares secos y húmedos**. La NOM difiere aquí del NEC.
+- Observación para el motor: la Tabla 250-122 pide Al 1200 kcmil para 5000 y 6000 A, un calibre que no aparece en las tablas de ampacidad.
+- El registro está en `packages/norm-data/data/nom-001-sede-2012/verificacion.json`, a nombre de "Claude (asistente IA)", para que la memoria de cálculo indique quién verificó.
 - **El resto de las tablas pasa todas las pruebas de consistencia:**
   - Tabla 8: R·A dentro del rango del cobre.
   - Tabla 9: Z publicada = R·0.85 + X·0.527 en todos los renglones.

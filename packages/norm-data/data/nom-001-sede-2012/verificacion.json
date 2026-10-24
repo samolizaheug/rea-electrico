@@ -3,5 +3,125 @@
     "id": "nom-001-sede",
     "edition": "2012"
   },
-  "tables": {}
+  "tables": {
+    "art-240-6-a": {
+      "status": "verificado",
+      "fingerprint": "6c0dd0efb42123bbdb3a9205e9a49aeb19e32050be60088f3f1c357f8cd5188a",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "cap10-tabla-8": {
+      "status": "verificado",
+      "fingerprint": "4e37e7d4337fedcd8835fe2be0911df2b2aa23809b774111c920800d789b0b51",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "cap10-tabla-9": {
+      "status": "verificado",
+      "fingerprint": "86e53bee844f57c383155e658bf5ab449182216455729ba118bf36c1aa5fc155",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-220-42": {
+      "status": "verificado",
+      "fingerprint": "ce2972d5fb324be4ac2dfd1ca386ffce79686c7d5843aad3ded7f85e07c7b7ae",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-220-44": {
+      "status": "verificado",
+      "fingerprint": "54d1f0f608ca0c00a40e0f219f47b0571d1c5e6b5794fc793b56cb904327f69a",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-250-122": {
+      "status": "verificado",
+      "fingerprint": "3454362a04c6a7a48bdfde812b09ca7ab044a26d4f297b30c74f59311268c250",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-104-a": {
+      "status": "verificado",
+      "fingerprint": "85de2613a289fa8147043a07d2d2786b05955c80c60dcc1d6a0eacc80fb4a5a7",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-15-b-16": {
+      "status": "verificado",
+      "fingerprint": "3c40a1b5616c65cb2ebe4daedb3d21ecf21d2c98463ff9d0799f39aac3d4c8e7",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-15-b-17": {
+      "status": "verificado",
+      "fingerprint": "879c4de38c0ccebeaa2c49671a9d020138534e838c3f97193bbfbb7b6778bebc",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-15-b-2-a": {
+      "status": "verificado",
+      "fingerprint": "a0f4728276d4a6c723d0f85defd5bb14822b1d837b8395d844fd7a091db4e1e2",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-15-b-2-b": {
+      "status": "verificado",
+      "fingerprint": "1764a0a30a8a0258f4b004f95677a7c613b34e5d23187897f2d225f7247b1944",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-310-15-b-3-a": {
+      "status": "verificado",
+      "fingerprint": "7254947ef64c3e0686f4061a6ec7ce930b7c94c973f01e5305a63a1cf5298a05",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-430-22-e": {
+      "status": "verificado",
+      "fingerprint": "af1d41209a13e4bba1f0fb27cfd8ebceecc479a35e34f10ef9493212e83fecd7",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-430-247": {
+      "status": "verificado",
+      "fingerprint": "c0bbecef6c0a161c63d5e1099fb572aedc740f61b14c23d215eb38a69b573db0",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-430-248": {
+      "status": "verificado",
+      "fingerprint": "22af86291a697991f79fbd2f486ff5b8a63a2d4235f5c1d119ef6cba8935351c",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-430-250": {
+      "status": "verificado",
+      "fingerprint": "1abf968bde7ddf1e6502c3b9408224b6783e6ff09ce4e8107c018a266935b72c",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    },
+    "tabla-430-52": {
+      "status": "verificado",
+      "fingerprint": "5aa4bf1ea9e19fd0536685ce688be3b8522e210f1365df9ffba116013727ebcc",
+      "by": "Claude (asistente IA), a peticion del usuario",
+      "date": "2026-10-24",
+      "notes": "Comparacion celda por celda contra la pagina del PDF renderizada como imagen (pdftoppm 110-150 dpi), metodo independiente de la capa de texto usada en la extraccion. Erratas E1-E4, E6, E8 confirmadas como publicadas en el DOF; E5 confirmada como no-errata."
+    }
+  }
 }

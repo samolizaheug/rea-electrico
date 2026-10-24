@@ -335,7 +335,7 @@
             null
           ],
           "sincrono-fp1": [
-            93,
+            83,
             41,
             33,
             null
@@ -629,6 +629,14 @@
       "asPublished": 44,
       "corrected": 11,
       "reason": "44 A rompe la secuencia (7 1/2 hp = 9 A, 15 hp = 17 A); NEC 430.250 da 11 A.",
+      "approvedBy": "Usuario (ingeniero responsable)",
+      "approvedAt": "2026-10-24"
+    },
+    {
+      "path": "rows[13].currentsA.sincrono-fp1[0]",
+      "asPublished": 93,
+      "corrected": 83,
+      "reason": "I·V se aparta 13 % del renglón (460 V = 41 A, 575 V = 33 A); secuencia 30 hp = 63 A → 50 hp = 104 A; NEC 430.250 da 83 A.",
       "approvedBy": "Usuario (ingeniero responsable)",
       "approvedAt": "2026-10-24"
     }
