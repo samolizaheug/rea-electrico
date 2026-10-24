@@ -1,0 +1,23 @@
+{
+  "name": "rea-electrico",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Aplicación web para cálculo y diseño de instalaciones eléctricas (fase 1)",
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "schema": "tsx packages/core/scripts/generate-schema.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vitest": "2.1.8"
+  }
+}

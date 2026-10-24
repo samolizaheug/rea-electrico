@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+*.log
+
+# Documentos normativos fuente (derechos de autor / tamaño). Ver referencias/README.md
+referencias/normas/

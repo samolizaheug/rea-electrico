@@ -1,0 +1,80 @@
+import type { ElementTypeDefinition } from "../registry/definition";
+import { systemParam, voltageParam } from "./common";
+
+/** Transformador de dos devanados. */
+export const transformer: ElementTypeDefinition = {
+  type: "transformer",
+  name: "Transformador",
+  category: "transformacion",
+  electricalRole: "transformer",
+  ports: [
+    { id: "primary", label: "Primario", side: "top" },
+    { id: "secondary", label: "Secundario", side: "bottom" },
+  ],
+  tag: { prefix: "TR", style: "number" },
+  symbols: { ANSI: "ansi/transformer-2w", IEC: "iec/transformer-2w" },
+  calcBehavior: "transformer.two-winding",
+  params: [
+    { key: "ratedKVA", label: "Capacidad", kind: "number", unit: "kVA", default: 500, min: 0, minExclusive: true, required: true, group: "Eléctrico" },
+    voltageParam("primaryVoltageV", "Tensión primaria", 23000),
+    systemParam("3F3H", undefined, "primarySystem"),
+    voltageParam("secondaryVoltageV", "Tensión secundaria", 220),
+    systemParam("3F4H", undefined, "system"),
+    {
+      key: "connection",
+      label: "Conexión",
+      kind: "enum",
+      options: [
+        { value: "Dyn1", label: "Delta - Estrella aterrizada (Dyn1)" },
+        { value: "Dyn5", label: "Delta - Estrella aterrizada (Dyn5)" },
+        { value: "Dyn11", label: "Delta - Estrella aterrizada (Dyn11)" },
+        { value: "YNyn0", label: "Estrella aterrizada - Estrella aterrizada (YNyn0)" },
+        { value: "Yyn0", label: "Estrella - Estrella aterrizada (Yyn0)" },
+        { value: "Dd0", label: "Delta - Delta (Dd0)" },
+        { value: "Yd1", label: "Estrella - Delta (Yd1)" },
+        { value: "Yd11", label: "Estrella - Delta (Yd11)" },
+        { value: "1F", label: "Monofásico" },
+      ],
+      default: "Dyn1",
+      required: true,
+      group: "Eléctrico",
+    },
+    {
+      key: "impedancePct",
+      label: "Impedancia %Z",
+      kind: "number",
+      unit: "%",
+      default: 5.75,
+      min: 0,
+      minExclusive: true,
+      max: 30,
+      required: true,
+      group: "Eléctrico",
+      description: "Impedancia de cortocircuito en por ciento sobre la base del propio transformador (dato de placa).",
+    },
+    {
+      key: "xrRatio",
+      label: "Relación X/R",
+      kind: "number",
+      default: null,
+      min: 0,
+      minExclusive: true,
+      group: "Eléctrico",
+      description: "Dato de placa o de fabricante. Si no se captura, el cálculo lo marca como pendiente.",
+    },
+    {
+      key: "tapPct",
+      label: "Derivación (tap)",
+      kind: "number",
+      unit: "%",
+      default: 0,
+      min: -10,
+      max: 10,
+      required: true,
+      group: "Eléctrico",
+      description: "Posición del cambiador de derivaciones respecto a la tensión nominal primaria.",
+    },
+  ],
+};
+
+export const transformationTypes = [transformer];

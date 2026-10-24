@@ -1,0 +1,391 @@
+{
+  "$ref": "#/definitions/Proyecto",
+  "definitions": {
+    "Proyecto": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "const": "rea-electrico/proyecto"
+        },
+        "schemaVersion": {
+          "type": "number",
+          "const": 1
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "client": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 300
+            },
+            "author": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 5000
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "client",
+            "location",
+            "author",
+            "description",
+            "createdAt",
+            "updatedAt"
+          ],
+          "additionalProperties": false
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "norm": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "edition": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "edition"
+              ],
+              "additionalProperties": false
+            },
+            "symbology": {
+              "type": "string",
+              "enum": [
+                "ANSI",
+                "IEC"
+              ]
+            },
+            "units": {
+              "type": "object",
+              "properties": {
+                "conductorSize": {
+                  "type": "string",
+                  "enum": [
+                    "mm2",
+                    "AWG"
+                  ]
+                },
+                "length": {
+                  "type": "string",
+                  "enum": [
+                    "m",
+                    "ft"
+                  ]
+                }
+              },
+              "required": [
+                "conductorSize",
+                "length"
+              ],
+              "additionalProperties": false
+            },
+            "language": {
+              "type": "string",
+              "enum": [
+                "es",
+                "en"
+              ]
+            },
+            "frequencyHz": {
+              "type": "number",
+              "enum": [
+                50,
+                60
+              ]
+            },
+            "ambient": {
+              "type": "object",
+              "properties": {
+                "airC": {
+                  "type": "number",
+                  "minimum": -40,
+                  "maximum": 90
+                },
+                "groundC": {
+                  "type": "number",
+                  "minimum": -20,
+                  "maximum": 60
+                }
+              },
+              "required": [
+                "airC",
+                "groundC"
+              ],
+              "additionalProperties": false
+            },
+            "voltageDrop": {
+              "type": "object",
+              "properties": {
+                "branchPct": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "feederPct": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "totalPct": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                }
+              },
+              "required": [
+                "branchPct",
+                "feederPct",
+                "totalPct"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "norm",
+            "symbology",
+            "units",
+            "language",
+            "frequencyHz",
+            "ambient",
+            "voltageDrop"
+          ],
+          "additionalProperties": false
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tag": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "tagLocked": {
+                "type": "boolean"
+              },
+              "params": {
+                "type": "object",
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "tag",
+              "tagLocked",
+              "params"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 64,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "a": {
+                "type": "object",
+                "properties": {
+                  "elementId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "pattern": "^[A-Za-z0-9_-]+$"
+                  },
+                  "portId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "elementId",
+                  "portId"
+                ],
+                "additionalProperties": false
+              },
+              "b": {
+                "type": "object",
+                "properties": {
+                  "elementId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "pattern": "^[A-Za-z0-9_-]+$"
+                  },
+                  "portId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "elementId",
+                  "portId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "a",
+              "b"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "diagram": {
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "rotation": {
+                    "type": "number",
+                    "enum": [
+                      0,
+                      90,
+                      180,
+                      270
+                    ]
+                  }
+                },
+                "required": [
+                  "x",
+                  "y",
+                  "rotation"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "wires": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "waypoints": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "number"
+                        },
+                        "y": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "waypoints"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "nodes",
+            "wires"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "format",
+        "schemaVersion",
+        "meta",
+        "settings",
+        "elements",
+        "connections",
+        "diagram"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
