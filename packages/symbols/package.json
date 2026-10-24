@@ -1,0 +1,12 @@
+{
+  "name": "@rea/symbols",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Símbolos ANSI/IEEE e IEC de los elementos, como datos geométricos independientes del renderizador.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@rea/core": "workspace:*"
+  }
+}

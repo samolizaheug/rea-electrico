@@ -239,9 +239,62 @@ export function moveElement(project: Project, elementId: string, x: number, y: n
   };
 }
 
+/** Fragmento copiado (portapapeles): elementos, sus conexiones internas y su posición. */
+export interface Clip {
+  elements: ProjectElement[];
+  connections: Connection[];
+  nodes: Record<string, DiagramNode>;
+}
+
+/** Extrae un fragmento con los elementos indicados y las conexiones entre ellos. */
+export function extractClip(project: Project, elementIds: string[]): Clip {
+  const ids = new Set(elementIds);
+  const elements = project.elements.filter((e) => ids.has(e.id));
+  return structuredClone({
+    elements,
+    connections: project.connections.filter((c) => ids.has(c.a.elementId) && ids.has(c.b.elementId)),
+    nodes: Object.fromEntries(elements.map((e) => [e.id, project.diagram.nodes[e.id] ?? { x: 0, y: 0, rotation: 0 as const }])),
+  });
+}
+
 /**
- * Copia un conjunto de elementos (copiar/pegar del editor). Se conservan las conexiones
- * internas entre los copiados; las copias reciben ids y etiquetas automáticas nuevas.
+ * Pega un fragmento: las copias reciben ids y etiquetas automáticas nuevas, se desplazan
+ * `offset` y conservan parámetros, rotación, notas y conexiones internas.
+ */
+export function pasteClip(
+  project: Project,
+  registry: ElementRegistry,
+  clip: Clip,
+  offset: { x: number; y: number } = { x: 40, y: 40 },
+): { project: Project; idMap: Record<string, string> } {
+  let p = project;
+  const idMap: Record<string, string> = {};
+  for (const src of clip.elements) {
+    const pos = clip.nodes[src.id] ?? { x: 0, y: 0, rotation: 0 as const };
+    const added = addElement(p, registry, src.type, {
+      position: { x: pos.x + offset.x, y: pos.y + offset.y },
+      params: structuredClone(src.params),
+    });
+    idMap[src.id] = added.elementId;
+    p = added.project;
+    const node = p.diagram.nodes[added.elementId]!;
+    p = {
+      ...p,
+      elements: src.notes ? p.elements.map((e) => (e.id === added.elementId ? { ...e, notes: src.notes } : e)) : p.elements,
+      diagram: { ...p.diagram, nodes: { ...p.diagram.nodes, [added.elementId]: { ...node, rotation: pos.rotation } } },
+    };
+  }
+  for (const c of clip.connections) {
+    const na = idMap[c.a.elementId];
+    const nb = idMap[c.b.elementId];
+    if (na && nb) p = connect(p, registry, { elementId: na, portId: c.a.portId }, { elementId: nb, portId: c.b.portId }).project;
+  }
+  return { project: p, idMap };
+}
+
+/**
+ * Copia un conjunto de elementos dentro del mismo proyecto (equivale a copiar + pegar).
+ * Se conservan las conexiones internas entre los copiados.
  */
 export function duplicateElements(
   project: Project,
@@ -249,33 +302,29 @@ export function duplicateElements(
   elementIds: string[],
   offset: { x: number; y: number } = { x: 40, y: 40 },
 ): { project: Project; idMap: Record<string, string> } {
-  let p = project;
-  const idMap: Record<string, string> = {};
+  for (const id of elementIds) getElement(project, id);
+  return pasteClip(project, registry, extractClip(project, elementIds), offset);
+}
+
+/** Gira elementos en el diagrama (solo representación), en pasos de 90° en sentido horario. */
+export function rotateElements(project: Project, elementIds: string[], deltaDeg: 90 | 180 | 270 = 90): Project {
+  const nodes = { ...project.diagram.nodes };
   for (const id of elementIds) {
-    const src = getElement(project, id);
-    const pos = project.diagram.nodes[id] ?? { x: 0, y: 0, rotation: 0 as const };
-    const added = addElement(p, registry, src.type, {
-      position: { x: pos.x + offset.x, y: pos.y + offset.y },
-      params: structuredClone(src.params),
-    });
-    p = added.project;
-    idMap[id] = added.elementId;
-    const node = p.diagram.nodes[added.elementId];
-    if (node) {
-      p = { ...p, diagram: { ...p.diagram, nodes: { ...p.diagram.nodes, [added.elementId]: { ...node, rotation: pos.rotation } } } };
-    }
-    if (src.notes) {
-      p = { ...p, elements: p.elements.map((e) => (e.id === added.elementId ? { ...e, notes: src.notes } : e)) };
-    }
+    const n = nodes[id];
+    if (!n) continue;
+    nodes[id] = { ...n, rotation: ((n.rotation + deltaDeg) % 360) as DiagramNode["rotation"] };
   }
-  for (const c of project.connections) {
-    const na = idMap[c.a.elementId];
-    const nb = idMap[c.b.elementId];
-    if (na && nb) {
-      p = connect(p, registry, { elementId: na, portId: c.a.portId }, { elementId: nb, portId: c.b.portId }).project;
-    }
-  }
-  return { project: p, idMap };
+  return touch({ ...project, diagram: { ...project.diagram, nodes } });
+}
+
+/** Cambia parte de la configuración (norma, simbología, unidades...). No toca el modelo eléctrico. */
+export function updateSettings(project: Project, changes: Partial<ProjectSettings>): Project {
+  return touch({ ...project, settings: { ...project.settings, ...changes } });
+}
+
+/** Cambia datos generales del proyecto (nombre, cliente, ubicación...). */
+export function updateMeta(project: Project, changes: Partial<Omit<ProjectMeta, "id" | "createdAt" | "updatedAt">>): Project {
+  return touch({ ...project, meta: { ...project.meta, ...changes } });
 }
 
 /** Reasigna las etiquetas automáticas (no toca las editadas por el usuario), en orden de creación. */

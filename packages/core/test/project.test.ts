@@ -9,7 +9,12 @@ import {
   disconnect,
   duplicateElements,
   duplicateProject,
+  extractClip,
+  pasteClip,
   removeElements,
+  rotateElements,
+  updateMeta,
+  updateSettings,
   renumberTags,
   setTag,
   updateParams,
@@ -145,6 +150,31 @@ describe("proyecto", () => {
     expect(q.diagram.nodes[newMotor.id]).toEqual({ x: 50, y: 200, rotation: 0 });
     // Se copia la conexión cable→motor, no la del tablero (que no se copió).
     expect(q.connections).toHaveLength(3);
+  });
+
+  it("copiar y pegar funciona aunque los originales se hayan eliminado", () => {
+    let p = createProject({ name: "P" });
+    const tr = add(p, "transformer", 0, 0);
+    p = tr.project;
+    p = rotateElements(p, [tr.elementId]);
+    const clip = extractClip(p, [tr.elementId]);
+    p = removeElements(p, [tr.elementId]);
+    const pasted = pasteClip(p, registry, clip, { x: 20, y: 0 });
+    const id = pasted.idMap[tr.elementId]!;
+    expect(pasted.project.elements.map((e) => e.tag)).toEqual(["TR-1"]);
+    expect(pasted.project.diagram.nodes[id]).toEqual({ x: 20, y: 0, rotation: 90 });
+  });
+
+  it("gira, cambia la simbología y renombra sin alterar el modelo eléctrico", () => {
+    const a = add(createProject({ name: "P" }), "motor");
+    let p = rotateElements(a.project, [a.elementId], 270);
+    p = rotateElements(p, [a.elementId], 180);
+    expect(p.diagram.nodes[a.elementId]!.rotation).toBe(90);
+    const q = updateMeta(updateSettings(p, { symbology: "IEC" }), { name: "Nuevo nombre" });
+    expect(q.settings.symbology).toBe("IEC");
+    expect(q.meta.name).toBe("Nuevo nombre");
+    expect(q.elements).toBe(p.elements);
+    expect(q.connections).toBe(p.connections);
   });
 
   it("duplica el proyecto con identidad nueva", () => {

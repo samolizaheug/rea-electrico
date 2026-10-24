@@ -11,7 +11,9 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "pnpm --filter @rea/web dev",
+    "build": "pnpm --filter @rea/web build",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p apps/web/tsconfig.json --noEmit",
     "schema": "tsx packages/core/scripts/generate-schema.ts",
     "norm:extraer-nom-2012": "pnpm --filter @rea/norm-data extract:nom-2012",
     "norm:construir-nom-2012": "pnpm --filter @rea/norm-data build:nom-2012",

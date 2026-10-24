@@ -1,0 +1,324 @@
+:root {
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --border: #d9dce1;
+  --text: #1d2330;
+  --muted: #697386;
+  --accent: #0b6bcb;
+  --accent-soft: #e3effb;
+  --danger: #c4312b;
+  --grid: #e7e9ee;
+  --canvas: #fcfcfd;
+  --symbol: #1d2330;
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15181e;
+    --panel: #1d2129;
+    --border: #2f3542;
+    --text: #e6e9ef;
+    --muted: #98a1b3;
+    --accent: #5aa7f2;
+    --accent-soft: #1f3550;
+    --danger: #f06a63;
+    --grid: #232833;
+    --canvas: #181b22;
+    --symbol: #e6e9ef;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+button.danger {
+  color: var(--danger);
+}
+
+input,
+select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.app {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 230px 1fr 270px;
+  grid-template-rows: 48px 1fr 28px;
+  grid-template-areas:
+    "toolbar toolbar toolbar"
+    "palette canvas inspector"
+    "status status status";
+}
+
+/* ---------- Barra de herramientas ---------- */
+.toolbar {
+  grid-area: toolbar;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.project-name {
+  width: 240px;
+  font-weight: 600;
+}
+.toolbar .group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.symbology {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+/* ---------- Paleta ---------- */
+.palette {
+  grid-area: palette;
+  overflow-y: auto;
+  padding: 10px 12px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+}
+.palette h2,
+.inspector h2 {
+  font-size: 13px;
+  margin: 2px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+.palette h3 {
+  font-size: 12px;
+  margin: 14px 0 6px;
+}
+.hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.palette-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.palette-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 4px;
+  min-height: 82px;
+  cursor: grab;
+}
+.palette-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--symbol);
+}
+.palette-label {
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* ---------- Lienzo ---------- */
+.canvas {
+  grid-area: canvas;
+  position: relative;
+  background: var(--canvas);
+}
+.react-flow {
+  --xy-edge-stroke-default: var(--symbol);
+  --xy-edge-stroke-width-default: 2;
+  --xy-edge-stroke-selected-default: var(--accent);
+  --xy-background-color-default: var(--canvas);
+  --xy-minimap-background-color-default: var(--panel);
+  --xy-controls-button-background-color-default: var(--panel);
+  --xy-controls-button-color-default: var(--text);
+  --xy-controls-button-border-color-default: var(--border);
+}
+.element-node {
+  position: relative;
+  color: var(--symbol);
+}
+.element-node.selected {
+  color: var(--accent);
+}
+.element-node.selected::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed var(--accent);
+  border-radius: 4px;
+  pointer-events: none;
+}
+.element-tag {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  color: var(--text);
+}
+.element-tag.side {
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.element-tag.above {
+  bottom: calc(100% + 2px);
+  left: 0;
+}
+.react-flow__handle.port {
+  width: 9px;
+  height: 9px;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.react-flow__node:hover .react-flow__handle.port,
+.react-flow__node.selected .react-flow__handle.port,
+.react-flow.connecting .react-flow__handle.port {
+  opacity: 1;
+}
+.minimap {
+  border: 1px solid var(--border);
+}
+
+/* ---------- Inspector ---------- */
+.inspector {
+  grid-area: inspector;
+  overflow-y: auto;
+  padding: 10px 14px;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 10px 0;
+}
+.field span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+  margin: 8px 0;
+}
+.facts dt {
+  color: var(--muted);
+}
+.facts dd {
+  margin: 0;
+}
+.actions {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------- Barra de estado y avisos ---------- */
+.statusbar {
+  grid-area: status;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 12px;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+.statusbar .muted {
+  margin-left: auto;
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  max-width: min(640px, 90vw);
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--panel);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.18);
+  z-index: 10;
+}
+.toast.error {
+  background: var(--danger);
+  color: #fff;
+}
