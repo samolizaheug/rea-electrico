@@ -25,6 +25,8 @@ export interface PhaseVA {
 export interface ScheduleRow {
   /** Elemento que encabeza el circuito (normalmente el interruptor). */
   headId: string;
+  /** Cable del circuito (primer cable aguas abajo del encabezado), si lo hay. */
+  cableId?: string;
   circuit: string;
   description: string;
   phases: string;
@@ -120,6 +122,7 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
         const totalVA = va.a + va.b + va.c;
         rows.push({
           headId: e.elementId,
+          cableId: cable,
           circuit: head.tag,
           description: tags.join(", "),
           phases,

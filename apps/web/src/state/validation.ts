@@ -98,7 +98,7 @@ export function computeValidation(project: Project): ValidationState {
 // El análisis no depende del dibujo: se recalcula solo si cambian elementos, conexiones o configuración
 // (mover símbolos no dispara el cálculo).
 let cached: { key: [unknown, unknown, unknown]; value: ValidationState } | null = null;
-function validationFor(project: Project): ValidationState {
+export function validationFor(project: Project): ValidationState {
   const key: [unknown, unknown, unknown] = [project.elements, project.connections, project.settings];
   if (!cached || cached.key.some((k, i) => k !== key[i])) cached = { key, value: computeValidation(project) };
   return cached.value;

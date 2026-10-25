@@ -8,6 +8,7 @@ import type { Anchor, Primitive, Rotation, Side, SymbolDef } from "./types";
 
 export * from "./types";
 export { symbolLibrary } from "./library";
+export * from "./diagram";
 
 const byKey = new Map(symbolLibrary.map((s) => [s.key, s]));
 

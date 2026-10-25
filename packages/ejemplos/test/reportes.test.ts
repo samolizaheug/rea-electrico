@@ -1,0 +1,75 @@
+import ExcelJS from "exceljs";
+import { createDefaultRegistry } from "@rea/core";
+import { panelSchedules, runSizing, scheduleIssues } from "@rea/engine";
+import { nom001Sede2012 } from "@rea/norms";
+import { buildWorkbook, circuitRows, diagramSvg, elementReports, isDraft, memoriaDocDefinition, svgAspect, type ReportInput } from "@rea/reports";
+import { renderPdf } from "@rea/reports/src/node";
+import { describe, expect, it } from "vitest";
+import { sistemaEjemplo } from "../src";
+
+const registry = createDefaultRegistry();
+const project = sistemaEjemplo();
+const sizing = runSizing(project, registry, nom001Sede2012);
+const schedules = panelSchedules(project, registry, sizing.loadFlow, sizing);
+const input: ReportInput = { project, registry, norm: nom001Sede2012, sizing, schedules, issues: [...sizing.issues, ...scheduleIssues(schedules)], date: new Date("2026-10-24T12:00:00") };
+
+describe("reportes del sistema de ejemplo", () => {
+  it("unifilar SVG: un grupo por elemento, todas las etiquetas, sin valores no numéricos", () => {
+    const svg = diagramSvg(project, registry, { results: sizing, norm: nom001Sede2012 });
+    expect(svg.startsWith("<svg")).toBe(true);
+    expect(svg).not.toMatch(/NaN|undefined|Infinity/);
+    for (const el of project.elements) expect(svg).toContain(`>${el.tag}<`);
+    // Resultados junto al símbolo y cajetín.
+    expect(svg).toContain("2/0 AWG");
+    expect(svg).toContain("NOM-001-SEDE-2012");
+    expect(svgAspect(svg)).toBeGreaterThan(1);
+  });
+
+  it("cédula de circuitos: un renglón por cable, con origen y destino", () => {
+    const rows = circuitRows(input);
+    expect(rows).toHaveLength(sizing.circuits.size);
+    const by = (tag: string) => rows.find((r) => r.tag === tag)!;
+    expect(by("AL-1")).toMatchObject({ from: "TG", to: "CCM-1", protectionA: 200, conductor: "2/0 AWG Cu", breakerTag: "INT-1" });
+    expect(by("AL-3")).toMatchObject({ from: "TR-2", to: "TAB-A" });
+    expect(by("AL-21")).toMatchObject({ from: "TAB-A", to: "L-01" });
+    expect(by("AL-12").to).toBe("VFD-01");
+  });
+
+  it("memoria por elemento: de la fuente hacia las cargas, con trazas", () => {
+    const els = elementReports(input);
+    expect(els[0]!.tag).toBe("ACOM-1");
+    const al21 = els.find((e) => e.tag === "AL-21")!;
+    expect(al21.traces.length).toBeGreaterThanOrEqual(2);
+    expect(al21.traces[0]!.steps.some((s) => s.refs?.some((r) => r.includes("310-15")))).toBe(true);
+  });
+
+  it("no es borrador: tablas verificadas y sin errores", () => {
+    expect(isDraft(input)).toBe(false);
+    expect(isDraft({ ...input, issues: [{ severity: "error", message: "x" }] })).toBe(true);
+  });
+
+  it("memoria en PDF", async () => {
+    const pdf = await renderPdf(memoriaDocDefinition(input));
+    expect(pdf.subarray(0, 5).toString()).toBe("%PDF-");
+    const pages = pdf.toString("latin1").match(/\/Type \/Page\b/g)?.length ?? 0;
+    expect(pages).toBeGreaterThan(10);
+  }, 60_000);
+
+  it("Excel: hojas, cédula y cuadros con fórmulas que reproducen los totales", async () => {
+    const wb = await buildWorkbook(input);
+    const buf = await wb.xlsx.writeBuffer();
+    const back = new ExcelJS.Workbook();
+    await back.xlsx.load(buf as ArrayBuffer);
+    expect(back.worksheets.map((w) => w.name)).toEqual(["Proyecto", "Circuitos", "Cuadro TG", "Cuadro CCM-1", "Cuadro TAB-B", "Cuadro TAB-A", "Memoria", "Observaciones"]);
+    expect(back.getWorksheet("Circuitos")!.actualRowCount).toBe(1 + sizing.circuits.size);
+    const ws = back.getWorksheet("Cuadro TAB-A")!;
+    // Encabezado en la fila 3; tres circuitos (4–6); totales en 7; corriente en 8; desbalance en 9.
+    const tot = ws.getCell("D7").value as { formula: string; result: number };
+    expect(tot.formula).toBe("SUM(D4:D6)");
+    expect(tot.result).toBeCloseTo(6666.667, 2);
+    const unb = ws.getCell("D9").value as { formula: string; result: number };
+    expect(unb.formula).toContain("MAX(D7:F7)");
+    expect(unb.result).toBeCloseTo(20.58, 2);
+    expect(typeof ws.getCell("D4").value).toBe("number");
+  });
+});

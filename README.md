@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E7** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, memoria por elemento, vista en tabla y cuadros de carga con balance de fases). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E8** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, cuadros de carga con balance de fases y reportes en PDF, SVG, PNG y Excel). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -18,6 +18,7 @@ pnpm build        # compilación de producción (apps/web/dist)
 pnpm test         # pruebas unitarias
 pnpm typecheck    # verificación de tipos
 pnpm schema       # regenera docs/formato-proyecto.schema.json
+pnpm --filter @rea/ejemplos reportes   # reportes del ejemplo en examples/reportes/
 
 # Tablas normativas (requiere el PDF en referencias/normas/)
 pnpm norm:extraer-nom-2012
@@ -37,6 +38,7 @@ packages/
   ejemplos/    Proyectos de ejemplo resueltos a mano (pruebas de integración)
   norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; NEC e IEC pendientes de datos)
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
+  reports/     Reportes: unifilar SVG desde el modelo, memoria en PDF (pdfmake), libro de Excel (ExcelJS)
 apps/
   web/         Editor de unifilares (React + React Flow + Zustand)
 docs/          Plan, revisión normativa, formato de archivo, guías
@@ -59,6 +61,18 @@ El cálculo se repite solo con cada cambio, siempre que no haya errores de datos
 - **Inspector → Resultados y memoria**: datos calculados del elemento seleccionado y su memoria paso a paso (flujo de carga, dimensionamiento y selección de la protección). Cada paso indica fórmula, valores, tabla y artículo.
 - **Tabla**: todos los elementos en filas, agrupados por tipo. Los parámetros se editan en las celdas y los resultados aparecen al lado.
 - **Cuadros de carga**: un cuadro por tablero o CCM con la carga de cada circuito por fase (VA), sus totales, la corriente por fase y el desbalance, calculado como (Fmáx − Fmín) / Fmáx.
+
+## Reportes (E8)
+
+Menú **Exportar…** de la barra superior:
+
+| Reporte | Contenido |
+|---|---|
+| Unifilar (SVG, PNG, PDF) | Dibujo vectorial generado desde el modelo, no una captura de pantalla. Usa la misma geometría que el editor e incluye un cajetín con proyecto, norma, elaboró y fecha. Lleva resultados si «Mostrar resultados» está activo. El PDF es doble carta, vertical u horizontal según la forma del dibujo |
+| Memoria de cálculo (PDF) | Datos y criterios de diseño; unifilar con resultados; cédula de conductores y protecciones (origen, destino, corrientes, calibre, tierra, ampacidad, caídas, criterio que rige); cuadros de carga; memoria paso a paso de cada elemento (fórmula, sustitución, resultado y referencias); observaciones; tablas normativas con su estado de verificación; firmas |
+| Excel | Hojas Proyecto, Circuitos, un cuadro de carga por tablero (totales, corriente por fase y desbalance como **fórmulas** de Excel), Memoria (un renglón por paso, con filtros) y Observaciones |
+
+Si hay errores en el proyecto o tablas normativas pendientes de verificar, la memoria lleva la marca «BORRADOR». En `examples/reportes/` están los reportes del sistema de ejemplo.
 
 ## Documentación
 

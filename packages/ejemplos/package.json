@@ -7,11 +7,17 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "exportar": "tsx scripts/exportar.ts"
+    "exportar": "tsx scripts/exportar.ts",
+    "reportes": "tsx scripts/reportes.ts"
   },
   "dependencies": {
     "@rea/core": "workspace:*",
     "@rea/engine": "workspace:*",
-    "@rea/norms": "workspace:*"
+    "@rea/norms": "workspace:*",
+    "@rea/reports": "workspace:*"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "exceljs": "4.4.0"
   }
 }

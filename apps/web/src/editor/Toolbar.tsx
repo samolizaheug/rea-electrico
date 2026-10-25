@@ -3,7 +3,9 @@ import { useReactFlow } from "@xyflow/react";
 import { useEffect, useRef, useState } from "react";
 import { t } from "../i18n";
 import { downloadProject, readProjectFile } from "../io/files";
+import { exportReport, NEEDS_RESULTS, type ExportKind } from "../io/reports";
 import { useEditor, useProject } from "../state/store";
+import { useValidation } from "../state/validation";
 
 export function Toolbar() {
   const project = useProject();
@@ -13,6 +15,8 @@ export function Toolbar() {
   const flow = useReactFlow();
   const fileInput = useRef<HTMLInputElement>(null);
   const [name, setName] = useState(project.meta.name);
+  const [busy, setBusy] = useState(false);
+  const hasResults = !!useValidation().results;
   useEffect(() => setName(project.meta.name), [project.meta.name]);
 
   const onOpen = async (file: File | undefined) => {
@@ -67,6 +71,29 @@ export function Toolbar() {
           {t("toolbar.redo")}
         </button>
         <button onClick={() => flow.fitView({ padding: 0.2 })}>{t("toolbar.fit")}</button>
+      </div>
+      <div className="group">
+        <select
+          aria-label={t("export.title")}
+          value=""
+          disabled={busy}
+          onChange={(e) => {
+            const kind = e.target.value as ExportKind;
+            if (!kind) return;
+            setBusy(true);
+            exportReport(kind)
+              .then((file) => ed.notify("info", t("msg.saved", { file })))
+              .catch((err: Error) => ed.notify("error", t("export.failed", { message: err.message })))
+              .finally(() => setBusy(false));
+          }}
+        >
+          <option value="">{busy ? t("export.working") : t("export.title")}</option>
+          {(["svg", "png", "pdf-diagram", "pdf-memoria", "xlsx"] as const).map((k) => (
+            <option key={k} value={k} disabled={NEEDS_RESULTS[k] && !hasResults}>
+              {t(`export.${k}`)}
+            </option>
+          ))}
+        </select>
       </div>
       <label className="group symbology">
         {t("toolbar.symbology")}

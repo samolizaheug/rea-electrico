@@ -3,26 +3,35 @@ import { registry } from "../state/registry";
 
 const AUTOSAVE_KEY = "rea-electrico:autosave";
 
-export function fileNameFor(p: Project): string {
+/** Nombre base de archivo a partir del nombre del proyecto (sin acentos ni espacios). */
+export function baseNameFor(p: Project): string {
   const slug = p.meta.name
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
     .replace(/[^A-Za-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .toLowerCase();
-  return `${slug || "proyecto"}.rea.json`;
+  return slug || "proyecto";
 }
 
-/** Descarga el proyecto como archivo JSON. */
-export function downloadProject(p: Project): string {
-  const name = fileNameFor(p);
-  const url = URL.createObjectURL(new Blob([serializeProject(p)], { type: "application/json" }));
+export function fileNameFor(p: Project): string {
+  return `${baseNameFor(p)}.rea.json`;
+}
+
+/** Descarga un archivo generado en el navegador. */
+export function downloadBlob(blob: Blob, name: string): string {
+  const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = name;
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   return name;
+}
+
+/** Descarga el proyecto como archivo JSON. */
+export function downloadProject(p: Project): string {
+  return downloadBlob(new Blob([serializeProject(p)], { type: "application/json" }), fileNameFor(p));
 }
 
 /** Abre un archivo elegido por el usuario. Lanza ProjectFormatError si no es válido. */

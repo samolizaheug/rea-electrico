@@ -1,0 +1,21 @@
+{
+  "name": "@rea/reports",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reportes: unifilar en SVG (vectorial, desde el modelo), memoria de calculo en PDF y cuadros/cedulas en Excel.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@rea/core": "workspace:*",
+    "@rea/engine": "workspace:*",
+    "@rea/norm-data": "workspace:^",
+    "@rea/symbols": "workspace:*",
+    "@xyflow/system": "0.0.47",
+    "exceljs": "4.4.0",
+    "pdfmake": "0.3.11"
+  },
+  "devDependencies": {
+    "@types/pdfmake": "0.3.3"
+  }
+}
