@@ -198,7 +198,71 @@ const trayFillData = z.object({
   ),
 });
 
+// ---------------------------------------------------------------- IEC 60364 (secciones en mm²)
+
+/**
+ * Ampacidad por método de instalación de referencia (A1, A2, B1, B2, C, D, E, F, G).
+ * Cada columna es una combinación de material, aislamiento, conductores cargados y disposición.
+ */
+const iecAmpacityData = z.object({
+  /** Temperatura de referencia: aire 30 °C (métodos A–C, E–G) o terreno 20 °C (método D). */
+  reference: z.object({ medium: z.enum(["aire", "terreno"]), temperatureC: num, note: z.string().optional() }),
+  sizesMm2: z.array(num.positive()).min(1),
+  columns: z.array(
+    z.object({
+      id: z.string(),
+      method: z.string(),
+      material: z.enum(["Cu", "Al"]),
+      insulation: z.enum(["PVC", "XLPE"]),
+      loadedConductors: z.union([z.literal(2), z.literal(3)]),
+      /** Disposición cuando el método tiene variantes (F: trébol o plano; G: horizontal o vertical). */
+      arrangement: z.string().optional(),
+      /** Un valor por sección de `sizesMm2`; null = sin valor en la tabla. */
+      values: z.array(cell),
+    }),
+  ),
+});
+
+/** Tabla genérica de factores: renglones (temperatura, disposición...) × columnas. */
+const factorTableData = z.object({
+  rowHeader: z.string(),
+  columns: z.array(z.object({ id: z.string(), label: z.string() })).min(1),
+  rows: z.array(z.object({ key: z.string(), label: z.string(), values: z.array(cell) })),
+});
+
+/** Resistencia (a la temperatura indicada) y reactancia por unidad de longitud de cables. */
+const cableImpedanceData = z.object({
+  material: z.enum(["Cu", "Al"]),
+  temperatureC: num,
+  frequencyHz: num,
+  rows: z.array(
+    z.object({
+      sizeMm2: num.positive(),
+      singleCore: z.object({ rOhmPerKm: num, xOhmPerKm: num }),
+      multiCore: z.object({ rOhmPerKm: num, xOhmPerKm: num }),
+    }),
+  ),
+});
+
+/** Sección mínima del conductor de protección en función de la sección de fase S. */
+const peSizeData = z.object({
+  rows: z.array(
+    z.object({
+      /** Intervalo de S: (desde, hasta]; null = sin límite. */
+      phaseAboveMm2: num.nullable(),
+      phaseUpToMm2: num.nullable(),
+      /** Regla para el mismo material que la fase: "S", un valor fijo en mm² o "S/2". */
+      sameMaterial: z.union([z.literal("S"), z.literal("S/2"), num]),
+      publishedText: z.string(),
+    }),
+  ),
+});
+
 export const tableKinds = {
+  "iec-ampacity": iecAmpacityData,
+  "factor-table": factorTableData,
+  "cable-impedance": cableImpedanceData,
+  "pe-size": peSizeData,
   "raceway-dimensions": racewayDimensionsData,
   "tray-fill": trayFillData,
   ampacity: ampacityData,

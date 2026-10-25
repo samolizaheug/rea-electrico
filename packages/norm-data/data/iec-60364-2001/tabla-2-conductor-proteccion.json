@@ -1,0 +1,51 @@
+{
+  "id": "iec-60364-2001/tabla-2-conductor-proteccion",
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "reference": {
+    "table": "Tabla 2 (ABB, cap. 2.5)",
+    "article": "IEC 60364-5-54:2002, 543.1",
+    "title": "Sección mínima del conductor de protección"
+  },
+  "source": {
+    "document": "1SDC010001D0204.pdf",
+    "sha256": "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    "publication": "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+    "pages": [
+      86
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)"
+  },
+  "notes": [
+    "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
+    "Se registra la columna «mismo material que el conductor de línea». Para otro material la sección se multiplica por k1/k2 (valores de k de la Tabla 1 del cap. 2.4), que la herramienta aún no aplica.",
+    "Para conductor PEN, la reducción solo se permite según las reglas del neutro (nota * de la tabla)."
+  ],
+  "errata": [],
+  "kind": "pe-size",
+  "data": {
+    "rows": [
+      {
+        "phaseAboveMm2": null,
+        "phaseUpToMm2": 16,
+        "sameMaterial": "S",
+        "publishedText": "S ≤ 16 → S"
+      },
+      {
+        "phaseAboveMm2": 16,
+        "phaseUpToMm2": 35,
+        "sameMaterial": 16,
+        "publishedText": "16 < S ≤ 35 → 16"
+      },
+      {
+        "phaseAboveMm2": 35,
+        "phaseUpToMm2": null,
+        "sameMaterial": "S/2",
+        "publishedText": "S > 35 → S/2"
+      }
+    ]
+  }
+}

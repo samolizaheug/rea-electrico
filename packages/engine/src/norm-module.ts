@@ -80,6 +80,8 @@ export interface ConductorImpedanceQuery {
   designation: string;
   material: "Cu" | "Al";
   installationMethod: string;
+  /** Frecuencia del sistema (Hz); la norma ajusta la reactancia si su tabla es de otra frecuencia. */
+  frequencyHz?: number;
 }
 
 /** Cálculos y consultas que dependen de la norma (tablas de motores, impedancias...). */
@@ -204,6 +206,17 @@ export interface NormModule {
   calc?: NormCalc;
   /** Reglas de dimensionamiento de conductores, protecciones y tierra. */
   sizing?: NormSizing;
+  /** Referencias que el motor cita en la memoria para cálculos comunes a todas las normas. */
+  refs?: {
+    /** Método de caída de tensión con impedancia eficaz. */
+    voltageDrop?: string[];
+    /** Carga de contactos (VA por salida). */
+    receptacleLoad?: string[];
+  };
+  /** Texto del método de cálculo para la memoria (criterios de diseño). */
+  methodNote?: string;
+  /** true si el método de instalación es enterrado (se usa la temperatura del terreno). */
+  isBuried?(installationMethod: string): boolean;
 }
 
 /** Módulo nulo: para normas sin datos. No ofrece opciones ni valores por defecto. */

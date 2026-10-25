@@ -13,7 +13,7 @@ import type { SizingRunResult } from "./sizing";
  * - Monofásica entre fases (A-B, B-C, C-A): la mitad en cada una de las dos fases.
  * - Tableros derivados: con su propio reparto (se suman sus cargas aguas abajo).
  * - Transformadores, variadores y UPS: su potencia de entrada, equilibrada en tres fases (aproximación).
- * Desbalance = (F_máx − F_mín) / F_máx · 100, con F = potencia por fase (criterio de práctica común; la NOM no fija un valor).
+ * Desbalance = (F_máx − F_mín) / F_máx · 100, con F = potencia por fase (criterio de práctica común; la norma de instalación no fija un valor).
  */
 
 export interface PhaseVA {
@@ -69,7 +69,7 @@ export interface ScheduleIssue {
   elementIds: string[];
 }
 
-/** Advertencias de desbalance por tablero (la NOM no fija límite: nunca es error). */
+/** Advertencias de desbalance por tablero (la norma no fija límite: nunca es error). */
 export function scheduleIssues(schedules: PanelSchedule[]): ScheduleIssue[] {
   return schedules
     .filter((s) => s.totals.unbalanceExceeded)
@@ -152,7 +152,7 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
       const notes = [
         "Potencia demandada (con el factor de demanda capturado en cada carga).",
         limit !== undefined
-          ? `Desbalance = (F_máx − F_mín) / F_máx · 100; límite del proyecto ${limit} % (criterio de práctica común, la NOM no fija un valor).`
+          ? `Desbalance = (F_máx − F_mín) / F_máx · 100; límite del proyecto ${limit} % (criterio de práctica común; la norma de instalación no fija un valor).`
           : "Tablero monofásico: el desbalance entre fases no aplica.",
       ];
       if (hasTransformerRow) notes.push("Transformadores, variadores y UPS se reparten equilibrados en sus tres fases de entrada.");

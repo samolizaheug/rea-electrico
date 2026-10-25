@@ -63,6 +63,8 @@ interface EditorState {
   setName(name: string): void;
   setSymbology(s: "ANSI" | "IEC"): void;
   setSettings(changes: Partial<ProjectSettings>): void;
+  /** Cambia de norma con el proyecto ya adaptado (ver norm-switch.ts); un solo paso de deshacer. */
+  replaceProject(next: Project): void;
   setMeta(changes: Partial<Pick<ProjectMeta, "name" | "client" | "location" | "author" | "description">>): void;
   setParams(elementId: string, changes: Record<string, ParamValue>): void;
   setElementNotes(elementId: string, notes: string): void;
@@ -125,6 +127,7 @@ export const useEditor = create<EditorState>((set, get) => {
     },
     setSymbology: (symbology) => apply((p) => updateSettings(p, { symbology })),
     setSettings: (changes) => apply((p) => updateSettings(p, changes)),
+    replaceProject: (next) => apply(() => next),
     setMeta: (changes) => apply((p) => updateMeta(p, changes)),
     setParams: (elementId, changes) => apply((p) => updateParams(p, elementId, changes)),
     setElementNotes: (elementId, notes) => apply((p) => setNotes(p, elementId, notes)),

@@ -1,0 +1,211 @@
+{
+  "id": "iec-60364-2001/tabla-1-impedancia-cu",
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "reference": {
+    "table": "Tabla 1 (ABB, cap. 2.2.2)",
+    "article": "IEC 60364-5-52:2001, 525",
+    "title": "Resistencia y reactancia por unidad de longitud de cables de cobre"
+  },
+  "source": {
+    "document": "1SDC010001D0204.pdf",
+    "sha256": "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    "publication": "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+    "pages": [
+      61
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)"
+  },
+  "notes": [
+    "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
+    "R a 80 °C; X a 50 Hz. La fuente indica que a 60 Hz la reactancia se multiplica por 1.2 (p. 60 del PDF, «Voltage drop calculation»)."
+  ],
+  "errata": [],
+  "kind": "cable-impedance",
+  "data": {
+    "material": "Cu",
+    "temperatureC": 80,
+    "frequencyHz": 50,
+    "rows": [
+      {
+        "sizeMm2": 1.5,
+        "singleCore": {
+          "rOhmPerKm": 14.8,
+          "xOhmPerKm": 0.168
+        },
+        "multiCore": {
+          "rOhmPerKm": 15.1,
+          "xOhmPerKm": 0.118
+        }
+      },
+      {
+        "sizeMm2": 2.5,
+        "singleCore": {
+          "rOhmPerKm": 8.91,
+          "xOhmPerKm": 0.156
+        },
+        "multiCore": {
+          "rOhmPerKm": 9.08,
+          "xOhmPerKm": 0.109
+        }
+      },
+      {
+        "sizeMm2": 4,
+        "singleCore": {
+          "rOhmPerKm": 5.57,
+          "xOhmPerKm": 0.143
+        },
+        "multiCore": {
+          "rOhmPerKm": 5.68,
+          "xOhmPerKm": 0.101
+        }
+      },
+      {
+        "sizeMm2": 6,
+        "singleCore": {
+          "rOhmPerKm": 3.71,
+          "xOhmPerKm": 0.135
+        },
+        "multiCore": {
+          "rOhmPerKm": 3.78,
+          "xOhmPerKm": 0.0955
+        }
+      },
+      {
+        "sizeMm2": 10,
+        "singleCore": {
+          "rOhmPerKm": 2.24,
+          "xOhmPerKm": 0.119
+        },
+        "multiCore": {
+          "rOhmPerKm": 2.27,
+          "xOhmPerKm": 0.0861
+        }
+      },
+      {
+        "sizeMm2": 16,
+        "singleCore": {
+          "rOhmPerKm": 1.41,
+          "xOhmPerKm": 0.112
+        },
+        "multiCore": {
+          "rOhmPerKm": 1.43,
+          "xOhmPerKm": 0.0817
+        }
+      },
+      {
+        "sizeMm2": 25,
+        "singleCore": {
+          "rOhmPerKm": 0.889,
+          "xOhmPerKm": 0.106
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.907,
+          "xOhmPerKm": 0.0813
+        }
+      },
+      {
+        "sizeMm2": 35,
+        "singleCore": {
+          "rOhmPerKm": 0.641,
+          "xOhmPerKm": 0.101
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.654,
+          "xOhmPerKm": 0.0783
+        }
+      },
+      {
+        "sizeMm2": 50,
+        "singleCore": {
+          "rOhmPerKm": 0.473,
+          "xOhmPerKm": 0.101
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.483,
+          "xOhmPerKm": 0.0779
+        }
+      },
+      {
+        "sizeMm2": 70,
+        "singleCore": {
+          "rOhmPerKm": 0.328,
+          "xOhmPerKm": 0.0965
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.334,
+          "xOhmPerKm": 0.0751
+        }
+      },
+      {
+        "sizeMm2": 95,
+        "singleCore": {
+          "rOhmPerKm": 0.236,
+          "xOhmPerKm": 0.0975
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.241,
+          "xOhmPerKm": 0.0762
+        }
+      },
+      {
+        "sizeMm2": 120,
+        "singleCore": {
+          "rOhmPerKm": 0.188,
+          "xOhmPerKm": 0.0939
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.191,
+          "xOhmPerKm": 0.074
+        }
+      },
+      {
+        "sizeMm2": 150,
+        "singleCore": {
+          "rOhmPerKm": 0.153,
+          "xOhmPerKm": 0.0928
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.157,
+          "xOhmPerKm": 0.0745
+        }
+      },
+      {
+        "sizeMm2": 185,
+        "singleCore": {
+          "rOhmPerKm": 0.123,
+          "xOhmPerKm": 0.0908
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.125,
+          "xOhmPerKm": 0.0742
+        }
+      },
+      {
+        "sizeMm2": 240,
+        "singleCore": {
+          "rOhmPerKm": 0.0943,
+          "xOhmPerKm": 0.0902
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.0966,
+          "xOhmPerKm": 0.0752
+        }
+      },
+      {
+        "sizeMm2": 300,
+        "singleCore": {
+          "rOhmPerKm": 0.0761,
+          "xOhmPerKm": 0.0895
+        },
+        "multiCore": {
+          "rOhmPerKm": 0.078,
+          "xOhmPerKm": 0.075
+        }
+      }
+    ]
+  }
+}

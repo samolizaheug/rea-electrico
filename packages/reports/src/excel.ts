@@ -78,7 +78,7 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
     [rs("description"), m.description],
     [rs("generated"), fmtDate(date)],
     [rs("norm"), input.norm.label],
-    [rs("method"), rs("methodValue")],
+    [rs("method"), (input.norm.methodNote ?? rs("methodValue"))],
     [`${rs("frequency")} (Hz)`, s.frequencyHz],
     [`${rs("ambientAir")} (°C)`, s.ambient.airC],
     [`${rs("ambientGround")} (°C)`, s.ambient.groundC],

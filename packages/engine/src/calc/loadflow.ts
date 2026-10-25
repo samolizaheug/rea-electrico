@@ -164,7 +164,7 @@ function solveIsland(
   const edges = new Map<string, EdgeData>(); // por nodo hijo
   for (const id of order) {
     const e = island.parentEdge.get(id);
-    if (e) edges.set(id, edgeData(e, els.get(e.elementId)!, nodes.get(e.parent)!, nodes.get(id)!, island, nodes, norm, issues));
+    if (e) edges.set(id, edgeData(e, els.get(e.elementId)!, nodes.get(e.parent)!, nodes.get(id)!, island, nodes, norm, issues, project.settings.frequencyHz));
   }
 
   // ---- Impedancia de la fuente (si se capturó la potencia de cortocircuito de la red).
@@ -348,7 +348,7 @@ function solveIsland(
     const sInP = sIn.get(id)!;
     const iP = mode === "nominal" ? sInP.abs() / (parent.m * parent.vcNom) : sInP.div(vc.get(ed.edge.parent)!.mul(parent.m)).conj().abs();
     const d = dropPctEdge.get(id) ?? 0;
-    const steps = edgeSteps(ed, node, sChild, iC, iP, d, mode);
+    const steps = edgeSteps(ed, node, sChild, iC, iP, d, mode, norm.refs?.voltageDrop ?? []);
     const isTr = !!ed.tr;
     out.set(ed.el.id, {
       elementId: ed.el.id,
@@ -377,6 +377,7 @@ function edgeData(
   nodes: Map<string, NetNode>,
   norm: NormModule,
   issues: LoadFlowIssue[],
+  frequencyHz: number,
 ): EdgeData {
   const base: EdgeData = { edge, el, z: Complex.ZERO, k: child.m === 1 ? 2 : 1, ratio: 1, vScale: 1, traces: [], hasImpedance: false };
   // Escala de envío para un circuito monofásico derivado de un nodo trifásico o de 1F3H.
@@ -391,7 +392,7 @@ function edgeData(
       issues.push({ severity: "warning", code: "sin-calibre", message: `${el.tag}: sin calibre; su caída de tensión no se calcula (el calibre se selecciona en la etapa E6 o se fija en "Calibre fijado").`, elementIds: [el.id] });
       return base;
     }
-    const zi = norm.calc!.conductorImpedance({ designation: size, material: el.params.material === "Al" ? "Al" : "Cu", installationMethod: String(el.params.installationMethod ?? "") });
+    const zi = norm.calc!.conductorImpedance({ designation: size, material: el.params.material === "Al" ? "Al" : "Cu", installationMethod: String(el.params.installationMethod ?? ""), frequencyHz: frequencyHz });
     if (!zi.ok) {
       issues.push({ severity: "error", code: "impedancia-conductor", message: `${el.tag}: ${zi.error}`, elementIds: [el.id] });
       return base;
@@ -457,7 +458,7 @@ function subtreeHasBus(nodeId: string, island: Island, nodes: Map<string, NetNod
   return (island.children.get(nodeId) ?? []).some((e) => e.role === "transformer" || subtreeHasBus(e.child, island, nodes));
 }
 
-function edgeSteps(ed: EdgeData, node: NetNode, s: Complex, iC: number, iP: number, d: number, mode: LoadFlowMode): TraceStep[] {
+function edgeSteps(ed: EdgeData, node: NetNode, s: Complex, iC: number, iP: number, d: number, mode: LoadFlowMode, vdRefs: string[]): TraceStep[] {
   const sm = s.abs();
   const cos = sm > 0 ? s.re / sm : 1;
   const sin = sm > 0 ? s.im / sm : 0;
@@ -491,11 +492,11 @@ function edgeSteps(ed: EdgeData, node: NetNode, s: Complex, iC: number, iP: numb
   const ze = ed.z.re * cos + ed.z.im * sin;
   const vcN = node.vcNom;
   steps.push({
-    label: "Caída de tensión (impedancia eficaz, Tabla 9 nota 2)",
+    label: "Caída de tensión (impedancia eficaz)",
     formula: node.m === 3 ? "ΔV = I · (R·cosφ + X·senφ) ;  %ΔV = ΔV / V_fn · 100" : "ΔV = 2 · I · (R·cosφ + X·senφ) ;  %ΔV = ΔV / V · 100",
     substitution: `ΔV = ${ed.k === 2 ? "2 · " : ""}${fmtNum(iC, 2)} · (${fmtNum(ed.z.re, 5)} · ${fmtNum(cos, 4)} + ${fmtNum(ed.z.im, 5)} · ${fmtNum(sin, 4)}) = ${fmtNum(ed.k * iC * ze, 3)} V ;  %ΔV = ${fmtNum(ed.k * iC * ze, 3)} / ${fmtNum(vcN, 2)} · 100`,
     result: `${fmtNum(mode === "nominal" ? d : (ed.k * iC * ze * 100) / vcN, 3)} %${mode === "barrido" ? ` (barrido fasorial: ${fmtNum(d, 3)} %)` : ""}`,
-    refs: ["NOM-001-SEDE-2012 Capítulo 10, Tabla 9, nota 2"],
+    refs: vdRefs,
   });
   return steps;
 }

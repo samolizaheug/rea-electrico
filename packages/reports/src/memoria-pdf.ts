@@ -161,7 +161,7 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
     { text: `2. ${rs("secCriteria")}`, style: "h2", headlineLevel: 1 },
     keyValue([
       [rs("norm"), input.norm.label],
-      [rs("method"), rs("methodValue")],
+      [rs("method"), (input.norm.methodNote ?? rs("methodValue"))],
       [rs("frequency"), `${s.frequencyHz} Hz`],
       [rs("ambientAir"), `${s.ambient.airC} °C`],
       [rs("ambientGround"), `${s.ambient.groundC} °C`],

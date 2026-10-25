@@ -1,0 +1,176 @@
+{
+  "id": "iec-60364-2001/tabla-5-agrupamiento",
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "reference": {
+    "table": "Tabla 5 (ABB)",
+    "article": "IEC 60364-5-52:2001, 523",
+    "title": "Factor de reducción k2 para cables agrupados (en contacto), por número de circuitos o cables multiconductores"
+  },
+  "source": {
+    "document": "1SDC010001D0204.pdf",
+    "sha256": "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    "publication": "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+    "pages": [
+      37
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)"
+  },
+  "notes": [
+    "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
+    "Disposiciones 2 a 5: la fuente indica que no hay reducción adicional para más de nueve circuitos o cables multiconductores (se registran null en 12, 16 y 20).",
+    "Nota 2 de la tabla: si la separación horizontal entre cables adyacentes excede dos veces su diámetro exterior, no se aplica factor.",
+    "Nota 5 de la tabla: n cables unipolares se pueden considerar n/2 circuitos de dos conductores cargados o n/3 circuitos de tres conductores cargados.",
+    "Métodos de referencia: disposición 1 → métodos A a F; 2 y 3 → método C; 4 y 5 → métodos E y F."
+  ],
+  "errata": [],
+  "kind": "factor-table",
+  "data": {
+    "rowHeader": "Disposición (cables en contacto)",
+    "columns": [
+      {
+        "id": "1",
+        "label": "1 circuito(s)"
+      },
+      {
+        "id": "2",
+        "label": "2 circuito(s)"
+      },
+      {
+        "id": "3",
+        "label": "3 circuito(s)"
+      },
+      {
+        "id": "4",
+        "label": "4 circuito(s)"
+      },
+      {
+        "id": "5",
+        "label": "5 circuito(s)"
+      },
+      {
+        "id": "6",
+        "label": "6 circuito(s)"
+      },
+      {
+        "id": "7",
+        "label": "7 circuito(s)"
+      },
+      {
+        "id": "8",
+        "label": "8 circuito(s)"
+      },
+      {
+        "id": "9",
+        "label": "9 circuito(s)"
+      },
+      {
+        "id": "12",
+        "label": "12 circuito(s)"
+      },
+      {
+        "id": "16",
+        "label": "16 circuito(s)"
+      },
+      {
+        "id": "20",
+        "label": "20 circuito(s)"
+      }
+    ],
+    "rows": [
+      {
+        "key": "1",
+        "label": "Agrupados en aire, sobre superficie, embebidos o en canalización cerrada",
+        "values": [
+          1,
+          0.8,
+          0.7,
+          0.65,
+          0.6,
+          0.57,
+          0.54,
+          0.52,
+          0.5,
+          0.45,
+          0.41,
+          0.38
+        ]
+      },
+      {
+        "key": "2",
+        "label": "Una capa sobre pared, piso o charola sin perforar",
+        "values": [
+          1,
+          0.85,
+          0.79,
+          0.75,
+          0.73,
+          0.72,
+          0.72,
+          0.71,
+          0.7,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "key": "3",
+        "label": "Una capa fija directamente bajo techo de madera",
+        "values": [
+          0.95,
+          0.81,
+          0.72,
+          0.68,
+          0.66,
+          0.64,
+          0.63,
+          0.62,
+          0.61,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "key": "4",
+        "label": "Una capa en charola perforada horizontal o vertical",
+        "values": [
+          1,
+          0.88,
+          0.82,
+          0.77,
+          0.75,
+          0.73,
+          0.73,
+          0.72,
+          0.72,
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "key": "5",
+        "label": "Una capa en escalera, ménsulas, etc.",
+        "values": [
+          1,
+          0.87,
+          0.82,
+          0.8,
+          0.8,
+          0.79,
+          0.79,
+          0.78,
+          0.78,
+          null,
+          null,
+          null
+        ]
+      }
+    ]
+  }
+}

@@ -111,7 +111,62 @@ En `referencias/normas/fuentes-secundarias/abb-electrical-installation-handbook/
 | 1SDC010001D0202.pdf | 2,252,630 | D49A6882F8C7C2F17B0C892F5FF11BB1D0573E045E10A31E67ADB328EBB0B833 |
 | 1SDC010001D0204.pdf | 1,642,486 | 88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24 |
 
-Se revisarán en la E9, al construir el módulo IEC: qué tablas de la 60364-5-52 reproducen y de qué edición.
+Son el Volumen 2 (*Electrical devices*) en sus ediciones 1.ª (D0201, 2003), 2.ª (D0202, 2004) y 4.ª (D0204, 2006).
+
+### 3.2 Módulo IEC (E9, 2026-10-24)
+
+**Edición.** Las tablas de la fuente reproducen la norma en estas ediciones (lista de normas de la propia fuente, p. 12 del PDF D0204):
+- IEC 60364-5-52:2001;
+- IEC 60364-4-43:2001;
+- IEC 60364-5-54:2002.
+
+Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria ABB)»**. La edición 2009+A1:2024 sigue en la lista, deshabilitada: no hay fuente para ella y no se le atribuyen valores de otra edición.
+
+**Tablas** (`packages/norm-data/data/iec-60364-2001/`, transcritas desde las imágenes de las páginas de D0204):
+
+| Uso | Fuente (D0204) | p. del PDF |
+|---|---|---|
+| Métodos de instalación de referencia (A1–G), ejemplos | Tablas 2 y 3, cap. 2.2.1 | 29–33 |
+| Ampacidad en aire, 30 °C (A1, A2, B1, B2, C, E, F, G) | Tabla 8 | 41–44 |
+| Ampacidad enterrada, método D (20 °C, 2.5 K·m/W) | Tabla 15 | 51 |
+| k1 temperatura del aire / del terreno | Tablas 4 y 10 | 34, 47 |
+| k2 agrupamiento (y nota 5: n unipolares = n/2 o n/3 circuitos) | Tabla 5 | 37 |
+| k3 resistividad del suelo (registrada; se usa 1) | Tabla 14 | 50 |
+| R (80 °C) y X (50 Hz) de cables Cu y Al; ×1.2 a 60 Hz según la fuente | Tablas 1 y 2, cap. 2.2.2 | 60–61 |
+| Coordinación Ib ≤ In ≤ Iz, I2 ≤ 1.45·Iz (fusible In ≤ 0.9·Iz) | cap. 2.3 (IEC 60364-4-43) | 70–71 |
+| Conductor de protección: S; 16; S/2 | Tabla 2, cap. 2.5 (IEC 60364-5-54) | 86 |
+| Capacidades In (series de producto ABB: MCB curva C, Tmax) | Tablas 2.3, 2.8, 2.10, 2.12, cap. 5.8 | 194–199 |
+| Caída de tensión recomendada: 4 % desde el origen de la instalación | cap. 2.2.2, cita de IEC 60364-5-52 cláusula 525 | 59 |
+
+**Comprobaciones independientes de la transcripción:**
+- Cada valor se busca en la capa de texto de su página. Solo falta un valor de la Tabla 8, porque el texto lee «845» donde la imagen dice 84.
+- Se cotejó con la 2.ª edición (D0202): coinciden todas las tablas salvo dos celdas (ABB-2 y ABB-3, abajo).
+- R y X se comprobaron contra las tablas de caída específica del mismo manual (ΔUx = √3·(r·cosφ + x·senφ)) a cosφ = 1 y 0.9, para Cu y Al.
+- Las ampacidades crecen con la sección, y en la misma condición se cumple Cu ≥ Al, XLPE ≥ PVC y 2 conductores cargados ≥ 3.
+
+**Anomalías de la fuente (pendientes de cotejo con la norma IEC):**
+
+| # | Ubicación | Hallazgo | Tratamiento actual |
+|---|---|---|---|
+| ABB-1 | Tabla 4, mineral 70 °C, 45 °C | 0.87, mayor que el de 40 °C (0.85); rompe la secuencia | Se transcribe tal cual. No se usa: la herramienta no ofrece aislamiento mineral |
+| ABB-2 | Tabla 8, A1, Al PVC, 2 cargados, 2.5 mm² | 4.ª ed. = 15 A; 2.ª ed. = 14.5 A | Se usa 15 A (4.ª ed.). **Por decidir** |
+| ABB-3 | Tabla 8, A2, Al PVC, 2 cargados, 4 mm² | 4.ª ed. = 19.5 A; 2.ª ed. = 20 A | Se usa 19.5 A (4.ª ed.) |
+
+**Decisiones del módulo** (supuestos de la herramienta, explícitos en la memoria):
+- IEC no aplica un 125 % a cargas continuas. **Ib** es la suma de corrientes con el factor de demanda de cada carga. En un transformador, Ib es su corriente nominal de primario.
+- **In** es el valor inmediato superior a Ib en la serie de producto. IEC 60364 no fija capacidades normalizadas.
+- Interruptor de disparo instantáneo: la sobrecarga la protege el relevador del arrancador, así que solo se exige Iz ≥ Ib.
+- **k1**: si la temperatura no está en la tabla, se usa el renglón de la temperatura inmediata superior (conservador).
+- **k2**: si hay más de 9 circuitos en las disposiciones 2 a 5, no hay reducción adicional, como indica la fuente.
+- **Método D**: k2′ (ductos adyacentes) = 1 y k3 = 1 (suelo de 2.5 K·m/W). Ambos se anotan en la memoria.
+- **Motores**: IEC no tiene tabla de corrientes; se pide la corriente de placa. La tabla aproximada de ABB (Anexo B) es «solo informativa» y no se usa.
+- **PE en circuitos en paralelo**: se dimensiona con la sección de un conductor y se pone uno por circuito en paralelo (criterio de la herramienta).
+- **Al cambiar de norma** el proyecto se adapta en un solo paso de deshacer, previa confirmación:
+  - aislamiento, método y canalización que no existen en la nueva norma toman el valor por defecto de esa norma;
+  - los calibres fijados se vacían, porque «4» AWG no es «4» mm²;
+  - los límites de caída del proyecto bajan al máximo de la norma (IEC: 4 %).
+
+**Verificación.** Las 10 tablas están registradas como `fuente_secundaria` a nombre de «Claude (asistente IA)». Falta tu aval como «Ing. RGLR» y, cuando haya acceso a la norma, el cotejo con IEC 60364-5-52.
 
 ## 4. Estados de un dato normativo
 

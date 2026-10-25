@@ -1,0 +1,78 @@
+{
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "tables": {
+    "ampacidad-aire": {
+      "status": "fuente_secundaria",
+      "fingerprint": "2b42206bec63e12fcdc4e0c6608c978b7345bc178b3463efdd9c779ef5a3e9a1",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "ampacidad-terreno": {
+      "status": "fuente_secundaria",
+      "fingerprint": "80132b76e9ef7e21ceaee1238c2fe1bf2a00df2d8b81cd767c4293adb1eedaa5",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "capacidades-interruptores": {
+      "status": "fuente_secundaria",
+      "fingerprint": "d704c430382a622c1e9526ab0fa43ef24f5210983cfb180681a2eddd4fa023c2",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-1-impedancia-cu": {
+      "status": "fuente_secundaria",
+      "fingerprint": "6efd5eb73d44cadf273c03a8cb4958eb2bdcc80a14ae0f52c778572a77944351",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-10-temperatura-terreno": {
+      "status": "fuente_secundaria",
+      "fingerprint": "0843bb62fe3d75ca83d8868430997a9f3de31992528079c0cbab0206d4e084c5",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-14-resistividad-suelo": {
+      "status": "fuente_secundaria",
+      "fingerprint": "3c17c751aa323f228abfc6cb1f9da15b6437ec3630c682be2dce37dbc567e7e4",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-2-conductor-proteccion": {
+      "status": "fuente_secundaria",
+      "fingerprint": "a7b5ec444bc177b1459eb0480f490c819317b317d29bba5ce9d9e38a91764eb5",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-2-impedancia-al": {
+      "status": "fuente_secundaria",
+      "fingerprint": "43dad80369c348f23e8b03a488c4720fdf387eda9457432ebed9a22535048dbb",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-4-temperatura-aire": {
+      "status": "fuente_secundaria",
+      "fingerprint": "3eecedacf081dc92f03fd92ebf49fddadfad7323ef4d4dfb9bcc9a5b555c8e11",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    },
+    "tabla-5-agrupamiento": {
+      "status": "fuente_secundaria",
+      "fingerprint": "51181c9290ee18c01516912f81be8f0e6004846ff2e0cc4292e899b909a5ef60",
+      "by": "Claude (asistente IA)",
+      "date": "2026-10-25",
+      "notes": "Transcripcion manual desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual (discrepancias ABB-2 y ABB-3 registradas en la tabla de ampacidad). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de aval del usuario y de cotejo con IEC 60364-5-52."
+    }
+  }
+}

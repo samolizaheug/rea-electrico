@@ -9,6 +9,12 @@ export const SOURCES = {
     sha256: "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
     publication: "DOF 29/11/2012",
   },
+  /** Fuente secundaria: reproduce IEC 60364-5-52:2001 y partes relacionadas (ver docs/01-revision-normativa.md §3). */
+  "abb-eih-vol2-4ed": {
+    file: "fuentes-secundarias/abb-electrical-installation-handbook/1SDC010001D0204.pdf",
+    sha256: "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    publication: "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+  },
 } as const;
 
 export type SourceId = keyof typeof SOURCES;

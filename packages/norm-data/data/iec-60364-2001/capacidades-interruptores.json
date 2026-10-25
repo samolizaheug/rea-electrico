@@ -1,0 +1,63 @@
+{
+  "id": "iec-60364-2001/capacidades-interruptores",
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "reference": {
+    "table": "Series de In de producto (ABB, cap. 5.8)",
+    "article": "IEC 60364-4-43:2001, 433.1 (Ib ≤ In ≤ Iz)",
+    "title": "Capacidades nominales de interruptores: MCB curva C y MCCB Tmax"
+  },
+  "source": {
+    "document": "1SDC010001D0204.pdf",
+    "sha256": "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    "publication": "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+    "pages": [
+      194,
+      197,
+      198,
+      199
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)"
+  },
+  "notes": [
+    "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
+    "IEC 60364 no fija capacidades normalizadas: In es un dato del producto. Se toman las series de ABB que aparecen en las tablas de longitud máxima protegida: MCB curva C (Tabla 2.3: 4 a 125 A), Tmax T3 TMD (Tabla 2.8: 160–250 A), T5-T6 TMA (Tabla 2.10: 320–800 A) y T7 (Tabla 2.12: 1000–1600 A).",
+    "En interruptores de disparo ajustable, In es la corriente de ajuste (IEC 60364-4-43, citada en la p. 70 del PDF)."
+  ],
+  "errata": [],
+  "kind": "standard-ratings",
+  "data": {
+    "inverseTimeA": [
+      4,
+      6,
+      8,
+      10,
+      13,
+      16,
+      20,
+      25,
+      32,
+      40,
+      50,
+      63,
+      80,
+      100,
+      125,
+      160,
+      200,
+      250,
+      320,
+      400,
+      500,
+      630,
+      800,
+      1000,
+      1250,
+      1600
+    ],
+    "additionalFuseA": []
+  }
+}

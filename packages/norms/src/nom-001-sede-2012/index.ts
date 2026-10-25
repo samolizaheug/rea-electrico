@@ -103,6 +103,9 @@ export const nom001Sede2012: NormModule = {
   voltageDrop: NOM_VOLTAGE_DROP,
   calc: nomCalc,
   sizing: nomSizing,
+  refs: { voltageDrop: ["NOM-001-SEDE-2012 Capítulo 10, Tabla 9, nota 2"], receptacleLoad: ["NOM-001-SEDE-2012 220-14(i)"] },
+  methodNote: "Nominal (corrientes con la tensión nominal; caída con Ze de la Tabla 9). Es el método de la memoria; el barrido fasorial queda como referencia.",
+  isBuried: (m) => m.startsWith("enterrado"),
   options(provider, params) {
     switch (provider) {
       case "norm:insulationTypes":

@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E8** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, cuadros de carga con balance de fases y reportes en PDF, SVG, PNG y Excel). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E9** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, cuadros de carga con balance de fases, reportes en PDF, SVG, PNG y Excel, y módulo IEC 60364-5-52:2001 con tablas de fuente secundaria ABB; NEC pendiente de captura de tablas). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -23,6 +23,7 @@ pnpm --filter @rea/ejemplos reportes   # reportes del ejemplo en examples/report
 # Tablas normativas (requiere el PDF en referencias/normas/)
 pnpm norm:extraer-nom-2012
 pnpm norm:construir-nom-2012
+pnpm norm:construir-iec-2001   # tablas IEC desde la transcripción (fuente: manual ABB)
 pnpm norm:verificar nom-001-sede-2012 <tabla> --por "Ing. Nombre"
 ```
 
@@ -36,7 +37,7 @@ packages/
   symbols/     Símbolos ANSI/IEC como geometría (editor y exportación)
   engine/      Motor de cálculo: validación de topología; flujo de carga radial (método nominal y barrido) y caída de tensión con trazas de memoria
   ejemplos/    Proyectos de ejemplo resueltos a mano (pruebas de integración)
-  norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; NEC e IEC pendientes de datos)
+  norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; IEC 60364-5-52:2001 vía ABB; NEC pendiente de datos)
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
   reports/     Reportes: unifilar SVG desde el modelo, memoria en PDF (pdfmake), libro de Excel (ExcelJS)
 apps/

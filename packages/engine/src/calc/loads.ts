@@ -70,7 +70,7 @@ export function loadDemand(el: ProjectElement, def: ElementTypeDefinition, norm:
       const qty = n(el.params.quantity);
       const va = n(el.params.vaPerOutlet);
       sVA = qty * va;
-      steps.push({ label: "Carga de contactos", formula: "S = N · VA por salida", substitution: `S = ${qty} · ${fmtNum(va, 0)}`, result: `${fmtNum(sVA, 0)} VA`, refs: ["NOM-001-SEDE-2012 220-14(i)"] });
+      steps.push({ label: "Carga de contactos", formula: "S = N · VA por salida", substitution: `S = ${qty} · ${fmtNum(va, 0)}`, result: `${fmtNum(sVA, 0)} VA`, refs: norm.refs?.receptacleLoad ?? [] });
       break;
     }
     case "load.lighting": {

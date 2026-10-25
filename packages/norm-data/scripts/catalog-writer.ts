@@ -72,6 +72,30 @@ function mdTable(head: string[], rows: string[][]): string {
 
 function renderData(t: NormTable): string {
   switch (t.kind) {
+    case "iec-ampacity": {
+      const methods = [...new Set(t.data.columns.map((c) => c.method))];
+      const head = `Referencia: ${t.data.reference.medium} a ${t.data.reference.temperatureC} °C${t.data.reference.note ? ` (${t.data.reference.note})` : ""}`;
+      return [
+        head,
+        ...methods.map((m) => {
+          const cols = t.data.columns.filter((c) => c.method === m);
+          const used = t.data.sizesMm2.map((_, i) => i).filter((i) => cols.some((c) => c.values[i] !== null));
+          return `**Método ${m}**\n\n${mdTable(
+            ["S mm²", ...cols.map((c) => `${c.material} ${c.insulation} ${c.loadedConductors}${c.arrangement ? ` ${c.arrangement}` : ""}`)],
+            used.map((i) => [String(t.data.sizesMm2[i]), ...cols.map((c) => fmt(c.values[i]))]),
+          )}`;
+        }),
+      ].join("\n\n");
+    }
+    case "factor-table":
+      return mdTable([t.data.rowHeader, ...t.data.columns.map((c) => c.label)], t.data.rows.map((r) => [r.label, ...r.values.map(fmt)]));
+    case "cable-impedance":
+      return `${t.data.material}, R a ${t.data.temperatureC} °C, X a ${t.data.frequencyHz} Hz\n\n${mdTable(
+        ["S mm²", "Unipolar r Ω/km", "Unipolar x Ω/km", "Multiconductor r Ω/km", "Multiconductor x Ω/km"],
+        t.data.rows.map((r) => [String(r.sizeMm2), String(r.singleCore.rOhmPerKm), String(r.singleCore.xOhmPerKm), String(r.multiCore.rOhmPerKm), String(r.multiCore.xOhmPerKm)]),
+      )}`;
+    case "pe-size":
+      return mdTable(["Sección de fase S", "Conductor de protección (mismo material)"], t.data.rows.map((r) => [r.publishedText.split("→")[0]!.trim(), String(r.sameMaterial)]));
     case "ampacity":
       return mdTable(
         ["Calibre", ...t.data.temperaturesC.map((c) => `Cu ${c} °C`), ...t.data.temperaturesC.map((c) => `Al ${c} °C`), "**"],

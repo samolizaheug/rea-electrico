@@ -54,7 +54,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
 
     // ---- Circuitos.
     const circuitOf = new Map<string, SizingCircuit>();
-    for (const e of cableEdges) circuitOf.set(e.elementId, buildCircuit(e, island, project, els, defOf, base));
+    for (const e of cableEdges) circuitOf.set(e.elementId, buildCircuit(e, island, project, els, defOf, base, norm));
 
     // ---- Protecciones (de aguas abajo hacia la fuente).
     const protections = new Map<string, ProtectionDecision>();
@@ -89,7 +89,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
       const sensitiveCrit = vdNorm?.special.find((s) => s.id === "electronico-sensible");
 
       const dropFor = (designation: string, npar: number) => {
-        const zi = norm.calc!.conductorImpedance({ designation, material: cable.params.material === "Al" ? "Al" : "Cu", installationMethod: String(cable.params.installationMethod ?? "") });
+        const zi = norm.calc!.conductorImpedance({ designation, material: cable.params.material === "Al" ? "Al" : "Cu", installationMethod: String(cable.params.installationMethod ?? ""), frequencyHz: settings.frequencyHz });
         if (!zi.ok) return { error: `${cable.tag}: ${zi.error}` };
         const iA = flow?.currentA ?? 0;
         const pf = flow?.power?.pf ?? 1;
@@ -149,6 +149,7 @@ function buildCircuit(
   els: Map<string, ProjectElement>,
   defOf: (id: string) => ReturnType<ElementRegistry["get"]>,
   base: LoadFlowResult,
+  norm: NormModule,
 ): SizingCircuit {
   const cable = els.get(e.elementId)!;
   const parentNode = island.nodes.get(e.parent)!;
@@ -227,7 +228,8 @@ function buildCircuit(
   walk(e.child);
 
   const params = cable.params;
-  const buried = String(params.installationMethod ?? "").startsWith("enterrado");
+  const method = String(params.installationMethod ?? "");
+  const buried = norm.isBuried ? norm.isBuried(method) : method.startsWith("enterrado");
   const ambientParam = n(params.ambientTempC);
   return {
     cableId: cable.id,

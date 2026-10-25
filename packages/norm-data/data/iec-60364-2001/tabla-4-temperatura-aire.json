@@ -1,0 +1,222 @@
+{
+  "id": "iec-60364-2001/tabla-4-temperatura-aire",
+  "norm": {
+    "id": "iec-60364",
+    "edition": "2001"
+  },
+  "reference": {
+    "table": "Tabla 4 (ABB)",
+    "article": "IEC 60364-5-52:2001, 523",
+    "title": "Factor de corrección k1 para temperatura ambiente del aire distinta de 30 °C"
+  },
+  "source": {
+    "document": "1SDC010001D0204.pdf",
+    "sha256": "88267FA9F77CC6DFDF7D6D1581A65040AE479ABA91B977AFB36475AB2DF89E24",
+    "publication": "ABB SACE, Electrical installation handbook, Vol. 2 Electrical devices, 4.ª ed. (2006)",
+    "pages": [
+      34
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)"
+  },
+  "notes": [
+    "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
+    "Para temperaturas ambiente mayores a las de la tabla, la fuente remite al fabricante (nota a).",
+    "Anomalía en la fuente (ABB-1): columna mineral 70 °C, renglón 45 °C = 0.87, mayor que el de 40 °C (0.85); rompe la secuencia. Se transcribe tal cual; la herramienta no ofrece cables con aislamiento mineral."
+  ],
+  "errata": [],
+  "kind": "factor-table",
+  "data": {
+    "rowHeader": "Temperatura ambiente °C",
+    "columns": [
+      {
+        "id": "PVC",
+        "label": "PVC"
+      },
+      {
+        "id": "XLPE",
+        "label": "XLPE y EPR"
+      },
+      {
+        "id": "mineral-70",
+        "label": "Mineral, cubierta de PVC o desnudo expuesto al contacto, 70 °C"
+      },
+      {
+        "id": "mineral-105",
+        "label": "Mineral, desnudo no expuesto al contacto, 105 °C"
+      }
+    ],
+    "rows": [
+      {
+        "key": "10",
+        "label": "10 °C",
+        "values": [
+          1.22,
+          1.15,
+          1.26,
+          1.14
+        ]
+      },
+      {
+        "key": "15",
+        "label": "15 °C",
+        "values": [
+          1.17,
+          1.12,
+          1.2,
+          1.11
+        ]
+      },
+      {
+        "key": "20",
+        "label": "20 °C",
+        "values": [
+          1.12,
+          1.08,
+          1.14,
+          1.07
+        ]
+      },
+      {
+        "key": "25",
+        "label": "25 °C",
+        "values": [
+          1.06,
+          1.04,
+          1.07,
+          1.04
+        ]
+      },
+      {
+        "key": "35",
+        "label": "35 °C",
+        "values": [
+          0.94,
+          0.96,
+          0.93,
+          0.96
+        ]
+      },
+      {
+        "key": "40",
+        "label": "40 °C",
+        "values": [
+          0.87,
+          0.91,
+          0.85,
+          0.92
+        ]
+      },
+      {
+        "key": "45",
+        "label": "45 °C",
+        "values": [
+          0.79,
+          0.87,
+          0.87,
+          0.88
+        ]
+      },
+      {
+        "key": "50",
+        "label": "50 °C",
+        "values": [
+          0.71,
+          0.82,
+          0.67,
+          0.84
+        ]
+      },
+      {
+        "key": "55",
+        "label": "55 °C",
+        "values": [
+          0.61,
+          0.76,
+          0.57,
+          0.8
+        ]
+      },
+      {
+        "key": "60",
+        "label": "60 °C",
+        "values": [
+          0.5,
+          0.71,
+          0.45,
+          0.75
+        ]
+      },
+      {
+        "key": "65",
+        "label": "65 °C",
+        "values": [
+          null,
+          0.65,
+          null,
+          0.7
+        ]
+      },
+      {
+        "key": "70",
+        "label": "70 °C",
+        "values": [
+          null,
+          0.58,
+          null,
+          0.65
+        ]
+      },
+      {
+        "key": "75",
+        "label": "75 °C",
+        "values": [
+          null,
+          0.5,
+          null,
+          0.6
+        ]
+      },
+      {
+        "key": "80",
+        "label": "80 °C",
+        "values": [
+          null,
+          0.41,
+          null,
+          0.54
+        ]
+      },
+      {
+        "key": "85",
+        "label": "85 °C",
+        "values": [
+          null,
+          null,
+          null,
+          0.47
+        ]
+      },
+      {
+        "key": "90",
+        "label": "90 °C",
+        "values": [
+          null,
+          null,
+          null,
+          0.4
+        ]
+      },
+      {
+        "key": "95",
+        "label": "95 °C",
+        "values": [
+          null,
+          null,
+          null,
+          0.32
+        ]
+      }
+    ]
+  }
+}

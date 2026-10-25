@@ -26,7 +26,7 @@ export function issueSeverityByElement(issues: ReportIssue[]): Map<string, "erro
 export interface ReportInput {
   project: Project;
   registry: ElementRegistry;
-  norm: { id: string; edition: string; label: string };
+  norm: { id: string; edition: string; label: string; methodNote?: string };
   sizing: SizingRunResult;
   schedules: PanelSchedule[];
   issues: ReportIssue[];

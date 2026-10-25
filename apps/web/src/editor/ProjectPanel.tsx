@@ -1,8 +1,12 @@
 import { getNormModule, normModules } from "@rea/norms";
 import { t } from "../i18n";
+import { adaptToNorm } from "../state/norm-switch";
 import { useEditor, useProject } from "../state/store";
 import { TextInput } from "./fields";
 import { NumberSetting } from "./NumberSetting";
+
+const PARAM_KEYS = ["insulationType", "installationMethod", "racewaySize", "forcedSize"] as const;
+const paramLabel = (k: string) => ((PARAM_KEYS as readonly string[]).includes(k) ? t(`norm.param.${k as (typeof PARAM_KEYS)[number]}`) : k);
 
 /** Datos generales del proyecto y criterios de diseño (se muestra cuando no hay selección). */
 export function ProjectPanel() {
@@ -37,7 +41,17 @@ export function ProjectPanel() {
             value={normKey}
             onChange={(e) => {
               const m = normModules.find((x) => `${x.id}@${x.edition}` === e.target.value);
-              if (m) ed.setSettings({ norm: { id: m.id, edition: m.edition } });
+              if (!m) return;
+              const r = adaptToNorm(p, m);
+              if (r.changes.length || r.settingsChanged.length) {
+                const lines = [
+                  ...r.changes.slice(0, 12).map((c) => `• ${c.tag}: ${Object.keys(c.params).map((k) => paramLabel(k)).join(", ")}`),
+                  ...(r.changes.length > 12 ? [`• … y ${r.changes.length - 12} más`] : []),
+                  ...(r.settingsChanged.length ? [`• ${t("norm.vdLimits")}: ${r.settingsChanged.join("; ")}`] : []),
+                ];
+                if (!confirm(t("norm.confirm", { norm: m.label, list: lines.join("\n") }))) return;
+              }
+              ed.replaceProject(r.project);
             }}
           >
             {normModules.map((m) => (

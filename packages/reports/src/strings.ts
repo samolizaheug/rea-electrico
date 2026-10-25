@@ -36,7 +36,7 @@ export const reportStrings = {
   vdTotal: "Caída máx. total",
   unbalance: "Desbalance máx. entre fases",
   method: "Método de cálculo",
-  methodValue: "Nominal (corrientes con la tensión nominal; caída con Ze de la Tabla 9). Es el método de la memoria; el barrido fasorial queda como referencia.",
+  methodValue: "Nominal (corrientes con la tensión nominal). Es el método de la memoria; el barrido fasorial queda como referencia.",
   symbology: "Simbología",
 
   circuit: "Circuito",
