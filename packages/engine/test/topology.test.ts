@@ -159,11 +159,30 @@ describe("compatibilidad de tensiones", () => {
     expect(base().set("L-1", { voltageV: 220, phase: "AB" }).check().codes).toEqual([]);
   });
 
-  it("motor monofásico de 115 V en 127 V: advertencia (|115 − 127.0| / 127.0 = 9.5 %)", () => {
+  it("motor de 115 V en 127 V fase-neutro: (127.0 − 115) / 115 = +10.4 % sobre la placa, excede ±10 % (NEMA MG-1)", () => {
     const { report, codes } = base().set("M-1", { voltageV: 115, system: "1F2H", phase: "A" }).check();
     expect(codes).toEqual(["tension-fuera-de-tolerancia:M-1"]);
+    expect(report.issues[0]!.severity).toBe("error");
+    expect(report.issues[0]!.message).toContain("entrega 127 V fase-neutro (+10.4 % respecto a la placa). Excede ±10 %");
+    expect(report.issues[0]!.message).toContain("NEMA MG-1");
+  });
+
+  it("motor de 208 V en 220 V: +5.8 % sobre la placa, fuera de la zona A (±5 %) pero dentro de ±10 %: advertencia", () => {
+    const { report, codes } = base().set("M-1", { voltageV: 208 }).check();
+    expect(codes).toEqual(["tension-fuera-de-tolerancia:M-1"]);
     expect(report.issues[0]!.severity).toBe("warning");
-    expect(report.issues[0]!.message).toContain("entrega 127 V fase-neutro (diferencia 9.5 %)");
+    expect(report.issues[0]!.message).toContain("+5.8 %");
+  });
+
+  it("motor de 230 V en 220 V: −4.3 % de la placa, dentro de la zona A", () => {
+    expect(base().set("M-1", { voltageV: 230 }).check().codes).toEqual([]);
+  });
+
+  it("las tolerancias son configurables por norma", () => {
+    const strict = { motor: { continuousPct: 2, limitPct: 4, source: "prueba" }, other: { continuousPct: 2, limitPct: 4, source: "prueba" } };
+    const n = base().set("M-1", { voltageV: 230 });
+    const r = validateTopology(n.p, registry, strict);
+    expect(r.issues.map((i) => [i.code, i.severity])).toEqual([["tension-fuera-de-tolerancia", "error"]]);
   });
 
   it("carga trifásica en tablero monofásico", () => {

@@ -156,7 +156,51 @@ const demandFactorsData = z.object({
   ),
 });
 
+/** Capítulo 10, Tabla 4: dimensiones interiores de tubos por artículo y designación. */
+const racewayDimensionsData = z.object({
+  sections: z.array(
+    z.object({
+      id: z.string(),
+      article: z.string(),
+      /** Título tal como aparece en la tabla publicada. */
+      publishedTitle: z.string(),
+      label: z.string(),
+      rows: z.array(
+        z.object({
+          metricDesignation: z.number().int(),
+          tradeSize: z.string(),
+          internalDiameterMm: num.nullable(),
+          totalAreaMm2: num.nullable(),
+          /** Área disponible: 60 % del total y llenado para 1, 2 y más de 2 conductores (53 %, 31 %, 40 %). */
+          area60Mm2: num.nullable(),
+          fill1Mm2: num.nullable(),
+          fill2Mm2: num.nullable(),
+          fillOver2Mm2: num.nullable(),
+        }),
+      ),
+    }),
+  ),
+});
+
+/** Tabla 392-22(a): área de ocupación de charolas por ancho interior. */
+const trayFillData = z.object({
+  rows: z.array(
+    z.object({
+      widthCm: num,
+      /** Columna 1: escalera, malla o fondo ventilado, 392-22(a)(1)(b). */
+      ladderMm2: num,
+      /** Columna 3: fondo sólido, 392-22(a)(3)(b). */
+      solidMm2: num,
+      /** Columnas 2 y 4: el mismo valor menos k·Sd (Sd = suma de diámetros de cables de 4/0 y mayores). */
+      ladderSdFactor: num,
+      solidSdFactor: num,
+    }),
+  ),
+});
+
 export const tableKinds = {
+  "raceway-dimensions": racewayDimensionsData,
+  "tray-fill": trayFillData,
   ampacity: ampacityData,
   "temperature-correction": temperatureCorrectionData,
   "adjustment-factors": adjustmentFactorsData,

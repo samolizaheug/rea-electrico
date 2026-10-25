@@ -1,4 +1,4 @@
-import { normModules } from "@rea/norms";
+import { getNormModule, normModules } from "@rea/norms";
 import { t } from "../i18n";
 import { useEditor, useProject } from "../state/store";
 import { TextInput } from "./fields";
@@ -10,6 +10,7 @@ export function ProjectPanel() {
   const ed = useEditor.getState();
   const s = p.settings;
   const normKey = `${s.norm.id}@${s.norm.edition}`;
+  const vd = getNormModule(s.norm.id, s.norm.edition).voltageDrop;
 
   return (
     <div className="properties">
@@ -79,10 +80,35 @@ export function ProjectPanel() {
         </div>
         <NumberSetting id="set-air" label={t("project.ambientAir")} unit="°C" value={s.ambient.airC} min={-40} max={90} onCommit={(v) => ed.setSettings({ ambient: { ...s.ambient, airC: v } })} />
         <NumberSetting id="set-ground" label={t("project.ambientGround")} unit="°C" value={s.ambient.groundC} min={-20} max={60} onCommit={(v) => ed.setSettings({ ambient: { ...s.ambient, groundC: v } })} />
-        <NumberSetting id="set-vdb" label={t("project.vdBranch")} unit="%" value={s.voltageDrop.branchPct} min={0.1} max={100} onCommit={(v) => ed.setSettings({ voltageDrop: { ...s.voltageDrop, branchPct: v } })} />
-        <NumberSetting id="set-vdf" label={t("project.vdFeeder")} unit="%" value={s.voltageDrop.feederPct} min={0.1} max={100} onCommit={(v) => ed.setSettings({ voltageDrop: { ...s.voltageDrop, feederPct: v } })} />
-        <NumberSetting id="set-vdt" label={t("project.vdTotal")} unit="%" value={s.voltageDrop.totalPct} min={0.1} max={100} onCommit={(v) => ed.setSettings({ voltageDrop: { ...s.voltageDrop, totalPct: v } })} />
-        {s.norm.id === "nom-001-sede" ? <span className="field-help">{t("project.vdNote")}</span> : null}
+        {(
+          [
+            ["set-vdb", "project.vdBranch", "branchPct", vd?.branch],
+            ["set-vdf", "project.vdFeeder", "feederPct", vd?.feeder],
+            ["set-vdt", "project.vdTotal", "totalPct", vd?.total],
+          ] as const
+        ).map(([id, label, key, limit]) => (
+          <div key={id}>
+            <NumberSetting
+              id={id}
+              label={t(label)}
+              unit="%"
+              value={s.voltageDrop[key]}
+              min={0.1}
+              // Los criterios del proyecto pueden ser más estrictos que la norma, nunca más permisivos.
+              max={limit?.pct ?? 100}
+              onCommit={(v) => ed.setSettings({ voltageDrop: { ...s.voltageDrop, [key]: v } })}
+            />
+            {limit ? <span className="field-help">{t("project.vdMax", { max: limit.pct, source: limit.source })}</span> : null}
+          </div>
+        ))}
+        {vd?.special.length ? (
+          <span className="field-help">
+            Límites obligatorios especiales:{" "}
+            {vd.special
+              .map((sp) => `${sp.label}: ${[sp.branch && `derivado ${sp.branch.pct} %`, sp.total && `total ${sp.total.pct} %`, sp.motorRunning && `operación ${sp.motorRunning.pct} % en terminales del motor`, sp.motorStarting && `arranque ${sp.motorStarting.pct} % en el controlador`].filter(Boolean).join(", ")} (${(sp.branch ?? sp.motorRunning)?.source})`)
+              .join(" · ")}
+          </span>
+        ) : null}
       </fieldset>
     </div>
   );

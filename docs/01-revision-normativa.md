@@ -85,6 +85,22 @@ Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 
 - **No hay acceso gratuito oficial.** La IEC Webstore vende cada parte por separado; sus *previews* solo muestran el índice y el alcance.
 - **Fuentes secundarias gratuitas y legítimas** que reproducen las tablas de la 5-52: *Electrical Installation Guide* de Schneider Electric (electrical-installation.org) y *Electrical Installation Handbook* de ABB. Propongo usarlas con un estado propio, `fuente_secundaria`. El motor las aceptaría, pero la memoria lo indicaría con una nota visible hasta que se verifiquen contra la norma comprada.
 
+### 2.1 Tablas agregadas (canalizaciones, 2026-10-24)
+
+| Tabla | p. | Estado |
+|---|---|---|
+| Capítulo 10, Tabla 4: dimensiones de tubo conduit por artículo (12 secciones) | 928–932 | Verificada visualmente por Claude; pendiente de aval del Ing. RGLR. Consistencia: área = π·d²/4 y 60/53/31/40 % en todos los renglones |
+| Tabla 392-22(a): área de ocupación de charolas, 5–90 cm | 285–286 | Igual que la anterior |
+
+**Hallazgos nuevos en el texto del DOF (pendientes de tu decisión; ninguno se usa en el cálculo de la fase 1):**
+
+| # | Ubicación | Hallazgo | Propuesta |
+|---|---|---|---|
+| E9 | Tabla 4, p. 928 | La sección del EMT se titula "Tubo conduit **no** metálico (EMT)". 358-2 define el EMT como tubo conduit **metálico** ligero | Error de título: se usa el nombre de 358-2. Los valores no cambian |
+| E10 | Tabla 4, p. 932 | Una segunda sección titulada "PVC, Cédula 80" con valores distintos de la primera (53 mm: 56.40 contra 48.60 mm) | Por sus valores es el PVC **tipo EB** de la tabla del NEC. Queda como "pvc-eb" y no se ofrece hasta que lo confirmes |
+| E11 | Tabla 392-22(a), columna 4 | El factor de Sd alterna entre 30 y 25 según el ancho. En la tabla equivalente del NEC es 25 en todos los renglones | Probable errata en los anchos de 5, 10, 15, 20, 40 y 50 cm (dice 30). Se transcribe tal cual |
+| E12 | Tabla 5, p. 932 | "6.63 mm² – 8 AWG" y "8.37 mm² – 6 AWG": las áreas no corresponden (8 AWG = 8.37 mm², 6 AWG = 13.3 mm²) | Probable errata. La Tabla 5 aún no se usa; servirá para el llenado de tubería |
+
 ### 3.1 Fuentes secundarias descargadas (2026-10-24)
 
 En `referencias/normas/fuentes-secundarias/abb-electrical-installation-handbook/`, desde library.e.abb.com:

@@ -41,9 +41,12 @@ export function ElementProperties({ element }: { element: ProjectElement }) {
               key={p.key}
               def={p}
               value={element.params[p.key] ?? null}
-              providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider) : undefined}
+              providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider, element.params) : undefined}
               issues={paramIssues.filter((i) => i.key === p.key)}
-              onCommit={(value) => setParams(element.id, { [p.key]: value })}
+              onCommit={(value) =>
+                // Las medidas comerciales dependen del tipo de canalización: al cambiarlo se borra la medida.
+                setParams(element.id, p.key === "installationMethod" && value !== element.params.installationMethod ? { installationMethod: value, racewaySize: null } : { [p.key]: value })
+              }
             />
           ))}
         </fieldset>

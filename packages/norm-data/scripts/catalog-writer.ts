@@ -123,6 +123,22 @@ function renderData(t: NormTable): string {
         ["Tipo", "Nombre genérico", "Temperatura y lugares", "Nota"],
         t.data.rows.map((r) => [r.type, r.genericName, r.ratings.map((x) => `${x.temperatureC} °C: ${x.locations}`).join("; "), r.note ?? ""]),
       );
+    case "raceway-dimensions":
+      return t.data.sections
+        .map(
+          (s) =>
+            `**${s.label}** (Art. ${s.article}; título publicado: "${s.publishedTitle}")\n\n` +
+            mdTable(
+              ["Designación", "Comercial", "Ø int. mm", "100 % mm²", "60 % mm²", "1 cond. 53 % mm²", "2 cond. 31 % mm²", "> 2 cond. 40 % mm²"],
+              s.rows.map((r) => [String(r.metricDesignation), r.tradeSize, fmt(r.internalDiameterMm), fmt(r.totalAreaMm2), fmt(r.area60Mm2), fmt(r.fill1Mm2), fmt(r.fill2Mm2), fmt(r.fillOver2Mm2)]),
+            ),
+        )
+        .join("\n\n");
+    case "tray-fill":
+      return mdTable(
+        ["Ancho cm", "Escalera/malla/ventilada col. 1 mm²", "Col. 2", "Fondo sólido col. 3 mm²", "Col. 4"],
+        t.data.rows.map((r) => [String(r.widthCm), String(r.ladderMm2), `${r.ladderMm2} − ${r.ladderSdFactor}·Sd`, String(r.solidMm2), `${r.solidMm2} − ${r.solidSdFactor}·Sd`]),
+      );
     case "demand-factors":
       return mdTable(
         ["Inmueble / carga", "Porción (texto publicado)", "Hasta VA (acumulado)", "Factor %"],

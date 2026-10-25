@@ -47,16 +47,34 @@ function Control({ id, def, value, providerOptions, onCommit }: { id: string } &
       const options = Array.isArray(def.options) ? def.options : providerOptions;
       if (!options) return <span className="field-help">{t("field.noNormData")}</span>;
       const current = typeof value === "string" ? value : "";
+      if (options.length === 0 && !current) return <span className="field-help">{t("field.notApplicable")}</span>;
       const known = options.some((o) => o.value === current);
+      // Opciones agrupadas (optgroup) cuando la norma las clasifica, p. ej. tipos de canalización.
+      const groups: [string | undefined, EnumOption[]][] = [];
+      for (const o of options) {
+        const last = groups[groups.length - 1];
+        if (last && last[0] === o.group) last[1].push(o);
+        else groups.push([o.group, [o]]);
+      }
+      const render = (list: EnumOption[]) =>
+        list.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ));
       return (
         <select id={id} value={current} onChange={(e) => onCommit(e.target.value === "" ? null : e.target.value)}>
           {!def.required || !current ? <option value="">{def.required ? t("field.none") : t("field.auto")}</option> : null}
           {!known && current ? <option value={current}>{current} (no válido)</option> : null}
-          {options.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
+          {groups.map(([g, list], i) =>
+            g ? (
+              <optgroup key={`${g}-${i}`} label={g}>
+                {render(list)}
+              </optgroup>
+            ) : (
+              render(list)
+            ),
+          )}
         </select>
       );
     }

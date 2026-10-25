@@ -1,5 +1,5 @@
-import { validateParams, type ParamIssue, type Project } from "@rea/core";
-import { validateTopology, type NormModule, type TopologyReport } from "@rea/engine";
+import { validateParams, type ParamIssue, type ParamValue, type Project } from "@rea/core";
+import { DEFAULT_EQUIPMENT_VOLTAGE, validateDesignCriteria, validateTopology, type NormModule, type TopologyReport } from "@rea/engine";
 import { getNormModule } from "@rea/norms";
 import { useMemo } from "react";
 import { registry } from "./registry";
@@ -7,7 +7,7 @@ import { useProject } from "./store";
 
 export interface UiIssue {
   severity: "error" | "warning";
-  origin: "parametros" | "topologia";
+  origin: "parametros" | "topologia" | "criterios";
   message: string;
   elementIds: string[];
   /** Parámetro afectado (solo en problemas de parámetros). */
@@ -31,7 +31,7 @@ export function normOf(project: Project): NormModule {
 
 export function computeValidation(project: Project): ValidationState {
   const norm = normOf(project);
-  const resolve = (provider: string) => norm.options(provider)?.map((o) => o.value);
+  const resolve = (provider: string, params: Record<string, ParamValue>) => norm.options(provider, params)?.map((o) => o.value);
   const issues: UiIssue[] = [];
   const paramIssues = new Map<string, ParamIssue[]>();
 
@@ -44,8 +44,9 @@ export function computeValidation(project: Project): ValidationState {
     for (const i of list) issues.push({ severity: i.severity, origin: "parametros", message: `${el.tag}: ${i.message}`, elementIds: [el.id], paramKey: i.key });
   }
 
-  const topology = validateTopology(project, registry);
+  const topology = validateTopology(project, registry, DEFAULT_EQUIPMENT_VOLTAGE);
   for (const i of topology.issues) issues.push({ severity: i.severity, origin: "topologia", message: i.message, elementIds: i.elementIds });
+  for (const i of validateDesignCriteria(project, norm.voltageDrop)) issues.push({ severity: i.severity, origin: "criterios", message: i.message, elementIds: [] });
   issues.sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "error" ? -1 : 1));
 
   const byElement = new Map<string, "error" | "warning">();

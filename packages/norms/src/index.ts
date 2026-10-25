@@ -5,7 +5,7 @@
 import { unavailableNormModule, type NormModule } from "@rea/engine";
 import { nom001Sede2012 } from "./nom-001-sede-2012";
 
-export { nom001Sede2012, INSTALLATION_METHODS } from "./nom-001-sede-2012";
+export * from "./nom-001-sede-2012";
 
 const NEC_REASON = "Tablas del NEC pendientes de captura (ver packages/norm-data/plantillas/nec).";
 const IEC_REASON = "Tablas de IEC 60364-5-52 pendientes de captura o de fuente secundaria verificada.";

@@ -239,6 +239,15 @@ export const cable: ElementTypeDefinition = {
       group: "Trayectoria",
     },
     {
+      key: "racewaySize",
+      label: "Medida de la canalización",
+      kind: "enum",
+      options: { provider: "norm:racewaySizes" },
+      default: null,
+      group: "Trayectoria",
+      description: "Medidas comerciales del tipo de canalización elegido (tubo: Capítulo 10 Tabla 4; charola: Tabla 392-22(a)). Se usa para el llenado en fases posteriores.",
+    },
+    {
       key: "conductorsPerPhase",
       label: "Conductores por fase (paralelo)",
       kind: "number",

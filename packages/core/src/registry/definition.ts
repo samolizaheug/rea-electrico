@@ -58,6 +58,8 @@ export interface NumberParamDef extends ParamBase {
 export interface EnumOption {
   value: string;
   label: string;
+  /** Agrupación opcional para mostrar en la lista (p. ej. "Tubo conduit no metálico"). */
+  group?: string;
 }
 
 /**

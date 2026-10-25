@@ -1,4 +1,5 @@
 import type { ElementRegistry, ElementTypeDefinition, InternalLink, PortDef, Project, ProjectElement } from "@rea/core";
+import { DEFAULT_EQUIPMENT_VOLTAGE, type EquipmentVoltageCriteria } from "../norm-module";
 import { DisjointSets } from "./dsu";
 
 /**
@@ -41,8 +42,8 @@ export interface TopologyReport {
   sourceOf: Map<string, string>;
 }
 
-/** Tolerancias de tensión de cargas respecto a la tensión del sistema. */
-export const VOLTAGE_TOLERANCE = { warning: 0.05, error: 0.1, distribution: 0.01 };
+/** Diferencia máxima entre tensiones nominales de elementos de distribución en la misma zona. */
+export const DISTRIBUTION_MATCH_TOLERANCE = 0.01;
 
 const SEP = "\u0000";
 const pk = (elementId: string, portId: string) => `${elementId}${SEP}${portId}`;
@@ -65,7 +66,11 @@ interface Ctx {
   tag: (id: string) => string;
 }
 
-export function validateTopology(project: Project, registry: ElementRegistry): TopologyReport {
+export function validateTopology(
+  project: Project,
+  registry: ElementRegistry,
+  equipment: EquipmentVoltageCriteria = DEFAULT_EQUIPMENT_VOLTAGE,
+): TopologyReport {
   const issues: TopologyIssue[] = [];
   const els: Ctx["els"] = [];
   for (const el of project.elements) {
@@ -78,7 +83,7 @@ export function validateTopology(project: Project, registry: ElementRegistry): T
 
   const unconnected = checkUnconnected(ctx, issues);
   const { energized, sourceOf } = checkEnergization(ctx, issues, unconnected);
-  checkVoltages(ctx, issues);
+  checkVoltages(ctx, issues, equipment);
 
   issues.sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "error" ? -1 : 1));
   return { issues, energized, sourceOf };
@@ -243,6 +248,7 @@ function checkEnergization(ctx: Ctx, issues: TopologyIssue[], isolated: Set<stri
 interface Decl {
   elementId: string;
   role: ElementTypeDefinition["electricalRole"];
+  isMotor: boolean;
   dist: boolean;
   v: number;
   system: string | null;
@@ -251,7 +257,7 @@ interface Decl {
 
 const DIST_PRIORITY: Record<string, number> = { source: 0, transformer: 1, converter: 2, bus: 3 };
 
-function checkVoltages(ctx: Ctx, issues: TopologyIssue[]) {
+function checkVoltages(ctx: Ctx, issues: TopologyIssue[], equipment: EquipmentVoltageCriteria) {
   const zones = new DisjointSets();
   for (const c of ctx.project.connections) zones.union(pk(c.a.elementId, c.a.portId), pk(c.b.elementId, c.b.portId));
   for (const { el, def } of ctx.els) {
@@ -271,7 +277,8 @@ function checkVoltages(ctx: Ctx, issues: TopologyIssue[]) {
       // Declaraciones "de distribución" fijan la tensión de la zona; la entrada de un convertidor se trata como carga.
       const dist = def.electricalRole in DIST_PRIORITY && (def.electricalRole !== "converter" || isOutput);
       const root = zones.find(pk(el.id, port.id));
-      (byZone.get(root) ?? byZone.set(root, []).get(root)!).push({ elementId: el.id, role: def.electricalRole, dist, v, system, phase });
+      const isMotor = def.calcBehavior === "load.motor";
+      (byZone.get(root) ?? byZone.set(root, []).get(root)!).push({ elementId: el.id, role: def.electricalRole, isMotor, dist, v, system, phase });
     }
   }
 
@@ -284,7 +291,7 @@ function checkVoltages(ctx: Ctx, issues: TopologyIssue[]) {
 
     for (const d of dists.slice(1)) {
       if (d.elementId === ref.elementId) continue;
-      if (Math.abs(d.v - ref.v) / ref.v > VOLTAGE_TOLERANCE.distribution) {
+      if (Math.abs(d.v - ref.v) / ref.v > DISTRIBUTION_MATCH_TOLERANCE) {
         issues.push({
           code: "tension-incompatible",
           severity: "error",
@@ -314,12 +321,18 @@ function checkVoltages(ctx: Ctx, issues: TopologyIssue[]) {
         issues.push({ code: "sistema-incompatible", severity: "error", message: `${ctx.tag(d.elementId)}: ${r.error}`, elementIds: [d.elementId] });
         continue;
       }
-      const dev = Math.abs(d.v - r.v) / r.v;
-      if (dev > VOLTAGE_TOLERANCE.warning) {
+      // La tolerancia de los fabricantes se expresa respecto a la tensión de PLACA del equipo.
+      const tol = d.isMotor ? equipment.motor : equipment.other;
+      const dev = (r.v - d.v) / d.v;
+      const abs = Math.abs(dev) * 100;
+      if (abs > tol.continuousPct) {
+        const sign = dev > 0 ? "+" : "−";
         issues.push({
           code: "tension-fuera-de-tolerancia",
-          severity: dev > VOLTAGE_TOLERANCE.error ? "error" : "warning",
-          message: `${ctx.tag(d.elementId)}: tensión nominal ${fmtV(d.v)}; el sistema de ${ctx.tag(ref.elementId)} entrega ${fmtV(Math.round(r.v * 10) / 10)} ${r.how} (diferencia ${(dev * 100).toFixed(1)} %).`,
+          severity: abs > tol.limitPct ? "error" : "warning",
+          message:
+            `${ctx.tag(d.elementId)}: tensión de placa ${fmtV(d.v)}; el sistema de ${ctx.tag(ref.elementId)} entrega ${fmtV(Math.round(r.v * 10) / 10)} ${r.how} ` +
+            `(${sign}${abs.toFixed(1)} % respecto a la placa). ${abs > tol.limitPct ? `Excede ±${tol.limitPct} %` : `Fuera de ±${tol.continuousPct} %, dentro de ±${tol.limitPct} %`}: ${tol.source}.`,
           elementIds: [d.elementId],
         });
       }

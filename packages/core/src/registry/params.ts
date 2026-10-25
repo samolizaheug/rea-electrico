@@ -8,9 +8,11 @@ export interface ParamIssue {
 
 /**
  * Resuelve las opciones de un enum con proveedor (p. ej. "norm:installationMethods").
+ * Recibe los parámetros actuales del elemento porque algunas opciones dependen de otros
+ * datos (las medidas de canalización dependen del método de instalación).
  * Si no se pasa resolvedor, las opciones con proveedor no se validan.
  */
-export type OptionsResolver = (provider: string) => string[] | undefined;
+export type OptionsResolver = (provider: string, params: Record<string, ParamValue>) => string[] | undefined;
 
 /** Construye el juego de parámetros por defecto de un tipo. */
 export function defaultParams(def: ElementTypeDefinition): Record<string, ParamValue> {
@@ -92,7 +94,7 @@ export function validateParams(
         }
         const allowed = Array.isArray(p.options)
           ? p.options.map((o) => o.value)
-          : resolveOptions?.(p.options.provider);
+          : resolveOptions?.(p.options.provider, params);
         if (allowed && !allowed.includes(v)) {
           issues.push({ key: p.key, severity: "error", message: `${p.label}: opción "${v}" no permitida.` });
         }

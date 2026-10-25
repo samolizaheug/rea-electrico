@@ -1,6 +1,16 @@
 import type { ElementTypeDefinition } from "../registry/definition";
 import { efficiencyParam, loadCommonParams, powerFactorParam, voltageParam } from "./common";
 
+/** Marca de equipo electrónico sensible: límites obligatorios de caída de tensión (NOM 647-4(d)). */
+const sensitiveParam = {
+  key: "sensitiveElectronic",
+  label: "Equipo electrónico sensible (Art. 647)",
+  kind: "boolean" as const,
+  default: false,
+  group: "Carga",
+  description: "Circuitos para equipo electrónico sensible: caída máxima 1.5 % en el circuito derivado y 2.5 % combinada (NOM-001-SEDE-2012 647-4(d)).",
+};
+
 const loadPort = [{ id: "in", label: "Alimentación", side: "top" as const, voltage: { param: "voltageV", system: "system", phase: "phase" } }];
 
 /** Motor. La corriente para dimensionar se toma de la tabla de la norma (NOM 430-6(a)(1)) salvo que se indique placa. */
@@ -109,6 +119,14 @@ export const motor: ElementTypeDefinition = {
       group: "Operación",
     },
     {
+      key: "firePump",
+      label: "Bomba contra incendio",
+      kind: "boolean",
+      default: false,
+      group: "Operación",
+      description: "Aplica los límites obligatorios de caída de tensión de bombas contra incendio (NOM-001-SEDE-2012 695-7).",
+    },
+    {
       key: "dutyClass",
       label: "Régimen de servicio",
       kind: "enum",
@@ -190,6 +208,7 @@ export const receptacle: ElementTypeDefinition = {
     powerFactorParam(0.9),
     voltageParam("voltageV", "Tensión nominal", 127),
     ...loadCommonParams("1F2H", "A"),
+    sensitiveParam,
   ],
 };
 
@@ -247,6 +266,7 @@ export const genericLoad: ElementTypeDefinition = {
       group: "Carga",
       description: "Si la mayor parte de la carga es no lineal, el neutro cuenta como conductor portador de corriente (NOM 310-15(b)(5)).",
     },
+    sensitiveParam,
   ],
 };
 
@@ -279,6 +299,7 @@ export const groupedLoad: ElementTypeDefinition = {
     voltageParam("voltageV", "Tensión nominal", 220),
     ...loadCommonParams("3F4H", "ABC"),
     { key: "nonLinear", label: "Carga no lineal", kind: "boolean", default: false, group: "Carga" },
+    sensitiveParam,
   ],
 };
 

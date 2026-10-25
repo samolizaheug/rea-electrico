@@ -16,6 +16,7 @@ describe("NOM-001-SEDE-2012: conjunto de tablas", () => {
     expect(nom.ids()).toEqual(
       [
         "art-240-6-a",
+        "cap10-tabla-4",
         "cap10-tabla-8",
         "cap10-tabla-9",
         "tabla-220-42",
@@ -27,6 +28,7 @@ describe("NOM-001-SEDE-2012: conjunto de tablas", () => {
         "tabla-310-15-b-2-a",
         "tabla-310-15-b-2-b",
         "tabla-310-15-b-3-a",
+        "tabla-392-22-a",
         "tabla-430-22-e",
         "tabla-430-247",
         "tabla-430-248",
@@ -127,6 +129,27 @@ describe("valores de control (leídos del PDF)", () => {
     const r = t9.data.rows.find((x) => x.designation === "4/0")!;
     expect(r.rCuOhmPerKm).toEqual({ pvc: 0.203, aluminio: 0.22, acero: 0.207 });
     expect(r.xlOhmPerKm).toEqual({ pvcOAluminio: 0.135, acero: 0.167 });
+  });
+});
+
+describe("canalizaciones (Capítulo 10 Tabla 4 y Tabla 392-22(a))", () => {
+  it("Tabla 4: 12 secciones; valores de control", () => {
+    const t = nom.table("cap10-tabla-4", "raceway-dimensions");
+    expect(t.data.sections.map((s) => s.id)).toEqual(["emt", "ent", "fmc", "imc", "lfnc-b", "lfnc-a", "lfmc", "rmc", "pvc-80", "pvc-40-hdpe", "pvc-a", "pvc-eb"]);
+    const row = (sec: string, d: number) => t.data.sections.find((s) => s.id === sec)!.rows.find((r) => r.metricDesignation === d)!;
+    expect(row("emt", 53)).toMatchObject({ tradeSize: "2", internalDiameterMm: 52.5, totalAreaMm2: 2165, fillOver2Mm2: 866 });
+    expect(row("rmc", 155)).toMatchObject({ tradeSize: "6", internalDiameterMm: 154.8, fillOver2Mm2: 7528 });
+    expect(row("pvc-80", 53).internalDiameterMm).toBe(48.6);
+    expect(row("pvc-eb", 53).internalDiameterMm).toBe(56.4);
+    expect(row("imc", 12).internalDiameterMm).toBeNull();
+    expect(row("fmc", 12).tradeSize).toBe("3/8");
+    expect(row("pvc-40-hdpe", 35).tradeSize).toBe("1 1/4");
+  });
+
+  it("Tabla 392-22(a): anchos de 5 a 90 cm", () => {
+    const t = nom.table("tabla-392-22-a", "tray-fill");
+    expect(t.data.rows.map((r) => r.widthCm)).toEqual([5, 10, 15, 20, 22.5, 30, 40, 45, 50, 60, 75, 90]);
+    expect(t.data.rows.find((r) => r.widthCm === 30)).toEqual({ widthCm: 30, ladderMm2: 9000, solidMm2: 7100, ladderSdFactor: 30, solidSdFactor: 25 });
   });
 });
 

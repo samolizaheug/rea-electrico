@@ -4,4 +4,5 @@
  */
 export * from "./norm-module";
 export * from "./topology/validate";
+export * from "./criteria";
 export { DisjointSets } from "./topology/dsu";

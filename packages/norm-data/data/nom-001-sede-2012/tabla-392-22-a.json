@@ -1,0 +1,117 @@
+{
+  "id": "nom-001-sede-2012/tabla-392-22-a",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "tray-fill",
+  "reference": {
+    "table": "Tabla 392-22(a)",
+    "article": "392-22(a)",
+    "title": "Área de ocupación permisible para cables multiconductores en charolas portacables de tipo escalera, fondo ventilado, tipo malla o fondo sólido para cables de 2000 volts o menos"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      285,
+      286
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "rows": [
+      {
+        "widthCm": 5,
+        "ladderMm2": 1500,
+        "solidMm2": 1200,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 10,
+        "ladderMm2": 3000,
+        "solidMm2": 2300,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 15,
+        "ladderMm2": 4500,
+        "solidMm2": 3500,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 20,
+        "ladderMm2": 6000,
+        "solidMm2": 4500,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 22.5,
+        "ladderMm2": 6800,
+        "solidMm2": 5100,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      },
+      {
+        "widthCm": 30,
+        "ladderMm2": 9000,
+        "solidMm2": 7100,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      },
+      {
+        "widthCm": 40,
+        "ladderMm2": 12000,
+        "solidMm2": 9400,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 45,
+        "ladderMm2": 13500,
+        "solidMm2": 10600,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      },
+      {
+        "widthCm": 50,
+        "ladderMm2": 15000,
+        "solidMm2": 11800,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 30
+      },
+      {
+        "widthCm": 60,
+        "ladderMm2": 18000,
+        "solidMm2": 14200,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      },
+      {
+        "widthCm": 75,
+        "ladderMm2": 22500,
+        "solidMm2": 17700,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      },
+      {
+        "widthCm": 90,
+        "ladderMm2": 27000,
+        "solidMm2": 21300,
+        "ladderSdFactor": 30,
+        "solidSdFactor": 25
+      }
+    ]
+  },
+  "notes": [
+    "Columnas 2 y 4: área de la columna 1 o 3 menos (k × Sd), donde Sd es la suma de los diámetros en mm de todos los cables multiconductores de 107 mm² (4/0 AWG) y mayores instalados en la misma charola con cables más pequeños.",
+    "El factor k publicado para fondo sólido (columna 4) alterna entre 30 y 25 según el ancho; se transcribe tal cual."
+  ],
+  "errata": []
+}

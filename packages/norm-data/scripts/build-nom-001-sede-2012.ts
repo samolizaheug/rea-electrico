@@ -521,6 +521,108 @@ function acImpedance(): NormTable {
   };
 }
 
+// ---------------------------------------------------------------- Capítulo 10, Tabla 4
+
+/** Secciones de la Tabla 4 en el orden publicado, con identificador y nombre normalizado. */
+const TABLE4_SECTIONS = [
+  { id: "emt", article: "358", label: "Tubo conduit metálico ligero (EMT)", title: /^Artículo 358 – / },
+  { id: "ent", article: "362", label: "Tubo conduit no metálico (ENT)", title: /^Artículo 362 – / },
+  { id: "fmc", article: "348", label: "Tubo conduit metálico flexible (FMC)", title: /^Artículo 348 – / },
+  { id: "imc", article: "342", label: "Tubo conduit metálico semipesado (IMC)", title: /^Artículo 342 – / },
+  { id: "lfnc-b", article: "356", label: "Tubo conduit no metálico flexible hermético a los líquidos (LFNC-B)", title: /^Artículo 356 – .*LFNC-B/ },
+  { id: "lfnc-a", article: "356", label: "Tubo conduit no metálico flexible hermético a los líquidos (LFNC-A)", title: /^Artículo 356 – .*LFNC-A/ },
+  { id: "lfmc", article: "350", label: "Tubo conduit metálico flexible hermético a los líquidos (LFMC)", title: /^Artículo 350 – / },
+  { id: "rmc", article: "344", label: "Tubo conduit metálico pesado (RMC)", title: /^Artículo 344 –/ },
+  { id: "pvc-80", article: "352", label: "Tubo conduit rígido de PVC, cédula 80", title: /^Artículo 352 – .*Cédula 80/ },
+  { id: "pvc-40-hdpe", article: "352/353", label: "Tubo conduit rígido de PVC cédula 40 y conduit HDPE", title: /^Artículos 352 y 353 – / },
+  { id: "pvc-a", article: "352", label: "Tubo conduit rígido de PVC, tipo A", title: /^Artículo 352 – .*Tipo A/ },
+  { id: "pvc-eb", article: "352", label: "Tubo conduit rígido de PVC, tipo EB (rotulada \"Cédula 80\" en el DOF; por confirmar)", title: /^Artículo 352 – .*Cédula 80/ },
+] as const;
+
+function racewayDimensions(): NormTable {
+  const lines = src.section(/^Tabla 4\.- Dimensiones y porcentaje disponible/, /^Tabla 5\.- Dimensiones de los conductores/);
+  const sections: { id: string; article: string; publishedTitle: string; label: string; rows: NonNullable<ReturnType<typeof parseRow>>[] }[] = [];
+  let current: (typeof sections)[number] | null = null;
+  let pvc80Seen = 0;
+  function parseRow(text: string) {
+    const parts = text.split("|").map((x) => x.trim());
+    if (parts.length !== 8 || !/^\d+$/.test(parts[0]!)) return null;
+    const v = parts.slice(2).map((x) => (/^[-–—]+$/.test(x) ? null : Number(x)));
+    if (v.some((x) => x !== null && !Number.isFinite(x))) return null;
+    return {
+      metricDesignation: Number(parts[0]),
+      tradeSize: parts[1]!.replace(/(\d)\s*([¼½¾⅜])/, "$1 $2").replace(/[¼½¾⅜]/g, (g) => HP_GLYPHS[g] ?? "3/8").trim(),
+      internalDiameterMm: v[0] ?? null,
+      totalAreaMm2: v[1] ?? null,
+      area60Mm2: v[2] ?? null,
+      fill1Mm2: v[3] ?? null,
+      fill2Mm2: v[4] ?? null,
+      fillOver2Mm2: v[5] ?? null,
+    };
+  }
+  for (const l of lines) {
+    if (/^Artículos? \d+/.test(l.text)) {
+      let def = TABLE4_SECTIONS.find((s) => s.title.test(l.text));
+      if (def?.id === "pvc-80" && pvc80Seen++ > 0) def = TABLE4_SECTIONS.find((s) => s.id === "pvc-eb");
+      if (!def) throw new Error(`Tabla 4: sección no reconocida "${l.text}"`);
+      current = { id: def.id, article: def.article, publishedTitle: l.text, label: def.label, rows: [] };
+      sections.push(current);
+      continue;
+    }
+    const row = parseRow(l.text);
+    if (row && current) current.rows.push(row);
+  }
+  expectCount(sections, TABLE4_SECTIONS.length, "Tabla 4 (secciones)");
+  const expectedRows: Record<string, number> = { emt: 10, ent: 9, fmc: 11, imc: 11, "lfnc-b": 7, "lfnc-a": 7, lfmc: 13, rmc: 13, "pvc-80": 13, "pvc-40-hdpe": 13, "pvc-a": 12, "pvc-eb": 12 };
+  for (const s of sections) expectCount(s.rows, expectedRows[s.id]!, `Tabla 4, ${s.id}`);
+  return {
+    id: `${SOURCE_ID}/cap10-tabla-4`,
+    norm: NORM,
+    kind: "raceway-dimensions",
+    reference: { table: "Capítulo 10, Tabla 4", article: "Capítulo 10", title: "Dimensiones y porcentaje disponible para los conductores del área del tubo conduit (basado en la Tabla 1 de este Capítulo)" },
+    source: source(lines),
+    data: { sections },
+    notes: [
+      "\"––\" en la tabla publicada (designación no disponible para ese tipo) se guarda como null.",
+      "Nota de transcripción: la primera sección se titula en el DOF \"Artículo 358 – Tubo conduit no metálico (EMT)\"; 358-2 define el EMT como tubo conduit METÁLICO ligero. Se usa el nombre de 358-2; los valores no cambian.",
+      "Nota de transcripción: la última sección repite el título \"Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80\" con valores distintos de la primera sección de cédula 80 (p. ej. 53 mm: 56.40 mm contra 48.60 mm). Por sus valores corresponde al PVC tipo EB de la tabla equivalente del NEC; queda identificada como \"pvc-eb\" y POR CONFIRMAR por el usuario. No se ofrece como opción hasta confirmarla.",
+    ],
+    errata: [],
+  };
+}
+
+// ---------------------------------------------------------------- Tabla 392-22(a)
+
+function trayFill(): NormTable {
+  const lines = src.section(/^Tabla 392-22\(a\)\.-/, /^Se deben calcular las áreas de ocupación máxima/);
+  const rows = [];
+  for (const l of lines) {
+    const m = /^(\d+(?:\.\d+)?) \| ([\d ]+) \| ([\d ]+) - \((\d+) Sd\) \| ([\d ]+) \| ([\d ]+) - \((\d+) Sd\)$/.exec(l.text.trim());
+    if (!m) continue;
+    const n = (s: string) => Number(s.replace(/\s/g, ""));
+    if (n(m[2]!) !== n(m[3]!) || n(m[5]!) !== n(m[6]!)) throw new Error(`Tabla 392-22(a): columnas 1/2 o 3/4 no coinciden en ${l.text}`);
+    rows.push({ widthCm: Number(m[1]), ladderMm2: n(m[2]!), solidMm2: n(m[5]!), ladderSdFactor: Number(m[4]), solidSdFactor: Number(m[7]) });
+  }
+  expectCount(rows, 12, "Tabla 392-22(a)");
+  return {
+    id: `${SOURCE_ID}/tabla-392-22-a`,
+    norm: NORM,
+    kind: "tray-fill",
+    reference: {
+      table: "Tabla 392-22(a)",
+      article: "392-22(a)",
+      title: "Área de ocupación permisible para cables multiconductores en charolas portacables de tipo escalera, fondo ventilado, tipo malla o fondo sólido para cables de 2000 volts o menos",
+    },
+    source: source(lines),
+    data: { rows },
+    notes: [
+      "Columnas 2 y 4: área de la columna 1 o 3 menos (k × Sd), donde Sd es la suma de los diámetros en mm de todos los cables multiconductores de 107 mm² (4/0 AWG) y mayores instalados en la misma charola con cables más pequeños.",
+      "El factor k publicado para fondo sólido (columna 4) alterna entre 30 y 25 según el ancho; se transcribe tal cual.",
+    ],
+    errata: [],
+  };
+}
+
 // ---------------------------------------------------------------- Ejecución
 
 const IND = "induccion";
@@ -629,6 +731,8 @@ const tables: NormTable[] = [
   dutyCycle(),
   conductorProperties(),
   acImpedance(),
+  racewayDimensions(),
+  trayFill(),
 ];
 
 mkdirSync(OUT_DIR, { recursive: true });

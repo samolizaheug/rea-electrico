@@ -108,6 +108,28 @@ export function findAnomalies(t: NormTable): Anomaly[] {
       }
       break;
     }
+    case "raceway-dimensions":
+      for (const s of t.data.sections) {
+        for (const i of monotonic(s.rows.map((r) => r.internalDiameterMm), true)) add(`${s.id} ${s.rows[i]!.tradeSize}`, "El diámetro disminuye al aumentar la designación.");
+        for (const r of s.rows) {
+          if (r.internalDiameterMm === null) continue;
+          const area = (Math.PI * r.internalDiameterMm ** 2) / 4;
+          const where = `${s.id} ${r.metricDesignation}`;
+          if (r.totalAreaMm2 === null || Math.abs(r.totalAreaMm2 / area - 1) > 0.015) add(where, `Área total ${r.totalAreaMm2} mm² ≠ π·d²/4 = ${area.toFixed(0)} mm².`);
+          const checks: [number | null, number][] = [[r.area60Mm2, 0.6], [r.fill1Mm2, 0.53], [r.fill2Mm2, 0.31], [r.fillOver2Mm2, 0.4]];
+          for (const [v, k] of checks) {
+            if (r.totalAreaMm2 !== null && (v === null || Math.abs(v - k * r.totalAreaMm2) > 1.5)) add(where, `Área al ${k * 100} % = ${v} mm²; se esperaba ${(k * r.totalAreaMm2).toFixed(0)} mm².`);
+          }
+        }
+      }
+      break;
+    case "tray-fill":
+      for (const i of monotonic(t.data.rows.map((r) => r.ladderMm2), true)) add(`${t.data.rows[i]!.widthCm} cm`, "El área disminuye al aumentar el ancho.");
+      for (const r of t.data.rows) {
+        // Patrón ≈ 300 mm²/cm (los valores vienen de pulgadas y se redondearon: 22.5 cm → 6800 mm²).
+        if (Math.abs(r.ladderMm2 / (r.widthCm * 300) - 1) > 0.01) add(`${r.widthCm} cm escalera`, `Columna 1 = ${r.ladderMm2} mm²; el patrón de la tabla es ≈300 mm²/cm de ancho.`);
+      }
+      break;
     default:
       break;
   }

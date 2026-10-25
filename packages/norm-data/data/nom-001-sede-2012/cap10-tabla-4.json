@@ -1,0 +1,1443 @@
+{
+  "id": "nom-001-sede-2012/cap10-tabla-4",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "kind": "raceway-dimensions",
+  "reference": {
+    "table": "Capítulo 10, Tabla 4",
+    "article": "Capítulo 10",
+    "title": "Dimensiones y porcentaje disponible para los conductores del área del tubo conduit (basado en la Tabla 1 de este Capítulo)"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      928,
+      929,
+      930,
+      931,
+      932
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "packages/norm-data/scripts/build-nom-001-sede-2012.ts"
+  },
+  "data": {
+    "sections": [
+      {
+        "id": "emt",
+        "article": "358",
+        "publishedTitle": "Artículo 358 – Tubo conduit no metálico (EMT)",
+        "label": "Tubo conduit metálico ligero (EMT)",
+        "rows": [
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 15.8,
+            "totalAreaMm2": 196,
+            "area60Mm2": 118,
+            "fill1Mm2": 104,
+            "fill2Mm2": 61,
+            "fillOver2Mm2": 78
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 20.9,
+            "totalAreaMm2": 343,
+            "area60Mm2": 206,
+            "fill1Mm2": 182,
+            "fill2Mm2": 106,
+            "fillOver2Mm2": 137
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 26.6,
+            "totalAreaMm2": 556,
+            "area60Mm2": 333,
+            "fill1Mm2": 295,
+            "fill2Mm2": 172,
+            "fillOver2Mm2": 222
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 35.1,
+            "totalAreaMm2": 968,
+            "area60Mm2": 581,
+            "fill1Mm2": 513,
+            "fill2Mm2": 300,
+            "fillOver2Mm2": 387
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 40.9,
+            "totalAreaMm2": 1314,
+            "area60Mm2": 788,
+            "fill1Mm2": 696,
+            "fill2Mm2": 407,
+            "fillOver2Mm2": 526
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 52.5,
+            "totalAreaMm2": 2165,
+            "area60Mm2": 1299,
+            "fill1Mm2": 1147,
+            "fill2Mm2": 671,
+            "fillOver2Mm2": 866
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 69.4,
+            "totalAreaMm2": 3783,
+            "area60Mm2": 2270,
+            "fill1Mm2": 2005,
+            "fill2Mm2": 1173,
+            "fillOver2Mm2": 1513
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 85.2,
+            "totalAreaMm2": 5701,
+            "area60Mm2": 3421,
+            "fill1Mm2": 3022,
+            "fill2Mm2": 1767,
+            "fillOver2Mm2": 2280
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 97.4,
+            "totalAreaMm2": 7451,
+            "area60Mm2": 4471,
+            "fill1Mm2": 3949,
+            "fill2Mm2": 2310,
+            "fillOver2Mm2": 2980
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 110.1,
+            "totalAreaMm2": 9521,
+            "area60Mm2": 5712,
+            "fill1Mm2": 5046,
+            "fill2Mm2": 2951,
+            "fillOver2Mm2": 3808
+          }
+        ]
+      },
+      {
+        "id": "ent",
+        "article": "362",
+        "publishedTitle": "Artículo 362 – Tubo conduit no metálico (ENT)",
+        "label": "Tubo conduit no metálico (ENT)",
+        "rows": [
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 14.2,
+            "totalAreaMm2": 158,
+            "area60Mm2": 95,
+            "fill1Mm2": 84,
+            "fill2Mm2": 49,
+            "fillOver2Mm2": 63
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 19.3,
+            "totalAreaMm2": 293,
+            "area60Mm2": 176,
+            "fill1Mm2": 155,
+            "fill2Mm2": 91,
+            "fillOver2Mm2": 117
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 25.4,
+            "totalAreaMm2": 507,
+            "area60Mm2": 304,
+            "fill1Mm2": 269,
+            "fill2Mm2": 157,
+            "fillOver2Mm2": 203
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 34,
+            "totalAreaMm2": 908,
+            "area60Mm2": 545,
+            "fill1Mm2": 481,
+            "fill2Mm2": 281,
+            "fillOver2Mm2": 363
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 39.9,
+            "totalAreaMm2": 1250,
+            "area60Mm2": 750,
+            "fill1Mm2": 663,
+            "fill2Mm2": 388,
+            "fillOver2Mm2": 500
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 51.3,
+            "totalAreaMm2": 2067,
+            "area60Mm2": 1240,
+            "fill1Mm2": 1095,
+            "fill2Mm2": 641,
+            "fillOver2Mm2": 827
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          }
+        ]
+      },
+      {
+        "id": "fmc",
+        "article": "348",
+        "publishedTitle": "Artículo 348 – Tubo conduit metálico flexible (FMC)",
+        "label": "Tubo conduit metálico flexible (FMC)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": 9.7,
+            "totalAreaMm2": 74,
+            "area60Mm2": 44,
+            "fill1Mm2": 39,
+            "fill2Mm2": 23,
+            "fillOver2Mm2": 30
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16.1,
+            "totalAreaMm2": 204,
+            "area60Mm2": 122,
+            "fill1Mm2": 108,
+            "fill2Mm2": 63,
+            "fillOver2Mm2": 81
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 20.9,
+            "totalAreaMm2": 343,
+            "area60Mm2": 206,
+            "fill1Mm2": 182,
+            "fill2Mm2": 106,
+            "fillOver2Mm2": 137
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 25.9,
+            "totalAreaMm2": 527,
+            "area60Mm2": 316,
+            "fill1Mm2": 279,
+            "fill2Mm2": 163,
+            "fillOver2Mm2": 211
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 32.4,
+            "totalAreaMm2": 824,
+            "area60Mm2": 495,
+            "fill1Mm2": 437,
+            "fill2Mm2": 256,
+            "fillOver2Mm2": 330
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 39.1,
+            "totalAreaMm2": 1201,
+            "area60Mm2": 720,
+            "fill1Mm2": 636,
+            "fill2Mm2": 372,
+            "fillOver2Mm2": 480
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 51.8,
+            "totalAreaMm2": 2107,
+            "area60Mm2": 1264,
+            "fill1Mm2": 1117,
+            "fill2Mm2": 653,
+            "fillOver2Mm2": 843
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 63.5,
+            "totalAreaMm2": 3167,
+            "area60Mm2": 1900,
+            "fill1Mm2": 1678,
+            "fill2Mm2": 982,
+            "fillOver2Mm2": 1267
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 76.2,
+            "totalAreaMm2": 4560,
+            "area60Mm2": 2736,
+            "fill1Mm2": 2417,
+            "fill2Mm2": 1414,
+            "fillOver2Mm2": 1824
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 88.9,
+            "totalAreaMm2": 6207,
+            "area60Mm2": 3724,
+            "fill1Mm2": 3290,
+            "fill2Mm2": 1924,
+            "fillOver2Mm2": 2483
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 101,
+            "totalAreaMm2": 8107,
+            "area60Mm2": 4864,
+            "fill1Mm2": 4297,
+            "fill2Mm2": 2513,
+            "fillOver2Mm2": 3243
+          }
+        ]
+      },
+      {
+        "id": "imc",
+        "article": "342",
+        "publishedTitle": "Artículo 342 – Tubo conduit metálico semipesado (IMC)",
+        "label": "Tubo conduit metálico semipesado (IMC)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16.8,
+            "totalAreaMm2": 222,
+            "area60Mm2": 133,
+            "fill1Mm2": 117,
+            "fill2Mm2": 69,
+            "fillOver2Mm2": 89
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 21.9,
+            "totalAreaMm2": 377,
+            "area60Mm2": 226,
+            "fill1Mm2": 200,
+            "fill2Mm2": 117,
+            "fillOver2Mm2": 151
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 28.1,
+            "totalAreaMm2": 620,
+            "area60Mm2": 372,
+            "fill1Mm2": 329,
+            "fill2Mm2": 192,
+            "fillOver2Mm2": 248
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 36.8,
+            "totalAreaMm2": 1064,
+            "area60Mm2": 638,
+            "fill1Mm2": 564,
+            "fill2Mm2": 330,
+            "fillOver2Mm2": 425
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 42.7,
+            "totalAreaMm2": 1432,
+            "area60Mm2": 859,
+            "fill1Mm2": 759,
+            "fill2Mm2": 444,
+            "fillOver2Mm2": 573
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 54.6,
+            "totalAreaMm2": 2341,
+            "area60Mm2": 1405,
+            "fill1Mm2": 1241,
+            "fill2Mm2": 726,
+            "fillOver2Mm2": 937
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 64.9,
+            "totalAreaMm2": 3308,
+            "area60Mm2": 1985,
+            "fill1Mm2": 1753,
+            "fill2Mm2": 1026,
+            "fillOver2Mm2": 1323
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 80.7,
+            "totalAreaMm2": 5115,
+            "area60Mm2": 3069,
+            "fill1Mm2": 2711,
+            "fill2Mm2": 1586,
+            "fillOver2Mm2": 2046
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 93.2,
+            "totalAreaMm2": 6822,
+            "area60Mm2": 4093,
+            "fill1Mm2": 3616,
+            "fill2Mm2": 2115,
+            "fillOver2Mm2": 2729
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 105.4,
+            "totalAreaMm2": 8725,
+            "area60Mm2": 5235,
+            "fill1Mm2": 4624,
+            "fill2Mm2": 2705,
+            "fillOver2Mm2": 3490
+          }
+        ]
+      },
+      {
+        "id": "lfnc-b",
+        "article": "356",
+        "publishedTitle": "Artículo 356 – Tubo conduit no metálico flexible hermético a los líquidos (LFNC-B*)",
+        "label": "Tubo conduit no metálico flexible hermético a los líquidos (LFNC-B)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": 12.5,
+            "totalAreaMm2": 123,
+            "area60Mm2": 74,
+            "fill1Mm2": 65,
+            "fill2Mm2": 38,
+            "fillOver2Mm2": 49
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16.1,
+            "totalAreaMm2": 204,
+            "area60Mm2": 122,
+            "fill1Mm2": 108,
+            "fill2Mm2": 63,
+            "fillOver2Mm2": 81
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 21.1,
+            "totalAreaMm2": 350,
+            "area60Mm2": 210,
+            "fill1Mm2": 185,
+            "fill2Mm2": 108,
+            "fillOver2Mm2": 140
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 26.8,
+            "totalAreaMm2": 564,
+            "area60Mm2": 338,
+            "fill1Mm2": 299,
+            "fill2Mm2": 175,
+            "fillOver2Mm2": 226
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 35.4,
+            "totalAreaMm2": 984,
+            "area60Mm2": 591,
+            "fill1Mm2": 522,
+            "fill2Mm2": 305,
+            "fillOver2Mm2": 394
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 40.3,
+            "totalAreaMm2": 1276,
+            "area60Mm2": 765,
+            "fill1Mm2": 676,
+            "fill2Mm2": 395,
+            "fillOver2Mm2": 510
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 51.6,
+            "totalAreaMm2": 2091,
+            "area60Mm2": 1255,
+            "fill1Mm2": 1108,
+            "fill2Mm2": 648,
+            "fillOver2Mm2": 836
+          }
+        ]
+      },
+      {
+        "id": "lfnc-a",
+        "article": "356",
+        "publishedTitle": "Artículo 356 – Tubo conduit no metálico flexible hermético a los líquidos (LFNC-A*)",
+        "label": "Tubo conduit no metálico flexible hermético a los líquidos (LFNC-A)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": 12.6,
+            "totalAreaMm2": 125,
+            "area60Mm2": 75,
+            "fill1Mm2": 66,
+            "fill2Mm2": 39,
+            "fillOver2Mm2": 50
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16,
+            "totalAreaMm2": 201,
+            "area60Mm2": 121,
+            "fill1Mm2": 107,
+            "fill2Mm2": 62,
+            "fillOver2Mm2": 80
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 21,
+            "totalAreaMm2": 346,
+            "area60Mm2": 208,
+            "fill1Mm2": 184,
+            "fill2Mm2": 107,
+            "fillOver2Mm2": 139
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 26.5,
+            "totalAreaMm2": 552,
+            "area60Mm2": 331,
+            "fill1Mm2": 292,
+            "fill2Mm2": 171,
+            "fillOver2Mm2": 221
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 35.1,
+            "totalAreaMm2": 968,
+            "area60Mm2": 581,
+            "fill1Mm2": 513,
+            "fill2Mm2": 300,
+            "fillOver2Mm2": 387
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 40.7,
+            "totalAreaMm2": 1301,
+            "area60Mm2": 781,
+            "fill1Mm2": 690,
+            "fill2Mm2": 403,
+            "fillOver2Mm2": 520
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 52.4,
+            "totalAreaMm2": 2157,
+            "area60Mm2": 1294,
+            "fill1Mm2": 1143,
+            "fill2Mm2": 669,
+            "fillOver2Mm2": 863
+          }
+        ]
+      },
+      {
+        "id": "lfmc",
+        "article": "350",
+        "publishedTitle": "Artículo 350 – Tubo conduit metálico flexible hermético a los líquidos (LFMC)",
+        "label": "Tubo conduit metálico flexible hermético a los líquidos (LFMC)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": 12.5,
+            "totalAreaMm2": 123,
+            "area60Mm2": 74,
+            "fill1Mm2": 65,
+            "fill2Mm2": 38,
+            "fillOver2Mm2": 49
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16.1,
+            "totalAreaMm2": 204,
+            "area60Mm2": 122,
+            "fill1Mm2": 108,
+            "fill2Mm2": 63,
+            "fillOver2Mm2": 81
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 21.1,
+            "totalAreaMm2": 350,
+            "area60Mm2": 210,
+            "fill1Mm2": 185,
+            "fill2Mm2": 108,
+            "fillOver2Mm2": 140
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 26.8,
+            "totalAreaMm2": 564,
+            "area60Mm2": 338,
+            "fill1Mm2": 299,
+            "fill2Mm2": 175,
+            "fillOver2Mm2": 226
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 35.4,
+            "totalAreaMm2": 984,
+            "area60Mm2": 591,
+            "fill1Mm2": 522,
+            "fill2Mm2": 305,
+            "fillOver2Mm2": 394
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 40.3,
+            "totalAreaMm2": 1276,
+            "area60Mm2": 765,
+            "fill1Mm2": 676,
+            "fill2Mm2": 395,
+            "fillOver2Mm2": 510
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 51.6,
+            "totalAreaMm2": 2091,
+            "area60Mm2": 1255,
+            "fill1Mm2": 1108,
+            "fill2Mm2": 648,
+            "fillOver2Mm2": 836
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 63.3,
+            "totalAreaMm2": 3147,
+            "area60Mm2": 1888,
+            "fill1Mm2": 1668,
+            "fill2Mm2": 976,
+            "fillOver2Mm2": 1259
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 78.4,
+            "totalAreaMm2": 4827,
+            "area60Mm2": 2896,
+            "fill1Mm2": 2559,
+            "fill2Mm2": 1497,
+            "fillOver2Mm2": 1931
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 89.4,
+            "totalAreaMm2": 6277,
+            "area60Mm2": 3766,
+            "fill1Mm2": 3327,
+            "fill2Mm2": 1946,
+            "fillOver2Mm2": 2511
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 102.1,
+            "totalAreaMm2": 8187,
+            "area60Mm2": 4912,
+            "fill1Mm2": 4339,
+            "fill2Mm2": 2538,
+            "fillOver2Mm2": 3275
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          }
+        ]
+      },
+      {
+        "id": "rmc",
+        "article": "344",
+        "publishedTitle": "Artículo 344 –Tubo conduit metálico pesado (RMC)",
+        "label": "Tubo conduit metálico pesado (RMC)",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 16.1,
+            "totalAreaMm2": 204,
+            "area60Mm2": 122,
+            "fill1Mm2": 108,
+            "fill2Mm2": 63,
+            "fillOver2Mm2": 81
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 21.2,
+            "totalAreaMm2": 353,
+            "area60Mm2": 212,
+            "fill1Mm2": 187,
+            "fill2Mm2": 109,
+            "fillOver2Mm2": 141
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 27,
+            "totalAreaMm2": 573,
+            "area60Mm2": 344,
+            "fill1Mm2": 303,
+            "fill2Mm2": 177,
+            "fillOver2Mm2": 229
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 35.4,
+            "totalAreaMm2": 984,
+            "area60Mm2": 591,
+            "fill1Mm2": 522,
+            "fill2Mm2": 305,
+            "fillOver2Mm2": 394
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 41.2,
+            "totalAreaMm2": 1333,
+            "area60Mm2": 800,
+            "fill1Mm2": 707,
+            "fill2Mm2": 413,
+            "fillOver2Mm2": 533
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 52.9,
+            "totalAreaMm2": 2198,
+            "area60Mm2": 1319,
+            "fill1Mm2": 1165,
+            "fill2Mm2": 681,
+            "fillOver2Mm2": 879
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 63.2,
+            "totalAreaMm2": 3137,
+            "area60Mm2": 1882,
+            "fill1Mm2": 1663,
+            "fill2Mm2": 972,
+            "fillOver2Mm2": 1255
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 78.5,
+            "totalAreaMm2": 4840,
+            "area60Mm2": 2904,
+            "fill1Mm2": 2565,
+            "fill2Mm2": 1500,
+            "fillOver2Mm2": 1936
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 90.7,
+            "totalAreaMm2": 6461,
+            "area60Mm2": 3877,
+            "fill1Mm2": 3424,
+            "fill2Mm2": 2003,
+            "fillOver2Mm2": 2584
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 102.9,
+            "totalAreaMm2": 8316,
+            "area60Mm2": 4990,
+            "fill1Mm2": 4408,
+            "fill2Mm2": 2578,
+            "fillOver2Mm2": 3326
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": 128.9,
+            "totalAreaMm2": 13050,
+            "area60Mm2": 7830,
+            "fill1Mm2": 6916,
+            "fill2Mm2": 4045,
+            "fillOver2Mm2": 5220
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": 154.8,
+            "totalAreaMm2": 18821,
+            "area60Mm2": 11292,
+            "fill1Mm2": 9975,
+            "fill2Mm2": 5834,
+            "fillOver2Mm2": 7528
+          }
+        ]
+      },
+      {
+        "id": "pvc-80",
+        "article": "352",
+        "publishedTitle": "Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80",
+        "label": "Tubo conduit rígido de PVC, cédula 80",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 13.4,
+            "totalAreaMm2": 141,
+            "area60Mm2": 85,
+            "fill1Mm2": 75,
+            "fill2Mm2": 44,
+            "fillOver2Mm2": 56
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 18.3,
+            "totalAreaMm2": 263,
+            "area60Mm2": 158,
+            "fill1Mm2": 139,
+            "fill2Mm2": 82,
+            "fillOver2Mm2": 105
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 23.8,
+            "totalAreaMm2": 445,
+            "area60Mm2": 267,
+            "fill1Mm2": 236,
+            "fill2Mm2": 138,
+            "fillOver2Mm2": 178
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 31.9,
+            "totalAreaMm2": 799,
+            "area60Mm2": 480,
+            "fill1Mm2": 424,
+            "fill2Mm2": 248,
+            "fillOver2Mm2": 320
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 37.5,
+            "totalAreaMm2": 1104,
+            "area60Mm2": 663,
+            "fill1Mm2": 585,
+            "fill2Mm2": 342,
+            "fillOver2Mm2": 442
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 48.6,
+            "totalAreaMm2": 1855,
+            "area60Mm2": 1113,
+            "fill1Mm2": 983,
+            "fill2Mm2": 575,
+            "fillOver2Mm2": 742
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 58.2,
+            "totalAreaMm2": 2660,
+            "area60Mm2": 1596,
+            "fill1Mm2": 1410,
+            "fill2Mm2": 825,
+            "fillOver2Mm2": 1064
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 72.7,
+            "totalAreaMm2": 4151,
+            "area60Mm2": 2491,
+            "fill1Mm2": 2200,
+            "fill2Mm2": 1287,
+            "fillOver2Mm2": 1660
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 84.5,
+            "totalAreaMm2": 5608,
+            "area60Mm2": 3365,
+            "fill1Mm2": 2972,
+            "fill2Mm2": 1738,
+            "fillOver2Mm2": 2243
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 96.2,
+            "totalAreaMm2": 7268,
+            "area60Mm2": 4361,
+            "fill1Mm2": 3852,
+            "fill2Mm2": 2253,
+            "fillOver2Mm2": 2907
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": 121.1,
+            "totalAreaMm2": 11518,
+            "area60Mm2": 6911,
+            "fill1Mm2": 6105,
+            "fill2Mm2": 3571,
+            "fillOver2Mm2": 4607
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": 145,
+            "totalAreaMm2": 16513,
+            "area60Mm2": 9908,
+            "fill1Mm2": 8752,
+            "fill2Mm2": 5119,
+            "fillOver2Mm2": 6605
+          }
+        ]
+      },
+      {
+        "id": "pvc-40-hdpe",
+        "article": "352/353",
+        "publishedTitle": "Artículos 352 y 353 – Tubo conduit rígido de PVC (PVC), Cédula 40 y Conduit HDPE (HDPE)",
+        "label": "Tubo conduit rígido de PVC cédula 40 y conduit HDPE",
+        "rows": [
+          {
+            "metricDesignation": 12,
+            "tradeSize": "3/8",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 15.3,
+            "totalAreaMm2": 184,
+            "area60Mm2": 110,
+            "fill1Mm2": 97,
+            "fill2Mm2": 57,
+            "fillOver2Mm2": 74
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 20.4,
+            "totalAreaMm2": 327,
+            "area60Mm2": 196,
+            "fill1Mm2": 173,
+            "fill2Mm2": 101,
+            "fillOver2Mm2": 131
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 26.1,
+            "totalAreaMm2": 535,
+            "area60Mm2": 321,
+            "fill1Mm2": 284,
+            "fill2Mm2": 166,
+            "fillOver2Mm2": 214
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 34.5,
+            "totalAreaMm2": 935,
+            "area60Mm2": 561,
+            "fill1Mm2": 495,
+            "fill2Mm2": 290,
+            "fillOver2Mm2": 374
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 40.4,
+            "totalAreaMm2": 1282,
+            "area60Mm2": 769,
+            "fill1Mm2": 679,
+            "fill2Mm2": 397,
+            "fillOver2Mm2": 513
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 52,
+            "totalAreaMm2": 2124,
+            "area60Mm2": 1274,
+            "fill1Mm2": 1126,
+            "fill2Mm2": 658,
+            "fillOver2Mm2": 849
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 62.1,
+            "totalAreaMm2": 3029,
+            "area60Mm2": 1817,
+            "fill1Mm2": 1605,
+            "fill2Mm2": 939,
+            "fillOver2Mm2": 1212
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 77.3,
+            "totalAreaMm2": 4693,
+            "area60Mm2": 2816,
+            "fill1Mm2": 2487,
+            "fill2Mm2": 1455,
+            "fillOver2Mm2": 1877
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 89.4,
+            "totalAreaMm2": 6277,
+            "area60Mm2": 3766,
+            "fill1Mm2": 3327,
+            "fill2Mm2": 1946,
+            "fillOver2Mm2": 2511
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 101.5,
+            "totalAreaMm2": 8091,
+            "area60Mm2": 4855,
+            "fill1Mm2": 4288,
+            "fill2Mm2": 2508,
+            "fillOver2Mm2": 3237
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": 127.4,
+            "totalAreaMm2": 12748,
+            "area60Mm2": 7649,
+            "fill1Mm2": 6756,
+            "fill2Mm2": 3952,
+            "fillOver2Mm2": 5099
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": 153.2,
+            "totalAreaMm2": 18433,
+            "area60Mm2": 11060,
+            "fill1Mm2": 9770,
+            "fill2Mm2": 5714,
+            "fillOver2Mm2": 7373
+          }
+        ]
+      },
+      {
+        "id": "pvc-a",
+        "article": "352",
+        "publishedTitle": "Artículo 352 – Tubo conduit rígido de PVC (PVC), Tipo A",
+        "label": "Tubo conduit rígido de PVC, tipo A",
+        "rows": [
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": 17.8,
+            "totalAreaMm2": 249,
+            "area60Mm2": 149,
+            "fill1Mm2": 132,
+            "fill2Mm2": 77,
+            "fillOver2Mm2": 100
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": 23.1,
+            "totalAreaMm2": 419,
+            "area60Mm2": 251,
+            "fill1Mm2": 222,
+            "fill2Mm2": 130,
+            "fillOver2Mm2": 168
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": 29.8,
+            "totalAreaMm2": 697,
+            "area60Mm2": 418,
+            "fill1Mm2": 370,
+            "fill2Mm2": 216,
+            "fillOver2Mm2": 279
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": 38.1,
+            "totalAreaMm2": 1140,
+            "area60Mm2": 684,
+            "fill1Mm2": 604,
+            "fill2Mm2": 353,
+            "fillOver2Mm2": 456
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": 43.7,
+            "totalAreaMm2": 1500,
+            "area60Mm2": 900,
+            "fill1Mm2": 795,
+            "fill2Mm2": 465,
+            "fillOver2Mm2": 600
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 54.7,
+            "totalAreaMm2": 2350,
+            "area60Mm2": 1410,
+            "fill1Mm2": 1245,
+            "fill2Mm2": 728,
+            "fillOver2Mm2": 940
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": 66.9,
+            "totalAreaMm2": 3515,
+            "area60Mm2": 2109,
+            "fill1Mm2": 1863,
+            "fill2Mm2": 1090,
+            "fillOver2Mm2": 1406
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 82,
+            "totalAreaMm2": 5281,
+            "area60Mm2": 3169,
+            "fill1Mm2": 2799,
+            "fill2Mm2": 1637,
+            "fillOver2Mm2": 2112
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 93.7,
+            "totalAreaMm2": 6896,
+            "area60Mm2": 4137,
+            "fill1Mm2": 3655,
+            "fill2Mm2": 2138,
+            "fillOver2Mm2": 2758
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 106.2,
+            "totalAreaMm2": 8858,
+            "area60Mm2": 5315,
+            "fill1Mm2": 4695,
+            "fill2Mm2": 2746,
+            "fillOver2Mm2": 3543
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          }
+        ]
+      },
+      {
+        "id": "pvc-eb",
+        "article": "352",
+        "publishedTitle": "Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80",
+        "label": "Tubo conduit rígido de PVC, tipo EB (rotulada \"Cédula 80\" en el DOF; por confirmar)",
+        "rows": [
+          {
+            "metricDesignation": 16,
+            "tradeSize": "1/2",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 21,
+            "tradeSize": "3/4",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 27,
+            "tradeSize": "1",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 35,
+            "tradeSize": "1 1/4",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 41,
+            "tradeSize": "1 1/2",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 53,
+            "tradeSize": "2",
+            "internalDiameterMm": 56.4,
+            "totalAreaMm2": 2498,
+            "area60Mm2": 1499,
+            "fill1Mm2": 1324,
+            "fill2Mm2": 774,
+            "fillOver2Mm2": 999
+          },
+          {
+            "metricDesignation": 63,
+            "tradeSize": "2 1/2",
+            "internalDiameterMm": null,
+            "totalAreaMm2": null,
+            "area60Mm2": null,
+            "fill1Mm2": null,
+            "fill2Mm2": null,
+            "fillOver2Mm2": null
+          },
+          {
+            "metricDesignation": 78,
+            "tradeSize": "3",
+            "internalDiameterMm": 84.6,
+            "totalAreaMm2": 5621,
+            "area60Mm2": 3373,
+            "fill1Mm2": 2979,
+            "fill2Mm2": 1743,
+            "fillOver2Mm2": 2248
+          },
+          {
+            "metricDesignation": 91,
+            "tradeSize": "3 1/2",
+            "internalDiameterMm": 96.6,
+            "totalAreaMm2": 7329,
+            "area60Mm2": 4397,
+            "fill1Mm2": 3884,
+            "fill2Mm2": 2272,
+            "fillOver2Mm2": 2932
+          },
+          {
+            "metricDesignation": 103,
+            "tradeSize": "4",
+            "internalDiameterMm": 108.9,
+            "totalAreaMm2": 9314,
+            "area60Mm2": 5589,
+            "fill1Mm2": 4937,
+            "fill2Mm2": 2887,
+            "fillOver2Mm2": 3726
+          },
+          {
+            "metricDesignation": 129,
+            "tradeSize": "5",
+            "internalDiameterMm": 135,
+            "totalAreaMm2": 14314,
+            "area60Mm2": 8588,
+            "fill1Mm2": 7586,
+            "fill2Mm2": 4437,
+            "fillOver2Mm2": 5726
+          },
+          {
+            "metricDesignation": 155,
+            "tradeSize": "6",
+            "internalDiameterMm": 160.9,
+            "totalAreaMm2": 20333,
+            "area60Mm2": 12200,
+            "fill1Mm2": 10776,
+            "fill2Mm2": 6303,
+            "fillOver2Mm2": 8133
+          }
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "\"––\" en la tabla publicada (designación no disponible para ese tipo) se guarda como null.",
+    "Nota de transcripción: la primera sección se titula en el DOF \"Artículo 358 – Tubo conduit no metálico (EMT)\"; 358-2 define el EMT como tubo conduit METÁLICO ligero. Se usa el nombre de 358-2; los valores no cambian.",
+    "Nota de transcripción: la última sección repite el título \"Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80\" con valores distintos de la primera sección de cédula 80 (p. ej. 53 mm: 56.40 mm contra 48.60 mm). Por sus valores corresponde al PVC tipo EB de la tabla equivalente del NEC; queda identificada como \"pvc-eb\" y POR CONFIRMAR por el usuario. No se ofrece como opción hasta confirmarla."
+  ],
+  "errata": []
+}

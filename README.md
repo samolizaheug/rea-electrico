@@ -56,7 +56,8 @@ referencias/   Documentos normativos fuente (no versionados)
 - [Revisión normativa: fuentes, tablas y erratas](docs/01-revision-normativa.md)
 - [Formato de archivo de proyecto](docs/formato-proyecto.md)
 - [Cómo agregar un tipo de elemento](docs/agregar-tipo-elemento.md)
-- [Validación de la red](docs/validacion-topologia.md)
+- [Validación de la red, tolerancias y límites de caída de tensión](docs/validacion-topologia.md)
+- [Canalizaciones y métodos de instalación](docs/canalizaciones.md)
 
 ## Advertencia
 
