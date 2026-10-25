@@ -63,6 +63,10 @@ Extraje el texto del PDF del DOF. La capa de texto es buena: las tablas salen co
   - Tabla 9: Z publicada = R·0.85 + X·0.527 en todos los renglones.
   - Ampacidades, factores y motores: sin otros quiebres de secuencia.
 
+**Cotejo externo (2026-10-25).** La Tabla 310-15(b)(16) transcrita se comparó con la tabla de ampacidad de Cerrowire (fabricante; NEC 2017, 14 AWG a 1000 kcmil):
+- Coinciden las 80 celdas comparables (cobre 60/75/90 °C y aluminio 75/90 °C).
+- Única diferencia: el NEC da aluminio para 12, 10 y 8 AWG, y el DOF publica «–» en esas celdas (confirmado en la imagen de la p. 170). Es una diferencia real de la NOM-001-SEDE-2012, no un error de transcripción. Con la NOM, el aluminio empieza en 6 AWG.
+
 Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 mm² en la Tabla 310-15(b)(16) y como 53.5 mm² en otras tablas. Se usará la **designación** (AWG/kcmil) como clave y el área de la Tabla 8.
 
 ## 2. NEC (NFPA 70): ediciones seleccionables 2020, 2023 y 2026
