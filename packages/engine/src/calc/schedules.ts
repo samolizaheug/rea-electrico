@@ -54,8 +54,28 @@ export interface PanelSchedule {
     pf: number;
     currentA: PhaseVA;
     unbalancePct: number;
+    /** Límite del proyecto; solo en tableros trifásicos (en monofásicos no aplica). */
+    unbalanceLimitPct?: number;
+    unbalanceExceeded: boolean;
   };
   notes: string[];
+}
+
+export interface ScheduleIssue {
+  severity: "warning";
+  message: string;
+  elementIds: string[];
+}
+
+/** Advertencias de desbalance por tablero (la NOM no fija límite: nunca es error). */
+export function scheduleIssues(schedules: PanelSchedule[]): ScheduleIssue[] {
+  return schedules
+    .filter((s) => s.totals.unbalanceExceeded)
+    .map((s) => ({
+      severity: "warning" as const,
+      message: `${s.tag}: desbalance entre fases de ${s.totals.unbalancePct.toFixed(2)} %, mayor que el límite del proyecto (${s.totals.unbalanceLimitPct} %). Redistribuye circuitos entre fases.`,
+      elementIds: [s.boardId],
+    }));
 }
 
 const n = (v: unknown, fb = NaN) => (typeof v === "number" ? v : fb);
@@ -123,9 +143,14 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
       const vln = node.vNomLL / Math.sqrt(3);
       const max = Math.max(va.a, va.b, va.c);
       const min = Math.min(va.a, va.b, va.c);
+      const threePhase = node.system?.startsWith("3F") ?? true;
+      const limit = threePhase ? (project.settings.phaseUnbalance?.maxPct ?? 5) : undefined;
+      const unbalancePct = max > 0 ? ((max - min) / max) * 100 : 0;
       const notes = [
         "Potencia demandada (con el factor de demanda capturado en cada carga).",
-        "Desbalance = (F_máx − F_mín) / F_máx · 100; criterio de práctica común, la NOM no fija un valor.",
+        limit !== undefined
+          ? `Desbalance = (F_máx − F_mín) / F_máx · 100; límite del proyecto ${limit} % (criterio de práctica común, la NOM no fija un valor).`
+          : "Tablero monofásico: el desbalance entre fases no aplica.",
       ];
       if (hasTransformerRow) notes.push("Transformadores, variadores y UPS se reparten equilibrados en sus tres fases de entrada.");
       out.push({
@@ -141,7 +166,9 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
           qKvar,
           pf: Math.hypot(pKW, qKvar) > 0 ? pKW / Math.hypot(pKW, qKvar) : 1,
           currentA: { a: va.a / vln, b: va.b / vln, c: va.c / vln },
-          unbalancePct: max > 0 ? ((max - min) / max) * 100 : 0,
+          unbalancePct,
+          unbalanceLimitPct: limit,
+          unbalanceExceeded: limit !== undefined && unbalancePct > limit + 1e-9,
         },
         notes,
       });

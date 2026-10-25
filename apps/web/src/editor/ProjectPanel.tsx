@@ -109,6 +109,16 @@ export function ProjectPanel() {
               .join(" · ")}
           </span>
         ) : null}
+        <NumberSetting
+          id="set-unbalance"
+          label={t("project.unbalance")}
+          unit="%"
+          value={s.phaseUnbalance.maxPct}
+          min={0.1}
+          max={100}
+          onCommit={(v) => ed.setSettings({ phaseUnbalance: { maxPct: v } })}
+        />
+        <span className="field-help">{t("project.unbalanceNote")}</span>
       </fieldset>
     </div>
   );

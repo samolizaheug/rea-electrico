@@ -1,5 +1,5 @@
-import { createDefaultRegistry } from "@rea/core";
-import { panelSchedules, runSizing } from "@rea/engine";
+import { createDefaultRegistry, updateSettings } from "@rea/core";
+import { panelSchedules, runSizing, scheduleIssues } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
 import { describe, expect, it } from "vitest";
 import { sistemaEjemplo } from "../src";
@@ -46,5 +46,18 @@ describe("cuadros de carga del sistema de ejemplo", () => {
     const tr2 = tg.rows.find((r) => r.description.includes("TR-2"))!;
     expect(tr2.va.a).toBeCloseTo(tr2.va.b, 6);
     expect(tg.notes.join(" ")).toContain("equilibrados");
+  });
+
+  it("límite de desbalance del proyecto (5 % por defecto): advertencia solo donde se rebasa", () => {
+    const t = board("TAB-A");
+    expect(t.totals).toMatchObject({ unbalanceLimitPct: 5, unbalanceExceeded: true });
+    const issues = scheduleIssues(schedules);
+    expect(issues.every((i) => i.severity === "warning")).toBe(true);
+    expect(issues.map((i) => i.elementIds[0])).toContain(t.boardId);
+    expect(issues.length).toBe(schedules.filter((s) => s.totals.unbalancePct > 5).length);
+    // Con un límite de 25 % el TAB-A ya no se marca.
+    const relaxed = updateSettings(project, { phaseUnbalance: { maxPct: 25 } });
+    const s2 = panelSchedules(relaxed, registry, sizing.loadFlow, sizing);
+    expect(s2.find((s) => s.tag === "TAB-A")!.totals.unbalanceExceeded).toBe(false);
   });
 });

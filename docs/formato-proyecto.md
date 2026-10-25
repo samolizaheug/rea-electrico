@@ -38,7 +38,8 @@
     "language": "es",
     "frequencyHz": 60,
     "ambient": { "airC": 30, "groundC": 20 },
-    "voltageDrop": { "branchPct": 3, "feederPct": 3, "totalPct": 5 }
+    "voltageDrop": { "branchPct": 3, "feederPct": 3, "totalPct": 5 },
+    "phaseUnbalance": { "maxPct": 5 }
   },
   "elements": [
     {

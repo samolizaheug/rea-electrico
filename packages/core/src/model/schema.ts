@@ -47,6 +47,11 @@ export const projectSettingsSchema = z.object({
     feederPct: z.number().positive().max(100),
     totalPct: z.number().positive().max(100),
   }),
+  /**
+   * Desbalance máximo entre fases en tableros trifásicos, %. La NOM no fija un valor; arriba del
+   * límite se emite una advertencia. Opcional en archivos anteriores (se toma 5 %).
+   */
+  phaseUnbalance: z.object({ maxPct: z.number().positive().max(100) }).default({ maxPct: 5 }),
 });
 
 export const projectMetaSchema = z.object({

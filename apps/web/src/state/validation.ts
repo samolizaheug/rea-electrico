@@ -3,6 +3,7 @@ import {
   DEFAULT_EQUIPMENT_VOLTAGE,
   panelSchedules,
   runSizing,
+  scheduleIssues,
   validateDesignCriteria,
   validateTopology,
   type ElementFlow,
@@ -75,7 +76,9 @@ export function computeValidation(project: Project): ValidationState {
   if (!blocking && norm.available && project.elements.length) {
     const sizing = runSizing(project, registry, norm);
     if (sizing.calculated) {
-      results = { sizing, schedules: panelSchedules(project, registry, sizing.loadFlow, sizing), flow: (id) => sizing.loadFlow.elements.get(id) };
+      const schedules = panelSchedules(project, registry, sizing.loadFlow, sizing);
+      results = { sizing, schedules, flow: (id) => sizing.loadFlow.elements.get(id) };
+      for (const i of scheduleIssues(schedules)) issues.push({ severity: i.severity, origin: "calculo", message: i.message, elementIds: i.elementIds });
     }
     for (const i of sizing.issues) issues.push({ severity: i.severity, origin: "calculo", message: i.message, elementIds: i.elementIds });
   }

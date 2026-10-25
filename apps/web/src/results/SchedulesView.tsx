@@ -83,8 +83,9 @@ export function SchedulesView() {
                     <td className="num">{f1(s.totals.currentA.b, 2)}</td>
                     <td className="num">{f1(s.totals.currentA.c, 2)}</td>
                     <td colSpan={6}>
-                      <span className="unbalance">
+                      <span className={`unbalance${s.totals.unbalanceExceeded ? " warning" : ""}`}>
                         {t("schedules.unbalance")}: {f1(s.totals.unbalancePct, 2)} %
+                        {s.totals.unbalanceLimitPct !== undefined ? ` (${t("schedules.unbalanceLimit", { max: s.totals.unbalanceLimitPct })})` : ""}
                       </span>
                     </td>
                   </tr>
