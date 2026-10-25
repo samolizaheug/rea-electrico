@@ -5,4 +5,8 @@
 export * from "./norm-module";
 export * from "./topology/validate";
 export * from "./criteria";
+export * from "./trace";
+export { Complex } from "./calc/complex";
+export { buildIslands, type Island, type NetEdge, type NetNode } from "./calc/network";
+export * from "./calc/loadflow";
 export { DisjointSets } from "./topology/dsu";

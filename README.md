@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E4** (modelo de datos, tablas NOM-001-SEDE-2012 verificadas, editor de unifilares, propiedades y validación de la red). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E5** (editor de unifilares, validación de la red, flujo de carga radial y caída de tensión con memoria de cálculo; sistema de ejemplo resuelto a mano). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -33,7 +33,8 @@ Revisión de tablas: [docs/tablas/nom-001-sede-2012.md](docs/tablas/nom-001-sede
 packages/
   core/        Modelo: tipos de elemento, biblioteca, proyecto, formato de archivo (sin UI ni cálculo)
   symbols/     Símbolos ANSI/IEC como geometría (editor y exportación)
-  engine/      Motor de cálculo: validación de topología (E4); flujo de carga y caída de tensión (E5)
+  engine/      Motor de cálculo: validación de topología; flujo de carga radial (método nominal y barrido) y caída de tensión con trazas de memoria
+  ejemplos/    Proyectos de ejemplo resueltos a mano (pruebas de integración)
   norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; NEC e IEC pendientes de datos)
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
 apps/
@@ -58,6 +59,7 @@ referencias/   Documentos normativos fuente (no versionados)
 - [Cómo agregar un tipo de elemento](docs/agregar-tipo-elemento.md)
 - [Validación de la red, tolerancias y límites de caída de tensión](docs/validacion-topologia.md)
 - [Canalizaciones y métodos de instalación](docs/canalizaciones.md)
+- [Sistema de ejemplo: flujo de carga y caída de tensión resueltos a mano](docs/ejemplos/sistema-ejemplo.md) (archivo: `examples/sistema-ejemplo.rea.json`)
 
 ## Advertencia
 

@@ -1,0 +1,17 @@
+{
+  "name": "@rea/ejemplos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proyectos de ejemplo resueltos a mano: sirven como pruebas de integración del motor y como archivos para abrir en el editor.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "exportar": "tsx scripts/exportar.ts"
+  },
+  "dependencies": {
+    "@rea/core": "workspace:*",
+    "@rea/engine": "workspace:*",
+    "@rea/norms": "workspace:*"
+  }
+}

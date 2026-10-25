@@ -63,6 +63,32 @@ export const DEFAULT_EQUIPMENT_VOLTAGE: EquipmentVoltageCriteria = {
   },
 };
 
+/** Resultado de una consulta a tablas de la norma, con su traza. */
+export type Lookup<T> = ({ ok: true } & T & { refs: string[]; notes: string[] }) | { ok: false; error: string };
+
+export interface MotorFlcQuery {
+  ratedPower: number;
+  ratedPowerUnit: "hp" | "kW";
+  voltageV: number;
+  /** "3F" trifásico, "1F" monofásico, "cc" corriente continua. */
+  phases: "3F" | "1F" | "cc";
+  synchronous: boolean;
+}
+
+export interface ConductorImpedanceQuery {
+  designation: string;
+  material: "Cu" | "Al";
+  installationMethod: string;
+}
+
+/** Cálculos y consultas que dependen de la norma (tablas de motores, impedancias...). */
+export interface NormCalc {
+  /** Corriente a plena carga de motores según las tablas de la norma. */
+  motorFlc(q: MotorFlcQuery): Lookup<{ amps: number; tableVoltageV: number; hp: string }>;
+  /** R y XL de un conductor (Ω/km, por conductor, a la temperatura de la tabla). */
+  conductorImpedance(q: ConductorImpedanceQuery): Lookup<{ rOhmPerKm: number; xOhmPerKm: number; column: string; temperatureC: number }>;
+}
+
 /**
  * Contrato de un módulo normativo. El motor y la interfaz solo conocen esta interfaz;
  * cada norma (NOM-001-SEDE, NEC, IEC 60364) la implementa en el paquete @rea/norms.
@@ -86,6 +112,8 @@ export interface NormModule {
   paramDefaults(type: string): Record<string, ParamValue>;
   /** Límites de caída de tensión de la norma (undefined si no hay datos). */
   voltageDrop?: VoltageDropCriteria;
+  /** Consultas de cálculo (undefined si la norma no tiene datos). */
+  calc?: NormCalc;
 }
 
 /** Módulo nulo: para normas sin datos. No ofrece opciones ni valores por defecto. */
