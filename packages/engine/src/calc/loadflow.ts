@@ -97,7 +97,8 @@ interface EdgeData {
 }
 
 export function runLoadFlow(project: Project, registry: ElementRegistry, norm: NormModule, opts: LoadFlowOptions = {}): LoadFlowResult {
-  const mode = opts.mode ?? "barrido";
+  // El método nominal es el resultado principal de la memoria (decisión del usuario, 2026-10-24); el barrido es la referencia.
+  const mode = opts.mode ?? "nominal";
   const issues: LoadFlowIssue[] = [];
   const elements = new Map<string, ElementFlow>();
   const result: LoadFlowResult = { mode, calculated: false, converged: false, iterations: 0, elements, issues };

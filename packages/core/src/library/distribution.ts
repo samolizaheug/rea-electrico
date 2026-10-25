@@ -248,6 +248,28 @@ export const cable: ElementTypeDefinition = {
       description: "Medidas comerciales del tipo de canalización elegido (tubo: Capítulo 10 Tabla 4; charola: Tabla 392-22(a)). Se usa para el llenado en fases posteriores.",
     },
     {
+      key: "trayCableType",
+      label: "Tipo de cable en charola",
+      kind: "enum",
+      options: [
+        { value: "multiconductor", label: "Cable multiconductor" },
+        { value: "unipolar", label: "Cables de un solo conductor" },
+      ],
+      default: "multiconductor",
+      required: true,
+      group: "Trayectoria",
+      visibleWhen: { param: "installationMethod", equals: ["charola-escalera", "charola-fondo-solido"] },
+      description: "Define la regla de ampacidad en charolas portacables (NOM 392-80(a)(1) o (a)(2)).",
+    },
+    {
+      key: "trayCovered",
+      label: "Charola con tapa sólida sin ventilación (más de 1.80 m)",
+      kind: "boolean",
+      default: false,
+      group: "Trayectoria",
+      visibleWhen: { param: "installationMethod", equals: ["charola-escalera", "charola-fondo-solido"] },
+    },
+    {
       key: "conductorsPerPhase",
       label: "Conductores por fase (paralelo)",
       kind: "number",

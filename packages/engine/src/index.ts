@@ -9,4 +9,5 @@ export * from "./trace";
 export { Complex } from "./calc/complex";
 export { buildIslands, type Island, type NetEdge, type NetNode } from "./calc/network";
 export * from "./calc/loadflow";
+export * from "./calc/sizing";
 export { DisjointSets } from "./topology/dsu";

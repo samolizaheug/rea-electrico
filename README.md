@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E5** (editor de unifilares, validación de la red, flujo de carga radial y caída de tensión con memoria de cálculo; sistema de ejemplo resuelto a mano). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E6** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, con memoria de cálculo). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -60,6 +60,7 @@ referencias/   Documentos normativos fuente (no versionados)
 - [Validación de la red, tolerancias y límites de caída de tensión](docs/validacion-topologia.md)
 - [Canalizaciones y métodos de instalación](docs/canalizaciones.md)
 - [Sistema de ejemplo: flujo de carga y caída de tensión resueltos a mano](docs/ejemplos/sistema-ejemplo.md) (archivo: `examples/sistema-ejemplo.rea.json`)
+- [Sistema de ejemplo: dimensionamiento de conductores, protecciones y tierra](docs/ejemplos/dimensionamiento.md)
 
 ## Advertencia
 

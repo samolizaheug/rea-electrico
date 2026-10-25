@@ -2,9 +2,11 @@ import type { EnumOption, ParamValue } from "@rea/core";
 import type { NormModule, VoltageDropCriteria } from "@rea/engine";
 import { getNormDataset } from "@rea/norm-data";
 import { nomCalc } from "./calc";
+import { nomSizing } from "./sizing";
 import { DUCT_SIZES, RACEWAY_METHODS, racewayMethod } from "./raceways";
 
 export { hpToNumber, nomCalc } from "./calc";
+export { nomSizing } from "./sizing";
 
 export { DUCT_SIZES, DUCT_SIZES_SOURCE, RACEWAY_METHODS, racewayMethod } from "./raceways";
 export type { RacewayMethod } from "./raceways";
@@ -100,6 +102,7 @@ export const nom001Sede2012: NormModule = {
   available: true,
   voltageDrop: NOM_VOLTAGE_DROP,
   calc: nomCalc,
+  sizing: nomSizing,
   options(provider, params) {
     switch (provider) {
       case "norm:insulationTypes":

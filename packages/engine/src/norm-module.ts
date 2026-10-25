@@ -1,4 +1,5 @@
 import type { EnumOption, ParamValue } from "@rea/core";
+import type { TraceStep } from "./trace";
 
 /** Un límite numérico con la cita de su origen, para que la memoria de cálculo lo muestre. */
 export interface Criterion {
@@ -89,6 +90,93 @@ export interface NormCalc {
   conductorImpedance(q: ConductorImpedanceQuery): Lookup<{ rOhmPerKm: number; xOhmPerKm: number; column: string; temperatureC: number }>;
 }
 
+// ---------------------------------------------------------------- Dimensionamiento
+
+/** Una carga (o equipo) alimentada por el circuito, con su corriente a la tensión del circuito. */
+export interface SizingLoadItem {
+  elementId: string;
+  tag: string;
+  kind: "motor" | "variador" | "transformador" | "carga";
+  /** Corriente a la tensión nominal del circuito (A). Motores: tabla o placa. */
+  amps: number;
+  /** Solo "carga": si es continua (3 h o más) y de dónde sale la clasificación. */
+  continuous?: boolean;
+  continuousSource?: string;
+  /** Contactos: número de salidas (240-4(b)(1)). */
+  receptacleOutlets?: number;
+  nonLinear?: boolean;
+  motor?: { flcA: number; flcSource: string; motorType: string; dutyClass: string; dutyRating: string; designLetter: string; nameplateA: number | null };
+  transformer?: { ratedPrimaryA: number; sn: number; primaryV: number };
+  vfd?: { inputA: number; inputSource: string };
+}
+
+/** Descripción de un circuito (cable + su protección de origen) para dimensionar. */
+export interface SizingCircuit {
+  cableId: string;
+  tag: string;
+  params: Record<string, ParamValue>;
+  circuitKind: "alimentador" | "derivado";
+  /** 3 = trifásico; 1 = monofásico de dos conductores. */
+  m: 3 | 1;
+  system: string | null;
+  vNomLL: number;
+  /** Tensión del circuito (fase-neutro en trifásico; la del circuito en monofásico). */
+  vc: number;
+  items: SizingLoadItem[];
+  /** Interruptor o fusible en el origen del cable (si existe). */
+  breaker?: { elementId: string; tag: string; params: Record<string, ParamValue> };
+  /** El tablero de origen está aprobado para operar al 100 %. */
+  assembly100: boolean;
+  ambientC: number;
+  ambientSource: string;
+  /** Conductores del secundario de un transformador (240-21(c)). */
+  transformerSecondary: boolean;
+  /** Protecciones de los circuitos derivados de motor aguas abajo (para 430-62). */
+  downstreamMotorProtection: { elementId: string; tag: string; ratingA: number; flcA: number }[];
+}
+
+export interface ProtectionDecision {
+  /** Corriente de diseño del conductor (A), ya con 125 % u otros factores. */
+  designA: number;
+  /** Corriente de la carga al 100 % (A). */
+  loadA: number;
+  rule: string;
+  /** Capacidad nominal del dispositivo de protección (A), si hay protección. */
+  ratingA?: number;
+  /** El conductor debe estar protegido por este dispositivo según 240-4 (false en circuitos de motor). */
+  protectsConductor: boolean;
+  /** Permite tomar el valor estándar inmediato superior a la ampacidad (240-4(b)). */
+  nextHigherAllowed: boolean;
+  steps: TraceStep[];
+  issues: { severity: "error" | "warning" | "info"; message: string }[];
+}
+
+export interface ConductorDecision {
+  designation: string;
+  system: string;
+  areaMm2: number;
+  conductorsPerPhase: number;
+  material: "Cu" | "Al";
+  /** Ampacidad final por fase (A) = min(corregida y ajustada, terminales). */
+  ampacityA: number;
+  /** Criterio que definió el calibre. */
+  governing: "ampacidad" | "proteccion" | "caida-de-tension" | "fijado";
+  dropPct: number;
+  egc?: { designation: string; system: string; areaMm2: number; perRaceway: boolean };
+  steps: TraceStep[];
+  issues: { severity: "error" | "warning" | "info"; message: string }[];
+}
+
+/** Evalúa la caída de tensión del circuito con un calibre dado, y el límite que le aplica. */
+export type DropEvaluator = (designation: string, conductorsPerPhase: number) => { pct: number; limitPct: number; limitSource: string } | { error: string };
+
+export interface NormSizing {
+  /** Corriente de diseño y protección del circuito (se llama de aguas abajo hacia la fuente). */
+  protection(c: SizingCircuit): ProtectionDecision;
+  /** Calibre mínimo que cumple todos los criterios, o verificación del calibre fijado. */
+  conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator): ConductorDecision;
+}
+
 /**
  * Contrato de un módulo normativo. El motor y la interfaz solo conocen esta interfaz;
  * cada norma (NOM-001-SEDE, NEC, IEC 60364) la implementa en el paquete @rea/norms.
@@ -114,6 +202,8 @@ export interface NormModule {
   voltageDrop?: VoltageDropCriteria;
   /** Consultas de cálculo (undefined si la norma no tiene datos). */
   calc?: NormCalc;
+  /** Reglas de dimensionamiento de conductores, protecciones y tierra. */
+  sizing?: NormSizing;
 }
 
 /** Módulo nulo: para normas sin datos. No ofrece opciones ni valores por defecto. */

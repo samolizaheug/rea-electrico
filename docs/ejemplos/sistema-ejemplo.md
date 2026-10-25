@@ -153,8 +153,8 @@ El barrido resuelve la red con fasores, cargas de potencia constante evaluadas a
 5. Se desprecia el desfasamiento de los transformadores Dyn1, porque no afecta las magnitudes.
 6. Las resistencias son las de la Tabla 9 a 75 °C, sin corrección por la temperatura real del conductor.
 
-## 9. Preguntas para el revisor
+## 9. Decisiones del revisor (Ing. RGLR, 2026-10-24)
 
-1. **Caída acumulada por zona.** Propongo comparar el 5 % con la suma de caídas en conductores **dentro de cada zona de tensión**, sin incluir la regulación del transformador. ¿Coincide con tu práctica?
-2. **Corriente de motores en la caída de tensión.** Uso la corriente de la tabla (65 A para 50 hp), no la potencia a 460 V (62.3 A a 480 V). Es más conservador. ¿De acuerdo?
-3. **Método que muestra la memoria.** ¿Prefieres que la memoria presente el método nominal, verificable a mano, como resultado principal y el barrido como referencia? ¿O al revés?
+1. **Caída acumulada por zona:** aprobada. El 5 % se compara con la suma de caídas en conductores dentro de cada zona de tensión, sin incluir la regulación del transformador.
+2. **Corriente de motores:** aprobada. Se usa la corriente de tabla o de placa a la tensión nominal del sistema.
+3. **Método de la memoria:** el **nominal**, verificable a mano, es el resultado principal; el barrido se presenta como referencia.
