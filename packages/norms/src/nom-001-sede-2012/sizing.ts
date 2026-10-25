@@ -1,6 +1,6 @@
 import type { ConductorDecision, DropEvaluator, NormSizing, ProtectionDecision, SizingCircuit, TraceStep } from "@rea/engine";
 import { fmtNum } from "@rea/engine";
-import { getNormDataset } from "@rea/norm-data";
+import { conductorElectrodoTierra, getNormDataset, proteccionMaxConductorPequeno } from "@rea/norm-data";
 import { racewayMethod } from "./raceways";
 
 /**
@@ -25,6 +25,8 @@ import { racewayMethod } from "./raceways";
 
 const data = () => getNormDataset("nom-001-sede", "2012");
 const STD = () => data().table("art-240-6-a", "standard-ratings").data.inverseTimeA;
+/** Cita con la página del PDF del DOF: "NOM-001-SEDE-2012 Tabla 250-122 (p. 134 del PDF)". */
+const cite = (id: string, suffix = "") => data().cite(id, "NOM-001-SEDE-2012", suffix);
 const n = (v: unknown, fb = NaN) => (typeof v === "number" ? v : fb);
 const A = (v: number) => `${fmtNum(v, 2)} A`;
 
@@ -63,7 +65,7 @@ function protection(c: SizingCircuit): ProtectionDecision {
       formula: `I_prot ≤ ${pct} % · I_pri${pct === 125 ? " (si no es estándar, el inmediato superior: Tabla 450-3(b) nota 1)" : ""}`,
       substitution: `${pct / 100} · ${fmtNum(ip, 2)} = ${fmtNum(max, 2)} A`,
       result: rating ? `${rating} A` : "sin valor estándar",
-      refs: ["NOM-001-SEDE-2012 Tabla 450-3(b)", "240-6(a)"],
+      refs: ["NOM-001-SEDE-2012 Tabla 450-3(b)", cite("art-240-6-a")],
     });
   } else if (c.items.length === 1 && motors.length === 1 && motors[0]!.kind === "motor") {
     // ---- Circuito derivado de un motor: 430-22 y 430-52.
@@ -102,7 +104,7 @@ function protection(c: SizingCircuit): ProtectionDecision {
       formula: `I_prot ≤ ${pct} % · I_pc ; si no es estándar, el inmediato superior (430-52(c)(1) Exc. 1)`,
       substitution: `${pct / 100} · ${fmtNum(mo.flcA, 2)} = ${fmtNum(max, 2)} A (${t52.data.devices[col]!.label}, ${row.label})`,
       result: rating ? `${rating} A` : "sin valor estándar",
-      refs: ["NOM-001-SEDE-2012 Tabla 430-52", "240-6(a)"],
+      refs: [cite("tabla-430-52"), cite("art-240-6-a")],
     });
     if (deviceType === "electronico") steps.push({ label: "Nota", result: "Interruptor de disparo ajustable evaluado con la columna de tiempo inverso." });
   } else if (c.items.length === 1 && motors.length === 1 && motors[0]!.kind === "variador") {
@@ -210,7 +212,6 @@ interface Candidate {
   ampFinal: number;
 }
 
-const SMALL_CU_MAX: Record<string, number> = { "14": 15, "12": 20, "10": 30 };
 
 function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator): ConductorDecision {
   const steps: TraceStep[] = [];
@@ -230,7 +231,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
   if (!ins) return fail(`tipo de aislamiento "${String(c.params.insulationType)}" no está en la Tabla 310-104(a).`);
   const tCondRaw = Math.max(...ins.ratings.map((r) => r.temperatureC));
   const tCond = tCondRaw >= 90 ? 90 : tCondRaw >= 75 ? 75 : 60;
-  steps.push({ label: "Temperatura nominal del conductor", substitution: `${ins.type}: ${ins.ratings.map((r) => `${r.temperatureC} °C ${r.locations.toLowerCase()}`).join("; ")}`, result: `${tCond} °C`, refs: ["NOM-001-SEDE-2012 Tabla 310-104(a)", "Se toma la mayor temperatura del aislamiento; en lugares mojados aplica la indicada para ellos."] });
+  steps.push({ label: "Temperatura nominal del conductor", substitution: `${ins.type}: ${ins.ratings.map((r) => `${r.temperatureC} °C ${r.locations.toLowerCase()}`).join("; ")}`, result: `${tCond} °C`, refs: [cite("tabla-310-104-a"), "Se toma la mayor temperatura del aislamiento; en lugares mojados aplica la indicada para ellos."] });
 
   // ---- Temperatura de terminales (110-14(c)).
   const single = c.items.length === 1 ? c.items[0]! : undefined;
@@ -260,7 +261,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
   const tRow = tc.data.rows.find((r) => (r.ambientFromC === null ? c.ambientC <= r.ambientToC : c.ambientC >= r.ambientFromC && c.ambientC <= r.ambientToC + 0.999));
   const ft = tRow?.factors[tc.data.temperaturesC.indexOf(tCond)] ?? null;
   if (ft === null) return fail(`un conductor de ${tCond} °C no puede operar a ${c.ambientC} °C de ambiente (Tabla 310-15(b)(2)(a)).`);
-  steps.push({ label: "Factor de corrección por temperatura ambiente", substitution: `${c.ambientC} °C (${c.ambientSource}), columna de ${tCond} °C`, result: `${ft}`, refs: ["NOM-001-SEDE-2012 Tabla 310-15(b)(2)(a)"] });
+  steps.push({ label: "Factor de corrección por temperatura ambiente", substitution: `${c.ambientC} °C (${c.ambientSource}), columna de ${tCond} °C`, result: `${ft}`, refs: [cite("tabla-310-15-b-2-a")] });
 
   // ---- Conductores portadores de corriente y factor de agrupamiento.
   const nonLinear = c.items.some((i) => i.nonLinear);
@@ -282,7 +283,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     fa = factorFor(count);
     faWhy = `${count} conductores portadores de corriente ${tray ? "en el cable multiconductor (392-80(a)(1)(a))" : "en la canalización"}${perSet === 4 ? " (neutro con carga no lineal, 310-15(b)(5)(3))" : ""}`;
   }
-  steps.push({ label: "Factor de ajuste por agrupamiento", substitution: faWhy, result: `${fa}`, refs: ["NOM-001-SEDE-2012 Tabla 310-15(b)(3)(a)"] });
+  steps.push({ label: "Factor de ajuste por agrupamiento", substitution: faWhy, result: `${fa}`, refs: [cite("tabla-310-15-b-3-a")] });
 
   // ---- Tabla de ampacidad y factor de charola (392-80).
   const covered = c.params.trayCovered === true;
@@ -335,9 +336,10 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
         reasons.push(`no queda protegido por ${p.ratingA} A con ampacidad ${A(cand.ampFinal)} (240-4${p.nextHigherAllowed ? "(b)" : p.ratingA > 800 ? "(c)" : "(b)(1)"})`);
         byProtection = true;
       }
-      const small = material === "Cu" ? SMALL_CU_MAX[cand.designation] : undefined;
-      if (small !== undefined && p.ratingA > small) {
-        reasons.push(`${cand.designation} AWG Cu admite protección de hasta ${small} A (240-4(d))`);
+      // 240-4(d): el DOF solo publica los incisos de cobre (los de aluminio no aparecen).
+      const small = material === "Cu" ? proteccionMaxConductorPequeno(cand.designation) : null;
+      if (small && p.ratingA > small.maxA) {
+        reasons.push(`${cand.designation} AWG Cu admite protección de hasta ${small.maxA} A (${small.cita.texto})`);
         byProtection = true;
       }
     }
@@ -373,7 +375,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     }
     if (!minAmpCand) return fail(`ningún calibre (hasta ${candidates.at(-1)!.designation}${npar > 1 ? ` × ${npar}` : ""}) cumple; considere conductores en paralelo.`);
     governing = firstAmpOnly && firstAmpOnly !== minAmpCand ? "proteccion" : "ampacidad";
-    steps.push({ label: "Calibre mínimo por ampacidad y protección", substitution: ampLine(minAmpCand), result: `${minAmpCand.designation} ${minAmpCand.system}`, refs: ["NOM-001-SEDE-2012 Tabla " + amp.reference.table.replace("Tabla ", ""), "310-15(b)", "240-4"] });
+    steps.push({ label: "Calibre mínimo por ampacidad y protección", substitution: ampLine(minAmpCand), result: `${minAmpCand.designation} ${minAmpCand.system}`, refs: [cite(tableId), "310-15(b)", "240-4"] });
     chosen = minAmpCand;
   }
 
@@ -401,11 +403,36 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
   // ---- Conductor de puesta a tierra de equipos (250-122).
   let egc: ConductorDecision["egc"];
   if (c.params.includeEgc !== false) {
-    if (p.ratingA === undefined) {
+    if (p.ratingA === undefined && c.transformerSecondary && material === "Cu") {
+      // Secundario de un sistema derivado separado, lado de alimentación de la primera protección:
+      // puente de unión del lado de alimentación según 250-102(c)(1)/(2) con la Tabla 250-66 (por canalización),
+      // y 12.5 % del área de fase si ésta excede 557 mm² (1100 kcmil) de cobre.
+      const g = conductorElectrodoTierra(chosen.areaMm2);
+      const gSteps = [`fase ${chosen.designation} (${fmtNum(chosen.areaMm2, 2)} mm²${npar > 1 ? " por canalización" : ""}) → ${g.cu} Cu (${g.cuMm2} mm²)`];
+      let designation = g.cu;
+      let area = g.cuMm2;
+      if (chosen.areaMm2 > 557 + 1e-9) {
+        const need = 0.125 * chosen.areaMm2;
+        const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= need - 1e-6 && r.strands > 1);
+        if (up && (up.areaMm2 ?? 0) > area) {
+          gSteps.push(`12.5 % del área de fase (250-102(c)(1)): ${fmtNum(need, 2)} mm² → ${up.designation}`);
+          designation = up.designation;
+          area = up.areaMm2 ?? area;
+        }
+      }
+      const sys = t8.data.rows.find((r) => r.designation === designation)?.system ?? "AWG";
+      egc = { designation, system: sys, areaMm2: area, perRaceway: npar > 1 };
+      steps.push({
+        label: "Puente de unión del lado de alimentación (secundario del transformador)",
+        substitution: gSteps.join(" ; "),
+        result: `${designation} ${sys}${npar > 1 ? " en cada canalización (250-102(c)(2))" : ""}`,
+        refs: [g.cita.texto, "NOM-001-SEDE-2012 250-30(a) y 250-102(c)", "No se usa la Tabla 250-122: no hay protección en el origen de estos conductores."],
+      });
+    } else if (p.ratingA === undefined) {
       issues.push({
         severity: "info",
         message: c.transformerSecondary
-          ? `${c.tag}: conductores del secundario de un sistema derivado separado; su puente de unión se dimensiona con 250-30(a) y la Tabla 250-66 (fase posterior), no con la Tabla 250-122.`
+          ? `${c.tag}: conductores de aluminio del secundario; el puente de unión según 250-102(c)(3) y la Tabla 250-66 no se calcula aún para aluminio.`
           : `${c.tag}: sin protección en el origen; el conductor de puesta a tierra no se dimensiona con la Tabla 250-122.`,
       });
     } else {
@@ -431,7 +458,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
           g = { designation: chosen.designation, system: chosen.system as typeof g.system, areaMm2: chosen.areaMm2 };
         }
         egc = { designation: g.designation, system: g.system, areaMm2: g.areaMm2 ?? 0, perRaceway: npar > 1 };
-        steps.push({ label: "Conductor de puesta a tierra de equipos", substitution: gSteps.join(" ; "), result: `${g.designation} ${g.system}${npar > 1 ? " en cada canalización (250-122(f))" : ""}`, refs: ["NOM-001-SEDE-2012 Tabla 250-122", ...(motorCircuit && c.items.length === 1 ? ["250-122(d)(1)"] : [])] });
+        steps.push({ label: "Conductor de puesta a tierra de equipos", substitution: gSteps.join(" ; "), result: `${g.designation} ${g.system}${npar > 1 ? " en cada canalización (250-122(f))" : ""}`, refs: [cite("tabla-250-122"), ...(motorCircuit && c.items.length === 1 ? ["250-122(d)(1)"] : [])] });
       }
     }
   }

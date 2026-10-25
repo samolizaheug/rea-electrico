@@ -54,7 +54,7 @@ function motorFlc(q: MotorFlcQuery): ReturnType<NormCalc["motorFlc"]> {
   if (q.synchronous) notes.push("Motor síncrono: valores para factor de potencia unitario; para FP 0.9 y 0.8 multiplicar por 1.10 y 1.25 (nota de la tabla).");
   const errata = t.errata.find((e) => e.path.startsWith(`rows[${t.data.rows.indexOf(row)}].currentsA.${group}[${g.voltagesV.indexOf(tv.col)}]`));
   if (errata) notes.push(`Valor corregido por errata aprobada: publicado ${errata.asPublished} A, se usa ${errata.corrected} A.`);
-  return { ok: true, amps, tableVoltageV: tv.col, hp: row.hp, refs: [`NOM-001-SEDE-2012 ${t.reference.table}`, "430-6(a)(1)"], notes };
+  return { ok: true, amps, tableVoltageV: tv.col, hp: row.hp, refs: [data().cite(tableId, "NOM-001-SEDE-2012"), "430-6(a)(1)"], notes };
 }
 
 function conductorImpedance(q: ConductorImpedanceQuery): ReturnType<NormCalc["conductorImpedance"]> {
@@ -74,7 +74,7 @@ function conductorImpedance(q: ConductorImpedanceQuery): ReturnType<NormCalc["co
     xOhmPerKm: x,
     column: columnLabel,
     temperatureC: t9.data.temperatureC,
-    refs: ["NOM-001-SEDE-2012 Capítulo 10, Tabla 9"],
+    refs: [data().cite("cap10-tabla-9", "NOM-001-SEDE-2012")],
     notes: method.impedanceAssumption ? [method.impedanceAssumption] : [],
   };
 }

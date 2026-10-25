@@ -1,0 +1,60 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-86",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-86",
+    "article": "220-86",
+    "title": "Método opcional: instituciones educativas"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      65
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-86_opcional_escuelas); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "VA_m2_desde",
+        "label": "VA_m2_desde"
+      },
+      {
+        "key": "VA_m2_hasta",
+        "label": "VA_m2_hasta"
+      },
+      {
+        "key": "factor_demanda_pct",
+        "label": "factor_demanda_pct"
+      }
+    ],
+    "rows": [
+      {
+        "VA_m2_desde": 0,
+        "VA_m2_hasta": 33,
+        "factor_demanda_pct": 100
+      },
+      {
+        "VA_m2_desde": 33,
+        "VA_m2_hasta": 220,
+        "factor_demanda_pct": 75
+      },
+      {
+        "VA_m2_desde": 220,
+        "VA_m2_hasta": null,
+        "factor_demanda_pct": 25
+      }
+    ]
+  }
+}

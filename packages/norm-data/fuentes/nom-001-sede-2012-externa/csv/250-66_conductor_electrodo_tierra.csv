@@ -1,0 +1,8 @@
+﻿acometida_cu_desde_mm2,acometida_cu_hasta_mm2,acometida_cu_awg,acometida_al_awg,gec_cu_mm2,gec_cu_awg,gec_al_mm2,gec_al_awg
+0,33.6,2 o menor,1/0 o menor,8.37,8,13.3,6
+42.4,53.5,1 o 1/0,2/0 o 3/0,13.3,6,21.2,4
+67.4,85.0,2/0 o 3/0,4/0 o 250,21.2,4,33.6,2
+85.0,177,más de 3/0 a 350,más de 250 a 500,33.6,2,53.5,1/0
+177,304,más de 350 a 600,más de 500 a 900,53.5,1/0,85.0,3/0
+304,557.38,más de 600 a 1100,más de 900 a 1750,67.4,2/0,107,4/0
+557.38,,más de 1100,más de 1750,85.0,3/0,127,250

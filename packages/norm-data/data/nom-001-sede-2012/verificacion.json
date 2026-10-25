@@ -136,6 +136,90 @@
       "by": "Ing. RGLR",
       "date": "2026-10-25",
       "notes": "Verificacion avalada por Ing. RGLR. Comparacion celda por celda contra las paginas 928-932 y 285-286 renderizadas como imagen (Claude, asistente IA) y consistencia interna (area = pi d2/4; 60/53/31/40 %). Hallazgos E9-E12 aceptados como se documentan."
+    },
+    "art-240-4-d": {
+      "status": "verificado",
+      "fingerprint": "464b6decbabb28215cadeda486ac0493b7455e7b8d9f58018f90bbfeec53ed0c",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-12": {
+      "status": "verificado",
+      "fingerprint": "9b644bb29ca65499f826eb672b77290c5bce96dea6f471830dbfacdee90a36bb",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-54": {
+      "status": "verificado",
+      "fingerprint": "bc0de74cf53c859b58e87cb67f289fb24f59ea81eb0942529a2815bee2c159d9",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-55": {
+      "status": "verificado",
+      "fingerprint": "a4adfd7e14017e2040cafad9e60708523adce548d691a846da522f3e2373c518",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-56": {
+      "status": "verificado",
+      "fingerprint": "39e6c8a078a84508ecf85fd69edf898f988db6ccbd0315939c92712820ef6225",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-84": {
+      "status": "verificado",
+      "fingerprint": "a52a1ad832839d167c0b0c4b7fbddc39053f1d6d166a71adbc93dfa5c3e5513f",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-86": {
+      "status": "verificado",
+      "fingerprint": "347421e71044fc301e2f6bd334c86ccb69dde8ad4c8435472a9d00c9a1283e41",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-220-88": {
+      "status": "verificado",
+      "fingerprint": "c640e075080dde5a4510f8ff24b9963729e1115f297d127f4088bd7f6c466e91",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "tabla-250-66": {
+      "status": "verificado",
+      "fingerprint": "b87114ea4101ed57597766615c8141179203e8051582e4f670c1663a32bea25f",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "cap10-tabla-1": {
+      "status": "verificado",
+      "fingerprint": "78d6a135535ddc085123c38ca5cb36b0dded4ee111947f483295f1a08200fd82",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "cap10-tabla-5": {
+      "status": "verificado",
+      "fingerprint": "aafd06e7003b8d427dc6d79c452e2d96d2688479cfb368932e2ede1cdab74412",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
+    },
+    "cap10-tabla-5a": {
+      "status": "verificado",
+      "fingerprint": "935f5fd44d7c31192ced48d4f136b3dbbe91424d44d9839ce286639e619b4022",
+      "by": "Ing. RGLR",
+      "date": "2026-10-25",
+      "notes": "Extraccion entregada y verificada por el usuario (fuentes/nom-001-sede-2012-externa). Cotejo de Claude: imagen del DOF de 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d) (pp. 89-90: el DOF solo publica incisos de cobre), 250-66 y Cap. 10 Tabla 1; Tablas 5 y 5A por geometria (area = pi d2/4, 177 renglones) y erratas confirmadas en el texto del DOF. Las 15 tablas comunes con la extraccion del proyecto coinciden en 2574 de 2575 celdas."
     }
   }
 }

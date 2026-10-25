@@ -15,7 +15,7 @@ scripts/
   build-iec-60364-2001.ts   IEC 60364 desde el manual ABB (transcripción manual cotejada; `pnpm norm:construir-iec-2001`)
   verify.ts                 registra verificaciones
   catalog-writer.ts         regenera src/catalog.ts y el reporte docs/tablas/<norma>.md
-plantillas/nec/             CSV para capturar las tablas del NEC
+fuentes/nom-001-sede-2012-externa/  extracción independiente entregada por el usuario (JSON + CSV); se coteja contra data/ e importa las tablas que faltaban
 ```
 
 ## Flujo de trabajo

@@ -1,0 +1,65 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-56",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-56",
+    "article": "220-56",
+    "title": "Factores de demanda de equipo de cocina no residencial"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      61
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-56_demanda_cocina_no_vivienda); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "num_equipos",
+        "label": "num_equipos"
+      },
+      {
+        "key": "factor_demanda_pct",
+        "label": "factor_demanda_pct"
+      }
+    ],
+    "rows": [
+      {
+        "num_equipos": 1,
+        "factor_demanda_pct": 100
+      },
+      {
+        "num_equipos": 2,
+        "factor_demanda_pct": 100
+      },
+      {
+        "num_equipos": 3,
+        "factor_demanda_pct": 90
+      },
+      {
+        "num_equipos": 4,
+        "factor_demanda_pct": 80
+      },
+      {
+        "num_equipos": 5,
+        "factor_demanda_pct": 70
+      },
+      {
+        "num_equipos": "6+",
+        "factor_demanda_pct": 65
+      }
+    ]
+  }
+}

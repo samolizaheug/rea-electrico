@@ -258,6 +258,23 @@ export interface NormTableInfo {
   title: string;
   status: VerificationStatus;
   detail: string;
+  /** Páginas del documento fuente. */
+  pages: number[];
+  /** Solo NOM: numeración equivalente en el NEC, como etiqueta informativa (no implica cumplimiento del NEC). */
+  necEquivalent?: string;
+}
+
+/**
+ * La NOM-001-SEDE-2012 sigue la numeración del NEC 2011 con guion en lugar de punto
+ * («310-15(b)(16)» ≈ «310.15(B)(16)»), y su Capítulo 10 corresponde al Capítulo 9 del NEC.
+ * Es solo una etiqueta de referencia: los valores son los de la NOM.
+ */
+export function necEquivalent(nomTable: string): string {
+  const s = nomTable
+    .replace("Capítulo 10", "Capítulo 9")
+    .replace(/(\d{3})-(\d+)/, "$1.$2")
+    .replace(/\(([a-z])\)/g, (m) => m.toUpperCase());
+  return `≈ NEC 2011 ${s}`;
 }
 
 /** Tablas de la norma activa con su estado de verificación ([] si no hay datos cargados). */
@@ -271,7 +288,16 @@ export function normTables(norm: { id: string; edition: string }): NormTableInfo
   return ds.ids().map((id) => {
     const t = ds.table(id);
     const st = ds.status(id);
-    return { id, table: t.reference.table, article: t.reference.article, title: t.reference.title, status: st.status, detail: st.detail };
+    return {
+      id,
+      table: t.reference.table,
+      article: t.reference.article,
+      title: t.reference.title,
+      status: st.status,
+      detail: st.detail,
+      pages: t.source.pages,
+      necEquivalent: norm.id === "nom-001-sede" ? necEquivalent(t.reference.table) : undefined,
+    };
   });
 }
 

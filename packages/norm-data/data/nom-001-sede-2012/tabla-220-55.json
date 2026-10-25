@@ -1,0 +1,229 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-55",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-55",
+    "article": "220-55",
+    "title": "Factores de demanda de estufas y aparatos de cocción domésticos"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      60
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-55_demanda_estufas); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "num_aparatos",
+        "label": "num_aparatos"
+      },
+      {
+        "key": "colA_pct_menos_3.5kW",
+        "label": "colA_pct_menos_3.5kW"
+      },
+      {
+        "key": "colB_pct_3.5_a_8.75kW",
+        "label": "colB_pct_3.5_a_8.75kW"
+      },
+      {
+        "key": "colC_demanda_max_kW_hasta_12kW",
+        "label": "colC_demanda_max_kW_hasta_12kW"
+      }
+    ],
+    "rows": [
+      {
+        "num_aparatos": 1,
+        "colA_pct_menos_3.5kW": 80,
+        "colB_pct_3.5_a_8.75kW": 80,
+        "colC_demanda_max_kW_hasta_12kW": 8
+      },
+      {
+        "num_aparatos": 2,
+        "colA_pct_menos_3.5kW": 75,
+        "colB_pct_3.5_a_8.75kW": 65,
+        "colC_demanda_max_kW_hasta_12kW": 11
+      },
+      {
+        "num_aparatos": 3,
+        "colA_pct_menos_3.5kW": 70,
+        "colB_pct_3.5_a_8.75kW": 55,
+        "colC_demanda_max_kW_hasta_12kW": 14
+      },
+      {
+        "num_aparatos": 4,
+        "colA_pct_menos_3.5kW": 66,
+        "colB_pct_3.5_a_8.75kW": 50,
+        "colC_demanda_max_kW_hasta_12kW": 17
+      },
+      {
+        "num_aparatos": 5,
+        "colA_pct_menos_3.5kW": 62,
+        "colB_pct_3.5_a_8.75kW": 45,
+        "colC_demanda_max_kW_hasta_12kW": 20
+      },
+      {
+        "num_aparatos": 6,
+        "colA_pct_menos_3.5kW": 59,
+        "colB_pct_3.5_a_8.75kW": 43,
+        "colC_demanda_max_kW_hasta_12kW": 21
+      },
+      {
+        "num_aparatos": 7,
+        "colA_pct_menos_3.5kW": 56,
+        "colB_pct_3.5_a_8.75kW": 40,
+        "colC_demanda_max_kW_hasta_12kW": 22
+      },
+      {
+        "num_aparatos": 8,
+        "colA_pct_menos_3.5kW": 53,
+        "colB_pct_3.5_a_8.75kW": 36,
+        "colC_demanda_max_kW_hasta_12kW": 23
+      },
+      {
+        "num_aparatos": 9,
+        "colA_pct_menos_3.5kW": 51,
+        "colB_pct_3.5_a_8.75kW": 35,
+        "colC_demanda_max_kW_hasta_12kW": 24
+      },
+      {
+        "num_aparatos": 10,
+        "colA_pct_menos_3.5kW": 49,
+        "colB_pct_3.5_a_8.75kW": 34,
+        "colC_demanda_max_kW_hasta_12kW": 25
+      },
+      {
+        "num_aparatos": 11,
+        "colA_pct_menos_3.5kW": 47,
+        "colB_pct_3.5_a_8.75kW": 32,
+        "colC_demanda_max_kW_hasta_12kW": 26
+      },
+      {
+        "num_aparatos": 12,
+        "colA_pct_menos_3.5kW": 45,
+        "colB_pct_3.5_a_8.75kW": 32,
+        "colC_demanda_max_kW_hasta_12kW": 27
+      },
+      {
+        "num_aparatos": 13,
+        "colA_pct_menos_3.5kW": 43,
+        "colB_pct_3.5_a_8.75kW": 32,
+        "colC_demanda_max_kW_hasta_12kW": 28
+      },
+      {
+        "num_aparatos": 14,
+        "colA_pct_menos_3.5kW": 41,
+        "colB_pct_3.5_a_8.75kW": 32,
+        "colC_demanda_max_kW_hasta_12kW": 29
+      },
+      {
+        "num_aparatos": 15,
+        "colA_pct_menos_3.5kW": 40,
+        "colB_pct_3.5_a_8.75kW": 32,
+        "colC_demanda_max_kW_hasta_12kW": 30
+      },
+      {
+        "num_aparatos": 16,
+        "colA_pct_menos_3.5kW": 39,
+        "colB_pct_3.5_a_8.75kW": 28,
+        "colC_demanda_max_kW_hasta_12kW": 31
+      },
+      {
+        "num_aparatos": 17,
+        "colA_pct_menos_3.5kW": 38,
+        "colB_pct_3.5_a_8.75kW": 28,
+        "colC_demanda_max_kW_hasta_12kW": 32
+      },
+      {
+        "num_aparatos": 18,
+        "colA_pct_menos_3.5kW": 37,
+        "colB_pct_3.5_a_8.75kW": 28,
+        "colC_demanda_max_kW_hasta_12kW": 33
+      },
+      {
+        "num_aparatos": 19,
+        "colA_pct_menos_3.5kW": 36,
+        "colB_pct_3.5_a_8.75kW": 28,
+        "colC_demanda_max_kW_hasta_12kW": 34
+      },
+      {
+        "num_aparatos": 20,
+        "colA_pct_menos_3.5kW": 35,
+        "colB_pct_3.5_a_8.75kW": 28,
+        "colC_demanda_max_kW_hasta_12kW": 35
+      },
+      {
+        "num_aparatos": 21,
+        "colA_pct_menos_3.5kW": 34,
+        "colB_pct_3.5_a_8.75kW": 26,
+        "colC_demanda_max_kW_hasta_12kW": 36
+      },
+      {
+        "num_aparatos": 22,
+        "colA_pct_menos_3.5kW": 33,
+        "colB_pct_3.5_a_8.75kW": 26,
+        "colC_demanda_max_kW_hasta_12kW": 37
+      },
+      {
+        "num_aparatos": 23,
+        "colA_pct_menos_3.5kW": 32,
+        "colB_pct_3.5_a_8.75kW": 26,
+        "colC_demanda_max_kW_hasta_12kW": 38
+      },
+      {
+        "num_aparatos": 24,
+        "colA_pct_menos_3.5kW": 31,
+        "colB_pct_3.5_a_8.75kW": 26,
+        "colC_demanda_max_kW_hasta_12kW": 39
+      },
+      {
+        "num_aparatos": 25,
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 26,
+        "colC_demanda_max_kW_hasta_12kW": 40
+      },
+      {
+        "num_aparatos": "26-30",
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 24,
+        "colC_demanda_max_kW_hasta_12kW": "15 kW + 1 kW por estufa"
+      },
+      {
+        "num_aparatos": "31-40",
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 22,
+        "colC_demanda_max_kW_hasta_12kW": "15 kW + 1 kW por estufa"
+      },
+      {
+        "num_aparatos": "41-50",
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 20,
+        "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+      },
+      {
+        "num_aparatos": "51-60",
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 18,
+        "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+      },
+      {
+        "num_aparatos": "61+",
+        "colA_pct_menos_3.5kW": 30,
+        "colB_pct_3.5_a_8.75kW": 16,
+        "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+      }
+    ]
+  }
+}

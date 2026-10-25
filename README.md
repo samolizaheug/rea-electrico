@@ -1,8 +1,8 @@
 # REA Eléctrico: cálculo y diseño de instalaciones eléctricas
 
-Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Normas: NOM-001-SEDE-2012 e IEC 60364-5-52:2001 (con tablas de fuente secundaria ABB). El NEC 2020/2023/2026 queda preparado y pendiente de la captura de sus tablas. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
+Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Normas: NOM-001-SEDE-2012 e IEC 60364-5-52:2001 (con tablas de fuente secundaria ABB). Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1 completa (etapas E1 a E10)**. Pendiente: módulo NEC, que espera la captura de tablas (`packages/norm-data/plantillas/nec`). Plan en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1 completa (etapas E1 a E10)**. Sin NEC: su texto tiene derechos de autor; se usa la NOM-001-SEDE-2012, documento público basado en el NEC 2011. Plan en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -37,7 +37,7 @@ packages/
   symbols/     Símbolos ANSI/IEC como geometría (editor y exportación)
   engine/      Motor de cálculo: validación de topología; flujo de carga radial (método nominal y barrido) y caída de tensión con trazas de memoria
   ejemplos/    Proyectos de ejemplo resueltos a mano (pruebas de integración)
-  norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; IEC 60364-5-52:2001 vía ABB; NEC pendiente de datos)
+  norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; IEC 60364-5-52:2001 vía ABB)
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
   reports/     Reportes: unifilar SVG desde el modelo, memoria en PDF (pdfmake), libro de Excel (ExcelJS)
 apps/
@@ -58,9 +58,9 @@ referencias/   Documentos normativos fuente (no versionados)
 
 | Norma | Datos | Estado |
 |---|---|---|
-| NOM-001-SEDE-2012 | 19 tablas extraídas del PDF del DOF, con erratas aprobadas | Verificadas, avaladas por el Ing. RGLR |
+| NOM-001-SEDE-2012 | 31 tablas del PDF del DOF: 19 extraídas por el proyecto y 12 importadas de tu extracción independiente; las 15 tablas comunes a ambas extracciones coinciden en 2574 de 2575 celdas | Verificadas, avaladas por el Ing. RGLR |
 | IEC 60364-5-52:2001 (y 4-43, 5-54) | 11 tablas transcritas del manual ABB (4.ª ed.), cotejadas con el texto del PDF y con la 2.ª ed. | Fuente secundaria, avaladas por el Ing. RGLR; pendiente el cotejo con la norma IEC |
-| NEC 2020 / 2023 / 2026 | Plantillas de captura listas | Sin datos: no seleccionable |
+| NEC (NFPA 70) | No se incluye: texto con derechos de autor y sin fuente gratuita | La NOM-001-SEDE-2012 (basada en el NEC 2011) cubre su función; los reportes muestran la numeración NEC equivalente solo como referencia |
 
 Al cambiar de norma en el proyecto, el editor pide confirmación y adapta el proyecto en un solo paso de deshacer:
 - el aislamiento y el método de instalación toman los valores por defecto de la nueva norma;

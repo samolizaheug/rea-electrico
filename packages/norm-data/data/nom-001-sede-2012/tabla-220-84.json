@@ -1,0 +1,133 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-84",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-84",
+    "article": "220-84",
+    "title": "Método opcional: multifamiliares de 3 o más viviendas"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      64
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-84_opcional_multifamiliar); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "num_viviendas",
+        "label": "num_viviendas"
+      },
+      {
+        "key": "factor_demanda_pct",
+        "label": "factor_demanda_pct"
+      }
+    ],
+    "rows": [
+      {
+        "num_viviendas": "3-5",
+        "factor_demanda_pct": 45
+      },
+      {
+        "num_viviendas": "6-7",
+        "factor_demanda_pct": 44
+      },
+      {
+        "num_viviendas": "8-10",
+        "factor_demanda_pct": 43
+      },
+      {
+        "num_viviendas": 11,
+        "factor_demanda_pct": 42
+      },
+      {
+        "num_viviendas": "12-13",
+        "factor_demanda_pct": 41
+      },
+      {
+        "num_viviendas": "14-15",
+        "factor_demanda_pct": 40
+      },
+      {
+        "num_viviendas": "16-17",
+        "factor_demanda_pct": 39
+      },
+      {
+        "num_viviendas": "18-20",
+        "factor_demanda_pct": 38
+      },
+      {
+        "num_viviendas": 21,
+        "factor_demanda_pct": 37
+      },
+      {
+        "num_viviendas": "22-23",
+        "factor_demanda_pct": 36
+      },
+      {
+        "num_viviendas": "24-25",
+        "factor_demanda_pct": 35
+      },
+      {
+        "num_viviendas": "26-27",
+        "factor_demanda_pct": 34
+      },
+      {
+        "num_viviendas": "28-30",
+        "factor_demanda_pct": 33
+      },
+      {
+        "num_viviendas": 31,
+        "factor_demanda_pct": 32
+      },
+      {
+        "num_viviendas": "32-33",
+        "factor_demanda_pct": 31
+      },
+      {
+        "num_viviendas": "34-36",
+        "factor_demanda_pct": 30
+      },
+      {
+        "num_viviendas": "37-38",
+        "factor_demanda_pct": 29
+      },
+      {
+        "num_viviendas": "39-42",
+        "factor_demanda_pct": 28
+      },
+      {
+        "num_viviendas": "43-45",
+        "factor_demanda_pct": 27
+      },
+      {
+        "num_viviendas": "46-50",
+        "factor_demanda_pct": 26
+      },
+      {
+        "num_viviendas": "51-55",
+        "factor_demanda_pct": 25
+      },
+      {
+        "num_viviendas": "56-61",
+        "factor_demanda_pct": 24
+      },
+      {
+        "num_viviendas": "62+",
+        "factor_demanda_pct": 23
+      }
+    ]
+  }
+}

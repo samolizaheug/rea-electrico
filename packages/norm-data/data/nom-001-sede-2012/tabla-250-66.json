@@ -1,0 +1,135 @@
+{
+  "id": "nom-001-sede-2012/tabla-250-66",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 250-66",
+    "article": "250-66",
+    "title": "Conductor del electrodo de puesta a tierra"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      122
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 250-66_conductor_electrodo_tierra); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "acometida_cu_desde_mm2",
+        "label": "acometida_cu_desde_mm2"
+      },
+      {
+        "key": "acometida_cu_hasta_mm2",
+        "label": "acometida_cu_hasta_mm2"
+      },
+      {
+        "key": "acometida_cu_awg",
+        "label": "acometida_cu_awg"
+      },
+      {
+        "key": "acometida_al_awg",
+        "label": "acometida_al_awg"
+      },
+      {
+        "key": "gec_cu_mm2",
+        "label": "gec_cu_mm2"
+      },
+      {
+        "key": "gec_cu_awg",
+        "label": "gec_cu_awg"
+      },
+      {
+        "key": "gec_al_mm2",
+        "label": "gec_al_mm2"
+      },
+      {
+        "key": "gec_al_awg",
+        "label": "gec_al_awg"
+      }
+    ],
+    "rows": [
+      {
+        "acometida_cu_desde_mm2": 0,
+        "acometida_cu_hasta_mm2": 33.6,
+        "acometida_cu_awg": "2 o menor",
+        "acometida_al_awg": "1/0 o menor",
+        "gec_cu_mm2": 8.37,
+        "gec_cu_awg": 8,
+        "gec_al_mm2": 13.3,
+        "gec_al_awg": 6
+      },
+      {
+        "acometida_cu_desde_mm2": 42.4,
+        "acometida_cu_hasta_mm2": 53.5,
+        "acometida_cu_awg": "1 o 1/0",
+        "acometida_al_awg": "2/0 o 3/0",
+        "gec_cu_mm2": 13.3,
+        "gec_cu_awg": 6,
+        "gec_al_mm2": 21.2,
+        "gec_al_awg": 4
+      },
+      {
+        "acometida_cu_desde_mm2": 67.4,
+        "acometida_cu_hasta_mm2": 85,
+        "acometida_cu_awg": "2/0 o 3/0",
+        "acometida_al_awg": "4/0 o 250",
+        "gec_cu_mm2": 21.2,
+        "gec_cu_awg": 4,
+        "gec_al_mm2": 33.6,
+        "gec_al_awg": 2
+      },
+      {
+        "acometida_cu_desde_mm2": 85,
+        "acometida_cu_hasta_mm2": 177,
+        "acometida_cu_awg": "más de 3/0 a 350",
+        "acometida_al_awg": "más de 250 a 500",
+        "gec_cu_mm2": 33.6,
+        "gec_cu_awg": 2,
+        "gec_al_mm2": 53.5,
+        "gec_al_awg": "1/0"
+      },
+      {
+        "acometida_cu_desde_mm2": 177,
+        "acometida_cu_hasta_mm2": 304,
+        "acometida_cu_awg": "más de 350 a 600",
+        "acometida_al_awg": "más de 500 a 900",
+        "gec_cu_mm2": 53.5,
+        "gec_cu_awg": "1/0",
+        "gec_al_mm2": 85,
+        "gec_al_awg": "3/0"
+      },
+      {
+        "acometida_cu_desde_mm2": 304,
+        "acometida_cu_hasta_mm2": 557.38,
+        "acometida_cu_awg": "más de 600 a 1100",
+        "acometida_al_awg": "más de 900 a 1750",
+        "gec_cu_mm2": 67.4,
+        "gec_cu_awg": "2/0",
+        "gec_al_mm2": 107,
+        "gec_al_awg": "4/0"
+      },
+      {
+        "acometida_cu_desde_mm2": 557.38,
+        "acometida_cu_hasta_mm2": null,
+        "acometida_cu_awg": "más de 1100",
+        "acometida_al_awg": "más de 1750",
+        "gec_cu_mm2": 85,
+        "gec_cu_awg": "3/0",
+        "gec_al_mm2": 127,
+        "gec_al_awg": 250
+      }
+    ]
+  }
+}

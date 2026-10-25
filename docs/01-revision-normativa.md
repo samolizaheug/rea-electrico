@@ -69,7 +69,33 @@ Extraje el texto del PDF del DOF. La capa de texto es buena: las tablas salen co
 
 Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 mm² en la Tabla 310-15(b)(16) y como 53.5 mm² en otras tablas. Se usará la **designación** (AWG/kcmil) como clave y el área de la Tabla 8.
 
-## 2. NEC (NFPA 70): ediciones seleccionables 2020, 2023 y 2026
+### 1.3 Extracción independiente entregada por el usuario (2026-10-25)
+
+El usuario entregó una segunda extracción del mismo PDF del DOF (misma huella SHA-256): 27 tablas en JSON y CSV, con su LEEME. Se copió a `packages/norm-data/fuentes/nom-001-sede-2012-externa/`.
+
+**Cotejo de las 15 tablas comunes** (`pnpm norm:cotejar-nom-externa`): **2574 de 2575 celdas idénticas**. La única diferencia es la errata E8 (430-250, 40 hp síncrono a 230 V). La extracción externa conserva los 93 A del DOF; el proyecto usa 83 A, corrección aprobada el 2026-10-24. Dos extracciones hechas por separado que coinciden son una verificación independiente de esas tablas.
+
+**12 tablas nuevas importadas** (`pnpm norm:importar-nom-externa`, tipo `rows-table`, consultas tipadas en `src/nom-001-sede-2012.ts`): 240-4(d); Tablas 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88; Tabla 250-66; Capítulo 10, Tablas 1, 5 y 5A.
+
+- Se cotejaron contra la imagen del DOF: 220-12, 220-54, 220-55, 220-56, 220-84, 220-86, 220-88, 240-4(d), 250-66 y Cap. 10 Tabla 1.
+- Las Tablas 5 y 5A se comprobaron por geometría (área = π·d²/4 en los 177 renglones).
+- **Hallazgo en 240-4(d)** (pp. 89–90): el DOF solo publica los incisos de cobre 1), 2), 3), 5) y 7); omite los de aluminio, que sí están en el NEC. La consulta devuelve `null` para aluminio.
+- **Erratas de la Tabla 5** (15, registradas con su valor publicado y confirmadas en el texto del DOF):
+  - 13 renglones con el mm² de 8 y 6 AWG desplazado (impreso 6.63 y 8.37; se usa 8.37 y 13.3). Es la E12 detectada antes.
+  - RFH-1 18 AWG: el DOF imprime un área de 5.161 mm²; con d = 2.692 mm, el área es 5.69 mm².
+  - TW 10 AWG: el DOF imprime 55.68 mm²; con d = 4.470 mm, el área es 15.69 mm².
+
+**Uso en el cálculo:**
+- 240-4(d) sale de la tabla, no del código.
+- El secundario de un transformador sin protección en su origen recibe su puente de unión del lado de alimentación según 250-30(a), 250-102(c)(1) y la Tabla 250-66, más el 12.5 % del área de fase arriba de 557 mm².
+- Toda cita a una tabla incluye la página del PDF, p. ej. «NOM-001-SEDE-2012 Tabla 310-15(b)(16) (p. 170 del PDF)».
+- La memoria lista cada tabla con su página y, solo como referencia, la numeración equivalente del NEC 2011 («310-15(b)(16) ≈ NEC 310.15(B)(16)»; Capítulo 10 ≈ Capítulo 9). No se afirma cumplimiento con ninguna edición del NEC.
+
+## 2. NEC (NFPA 70): no se incluye
+
+**Decisión del usuario (2026-10-25):** no se usan tablas del NEC, porque su texto tiene derechos de autor y no hay descarga gratuita. En su lugar se usa la NOM-001-SEDE-2012, documento público basado en el NEC 2011. Se retiraron del selector las ediciones 2020/2023/2026 y las plantillas de captura. Un modo NEC se agregaría solo como conjunto de datos aparte, con una fuente autorizada.
+
+Lo que sigue es el análisis original, que se conserva como antecedente.
 
 - **Acceso legal gratuito:** el visor *Free Access* de NFPA (requiere cuenta, solo lectura; no permite copiar, imprimir ni buscar). Enlace en `referencias/normas/LEEME - NEC e IEC.txt`.
 - **Consecuencia práctica:** yo no puedo crear cuentas ni iniciar sesión por ti, y el visor no permite copiar. Las tablas NEC las tendrías que **capturar tú** desde el visor en una plantilla JSON/Excel que yo te preparo, por tabla y por edición. Otra opción es comprar el PDF.

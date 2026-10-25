@@ -1,0 +1,6 @@
+﻿mm2,awg,ocpd_max_A,condicion
+0.824,18,7,"cargas continuas <= 6 A, ver 240-4(d)(1)"
+1.31,16,10,"cargas continuas <= 8 A, ver 240-4(d)(2)"
+2.08,14,15,
+3.31,12,20,
+5.26,10,30,

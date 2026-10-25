@@ -114,7 +114,7 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
       { header: rs("table"), width: 34 },
       { header: rs("status"), width: 70 },
     ],
-    tables.map((t) => [`${t.table} — ${t.title}`, t.detail]),
+    tables.map((t) => [`${t.table} — ${t.title} (p. ${t.pages.join(", ")})`, `${t.detail}${t.necEquivalent ? ` · ${t.necEquivalent} (informativo)` : ""}`]),
   );
   row += 2 + tables.length;
   wsP.getCell(`A${row + 1}`).value = rs("disclaimer");

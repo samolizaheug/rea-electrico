@@ -34,6 +34,19 @@ describe("NOM-001-SEDE-2012: conjunto de tablas", () => {
         "tabla-430-248",
         "tabla-430-250",
         "tabla-430-52",
+        // Importadas de la extracción entregada por el usuario (2026-10-25).
+        "art-240-4-d",
+        "tabla-220-12",
+        "tabla-220-54",
+        "tabla-220-55",
+        "tabla-220-56",
+        "tabla-220-84",
+        "tabla-220-86",
+        "tabla-220-88",
+        "tabla-250-66",
+        "cap10-tabla-1",
+        "cap10-tabla-5",
+        "cap10-tabla-5a",
       ].sort(),
     );
   });

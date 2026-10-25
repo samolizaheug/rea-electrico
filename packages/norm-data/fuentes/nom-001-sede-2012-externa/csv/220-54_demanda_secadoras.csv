@@ -1,0 +1,12 @@
+﻿num_secadoras,factor_demanda_pct,regla
+1-4,100,
+5,85,
+6,75,
+7,65,
+8,60,
+9,55,
+10,50,
+11,47,
+12-23,,47% menos 1% por cada secadora arriba de 11
+24-42,,35% menos 0.5% por cada secadora arriba de 23
+43+,25,

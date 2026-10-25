@@ -32,7 +32,7 @@
     "updatedAt": "2026-10-24T16:00:00.000Z"
   },
   "settings": {
-    "norm": { "id": "nom-001-sede", "edition": "2012" },   // o { "id": "nec", "edition": "2023" }, { "id": "iec-60364", ... }
+    "norm": { "id": "nom-001-sede", "edition": "2012" },   // o { "id": "iec-60364", "edition": "2001" }
     "symbology": "ANSI",                                     // "ANSI" | "IEC"
     "units": { "conductorSize": "mm2", "length": "m" },      // "mm2" | "AWG" ; "m" | "ft"
     "language": "es",

@@ -19,6 +19,7 @@ import {
 } from "./schema";
 
 export * from "./schema";
+export * from "./nom-001-sede-2012";
 export { canonicalJson, fingerprint, sha256Hex } from "./fingerprint";
 
 export interface TableStatus {
@@ -56,6 +57,21 @@ export class NormDataset {
     if (!t) throw new Error(`${this.key}: no existe la tabla "${id}".`);
     if (kind && t.kind !== kind) throw new Error(`${this.key}/${id} es de tipo "${t.kind}", no "${kind}".`);
     return t;
+  }
+
+  /**
+   * Cita de una tabla para la memoria de cálculo: referencia y página del PDF fuente,
+   * p. ej. "NOM-001-SEDE-2012 Tabla 310-15(b)(16) (p. 170 del PDF)".
+   */
+  cite(id: string, label: string, suffix = ""): string {
+    const t = this.table(id);
+    return `${label} ${t.reference.table}${suffix} (p. ${t.source.pages.join(", ")} del PDF)`;
+  }
+
+  /** Referencia y páginas de una tabla (para guardar en resultados y reportes). */
+  ref(id: string): { referencia: string; paginas: number[] } {
+    const t = this.table(id);
+    return { referencia: t.reference.table, paginas: t.source.pages };
   }
 
   /**

@@ -14,7 +14,9 @@ const SELECCION: Record<string, [number, number, number | undefined, string, str
   "AL-12": [39.2, 31.36, 40, "8", "ampacidad", 40, "10"],
   "AL-13": [17.5, 14, 35, "14", "ampacidad", 20, "14"],
   "AL-2": [90.21, 90.21, 125, "2", "proteccion", 115, "6"],
-  "AL-3": [51.16, 50.43, undefined, "6", "ampacidad", 55, undefined],
+  // AL-3 (secundario de TR-2, sin protección en su origen): puente de unión del lado de alimentación,
+  // 250-102(c)(1) con la Tabla 250-66: fase 6 AWG (13.3 mm² ≤ 33.6 mm²) → 8 AWG Cu.
+  "AL-3": [51.16, 50.43, undefined, "6", "ampacidad", 55, "8"],
   "AL-21": [10.93, 8.75, 15, "12", "caida-de-tension", 20, "12"],
   "AL-22": [11.34, 11.34, 15, "12", "caida-de-tension", 20, "12"],
   "AL-23": [43.74, 43.74, 45, "6", "ampacidad", 55, "10"],
@@ -54,12 +56,11 @@ describe("dimensionamiento del sistema de ejemplo: selección automática", () =
     }
   });
 
-  it("observaciones esperadas: variador (430-130) y secundario de TR-2 (240-21(c), 250-30)", () => {
+  it("observaciones esperadas: variador (430-130) y secundario de TR-2 (240-21(c))", () => {
     const msgs = r.issues.map((i) => `${i.severity}: ${i.message}`);
     expect(msgs).toEqual([
       "info: VFD-01: confirme la protección con el fabricante del variador (430-130).",
       expect.stringMatching(/^warning: AL-3: conductores del secundario sin protección en su origen; verifique las condiciones de 240-21\(c\)/),
-      expect.stringMatching(/^info: AL-3: conductores del secundario de un sistema derivado separado/),
     ]);
   });
 
@@ -86,6 +87,13 @@ describe("dimensionamiento del sistema de ejemplo: verificación de los calibres
   it("la memoria cita los artículos aplicados", () => {
     const steps = [...byTag("AL-1").protection.steps, ...byTag("AL-1").conductor.steps];
     const refs = steps.flatMap((s) => s.refs ?? []);
-    expect(refs).toEqual(expect.arrayContaining(["NOM-001-SEDE-2012 430-24", "NOM-001-SEDE-2012 430-62(a)", "NOM-001-SEDE-2012 110-14(c)", "NOM-001-SEDE-2012 Tabla 250-122"]));
+    expect(refs).toEqual(expect.arrayContaining(["NOM-001-SEDE-2012 430-24", "NOM-001-SEDE-2012 430-62(a)", "NOM-001-SEDE-2012 110-14(c)", "NOM-001-SEDE-2012 Tabla 250-122 (p. 134 del PDF)"]));
+  });
+
+  it("secundario de TR-2: puente de unión con la Tabla 250-66 y su página", () => {
+    const step = byTag("AL-3").conductor.steps.find((s) => s.label.startsWith("Puente de unión"))!;
+    // Calibre fijado del ejemplo: 250 kcmil (127 mm²) → renglón «más de 3/0 a 350» → 2 AWG Cu.
+    expect(step.result).toBe("2 AWG");
+    expect(step.refs).toContain("NOM-001-SEDE-2012 Tabla 250-66 (p. 122 del PDF)");
   });
 });

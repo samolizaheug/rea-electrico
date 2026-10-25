@@ -70,7 +70,7 @@ describe("sistema de ejemplo: método nominal contra el cálculo a mano", () => 
   it("cada resultado lleva su memoria con referencias", () => {
     const m01 = f("M-01").traces.flatMap((t) => t.steps);
     const flc = m01.find((s) => s.label.startsWith("Corriente a plena carga"))!;
-    expect(flc.refs).toContain("NOM-001-SEDE-2012 Tabla 430-250");
+    expect(flc.refs).toContain("NOM-001-SEDE-2012 Tabla 430-250 (p. 406 del PDF)");
     expect(flc.substitution).toContain("columna de 460 V");
     expect(flc.result).toBe("65.0 A");
     const al21 = f("AL-21").traces.flatMap((t) => t.steps);

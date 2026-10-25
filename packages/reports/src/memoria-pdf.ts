@@ -238,7 +238,25 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
       : { text: rs("noIssues"), margin: [0, 0, 0, 8] },
     { text: `8. ${rs("secTables")}`, style: "h2", headlineLevel: 1 },
     tables.length
-      ? { table: { headerRows: 1, widths: [90, 70, "*", 150], body: [[th(rs("table")), th(rs("article")), th(rs("title")), th(rs("status"))], ...tables.map((t) => [td(t.table), td(t.article), td(t.title), { text: t.detail.replace(`${t.table}: `, ""), color: t.status === "por_verificar" ? "#c62828" : undefined }])] }, layout: GRID, fontSize: 7.5, margin: [0, 0, 0, 8] }
+      ? {
+          table: {
+            headerRows: 1,
+            widths: [80, 26, "*", 120, 130],
+            body: [
+              [th(rs("table")), th(rs("pageShort"), "right"), th(rs("title")), th(rs("status")), th(rs("necEquivalent"))],
+              ...tables.map((t) => [
+                td(t.table),
+                td(t.pages.join(", "), "right"),
+                td(t.title),
+                { text: t.detail.replace(`${t.table}: `, ""), color: t.status === "por_verificar" ? "#c62828" : undefined },
+                { text: t.necEquivalent ?? "—", style: "refs" },
+              ]),
+            ],
+          },
+          layout: GRID,
+          fontSize: 7.5,
+          margin: [0, 0, 0, 4],
+        }
       : { text: "—" },
     { text: `9. ${rs("secSignatures")}`, style: "h2", headlineLevel: 1 },
     {

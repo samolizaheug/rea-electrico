@@ -20,7 +20,7 @@ const id = z.string().min(1).max(64).regex(/^[A-Za-z0-9_-]+$/, "Identificador co
 export const paramValueSchema = z.union([z.number().finite(), z.string(), z.boolean(), z.null()]);
 
 export const normSelectionSchema = z.object({
-  /** Módulo normativo: "nom-001-sede", "nec" o "iec-60364". */
+  /** Módulo normativo: "nom-001-sede" o "iec-60364" (el registro admite agregar otros). */
   id: z.string().min(1),
   /** Edición: "2012" para la NOM; "2020" | "2023" | "2026" para el NEC. */
   edition: z.string().min(1),

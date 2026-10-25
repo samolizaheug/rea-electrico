@@ -18,6 +18,8 @@
     "norm:extraer-nom-2012": "pnpm --filter @rea/norm-data extract:nom-2012",
     "norm:construir-nom-2012": "pnpm --filter @rea/norm-data build:nom-2012",
     "norm:construir-iec-2001": "tsx packages/norm-data/scripts/build-iec-60364-2001.ts",
+    "norm:importar-nom-externa": "tsx packages/norm-data/scripts/importar-nom-externa.ts",
+    "norm:cotejar-nom-externa": "tsx packages/norm-data/scripts/cotejar-nom-externa.ts",
     "norm:verificar": "tsx packages/norm-data/scripts/verify.ts"
   },
   "devDependencies": {

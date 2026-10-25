@@ -1,0 +1,278 @@
+{
+  "id": "nom-001-sede-2012/cap10-tabla-5a",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Capítulo 10, Tabla 5A",
+    "article": "Capítulo 10",
+    "title": "Dimensiones de conductores compactos"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      935
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla cap10-tabla5A_conductores_compactos); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "mm2",
+        "label": "mm2"
+      },
+      {
+        "key": "awg_kcmil",
+        "label": "awg_kcmil"
+      },
+      {
+        "key": "diam_desnudo_mm",
+        "label": "diam_desnudo_mm"
+      },
+      {
+        "key": "THW_THHW_diam_mm",
+        "label": "THW_THHW_diam_mm"
+      },
+      {
+        "key": "THW_THHW_area_mm2",
+        "label": "THW_THHW_area_mm2"
+      },
+      {
+        "key": "THHN_diam_mm",
+        "label": "THHN_diam_mm"
+      },
+      {
+        "key": "THHN_area_mm2",
+        "label": "THHN_area_mm2"
+      },
+      {
+        "key": "XHHW_diam_mm",
+        "label": "XHHW_diam_mm"
+      },
+      {
+        "key": "XHHW_area_mm2",
+        "label": "XHHW_area_mm2"
+      }
+    ],
+    "rows": [
+      {
+        "mm2": 8.37,
+        "awg_kcmil": 8,
+        "diam_desnudo_mm": 3.404,
+        "THW_THHW_diam_mm": 6.477,
+        "THW_THHW_area_mm2": 32.9,
+        "THHN_diam_mm": null,
+        "THHN_area_mm2": null,
+        "XHHW_diam_mm": 5.69,
+        "XHHW_area_mm2": 25.42
+      },
+      {
+        "mm2": 13.3,
+        "awg_kcmil": 6,
+        "diam_desnudo_mm": 4.293,
+        "THW_THHW_diam_mm": 7.366,
+        "THW_THHW_area_mm2": 42.58,
+        "THHN_diam_mm": 6.096,
+        "THHN_area_mm2": 29.16,
+        "XHHW_diam_mm": 6.604,
+        "XHHW_area_mm2": 34.19
+      },
+      {
+        "mm2": 21.2,
+        "awg_kcmil": 4,
+        "diam_desnudo_mm": 5.41,
+        "THW_THHW_diam_mm": 8.509,
+        "THW_THHW_area_mm2": 56.84,
+        "THHN_diam_mm": 7.747,
+        "THHN_area_mm2": 47.1,
+        "XHHW_diam_mm": 7.747,
+        "XHHW_area_mm2": 47.1
+      },
+      {
+        "mm2": 33.6,
+        "awg_kcmil": 2,
+        "diam_desnudo_mm": 6.807,
+        "THW_THHW_diam_mm": 9.906,
+        "THW_THHW_area_mm2": 77.03,
+        "THHN_diam_mm": 9.144,
+        "THHN_area_mm2": 65.61,
+        "XHHW_diam_mm": 9.144,
+        "XHHW_area_mm2": 65.61
+      },
+      {
+        "mm2": 42.4,
+        "awg_kcmil": 1,
+        "diam_desnudo_mm": 7.595,
+        "THW_THHW_diam_mm": 11.81,
+        "THW_THHW_area_mm2": 109.5,
+        "THHN_diam_mm": 10.54,
+        "THHN_area_mm2": 87.23,
+        "XHHW_diam_mm": 10.54,
+        "XHHW_area_mm2": 87.23
+      },
+      {
+        "mm2": 53.5,
+        "awg_kcmil": "1/0",
+        "diam_desnudo_mm": 8.534,
+        "THW_THHW_diam_mm": 12.7,
+        "THW_THHW_area_mm2": 126.6,
+        "THHN_diam_mm": 11.43,
+        "THHN_area_mm2": 102.6,
+        "XHHW_diam_mm": 11.43,
+        "XHHW_area_mm2": 102.6
+      },
+      {
+        "mm2": 67.4,
+        "awg_kcmil": "2/0",
+        "diam_desnudo_mm": 9.55,
+        "THW_THHW_diam_mm": 13.84,
+        "THW_THHW_area_mm2": 150.5,
+        "THHN_diam_mm": 12.57,
+        "THHN_area_mm2": 124.1,
+        "XHHW_diam_mm": 12.45,
+        "XHHW_area_mm2": 121.6
+      },
+      {
+        "mm2": 85,
+        "awg_kcmil": "3/0",
+        "diam_desnudo_mm": 10.74,
+        "THW_THHW_diam_mm": 14.99,
+        "THW_THHW_area_mm2": 176.3,
+        "THHN_diam_mm": 13.72,
+        "THHN_area_mm2": 147.7,
+        "XHHW_diam_mm": 13.72,
+        "XHHW_area_mm2": 147.7
+      },
+      {
+        "mm2": 107,
+        "awg_kcmil": "4/0",
+        "diam_desnudo_mm": 12.07,
+        "THW_THHW_diam_mm": 16.38,
+        "THW_THHW_area_mm2": 210.8,
+        "THHN_diam_mm": 15.11,
+        "THHN_area_mm2": 179.4,
+        "XHHW_diam_mm": 14.99,
+        "XHHW_area_mm2": 176.3
+      },
+      {
+        "mm2": 127,
+        "awg_kcmil": 250,
+        "diam_desnudo_mm": 13.21,
+        "THW_THHW_diam_mm": 18.42,
+        "THW_THHW_area_mm2": 266.3,
+        "THHN_diam_mm": 17.02,
+        "THHN_area_mm2": 227.4,
+        "XHHW_diam_mm": 16.76,
+        "XHHW_area_mm2": 220.7
+      },
+      {
+        "mm2": 152,
+        "awg_kcmil": 300,
+        "diam_desnudo_mm": 14.48,
+        "THW_THHW_diam_mm": 19.69,
+        "THW_THHW_area_mm2": 304.3,
+        "THHN_diam_mm": 18.29,
+        "THHN_area_mm2": 262.6,
+        "XHHW_diam_mm": 18.16,
+        "XHHW_area_mm2": 259
+      },
+      {
+        "mm2": 177,
+        "awg_kcmil": 350,
+        "diam_desnudo_mm": 15.65,
+        "THW_THHW_diam_mm": 20.83,
+        "THW_THHW_area_mm2": 340.7,
+        "THHN_diam_mm": 19.56,
+        "THHN_area_mm2": 300.4,
+        "XHHW_diam_mm": 19.3,
+        "XHHW_area_mm2": 292.6
+      },
+      {
+        "mm2": 203,
+        "awg_kcmil": 400,
+        "diam_desnudo_mm": 16.74,
+        "THW_THHW_diam_mm": 21.97,
+        "THW_THHW_area_mm2": 379.1,
+        "THHN_diam_mm": 20.7,
+        "THHN_area_mm2": 336.5,
+        "XHHW_diam_mm": 20.32,
+        "XHHW_area_mm2": 324.3
+      },
+      {
+        "mm2": 253,
+        "awg_kcmil": 500,
+        "diam_desnudo_mm": 18.69,
+        "THW_THHW_diam_mm": 23.88,
+        "THW_THHW_area_mm2": 447.7,
+        "THHN_diam_mm": 22.48,
+        "THHN_area_mm2": 396.8,
+        "XHHW_diam_mm": 22.35,
+        "XHHW_area_mm2": 392.4
+      },
+      {
+        "mm2": 304,
+        "awg_kcmil": 600,
+        "diam_desnudo_mm": 20.65,
+        "THW_THHW_diam_mm": 26.67,
+        "THW_THHW_area_mm2": 558.6,
+        "THHN_diam_mm": 25.02,
+        "THHN_area_mm2": 491.6,
+        "XHHW_diam_mm": 24.89,
+        "XHHW_area_mm2": 486.6
+      },
+      {
+        "mm2": 355,
+        "awg_kcmil": 700,
+        "diam_desnudo_mm": 22.28,
+        "THW_THHW_diam_mm": 28.19,
+        "THW_THHW_area_mm2": 624.3,
+        "THHN_diam_mm": 26.67,
+        "THHN_area_mm2": 558.6,
+        "XHHW_diam_mm": 26.67,
+        "XHHW_area_mm2": 558.6
+      },
+      {
+        "mm2": 380,
+        "awg_kcmil": 750,
+        "diam_desnudo_mm": 23.06,
+        "THW_THHW_diam_mm": 29.21,
+        "THW_THHW_area_mm2": 670.1,
+        "THHN_diam_mm": 27.31,
+        "THHN_area_mm2": 585.5,
+        "XHHW_diam_mm": 27.69,
+        "XHHW_area_mm2": 602
+      },
+      {
+        "mm2": 456,
+        "awg_kcmil": 900,
+        "diam_desnudo_mm": 25.37,
+        "THW_THHW_diam_mm": 31.09,
+        "THW_THHW_area_mm2": 759.1,
+        "THHN_diam_mm": 30.33,
+        "THHN_area_mm2": 722.5,
+        "XHHW_diam_mm": 29.69,
+        "XHHW_area_mm2": 692.3
+      },
+      {
+        "mm2": 507,
+        "awg_kcmil": 1000,
+        "diam_desnudo_mm": 26.92,
+        "THW_THHW_diam_mm": 32.64,
+        "THW_THHW_area_mm2": 836.6,
+        "THHN_diam_mm": 31.88,
+        "THHN_area_mm2": 798.1,
+        "XHHW_diam_mm": 31.24,
+        "XHHW_area_mm2": 766.6
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+﻿tipo_motor,fusible_sin_retardo_pct,fusible_dos_elementos_pct,interruptor_disparo_instantaneo_pct,interruptor_tiempo_inverso_pct
+Monofásicos,300,175,800,250
+Polifásicos CA (no rotor devanado),300,175,800,250
+Jaula de ardilla distinto a diseño B energéticamente eficiente,300,175,800,250
+Diseño B energéticamente eficiente,300,175,1100,250
+Síncronos,300,175,800,250
+Rotor devanado,150,150,800,150
+Corriente continua (tensión constante),150,150,250,150

@@ -258,7 +258,17 @@ const peSizeData = z.object({
   ),
 });
 
+/**
+ * Tabla por renglones con columnas nombradas, tal como se capturó (rangos como texto: "4-6",
+ * "43+", "10 o menos"). Las consultas tipadas viven en `src/nom-001-sede-2012.ts`.
+ */
+const rowsTableData = z.object({
+  columns: z.array(z.object({ key: z.string(), label: z.string(), unit: z.string().optional() })).min(1),
+  rows: z.array(z.record(z.union([num, z.string(), z.null()]))),
+});
+
 export const tableKinds = {
+  "rows-table": rowsTableData,
   "iec-ampacity": iecAmpacityData,
   "factor-table": factorTableData,
   "cable-impedance": cableImpedanceData,

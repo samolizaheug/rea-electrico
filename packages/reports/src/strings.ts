@@ -99,6 +99,8 @@ export const reportStrings = {
   sheetMemoria: "Memoria",
   sheetIssues: "Observaciones",
   sheetSchedule: "Cuadro {tag}",
+  pageShort: "Pág.",
+  necEquivalent: "Equivalente NEC (solo referencia)",
   circuitsNote: "Corriente de diseño según la regla indicada en la memoria de cada circuito. Caídas con el método nominal.",
   unbalanceNote: "la norma no fija un valor; criterio de práctica",
 } as const;
@@ -195,6 +197,8 @@ export const reportStringsEn: Record<ReportStringKey, string> = {
   sheetMemoria: "Calculations",
   sheetIssues: "Findings",
   sheetSchedule: "Schedule {tag}",
+  pageShort: "Page",
+  necEquivalent: "NEC equivalent (reference only)",
   circuitsNote: "Design current per the rule stated in each circuit's calculations. Voltage drops by the nominal method.",
   unbalanceNote: "the code sets no value; practice criterion",
 };

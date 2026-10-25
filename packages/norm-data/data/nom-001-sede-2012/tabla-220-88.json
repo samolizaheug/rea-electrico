@@ -1,0 +1,65 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-88",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-88",
+    "article": "220-88",
+    "title": "Método opcional: restaurantes nuevos"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      66
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-88_opcional_restaurantes); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "kVA_conectados",
+        "label": "kVA_conectados"
+      },
+      {
+        "key": "todo_electrico",
+        "label": "todo_electrico"
+      },
+      {
+        "key": "electrico_y_no_electrico",
+        "label": "electrico_y_no_electrico"
+      }
+    ],
+    "rows": [
+      {
+        "kVA_conectados": "0-200",
+        "todo_electrico": "80%",
+        "electrico_y_no_electrico": "100%"
+      },
+      {
+        "kVA_conectados": "201-325",
+        "todo_electrico": "10% de (kVA-200) + 160.0",
+        "electrico_y_no_electrico": "50% de (kVA-200) + 200.0"
+      },
+      {
+        "kVA_conectados": "326-800",
+        "todo_electrico": "50% de (kVA-325) + 172.5",
+        "electrico_y_no_electrico": "45% de (kVA-325) + 262.5"
+      },
+      {
+        "kVA_conectados": ">800",
+        "todo_electrico": "50% de (kVA-800) + 410.0",
+        "electrico_y_no_electrico": "20% de (kVA-800) + 476.3"
+      }
+    ]
+  }
+}

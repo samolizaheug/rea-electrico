@@ -5,15 +5,13 @@ import { RACEWAY_METHODS, getNormModule, nom001Sede2012, normModules } from "../
 const opts = (provider: string, params?: Record<string, string>) => nom001Sede2012.options(provider, params)!;
 
 describe("módulos normativos", () => {
-  it("la NOM-001-SEDE-2012 está disponible; NEC e IEC se listan como pendientes de datos", () => {
+  it("NOM-001-SEDE-2012 e IEC 2001 disponibles; sin NEC (derechos de autor, decisión del 2026-10-25)", () => {
     expect(getNormModule("nom-001-sede", "2012").available).toBe(true);
-    expect(normModules.filter((m) => !m.available).map((m) => m.label)).toEqual([
-      "NEC (NFPA 70) 2020",
-      "NEC (NFPA 70) 2023",
-      "NEC (NFPA 70) 2026",
-      "IEC 60364-5-52:2009+A1:2024",
-    ]);
-    expect(getNormModule("nec", "2023").options("norm:conductorSizes")).toBeUndefined();
+    expect(normModules.filter((m) => m.available).map((m) => m.id)).toEqual(["nom-001-sede", "iec-60364"]);
+    expect(normModules.filter((m) => !m.available).map((m) => m.label)).toEqual(["IEC 60364-5-52:2009+A1:2024"]);
+    expect(normModules.some((m) => m.id === "nec")).toBe(false);
+    // Un archivo que pidiera el NEC abre con la norma «no registrada» (sin opciones), no falla.
+    expect(getNormModule("nec", "2023").available).toBe(false);
   });
 
   it("ofrece aislamientos de la Tabla 310-104(a) y calibres de 14 AWG a 2000 kcmil", () => {

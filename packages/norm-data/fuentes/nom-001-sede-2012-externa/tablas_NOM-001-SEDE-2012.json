@@ -1,0 +1,6257 @@
+{
+ "fuente": "NOM-001-SEDE-2012, Instalaciones Eléctricas (utilización). DOF 29/11/2012",
+ "nota": "Valores transcritos del texto oficial del DOF. Las erratas evidentes del DOF se corrigieron y se marcan en la columna \"nota\".",
+ "tablas": {
+  "220-12_carga_alumbrado_por_inmueble": {
+   "referencia": "Tabla 220-12",
+   "descripcion": "Carga de alumbrado general por tipo de inmueble (VA/m²)",
+   "pagina_pdf": 56,
+   "filas": [
+    {
+     "tipo_inmueble": "Bancos",
+     "VA_por_m2": 39,
+     "nota": "ver 220-14(k)"
+    },
+    {
+     "tipo_inmueble": "Casas de huéspedes",
+     "VA_por_m2": 17,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Clubes",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Cuarteles y auditorios",
+     "VA_por_m2": 11,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Depósitos (almacenamiento)",
+     "VA_por_m2": 3,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Edificios de oficinas",
+     "VA_por_m2": 39,
+     "nota": "ver 220-14(k)"
+    },
+    {
+     "tipo_inmueble": "Edificios industriales y comerciales (lugares de almacenamiento)",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Escuelas",
+     "VA_por_m2": 33,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Estacionamientos comerciales",
+     "VA_por_m2": 6,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Hospitales",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Hoteles y moteles, incluidos apartamentos sin cocineta",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Iglesias",
+     "VA_por_m2": 11,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Juzgados",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Lugares de almacenamiento",
+     "VA_por_m2": 3,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Peluquerías y salones de belleza",
+     "VA_por_m2": 33,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Restaurantes",
+     "VA_por_m2": 22,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Tiendas",
+     "VA_por_m2": 33,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Unidades de vivienda",
+     "VA_por_m2": 33,
+     "nota": "ver 220-14(j)"
+    },
+    {
+     "tipo_inmueble": "Vestíbulos, pasillos, closets, escaleras (excepto viviendas)",
+     "VA_por_m2": 6,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Lugares de reunión y auditorios (excepto viviendas)",
+     "VA_por_m2": 11,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Bodegas (excepto viviendas)",
+     "VA_por_m2": 3,
+     "nota": null
+    }
+   ]
+  },
+  "220-42_demanda_alumbrado": {
+   "referencia": "Tabla 220-42",
+   "descripcion": "Factores de demanda de alumbrado",
+   "pagina_pdf": 58,
+   "filas": [
+    {
+     "tipo_inmueble": "Almacenes",
+     "VA_desde": 0,
+     "VA_hasta": 12500,
+     "factor_demanda_pct": 100,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Almacenes",
+     "VA_desde": 12500,
+     "VA_hasta": null,
+     "factor_demanda_pct": 50,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Hospitales",
+     "VA_desde": 0,
+     "VA_hasta": 50000,
+     "factor_demanda_pct": 40,
+     "nota": "no aplica a zonas donde todo el alumbrado se usa a la vez (quirófanos, comedores)"
+    },
+    {
+     "tipo_inmueble": "Hospitales",
+     "VA_desde": 50000,
+     "VA_hasta": null,
+     "factor_demanda_pct": 20,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Hoteles y moteles (incl. apartamentos sin cocina)",
+     "VA_desde": 0,
+     "VA_hasta": 20000,
+     "factor_demanda_pct": 50,
+     "nota": "no aplica a zonas donde todo el alumbrado se usa a la vez"
+    },
+    {
+     "tipo_inmueble": "Hoteles y moteles (incl. apartamentos sin cocina)",
+     "VA_desde": 20000,
+     "VA_hasta": 100000,
+     "factor_demanda_pct": 40,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Hoteles y moteles (incl. apartamentos sin cocina)",
+     "VA_desde": 100000,
+     "VA_hasta": null,
+     "factor_demanda_pct": 30,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Unidades de vivienda",
+     "VA_desde": 0,
+     "VA_hasta": 3000,
+     "factor_demanda_pct": 100,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Unidades de vivienda",
+     "VA_desde": 3000,
+     "VA_hasta": 120000,
+     "factor_demanda_pct": 35,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Unidades de vivienda",
+     "VA_desde": 120000,
+     "VA_hasta": null,
+     "factor_demanda_pct": 25,
+     "nota": null
+    },
+    {
+     "tipo_inmueble": "Todos los demás",
+     "VA_desde": 0,
+     "VA_hasta": null,
+     "factor_demanda_pct": 100,
+     "nota": null
+    }
+   ]
+  },
+  "220-44_demanda_contactos_no_vivienda": {
+   "referencia": "Tabla 220-44",
+   "descripcion": "Factores de demanda de contactos en inmuebles no residenciales",
+   "pagina_pdf": 59,
+   "filas": [
+    {
+     "VA_desde": 0,
+     "VA_hasta": 10000,
+     "factor_demanda_pct": 100
+    },
+    {
+     "VA_desde": 10000,
+     "VA_hasta": null,
+     "factor_demanda_pct": 50
+    }
+   ]
+  },
+  "220-54_demanda_secadoras": {
+   "referencia": "Tabla 220-54",
+   "descripcion": "Factores de demanda de secadoras domésticas",
+   "pagina_pdf": 59,
+   "filas": [
+    {
+     "num_secadoras": "1-4",
+     "factor_demanda_pct": 100,
+     "regla": null
+    },
+    {
+     "num_secadoras": 5,
+     "factor_demanda_pct": 85,
+     "regla": null
+    },
+    {
+     "num_secadoras": 6,
+     "factor_demanda_pct": 75,
+     "regla": null
+    },
+    {
+     "num_secadoras": 7,
+     "factor_demanda_pct": 65,
+     "regla": null
+    },
+    {
+     "num_secadoras": 8,
+     "factor_demanda_pct": 60,
+     "regla": null
+    },
+    {
+     "num_secadoras": 9,
+     "factor_demanda_pct": 55,
+     "regla": null
+    },
+    {
+     "num_secadoras": 10,
+     "factor_demanda_pct": 50,
+     "regla": null
+    },
+    {
+     "num_secadoras": 11,
+     "factor_demanda_pct": 47,
+     "regla": null
+    },
+    {
+     "num_secadoras": "12-23",
+     "factor_demanda_pct": null,
+     "regla": "47% menos 1% por cada secadora arriba de 11"
+    },
+    {
+     "num_secadoras": "24-42",
+     "factor_demanda_pct": null,
+     "regla": "35% menos 0.5% por cada secadora arriba de 23"
+    },
+    {
+     "num_secadoras": "43+",
+     "factor_demanda_pct": 25,
+     "regla": null
+    }
+   ]
+  },
+  "220-55_demanda_estufas": {
+   "referencia": "Tabla 220-55",
+   "descripcion": "Factores de demanda de estufas y aparatos de cocción domésticos",
+   "pagina_pdf": 60,
+   "filas": [
+    {
+     "num_aparatos": 1,
+     "colA_pct_menos_3.5kW": 80,
+     "colB_pct_3.5_a_8.75kW": 80,
+     "colC_demanda_max_kW_hasta_12kW": 8
+    },
+    {
+     "num_aparatos": 2,
+     "colA_pct_menos_3.5kW": 75,
+     "colB_pct_3.5_a_8.75kW": 65,
+     "colC_demanda_max_kW_hasta_12kW": 11
+    },
+    {
+     "num_aparatos": 3,
+     "colA_pct_menos_3.5kW": 70,
+     "colB_pct_3.5_a_8.75kW": 55,
+     "colC_demanda_max_kW_hasta_12kW": 14
+    },
+    {
+     "num_aparatos": 4,
+     "colA_pct_menos_3.5kW": 66,
+     "colB_pct_3.5_a_8.75kW": 50,
+     "colC_demanda_max_kW_hasta_12kW": 17
+    },
+    {
+     "num_aparatos": 5,
+     "colA_pct_menos_3.5kW": 62,
+     "colB_pct_3.5_a_8.75kW": 45,
+     "colC_demanda_max_kW_hasta_12kW": 20
+    },
+    {
+     "num_aparatos": 6,
+     "colA_pct_menos_3.5kW": 59,
+     "colB_pct_3.5_a_8.75kW": 43,
+     "colC_demanda_max_kW_hasta_12kW": 21
+    },
+    {
+     "num_aparatos": 7,
+     "colA_pct_menos_3.5kW": 56,
+     "colB_pct_3.5_a_8.75kW": 40,
+     "colC_demanda_max_kW_hasta_12kW": 22
+    },
+    {
+     "num_aparatos": 8,
+     "colA_pct_menos_3.5kW": 53,
+     "colB_pct_3.5_a_8.75kW": 36,
+     "colC_demanda_max_kW_hasta_12kW": 23
+    },
+    {
+     "num_aparatos": 9,
+     "colA_pct_menos_3.5kW": 51,
+     "colB_pct_3.5_a_8.75kW": 35,
+     "colC_demanda_max_kW_hasta_12kW": 24
+    },
+    {
+     "num_aparatos": 10,
+     "colA_pct_menos_3.5kW": 49,
+     "colB_pct_3.5_a_8.75kW": 34,
+     "colC_demanda_max_kW_hasta_12kW": 25
+    },
+    {
+     "num_aparatos": 11,
+     "colA_pct_menos_3.5kW": 47,
+     "colB_pct_3.5_a_8.75kW": 32,
+     "colC_demanda_max_kW_hasta_12kW": 26
+    },
+    {
+     "num_aparatos": 12,
+     "colA_pct_menos_3.5kW": 45,
+     "colB_pct_3.5_a_8.75kW": 32,
+     "colC_demanda_max_kW_hasta_12kW": 27
+    },
+    {
+     "num_aparatos": 13,
+     "colA_pct_menos_3.5kW": 43,
+     "colB_pct_3.5_a_8.75kW": 32,
+     "colC_demanda_max_kW_hasta_12kW": 28
+    },
+    {
+     "num_aparatos": 14,
+     "colA_pct_menos_3.5kW": 41,
+     "colB_pct_3.5_a_8.75kW": 32,
+     "colC_demanda_max_kW_hasta_12kW": 29
+    },
+    {
+     "num_aparatos": 15,
+     "colA_pct_menos_3.5kW": 40,
+     "colB_pct_3.5_a_8.75kW": 32,
+     "colC_demanda_max_kW_hasta_12kW": 30
+    },
+    {
+     "num_aparatos": 16,
+     "colA_pct_menos_3.5kW": 39,
+     "colB_pct_3.5_a_8.75kW": 28,
+     "colC_demanda_max_kW_hasta_12kW": 31
+    },
+    {
+     "num_aparatos": 17,
+     "colA_pct_menos_3.5kW": 38,
+     "colB_pct_3.5_a_8.75kW": 28,
+     "colC_demanda_max_kW_hasta_12kW": 32
+    },
+    {
+     "num_aparatos": 18,
+     "colA_pct_menos_3.5kW": 37,
+     "colB_pct_3.5_a_8.75kW": 28,
+     "colC_demanda_max_kW_hasta_12kW": 33
+    },
+    {
+     "num_aparatos": 19,
+     "colA_pct_menos_3.5kW": 36,
+     "colB_pct_3.5_a_8.75kW": 28,
+     "colC_demanda_max_kW_hasta_12kW": 34
+    },
+    {
+     "num_aparatos": 20,
+     "colA_pct_menos_3.5kW": 35,
+     "colB_pct_3.5_a_8.75kW": 28,
+     "colC_demanda_max_kW_hasta_12kW": 35
+    },
+    {
+     "num_aparatos": 21,
+     "colA_pct_menos_3.5kW": 34,
+     "colB_pct_3.5_a_8.75kW": 26,
+     "colC_demanda_max_kW_hasta_12kW": 36
+    },
+    {
+     "num_aparatos": 22,
+     "colA_pct_menos_3.5kW": 33,
+     "colB_pct_3.5_a_8.75kW": 26,
+     "colC_demanda_max_kW_hasta_12kW": 37
+    },
+    {
+     "num_aparatos": 23,
+     "colA_pct_menos_3.5kW": 32,
+     "colB_pct_3.5_a_8.75kW": 26,
+     "colC_demanda_max_kW_hasta_12kW": 38
+    },
+    {
+     "num_aparatos": 24,
+     "colA_pct_menos_3.5kW": 31,
+     "colB_pct_3.5_a_8.75kW": 26,
+     "colC_demanda_max_kW_hasta_12kW": 39
+    },
+    {
+     "num_aparatos": 25,
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 26,
+     "colC_demanda_max_kW_hasta_12kW": 40
+    },
+    {
+     "num_aparatos": "26-30",
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 24,
+     "colC_demanda_max_kW_hasta_12kW": "15 kW + 1 kW por estufa"
+    },
+    {
+     "num_aparatos": "31-40",
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 22,
+     "colC_demanda_max_kW_hasta_12kW": "15 kW + 1 kW por estufa"
+    },
+    {
+     "num_aparatos": "41-50",
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 20,
+     "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+    },
+    {
+     "num_aparatos": "51-60",
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 18,
+     "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+    },
+    {
+     "num_aparatos": "61+",
+     "colA_pct_menos_3.5kW": 30,
+     "colB_pct_3.5_a_8.75kW": 16,
+     "colC_demanda_max_kW_hasta_12kW": "25 kW + 0.75 kW por estufa"
+    }
+   ]
+  },
+  "220-56_demanda_cocina_no_vivienda": {
+   "referencia": "Tabla 220-56",
+   "descripcion": "Factores de demanda de equipo de cocina no residencial",
+   "pagina_pdf": 61,
+   "filas": [
+    {
+     "num_equipos": 1,
+     "factor_demanda_pct": 100
+    },
+    {
+     "num_equipos": 2,
+     "factor_demanda_pct": 100
+    },
+    {
+     "num_equipos": 3,
+     "factor_demanda_pct": 90
+    },
+    {
+     "num_equipos": 4,
+     "factor_demanda_pct": 80
+    },
+    {
+     "num_equipos": 5,
+     "factor_demanda_pct": 70
+    },
+    {
+     "num_equipos": "6+",
+     "factor_demanda_pct": 65
+    }
+   ]
+  },
+  "220-84_opcional_multifamiliar": {
+   "referencia": "Tabla 220-84",
+   "descripcion": "Método opcional: multifamiliares de 3 o más viviendas",
+   "pagina_pdf": 64,
+   "filas": [
+    {
+     "num_viviendas": "3-5",
+     "factor_demanda_pct": 45
+    },
+    {
+     "num_viviendas": "6-7",
+     "factor_demanda_pct": 44
+    },
+    {
+     "num_viviendas": "8-10",
+     "factor_demanda_pct": 43
+    },
+    {
+     "num_viviendas": 11,
+     "factor_demanda_pct": 42
+    },
+    {
+     "num_viviendas": "12-13",
+     "factor_demanda_pct": 41
+    },
+    {
+     "num_viviendas": "14-15",
+     "factor_demanda_pct": 40
+    },
+    {
+     "num_viviendas": "16-17",
+     "factor_demanda_pct": 39
+    },
+    {
+     "num_viviendas": "18-20",
+     "factor_demanda_pct": 38
+    },
+    {
+     "num_viviendas": 21,
+     "factor_demanda_pct": 37
+    },
+    {
+     "num_viviendas": "22-23",
+     "factor_demanda_pct": 36
+    },
+    {
+     "num_viviendas": "24-25",
+     "factor_demanda_pct": 35
+    },
+    {
+     "num_viviendas": "26-27",
+     "factor_demanda_pct": 34
+    },
+    {
+     "num_viviendas": "28-30",
+     "factor_demanda_pct": 33
+    },
+    {
+     "num_viviendas": 31,
+     "factor_demanda_pct": 32
+    },
+    {
+     "num_viviendas": "32-33",
+     "factor_demanda_pct": 31
+    },
+    {
+     "num_viviendas": "34-36",
+     "factor_demanda_pct": 30
+    },
+    {
+     "num_viviendas": "37-38",
+     "factor_demanda_pct": 29
+    },
+    {
+     "num_viviendas": "39-42",
+     "factor_demanda_pct": 28
+    },
+    {
+     "num_viviendas": "43-45",
+     "factor_demanda_pct": 27
+    },
+    {
+     "num_viviendas": "46-50",
+     "factor_demanda_pct": 26
+    },
+    {
+     "num_viviendas": "51-55",
+     "factor_demanda_pct": 25
+    },
+    {
+     "num_viviendas": "56-61",
+     "factor_demanda_pct": 24
+    },
+    {
+     "num_viviendas": "62+",
+     "factor_demanda_pct": 23
+    }
+   ]
+  },
+  "220-86_opcional_escuelas": {
+   "referencia": "Tabla 220-86",
+   "descripcion": "Método opcional: instituciones educativas",
+   "pagina_pdf": 65,
+   "filas": [
+    {
+     "VA_m2_desde": 0,
+     "VA_m2_hasta": 33,
+     "factor_demanda_pct": 100
+    },
+    {
+     "VA_m2_desde": 33,
+     "VA_m2_hasta": 220,
+     "factor_demanda_pct": 75
+    },
+    {
+     "VA_m2_desde": 220,
+     "VA_m2_hasta": null,
+     "factor_demanda_pct": 25
+    }
+   ]
+  },
+  "220-88_opcional_restaurantes": {
+   "referencia": "Tabla 220-88",
+   "descripcion": "Método opcional: restaurantes nuevos",
+   "pagina_pdf": 66,
+   "filas": [
+    {
+     "kVA_conectados": "0-200",
+     "todo_electrico": "80%",
+     "electrico_y_no_electrico": "100%"
+    },
+    {
+     "kVA_conectados": "201-325",
+     "todo_electrico": "10% de (kVA-200) + 160.0",
+     "electrico_y_no_electrico": "50% de (kVA-200) + 200.0"
+    },
+    {
+     "kVA_conectados": "326-800",
+     "todo_electrico": "50% de (kVA-325) + 172.5",
+     "electrico_y_no_electrico": "45% de (kVA-325) + 262.5"
+    },
+    {
+     "kVA_conectados": ">800",
+     "todo_electrico": "50% de (kVA-800) + 410.0",
+     "electrico_y_no_electrico": "20% de (kVA-800) + 476.3"
+    }
+   ]
+  },
+  "240-4d_limite_ocpd_conductores_pequenos": {
+   "referencia": "240-4(d)",
+   "descripcion": "Protección máxima de conductores pequeños",
+   "pagina_pdf": 89,
+   "filas": [
+    {
+     "mm2": 0.824,
+     "awg": 18,
+     "ocpd_max_A": 7,
+     "condicion": "cargas continuas <= 6 A, ver 240-4(d)(1)"
+    },
+    {
+     "mm2": 1.31,
+     "awg": 16,
+     "ocpd_max_A": 10,
+     "condicion": "cargas continuas <= 8 A, ver 240-4(d)(2)"
+    },
+    {
+     "mm2": 2.08,
+     "awg": 14,
+     "ocpd_max_A": 15,
+     "condicion": null
+    },
+    {
+     "mm2": 3.31,
+     "awg": 12,
+     "ocpd_max_A": 20,
+     "condicion": null
+    },
+    {
+     "mm2": 5.26,
+     "awg": 10,
+     "ocpd_max_A": 30,
+     "condicion": null
+    }
+   ]
+  },
+  "240-6_capacidades_normalizadas_ocpd": {
+   "referencia": "240-6(a)",
+   "descripcion": "Capacidades normalizadas de fusibles e interruptores",
+   "pagina_pdf": 91,
+   "filas": [
+    {
+     "A": 15,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 16,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 20,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 25,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 30,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 32,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 35,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 40,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 45,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 50,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 60,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 63,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 70,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 80,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 90,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 100,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 110,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 125,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 150,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 175,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 200,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 225,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 250,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 300,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 350,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 400,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 450,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 500,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 600,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 700,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 800,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 1000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 1200,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 1600,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 2000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 2500,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 3000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 4000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 5000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 6000,
+     "aplica_a": "fusibles e interruptores"
+    },
+    {
+     "A": 1,
+     "aplica_a": "solo fusibles"
+    },
+    {
+     "A": 3,
+     "aplica_a": "solo fusibles"
+    },
+    {
+     "A": 6,
+     "aplica_a": "solo fusibles"
+    },
+    {
+     "A": 10,
+     "aplica_a": "solo fusibles"
+    },
+    {
+     "A": 601,
+     "aplica_a": "solo fusibles"
+    }
+   ]
+  },
+  "250-122_conductor_tierra_equipos": {
+   "referencia": "Tabla 250-122",
+   "descripcion": "Conductor de puesta a tierra de equipos",
+   "pagina_pdf": 134,
+   "filas": [
+    {
+     "ocpd_max_A": 15,
+     "cu_mm2": 2.08,
+     "cu_awg": 14,
+     "al_mm2": null,
+     "al_awg": null
+    },
+    {
+     "ocpd_max_A": 20,
+     "cu_mm2": 3.31,
+     "cu_awg": 12,
+     "al_mm2": null,
+     "al_awg": null
+    },
+    {
+     "ocpd_max_A": 60,
+     "cu_mm2": 5.26,
+     "cu_awg": 10,
+     "al_mm2": null,
+     "al_awg": null
+    },
+    {
+     "ocpd_max_A": 100,
+     "cu_mm2": 8.37,
+     "cu_awg": 8,
+     "al_mm2": null,
+     "al_awg": null
+    },
+    {
+     "ocpd_max_A": 200,
+     "cu_mm2": 13.3,
+     "cu_awg": 6,
+     "al_mm2": 21.2,
+     "al_awg": 4
+    },
+    {
+     "ocpd_max_A": 300,
+     "cu_mm2": 21.2,
+     "cu_awg": 4,
+     "al_mm2": 33.6,
+     "al_awg": 2
+    },
+    {
+     "ocpd_max_A": 400,
+     "cu_mm2": 33.6,
+     "cu_awg": 2,
+     "al_mm2": 42.4,
+     "al_awg": 1
+    },
+    {
+     "ocpd_max_A": 500,
+     "cu_mm2": 33.6,
+     "cu_awg": 2,
+     "al_mm2": 53.5,
+     "al_awg": "1/0"
+    },
+    {
+     "ocpd_max_A": 600,
+     "cu_mm2": 42.4,
+     "cu_awg": 1,
+     "al_mm2": 67.4,
+     "al_awg": "2/0"
+    },
+    {
+     "ocpd_max_A": 800,
+     "cu_mm2": 53.5,
+     "cu_awg": "1/0",
+     "al_mm2": 85.0,
+     "al_awg": "3/0"
+    },
+    {
+     "ocpd_max_A": 1000,
+     "cu_mm2": 67.4,
+     "cu_awg": "2/0",
+     "al_mm2": 107,
+     "al_awg": "4/0"
+    },
+    {
+     "ocpd_max_A": 1200,
+     "cu_mm2": 85.0,
+     "cu_awg": "3/0",
+     "al_mm2": 127,
+     "al_awg": 250
+    },
+    {
+     "ocpd_max_A": 1600,
+     "cu_mm2": 107,
+     "cu_awg": "4/0",
+     "al_mm2": 177,
+     "al_awg": 350
+    },
+    {
+     "ocpd_max_A": 2000,
+     "cu_mm2": 127,
+     "cu_awg": 250,
+     "al_mm2": 203,
+     "al_awg": 400
+    },
+    {
+     "ocpd_max_A": 2500,
+     "cu_mm2": 177,
+     "cu_awg": 350,
+     "al_mm2": 304,
+     "al_awg": 600
+    },
+    {
+     "ocpd_max_A": 3000,
+     "cu_mm2": 203,
+     "cu_awg": 400,
+     "al_mm2": 304,
+     "al_awg": 600
+    },
+    {
+     "ocpd_max_A": 4000,
+     "cu_mm2": 253,
+     "cu_awg": 500,
+     "al_mm2": 380,
+     "al_awg": 750
+    },
+    {
+     "ocpd_max_A": 5000,
+     "cu_mm2": 355,
+     "cu_awg": 700,
+     "al_mm2": 608,
+     "al_awg": 1200
+    },
+    {
+     "ocpd_max_A": 6000,
+     "cu_mm2": 405,
+     "cu_awg": 800,
+     "al_mm2": 608,
+     "al_awg": 1200
+    }
+   ]
+  },
+  "250-66_conductor_electrodo_tierra": {
+   "referencia": "Tabla 250-66",
+   "descripcion": "Conductor del electrodo de puesta a tierra",
+   "pagina_pdf": 122,
+   "filas": [
+    {
+     "acometida_cu_desde_mm2": 0,
+     "acometida_cu_hasta_mm2": 33.6,
+     "acometida_cu_awg": "2 o menor",
+     "acometida_al_awg": "1/0 o menor",
+     "gec_cu_mm2": 8.37,
+     "gec_cu_awg": 8,
+     "gec_al_mm2": 13.3,
+     "gec_al_awg": 6
+    },
+    {
+     "acometida_cu_desde_mm2": 42.4,
+     "acometida_cu_hasta_mm2": 53.5,
+     "acometida_cu_awg": "1 o 1/0",
+     "acometida_al_awg": "2/0 o 3/0",
+     "gec_cu_mm2": 13.3,
+     "gec_cu_awg": 6,
+     "gec_al_mm2": 21.2,
+     "gec_al_awg": 4
+    },
+    {
+     "acometida_cu_desde_mm2": 67.4,
+     "acometida_cu_hasta_mm2": 85.0,
+     "acometida_cu_awg": "2/0 o 3/0",
+     "acometida_al_awg": "4/0 o 250",
+     "gec_cu_mm2": 21.2,
+     "gec_cu_awg": 4,
+     "gec_al_mm2": 33.6,
+     "gec_al_awg": 2
+    },
+    {
+     "acometida_cu_desde_mm2": 85.0,
+     "acometida_cu_hasta_mm2": 177,
+     "acometida_cu_awg": "más de 3/0 a 350",
+     "acometida_al_awg": "más de 250 a 500",
+     "gec_cu_mm2": 33.6,
+     "gec_cu_awg": 2,
+     "gec_al_mm2": 53.5,
+     "gec_al_awg": "1/0"
+    },
+    {
+     "acometida_cu_desde_mm2": 177,
+     "acometida_cu_hasta_mm2": 304,
+     "acometida_cu_awg": "más de 350 a 600",
+     "acometida_al_awg": "más de 500 a 900",
+     "gec_cu_mm2": 53.5,
+     "gec_cu_awg": "1/0",
+     "gec_al_mm2": 85.0,
+     "gec_al_awg": "3/0"
+    },
+    {
+     "acometida_cu_desde_mm2": 304,
+     "acometida_cu_hasta_mm2": 557.38,
+     "acometida_cu_awg": "más de 600 a 1100",
+     "acometida_al_awg": "más de 900 a 1750",
+     "gec_cu_mm2": 67.4,
+     "gec_cu_awg": "2/0",
+     "gec_al_mm2": 107,
+     "gec_al_awg": "4/0"
+    },
+    {
+     "acometida_cu_desde_mm2": 557.38,
+     "acometida_cu_hasta_mm2": null,
+     "acometida_cu_awg": "más de 1100",
+     "acometida_al_awg": "más de 1750",
+     "gec_cu_mm2": 85.0,
+     "gec_cu_awg": "3/0",
+     "gec_al_mm2": 127,
+     "gec_al_awg": 250
+    }
+   ]
+  },
+  "310-15b16_ampacidad_canalizacion": {
+   "referencia": "Tabla 310-15(b)(16)",
+   "descripcion": "Ampacidad, no más de 3 conductores portadores en canalización, cable o directamente enterrados, 30 °C",
+   "pagina_pdf": 170,
+   "filas": [
+    {
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "cu_60C": null,
+     "cu_75C": null,
+     "cu_90C": 14,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "cu_60C": null,
+     "cu_75C": null,
+     "cu_90C": 18,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "cu_60C": 15,
+     "cu_75C": 20,
+     "cu_90C": 25,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "cu_60C": 20,
+     "cu_75C": 25,
+     "cu_90C": 30,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "cu_60C": 30,
+     "cu_75C": 35,
+     "cu_90C": 40,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "cu_60C": 40,
+     "cu_75C": 50,
+     "cu_90C": 55,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "cu_60C": 55,
+     "cu_75C": 65,
+     "cu_90C": 75,
+     "al_60C": 40,
+     "al_75C": 50,
+     "al_90C": 55
+    },
+    {
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "cu_60C": 70,
+     "cu_75C": 85,
+     "cu_90C": 95,
+     "al_60C": 55,
+     "al_75C": 65,
+     "al_90C": 75
+    },
+    {
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "cu_60C": 85,
+     "cu_75C": 100,
+     "cu_90C": 115,
+     "al_60C": 65,
+     "al_75C": 75,
+     "al_90C": 85
+    },
+    {
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "cu_60C": 95,
+     "cu_75C": 115,
+     "cu_90C": 130,
+     "al_60C": 75,
+     "al_75C": 90,
+     "al_90C": 100
+    },
+    {
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "cu_60C": 110,
+     "cu_75C": 130,
+     "cu_90C": 145,
+     "al_60C": 85,
+     "al_75C": 100,
+     "al_90C": 115
+    },
+    {
+     "mm2": 53.49,
+     "awg_kcmil": "1/0",
+     "cu_60C": 125,
+     "cu_75C": 150,
+     "cu_90C": 170,
+     "al_60C": 100,
+     "al_75C": 120,
+     "al_90C": 135
+    },
+    {
+     "mm2": 67.43,
+     "awg_kcmil": "2/0",
+     "cu_60C": 145,
+     "cu_75C": 175,
+     "cu_90C": 195,
+     "al_60C": 115,
+     "al_75C": 135,
+     "al_90C": 150
+    },
+    {
+     "mm2": 85.01,
+     "awg_kcmil": "3/0",
+     "cu_60C": 165,
+     "cu_75C": 200,
+     "cu_90C": 225,
+     "al_60C": 130,
+     "al_75C": 155,
+     "al_90C": 175
+    },
+    {
+     "mm2": 107.2,
+     "awg_kcmil": "4/0",
+     "cu_60C": 195,
+     "cu_75C": 230,
+     "cu_90C": 260,
+     "al_60C": 150,
+     "al_75C": 180,
+     "al_90C": 205
+    },
+    {
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "cu_60C": 215,
+     "cu_75C": 255,
+     "cu_90C": 290,
+     "al_60C": 170,
+     "al_75C": 205,
+     "al_90C": 230
+    },
+    {
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "cu_60C": 240,
+     "cu_75C": 285,
+     "cu_90C": 320,
+     "al_60C": 195,
+     "al_75C": 230,
+     "al_90C": 260
+    },
+    {
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "cu_60C": 260,
+     "cu_75C": 310,
+     "cu_90C": 350,
+     "al_60C": 210,
+     "al_75C": 250,
+     "al_90C": 280
+    },
+    {
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "cu_60C": 280,
+     "cu_75C": 335,
+     "cu_90C": 380,
+     "al_60C": 225,
+     "al_75C": 270,
+     "al_90C": 305
+    },
+    {
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "cu_60C": 320,
+     "cu_75C": 380,
+     "cu_90C": 430,
+     "al_60C": 260,
+     "al_75C": 310,
+     "al_90C": 350
+    },
+    {
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "cu_60C": 350,
+     "cu_75C": 420,
+     "cu_90C": 475,
+     "al_60C": 285,
+     "al_75C": 340,
+     "al_90C": 385
+    },
+    {
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "cu_60C": 385,
+     "cu_75C": 460,
+     "cu_90C": 520,
+     "al_60C": 315,
+     "al_75C": 375,
+     "al_90C": 425
+    },
+    {
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "cu_60C": 400,
+     "cu_75C": 475,
+     "cu_90C": 535,
+     "al_60C": 320,
+     "al_75C": 385,
+     "al_90C": 435
+    },
+    {
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "cu_60C": 410,
+     "cu_75C": 490,
+     "cu_90C": 555,
+     "al_60C": 330,
+     "al_75C": 395,
+     "al_90C": 445
+    },
+    {
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "cu_60C": 435,
+     "cu_75C": 520,
+     "cu_90C": 585,
+     "al_60C": 355,
+     "al_75C": 425,
+     "al_90C": 480
+    },
+    {
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "cu_60C": 455,
+     "cu_75C": 545,
+     "cu_90C": 615,
+     "al_60C": 375,
+     "al_75C": 445,
+     "al_90C": 500
+    },
+    {
+     "mm2": 633,
+     "awg_kcmil": 1250,
+     "cu_60C": 495,
+     "cu_75C": 590,
+     "cu_90C": 665,
+     "al_60C": 405,
+     "al_75C": 485,
+     "al_90C": 545
+    },
+    {
+     "mm2": 760,
+     "awg_kcmil": 1500,
+     "cu_60C": 525,
+     "cu_75C": 625,
+     "cu_90C": 705,
+     "al_60C": 435,
+     "al_75C": 520,
+     "al_90C": 585
+    },
+    {
+     "mm2": 887,
+     "awg_kcmil": 1750,
+     "cu_60C": 545,
+     "cu_75C": 650,
+     "cu_90C": 735,
+     "al_60C": 455,
+     "al_75C": 545,
+     "al_90C": 615
+    },
+    {
+     "mm2": 1013,
+     "awg_kcmil": 2000,
+     "cu_60C": 555,
+     "cu_75C": 665,
+     "cu_90C": 750,
+     "al_60C": 470,
+     "al_75C": 560,
+     "al_90C": 630
+    }
+   ]
+  },
+  "310-15b17_ampacidad_aire_libre": {
+   "referencia": "Tabla 310-15(b)(17)",
+   "descripcion": "Ampacidad de conductores individuales al aire libre, 30 °C",
+   "pagina_pdf": 171,
+   "filas": [
+    {
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "cu_60C": null,
+     "cu_75C": null,
+     "cu_90C": 14,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "cu_60C": null,
+     "cu_75C": null,
+     "cu_90C": 18,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "cu_60C": 25,
+     "cu_75C": 30,
+     "cu_90C": 35,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "cu_60C": 30,
+     "cu_75C": 35,
+     "cu_90C": 40,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "cu_60C": 40,
+     "cu_75C": 50,
+     "cu_90C": 55,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "cu_60C": 60,
+     "cu_75C": 70,
+     "cu_90C": 80,
+     "al_60C": null,
+     "al_75C": null,
+     "al_90C": null
+    },
+    {
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "cu_60C": 80,
+     "cu_75C": 95,
+     "cu_90C": 105,
+     "al_60C": 60,
+     "al_75C": 75,
+     "al_90C": 85
+    },
+    {
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "cu_60C": 105,
+     "cu_75C": 125,
+     "cu_90C": 140,
+     "al_60C": 80,
+     "al_75C": 100,
+     "al_90C": 115
+    },
+    {
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "cu_60C": 120,
+     "cu_75C": 145,
+     "cu_90C": 165,
+     "al_60C": 95,
+     "al_75C": 115,
+     "al_90C": 130
+    },
+    {
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "cu_60C": 140,
+     "cu_75C": 170,
+     "cu_90C": 190,
+     "al_60C": 110,
+     "al_75C": 135,
+     "al_90C": 150
+    },
+    {
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "cu_60C": 165,
+     "cu_75C": 195,
+     "cu_90C": 220,
+     "al_60C": 130,
+     "al_75C": 155,
+     "al_90C": 175
+    },
+    {
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "cu_60C": 195,
+     "cu_75C": 230,
+     "cu_90C": 260,
+     "al_60C": 150,
+     "al_75C": 180,
+     "al_90C": 205
+    },
+    {
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "cu_60C": 225,
+     "cu_75C": 265,
+     "cu_90C": 300,
+     "al_60C": 175,
+     "al_75C": 210,
+     "al_90C": 235
+    },
+    {
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "cu_60C": 260,
+     "cu_75C": 310,
+     "cu_90C": 350,
+     "al_60C": 200,
+     "al_75C": 240,
+     "al_90C": 270
+    },
+    {
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "cu_60C": 300,
+     "cu_75C": 360,
+     "cu_90C": 405,
+     "al_60C": 235,
+     "al_75C": 280,
+     "al_90C": 315
+    },
+    {
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "cu_60C": 340,
+     "cu_75C": 405,
+     "cu_90C": 455,
+     "al_60C": 265,
+     "al_75C": 315,
+     "al_90C": 355
+    },
+    {
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "cu_60C": 375,
+     "cu_75C": 445,
+     "cu_90C": 500,
+     "al_60C": 290,
+     "al_75C": 350,
+     "al_90C": 395
+    },
+    {
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "cu_60C": 420,
+     "cu_75C": 505,
+     "cu_90C": 570,
+     "al_60C": 330,
+     "al_75C": 395,
+     "al_90C": 445
+    },
+    {
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "cu_60C": 455,
+     "cu_75C": 545,
+     "cu_90C": 615,
+     "al_60C": 355,
+     "al_75C": 425,
+     "al_90C": 480
+    },
+    {
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "cu_60C": 515,
+     "cu_75C": 620,
+     "cu_90C": 700,
+     "al_60C": 405,
+     "al_75C": 485,
+     "al_90C": 545
+    },
+    {
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "cu_60C": 575,
+     "cu_75C": 690,
+     "cu_90C": 780,
+     "al_60C": 455,
+     "al_75C": 545,
+     "al_90C": 615
+    },
+    {
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "cu_60C": 630,
+     "cu_75C": 755,
+     "cu_90C": 850,
+     "al_60C": 500,
+     "al_75C": 595,
+     "al_90C": 670
+    },
+    {
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "cu_60C": 655,
+     "cu_75C": 785,
+     "cu_90C": 885,
+     "al_60C": 515,
+     "al_75C": 620,
+     "al_90C": 700
+    },
+    {
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "cu_60C": 680,
+     "cu_75C": 815,
+     "cu_90C": 920,
+     "al_60C": 535,
+     "al_75C": 645,
+     "al_90C": 725
+    },
+    {
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "cu_60C": 730,
+     "cu_75C": 870,
+     "cu_90C": 980,
+     "al_60C": 580,
+     "al_75C": 700,
+     "al_90C": 790
+    },
+    {
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "cu_60C": 780,
+     "cu_75C": 935,
+     "cu_90C": 1055,
+     "al_60C": 625,
+     "al_75C": 750,
+     "al_90C": 845
+    },
+    {
+     "mm2": 633,
+     "awg_kcmil": 1250,
+     "cu_60C": 890,
+     "cu_75C": 1065,
+     "cu_90C": 1200,
+     "al_60C": 710,
+     "al_75C": 855,
+     "al_90C": 965
+    },
+    {
+     "mm2": 760,
+     "awg_kcmil": 1500,
+     "cu_60C": 980,
+     "cu_75C": 1175,
+     "cu_90C": 1325,
+     "al_60C": 795,
+     "al_75C": 950,
+     "al_90C": 1070
+    },
+    {
+     "mm2": 887,
+     "awg_kcmil": 1750,
+     "cu_60C": 1070,
+     "cu_75C": 1280,
+     "cu_90C": 1445,
+     "al_60C": 875,
+     "al_75C": 1050,
+     "al_90C": 1185
+    },
+    {
+     "mm2": 1013,
+     "awg_kcmil": 2000,
+     "cu_60C": 1155,
+     "cu_75C": 1385,
+     "cu_90C": 1560,
+     "al_60C": 960,
+     "al_75C": 1150,
+     "al_90C": 1295
+    }
+   ]
+  },
+  "310-15b2a_correccion_temp_30C": {
+   "referencia": "Tabla 310-15(b)(2)(a)",
+   "descripcion": "Factores de corrección por temperatura ambiente (base 30 °C)",
+   "pagina_pdf": 166,
+   "filas": [
+    {
+     "temp_ambiente_C": "10 o menos",
+     "cond_60C": 1.29,
+     "cond_75C": 1.2,
+     "cond_90C": 1.15
+    },
+    {
+     "temp_ambiente_C": "11-15",
+     "cond_60C": 1.22,
+     "cond_75C": 1.15,
+     "cond_90C": 1.12
+    },
+    {
+     "temp_ambiente_C": "16-20",
+     "cond_60C": 1.15,
+     "cond_75C": 1.11,
+     "cond_90C": 1.08
+    },
+    {
+     "temp_ambiente_C": "21-25",
+     "cond_60C": 1.08,
+     "cond_75C": 1.05,
+     "cond_90C": 1.04
+    },
+    {
+     "temp_ambiente_C": "26-30",
+     "cond_60C": 1.0,
+     "cond_75C": 1.0,
+     "cond_90C": 1.0
+    },
+    {
+     "temp_ambiente_C": "31-35",
+     "cond_60C": 0.91,
+     "cond_75C": 0.94,
+     "cond_90C": 0.96
+    },
+    {
+     "temp_ambiente_C": "36-40",
+     "cond_60C": 0.82,
+     "cond_75C": 0.88,
+     "cond_90C": 0.91
+    },
+    {
+     "temp_ambiente_C": "41-45",
+     "cond_60C": 0.71,
+     "cond_75C": 0.82,
+     "cond_90C": 0.87
+    },
+    {
+     "temp_ambiente_C": "46-50",
+     "cond_60C": 0.58,
+     "cond_75C": 0.75,
+     "cond_90C": 0.82
+    },
+    {
+     "temp_ambiente_C": "51-55",
+     "cond_60C": 0.41,
+     "cond_75C": 0.67,
+     "cond_90C": 0.76
+    },
+    {
+     "temp_ambiente_C": "56-60",
+     "cond_60C": null,
+     "cond_75C": 0.58,
+     "cond_90C": 0.71
+    },
+    {
+     "temp_ambiente_C": "61-65",
+     "cond_60C": null,
+     "cond_75C": 0.47,
+     "cond_90C": 0.65
+    },
+    {
+     "temp_ambiente_C": "66-70",
+     "cond_60C": null,
+     "cond_75C": 0.33,
+     "cond_90C": 0.58
+    },
+    {
+     "temp_ambiente_C": "71-75",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": 0.5
+    },
+    {
+     "temp_ambiente_C": "76-80",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": 0.41
+    },
+    {
+     "temp_ambiente_C": "81-85",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": 0.29
+    }
+   ]
+  },
+  "310-15b2b_correccion_temp_40C": {
+   "referencia": "Tabla 310-15(b)(2)(b)",
+   "descripcion": "Factores de corrección por temperatura ambiente (base 40 °C)",
+   "pagina_pdf": 166,
+   "filas": [
+    {
+     "temp_ambiente_C": "10 o menos",
+     "cond_60C": 1.58,
+     "cond_75C": 1.36,
+     "cond_90C": 1.26,
+     "cond_150C": 1.13,
+     "cond_200C": 1.09,
+     "cond_250C": 1.07
+    },
+    {
+     "temp_ambiente_C": "11-15",
+     "cond_60C": 1.5,
+     "cond_75C": 1.31,
+     "cond_90C": 1.22,
+     "cond_150C": 1.11,
+     "cond_200C": 1.08,
+     "cond_250C": 1.06
+    },
+    {
+     "temp_ambiente_C": "16-20",
+     "cond_60C": 1.41,
+     "cond_75C": 1.25,
+     "cond_90C": 1.18,
+     "cond_150C": 1.09,
+     "cond_200C": 1.06,
+     "cond_250C": 1.05
+    },
+    {
+     "temp_ambiente_C": "21-25",
+     "cond_60C": 1.32,
+     "cond_75C": 1.2,
+     "cond_90C": 1.14,
+     "cond_150C": 1.07,
+     "cond_200C": 1.05,
+     "cond_250C": 1.04
+    },
+    {
+     "temp_ambiente_C": "26-30",
+     "cond_60C": 1.22,
+     "cond_75C": 1.13,
+     "cond_90C": 1.1,
+     "cond_150C": 1.04,
+     "cond_200C": 1.03,
+     "cond_250C": 1.02
+    },
+    {
+     "temp_ambiente_C": "31-35",
+     "cond_60C": 1.12,
+     "cond_75C": 1.07,
+     "cond_90C": 1.05,
+     "cond_150C": 1.02,
+     "cond_200C": 1.02,
+     "cond_250C": 1.01
+    },
+    {
+     "temp_ambiente_C": "36-40",
+     "cond_60C": 1.0,
+     "cond_75C": 1.0,
+     "cond_90C": 1.0,
+     "cond_150C": 1.0,
+     "cond_200C": 1.0,
+     "cond_250C": 1.0
+    },
+    {
+     "temp_ambiente_C": "41-45",
+     "cond_60C": 0.87,
+     "cond_75C": 0.93,
+     "cond_90C": 0.95,
+     "cond_150C": 0.98,
+     "cond_200C": 0.98,
+     "cond_250C": 0.99
+    },
+    {
+     "temp_ambiente_C": "46-50",
+     "cond_60C": 0.71,
+     "cond_75C": 0.85,
+     "cond_90C": 0.89,
+     "cond_150C": 0.95,
+     "cond_200C": 0.97,
+     "cond_250C": 0.98
+    },
+    {
+     "temp_ambiente_C": "51-55",
+     "cond_60C": 0.5,
+     "cond_75C": 0.76,
+     "cond_90C": 0.84,
+     "cond_150C": 0.93,
+     "cond_200C": 0.95,
+     "cond_250C": 0.96
+    },
+    {
+     "temp_ambiente_C": "56-60",
+     "cond_60C": null,
+     "cond_75C": 0.65,
+     "cond_90C": 0.77,
+     "cond_150C": 0.9,
+     "cond_200C": 0.94,
+     "cond_250C": 0.95
+    },
+    {
+     "temp_ambiente_C": "61-65",
+     "cond_60C": null,
+     "cond_75C": 0.53,
+     "cond_90C": 0.71,
+     "cond_150C": 0.88,
+     "cond_200C": 0.92,
+     "cond_250C": 0.94
+    },
+    {
+     "temp_ambiente_C": "66-70",
+     "cond_60C": null,
+     "cond_75C": 0.38,
+     "cond_90C": 0.63,
+     "cond_150C": 0.85,
+     "cond_200C": 0.9,
+     "cond_250C": 0.93
+    },
+    {
+     "temp_ambiente_C": "71-75",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": 0.55,
+     "cond_150C": 0.83,
+     "cond_200C": 0.88,
+     "cond_250C": 0.91
+    },
+    {
+     "temp_ambiente_C": "76-80",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": 0.45,
+     "cond_150C": 0.8,
+     "cond_200C": 0.87,
+     "cond_250C": 0.9
+    },
+    {
+     "temp_ambiente_C": "81-90",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.74,
+     "cond_200C": 0.83,
+     "cond_250C": 0.87
+    },
+    {
+     "temp_ambiente_C": "91-100",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.67,
+     "cond_200C": 0.79,
+     "cond_250C": 0.85
+    },
+    {
+     "temp_ambiente_C": "101-110",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.6,
+     "cond_200C": 0.75,
+     "cond_250C": 0.82
+    },
+    {
+     "temp_ambiente_C": "111-120",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.52,
+     "cond_200C": 0.71,
+     "cond_250C": 0.79
+    },
+    {
+     "temp_ambiente_C": "121-130",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.43,
+     "cond_200C": 0.66,
+     "cond_250C": 0.76
+    },
+    {
+     "temp_ambiente_C": "131-140",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": 0.3,
+     "cond_200C": 0.61,
+     "cond_250C": 0.72
+    },
+    {
+     "temp_ambiente_C": "141-160",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": null,
+     "cond_200C": 0.5,
+     "cond_250C": 0.65
+    },
+    {
+     "temp_ambiente_C": "161-180",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": null,
+     "cond_200C": 0.35,
+     "cond_250C": 0.58
+    },
+    {
+     "temp_ambiente_C": "181-200",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": null,
+     "cond_200C": null,
+     "cond_250C": 0.49
+    },
+    {
+     "temp_ambiente_C": "201-225",
+     "cond_60C": null,
+     "cond_75C": null,
+     "cond_90C": null,
+     "cond_150C": null,
+     "cond_200C": null,
+     "cond_250C": 0.35
+    }
+   ]
+  },
+  "310-15b3a_ajuste_agrupamiento": {
+   "referencia": "Tabla 310-15(b)(3)(a)",
+   "descripcion": "Ajuste por más de 3 conductores portadores de corriente",
+   "pagina_pdf": 167,
+   "filas": [
+    {
+     "num_conductores_portadores": "4-6",
+     "porcentaje": 80
+    },
+    {
+     "num_conductores_portadores": "7-9",
+     "porcentaje": 70
+    },
+    {
+     "num_conductores_portadores": "10-20",
+     "porcentaje": 50
+    },
+    {
+     "num_conductores_portadores": "21-30",
+     "porcentaje": 45
+    },
+    {
+     "num_conductores_portadores": "31-40",
+     "porcentaje": 40
+    },
+    {
+     "num_conductores_portadores": "41+",
+     "porcentaje": 35
+    }
+   ]
+  },
+  "430-248_corriente_motores_monofasicos": {
+   "referencia": "Tabla 430-248",
+   "descripcion": "Corriente a plena carga, motores monofásicos",
+   "pagina_pdf": 405,
+   "filas": [
+    {
+     "kW": 0.12,
+     "hp": "1/6",
+     "A_115V": 4.4,
+     "A_127V": 4,
+     "A_208V": 2.4,
+     "A_230V": 2.2
+    },
+    {
+     "kW": 0.19,
+     "hp": "1/4",
+     "A_115V": 5.8,
+     "A_127V": 5.3,
+     "A_208V": 3.2,
+     "A_230V": 2.9
+    },
+    {
+     "kW": 0.25,
+     "hp": "1/3",
+     "A_115V": 7.2,
+     "A_127V": 6.5,
+     "A_208V": 4,
+     "A_230V": 3.6
+    },
+    {
+     "kW": 0.37,
+     "hp": "1/2",
+     "A_115V": 9.8,
+     "A_127V": 8.9,
+     "A_208V": 5.4,
+     "A_230V": 4.9
+    },
+    {
+     "kW": 0.56,
+     "hp": "3/4",
+     "A_115V": 13.8,
+     "A_127V": 11.5,
+     "A_208V": 7.6,
+     "A_230V": 6.9
+    },
+    {
+     "kW": 0.75,
+     "hp": 1,
+     "A_115V": 16,
+     "A_127V": 14,
+     "A_208V": 8.8,
+     "A_230V": 8
+    },
+    {
+     "kW": 1.12,
+     "hp": "1-1/2",
+     "A_115V": 20,
+     "A_127V": 18,
+     "A_208V": 11,
+     "A_230V": 10
+    },
+    {
+     "kW": 1.5,
+     "hp": 2,
+     "A_115V": 24,
+     "A_127V": 22,
+     "A_208V": 13.2,
+     "A_230V": 12
+    },
+    {
+     "kW": 2.25,
+     "hp": 3,
+     "A_115V": 34,
+     "A_127V": 31,
+     "A_208V": 18.7,
+     "A_230V": 17
+    },
+    {
+     "kW": 3.75,
+     "hp": 5,
+     "A_115V": 56,
+     "A_127V": 51,
+     "A_208V": 30.8,
+     "A_230V": 28
+    },
+    {
+     "kW": 5.6,
+     "hp": "7-1/2",
+     "A_115V": 80,
+     "A_127V": 72,
+     "A_208V": 44,
+     "A_230V": 40
+    },
+    {
+     "kW": 7.5,
+     "hp": 10,
+     "A_115V": 100,
+     "A_127V": 91,
+     "A_208V": 55,
+     "A_230V": 50
+    }
+   ]
+  },
+  "430-250_corriente_motores_trifasicos": {
+   "referencia": "Tabla 430-250",
+   "descripcion": "Corriente a plena carga, motores trifásicos",
+   "pagina_pdf": 406,
+   "filas": [
+    {
+     "kW": 0.37,
+     "hp": "1/2",
+     "A_115V": 4.4,
+     "A_200V": 2.5,
+     "A_208V": 2.4,
+     "A_230V": 2.2,
+     "A_460V": 1.1,
+     "A_575V": 0.9,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 0.56,
+     "hp": "3/4",
+     "A_115V": 6.4,
+     "A_200V": 3.7,
+     "A_208V": 3.5,
+     "A_230V": 3.2,
+     "A_460V": 1.6,
+     "A_575V": 1.3,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 0.75,
+     "hp": 1,
+     "A_115V": 8.4,
+     "A_200V": 4.8,
+     "A_208V": 4.6,
+     "A_230V": 4.2,
+     "A_460V": 2.1,
+     "A_575V": 1.7,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 1.12,
+     "hp": "1-1/2",
+     "A_115V": 12,
+     "A_200V": 6.9,
+     "A_208V": 6.6,
+     "A_230V": 6,
+     "A_460V": 3,
+     "A_575V": 2.4,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 1.5,
+     "hp": 2,
+     "A_115V": 13.6,
+     "A_200V": 7.8,
+     "A_208V": 7.5,
+     "A_230V": 6.8,
+     "A_460V": 3.4,
+     "A_575V": 2.7,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 2.25,
+     "hp": 3,
+     "A_115V": null,
+     "A_200V": 11,
+     "A_208V": 10.6,
+     "A_230V": 9.6,
+     "A_460V": 4.8,
+     "A_575V": 3.9,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 3.75,
+     "hp": 5,
+     "A_115V": null,
+     "A_200V": 17.5,
+     "A_208V": 16.7,
+     "A_230V": 15.2,
+     "A_460V": 7.6,
+     "A_575V": 6.1,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 5.6,
+     "hp": "7-1/2",
+     "A_115V": null,
+     "A_200V": 25.3,
+     "A_208V": 24.2,
+     "A_230V": 22,
+     "A_460V": 11,
+     "A_575V": 9,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 7.5,
+     "hp": 10,
+     "A_115V": null,
+     "A_200V": 32.3,
+     "A_208V": 30.8,
+     "A_230V": 28,
+     "A_460V": 14,
+     "A_575V": 11,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": "ERRATA DOF: imprime 44 A en 575 V; se usa 11 A (consistente con la progresión de la tabla)"
+    },
+    {
+     "kW": 11.2,
+     "hp": 15,
+     "A_115V": null,
+     "A_200V": 48.3,
+     "A_208V": 46.2,
+     "A_230V": 42,
+     "A_460V": 21,
+     "A_575V": 17,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 14.9,
+     "hp": 20,
+     "A_115V": null,
+     "A_200V": 62.1,
+     "A_208V": 59.4,
+     "A_230V": 54,
+     "A_460V": 27,
+     "A_575V": 22,
+     "A_2300V": null,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 18.7,
+     "hp": 25,
+     "A_115V": null,
+     "A_200V": 78.2,
+     "A_208V": 74.8,
+     "A_230V": 68,
+     "A_460V": 34,
+     "A_575V": 27,
+     "A_2300V": null,
+     "sinc_A_230V": 53,
+     "sinc_A_460V": 26,
+     "sinc_A_575V": 21,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 22.4,
+     "hp": 30,
+     "A_115V": null,
+     "A_200V": 92,
+     "A_208V": 88,
+     "A_230V": 80,
+     "A_460V": 40,
+     "A_575V": 32,
+     "A_2300V": null,
+     "sinc_A_230V": 63,
+     "sinc_A_460V": 32,
+     "sinc_A_575V": 26,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 29.8,
+     "hp": 40,
+     "A_115V": null,
+     "A_200V": 120,
+     "A_208V": 114,
+     "A_230V": 104,
+     "A_460V": 52,
+     "A_575V": 41,
+     "A_2300V": null,
+     "sinc_A_230V": 93,
+     "sinc_A_460V": 41,
+     "sinc_A_575V": 33,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 37.3,
+     "hp": 50,
+     "A_115V": null,
+     "A_200V": 150,
+     "A_208V": 143,
+     "A_230V": 130,
+     "A_460V": 65,
+     "A_575V": 52,
+     "A_2300V": null,
+     "sinc_A_230V": 104,
+     "sinc_A_460V": 52,
+     "sinc_A_575V": 42,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 44.8,
+     "hp": 60,
+     "A_115V": null,
+     "A_200V": 177,
+     "A_208V": 169,
+     "A_230V": 154,
+     "A_460V": 77,
+     "A_575V": 62,
+     "A_2300V": 16,
+     "sinc_A_230V": 123,
+     "sinc_A_460V": 61,
+     "sinc_A_575V": 49,
+     "sinc_A_2300V": 12,
+     "nota": null
+    },
+    {
+     "kW": 56,
+     "hp": 75,
+     "A_115V": null,
+     "A_200V": 221,
+     "A_208V": 211,
+     "A_230V": 192,
+     "A_460V": 96,
+     "A_575V": 77,
+     "A_2300V": 20,
+     "sinc_A_230V": 155,
+     "sinc_A_460V": 78,
+     "sinc_A_575V": 62,
+     "sinc_A_2300V": 15,
+     "nota": null
+    },
+    {
+     "kW": 75,
+     "hp": 100,
+     "A_115V": null,
+     "A_200V": 285,
+     "A_208V": 273,
+     "A_230V": 248,
+     "A_460V": 124,
+     "A_575V": 99,
+     "A_2300V": 26,
+     "sinc_A_230V": 202,
+     "sinc_A_460V": 101,
+     "sinc_A_575V": 81,
+     "sinc_A_2300V": 20,
+     "nota": null
+    },
+    {
+     "kW": 93,
+     "hp": 125,
+     "A_115V": null,
+     "A_200V": 359,
+     "A_208V": 343,
+     "A_230V": 312,
+     "A_460V": 156,
+     "A_575V": 125,
+     "A_2300V": 31,
+     "sinc_A_230V": 253,
+     "sinc_A_460V": 126,
+     "sinc_A_575V": 101,
+     "sinc_A_2300V": 25,
+     "nota": null
+    },
+    {
+     "kW": 112,
+     "hp": 150,
+     "A_115V": null,
+     "A_200V": 414,
+     "A_208V": 396,
+     "A_230V": 360,
+     "A_460V": 180,
+     "A_575V": 144,
+     "A_2300V": 37,
+     "sinc_A_230V": 302,
+     "sinc_A_460V": 151,
+     "sinc_A_575V": 121,
+     "sinc_A_2300V": 30,
+     "nota": null
+    },
+    {
+     "kW": 150,
+     "hp": 200,
+     "A_115V": null,
+     "A_200V": 552,
+     "A_208V": 528,
+     "A_230V": 480,
+     "A_460V": 240,
+     "A_575V": 192,
+     "A_2300V": 49,
+     "sinc_A_230V": 400,
+     "sinc_A_460V": 201,
+     "sinc_A_575V": 161,
+     "sinc_A_2300V": 40,
+     "nota": null
+    },
+    {
+     "kW": 187,
+     "hp": 250,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 302,
+     "A_575V": 242,
+     "A_2300V": 60,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 224,
+     "hp": 300,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 361,
+     "A_575V": 289,
+     "A_2300V": 72,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 261,
+     "hp": 350,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 414,
+     "A_575V": 336,
+     "A_2300V": 83,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 298,
+     "hp": 400,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 477,
+     "A_575V": 382,
+     "A_2300V": 95,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 336,
+     "hp": 450,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 515,
+     "A_575V": 412,
+     "A_2300V": 103,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    },
+    {
+     "kW": 373,
+     "hp": 500,
+     "A_115V": null,
+     "A_200V": null,
+     "A_208V": null,
+     "A_230V": null,
+     "A_460V": 590,
+     "A_575V": 472,
+     "A_2300V": 118,
+     "sinc_A_230V": null,
+     "sinc_A_460V": null,
+     "sinc_A_575V": null,
+     "sinc_A_2300V": null,
+     "nota": null
+    }
+   ]
+  },
+  "430-52_proteccion_max_motores_pct": {
+   "referencia": "Tabla 430-52",
+   "descripcion": "Ajuste máximo de protección contra cortocircuito y falla a tierra de motores (% de I plena carga)",
+   "pagina_pdf": 387,
+   "filas": [
+    {
+     "tipo_motor": "Monofásicos",
+     "fusible_sin_retardo_pct": 300,
+     "fusible_dos_elementos_pct": 175,
+     "interruptor_disparo_instantaneo_pct": 800,
+     "interruptor_tiempo_inverso_pct": 250
+    },
+    {
+     "tipo_motor": "Polifásicos CA (no rotor devanado)",
+     "fusible_sin_retardo_pct": 300,
+     "fusible_dos_elementos_pct": 175,
+     "interruptor_disparo_instantaneo_pct": 800,
+     "interruptor_tiempo_inverso_pct": 250
+    },
+    {
+     "tipo_motor": "Jaula de ardilla distinto a diseño B energéticamente eficiente",
+     "fusible_sin_retardo_pct": 300,
+     "fusible_dos_elementos_pct": 175,
+     "interruptor_disparo_instantaneo_pct": 800,
+     "interruptor_tiempo_inverso_pct": 250
+    },
+    {
+     "tipo_motor": "Diseño B energéticamente eficiente",
+     "fusible_sin_retardo_pct": 300,
+     "fusible_dos_elementos_pct": 175,
+     "interruptor_disparo_instantaneo_pct": 1100,
+     "interruptor_tiempo_inverso_pct": 250
+    },
+    {
+     "tipo_motor": "Síncronos",
+     "fusible_sin_retardo_pct": 300,
+     "fusible_dos_elementos_pct": 175,
+     "interruptor_disparo_instantaneo_pct": 800,
+     "interruptor_tiempo_inverso_pct": 250
+    },
+    {
+     "tipo_motor": "Rotor devanado",
+     "fusible_sin_retardo_pct": 150,
+     "fusible_dos_elementos_pct": 150,
+     "interruptor_disparo_instantaneo_pct": 800,
+     "interruptor_tiempo_inverso_pct": 150
+    },
+    {
+     "tipo_motor": "Corriente continua (tensión constante)",
+     "fusible_sin_retardo_pct": 150,
+     "fusible_dos_elementos_pct": 150,
+     "interruptor_disparo_instantaneo_pct": 250,
+     "interruptor_tiempo_inverso_pct": 150
+    }
+   ]
+  },
+  "cap10-tabla1_porcentaje_llenado": {
+   "referencia": "Capítulo 10, Tabla 1",
+   "descripcion": "Porcentaje máximo de llenado de tubo conduit",
+   "pagina_pdf": 927,
+   "filas": [
+    {
+     "num_conductores": 1,
+     "porcentaje_max": 53
+    },
+    {
+     "num_conductores": 2,
+     "porcentaje_max": 31
+    },
+    {
+     "num_conductores": "3+",
+     "porcentaje_max": 40
+    }
+   ]
+  },
+  "cap10-tabla4_dimensiones_tubo_conduit": {
+   "referencia": "Capítulo 10, Tabla 4",
+   "descripcion": "Dimensiones y áreas disponibles de tubo conduit por tipo",
+   "pagina_pdf": 928,
+   "filas": [
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 15.8,
+     "area_100pct_mm2": 196,
+     "area_60pct_mm2": 118,
+     "area_1cond_53pct_mm2": 104,
+     "area_2cond_31pct_mm2": 61,
+     "area_mas2cond_40pct_mm2": 78
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 20.9,
+     "area_100pct_mm2": 343,
+     "area_60pct_mm2": 206,
+     "area_1cond_53pct_mm2": 182,
+     "area_2cond_31pct_mm2": 106,
+     "area_mas2cond_40pct_mm2": 137
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 26.6,
+     "area_100pct_mm2": 556,
+     "area_60pct_mm2": 333,
+     "area_1cond_53pct_mm2": 295,
+     "area_2cond_31pct_mm2": 172,
+     "area_mas2cond_40pct_mm2": 222
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 35.1,
+     "area_100pct_mm2": 968,
+     "area_60pct_mm2": 581,
+     "area_1cond_53pct_mm2": 513,
+     "area_2cond_31pct_mm2": 300,
+     "area_mas2cond_40pct_mm2": 387
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 40.9,
+     "area_100pct_mm2": 1314,
+     "area_60pct_mm2": 788,
+     "area_1cond_53pct_mm2": 696,
+     "area_2cond_31pct_mm2": 407,
+     "area_mas2cond_40pct_mm2": 526
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 52.5,
+     "area_100pct_mm2": 2165,
+     "area_60pct_mm2": 1299,
+     "area_1cond_53pct_mm2": 1147,
+     "area_2cond_31pct_mm2": 671,
+     "area_mas2cond_40pct_mm2": 866
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 69.4,
+     "area_100pct_mm2": 3783,
+     "area_60pct_mm2": 2270,
+     "area_1cond_53pct_mm2": 2005,
+     "area_2cond_31pct_mm2": 1173,
+     "area_mas2cond_40pct_mm2": 1513
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 85.2,
+     "area_100pct_mm2": 5701,
+     "area_60pct_mm2": 3421,
+     "area_1cond_53pct_mm2": 3022,
+     "area_2cond_31pct_mm2": 1767,
+     "area_mas2cond_40pct_mm2": 2280
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 97.4,
+     "area_100pct_mm2": 7451,
+     "area_60pct_mm2": 4471,
+     "area_1cond_53pct_mm2": 3949,
+     "area_2cond_31pct_mm2": 2310,
+     "area_mas2cond_40pct_mm2": 2980
+    },
+    {
+     "tipo": "EMT (Art. 358)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 110.1,
+     "area_100pct_mm2": 9521,
+     "area_60pct_mm2": 5712,
+     "area_1cond_53pct_mm2": 5046,
+     "area_2cond_31pct_mm2": 2951,
+     "area_mas2cond_40pct_mm2": 3808
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 14.2,
+     "area_100pct_mm2": 158,
+     "area_60pct_mm2": 95,
+     "area_1cond_53pct_mm2": 84,
+     "area_2cond_31pct_mm2": 49,
+     "area_mas2cond_40pct_mm2": 63
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 19.3,
+     "area_100pct_mm2": 293,
+     "area_60pct_mm2": 176,
+     "area_1cond_53pct_mm2": 155,
+     "area_2cond_31pct_mm2": 91,
+     "area_mas2cond_40pct_mm2": 117
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 25.4,
+     "area_100pct_mm2": 507,
+     "area_60pct_mm2": 304,
+     "area_1cond_53pct_mm2": 269,
+     "area_2cond_31pct_mm2": 157,
+     "area_mas2cond_40pct_mm2": 203
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 34,
+     "area_100pct_mm2": 908,
+     "area_60pct_mm2": 545,
+     "area_1cond_53pct_mm2": 481,
+     "area_2cond_31pct_mm2": 281,
+     "area_mas2cond_40pct_mm2": 363
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 39.9,
+     "area_100pct_mm2": 1250,
+     "area_60pct_mm2": 750,
+     "area_1cond_53pct_mm2": 663,
+     "area_2cond_31pct_mm2": 388,
+     "area_mas2cond_40pct_mm2": 500
+    },
+    {
+     "tipo": "ENT (Art. 362)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 51.3,
+     "area_100pct_mm2": 2067,
+     "area_60pct_mm2": 1240,
+     "area_1cond_53pct_mm2": 1095,
+     "area_2cond_31pct_mm2": 641,
+     "area_mas2cond_40pct_mm2": 827
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 12,
+     "tamano_comercial_in": "3/8",
+     "diametro_interno_mm": 9.7,
+     "area_100pct_mm2": 74,
+     "area_60pct_mm2": 44,
+     "area_1cond_53pct_mm2": 39,
+     "area_2cond_31pct_mm2": 23,
+     "area_mas2cond_40pct_mm2": 30
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16.1,
+     "area_100pct_mm2": 204,
+     "area_60pct_mm2": 122,
+     "area_1cond_53pct_mm2": 108,
+     "area_2cond_31pct_mm2": 63,
+     "area_mas2cond_40pct_mm2": 81
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 20.9,
+     "area_100pct_mm2": 343,
+     "area_60pct_mm2": 206,
+     "area_1cond_53pct_mm2": 182,
+     "area_2cond_31pct_mm2": 106,
+     "area_mas2cond_40pct_mm2": 137
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 25.9,
+     "area_100pct_mm2": 527,
+     "area_60pct_mm2": 316,
+     "area_1cond_53pct_mm2": 279,
+     "area_2cond_31pct_mm2": 163,
+     "area_mas2cond_40pct_mm2": 211
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 32.4,
+     "area_100pct_mm2": 824,
+     "area_60pct_mm2": 495,
+     "area_1cond_53pct_mm2": 437,
+     "area_2cond_31pct_mm2": 256,
+     "area_mas2cond_40pct_mm2": 330
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 39.1,
+     "area_100pct_mm2": 1201,
+     "area_60pct_mm2": 720,
+     "area_1cond_53pct_mm2": 636,
+     "area_2cond_31pct_mm2": 372,
+     "area_mas2cond_40pct_mm2": 480
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 51.8,
+     "area_100pct_mm2": 2107,
+     "area_60pct_mm2": 1264,
+     "area_1cond_53pct_mm2": 1117,
+     "area_2cond_31pct_mm2": 653,
+     "area_mas2cond_40pct_mm2": 843
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 63.5,
+     "area_100pct_mm2": 3167,
+     "area_60pct_mm2": 1900,
+     "area_1cond_53pct_mm2": 1678,
+     "area_2cond_31pct_mm2": 982,
+     "area_mas2cond_40pct_mm2": 1267
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 76.2,
+     "area_100pct_mm2": 4560,
+     "area_60pct_mm2": 2736,
+     "area_1cond_53pct_mm2": 2417,
+     "area_2cond_31pct_mm2": 1414,
+     "area_mas2cond_40pct_mm2": 1824
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 88.9,
+     "area_100pct_mm2": 6207,
+     "area_60pct_mm2": 3724,
+     "area_1cond_53pct_mm2": 3290,
+     "area_2cond_31pct_mm2": 1924,
+     "area_mas2cond_40pct_mm2": 2483
+    },
+    {
+     "tipo": "FMC (Art. 348)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 101,
+     "area_100pct_mm2": 8107,
+     "area_60pct_mm2": 4864,
+     "area_1cond_53pct_mm2": 4297,
+     "area_2cond_31pct_mm2": 2513,
+     "area_mas2cond_40pct_mm2": 3243
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16.8,
+     "area_100pct_mm2": 222,
+     "area_60pct_mm2": 133,
+     "area_1cond_53pct_mm2": 117,
+     "area_2cond_31pct_mm2": 69,
+     "area_mas2cond_40pct_mm2": 89
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 21.9,
+     "area_100pct_mm2": 377,
+     "area_60pct_mm2": 226,
+     "area_1cond_53pct_mm2": 200,
+     "area_2cond_31pct_mm2": 117,
+     "area_mas2cond_40pct_mm2": 151
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 28.1,
+     "area_100pct_mm2": 620,
+     "area_60pct_mm2": 372,
+     "area_1cond_53pct_mm2": 329,
+     "area_2cond_31pct_mm2": 192,
+     "area_mas2cond_40pct_mm2": 248
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 36.8,
+     "area_100pct_mm2": 1064,
+     "area_60pct_mm2": 638,
+     "area_1cond_53pct_mm2": 564,
+     "area_2cond_31pct_mm2": 330,
+     "area_mas2cond_40pct_mm2": 425
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 42.7,
+     "area_100pct_mm2": 1432,
+     "area_60pct_mm2": 859,
+     "area_1cond_53pct_mm2": 759,
+     "area_2cond_31pct_mm2": 444,
+     "area_mas2cond_40pct_mm2": 573
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 54.6,
+     "area_100pct_mm2": 2341,
+     "area_60pct_mm2": 1405,
+     "area_1cond_53pct_mm2": 1241,
+     "area_2cond_31pct_mm2": 726,
+     "area_mas2cond_40pct_mm2": 937
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 64.9,
+     "area_100pct_mm2": 3308,
+     "area_60pct_mm2": 1985,
+     "area_1cond_53pct_mm2": 1753,
+     "area_2cond_31pct_mm2": 1026,
+     "area_mas2cond_40pct_mm2": 1323
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 80.7,
+     "area_100pct_mm2": 5115,
+     "area_60pct_mm2": 3069,
+     "area_1cond_53pct_mm2": 2711,
+     "area_2cond_31pct_mm2": 1586,
+     "area_mas2cond_40pct_mm2": 2046
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 93.2,
+     "area_100pct_mm2": 6822,
+     "area_60pct_mm2": 4093,
+     "area_1cond_53pct_mm2": 3616,
+     "area_2cond_31pct_mm2": 2115,
+     "area_mas2cond_40pct_mm2": 2729
+    },
+    {
+     "tipo": "IMC (Art. 342)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 105.4,
+     "area_100pct_mm2": 8725,
+     "area_60pct_mm2": 5235,
+     "area_1cond_53pct_mm2": 4624,
+     "area_2cond_31pct_mm2": 2705,
+     "area_mas2cond_40pct_mm2": 3490
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 12,
+     "tamano_comercial_in": "3/8",
+     "diametro_interno_mm": 12.5,
+     "area_100pct_mm2": 123,
+     "area_60pct_mm2": 74,
+     "area_1cond_53pct_mm2": 65,
+     "area_2cond_31pct_mm2": 38,
+     "area_mas2cond_40pct_mm2": 49
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16.1,
+     "area_100pct_mm2": 204,
+     "area_60pct_mm2": 122,
+     "area_1cond_53pct_mm2": 108,
+     "area_2cond_31pct_mm2": 63,
+     "area_mas2cond_40pct_mm2": 81
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 21.1,
+     "area_100pct_mm2": 350,
+     "area_60pct_mm2": 210,
+     "area_1cond_53pct_mm2": 185,
+     "area_2cond_31pct_mm2": 108,
+     "area_mas2cond_40pct_mm2": 140
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 26.8,
+     "area_100pct_mm2": 564,
+     "area_60pct_mm2": 338,
+     "area_1cond_53pct_mm2": 299,
+     "area_2cond_31pct_mm2": 175,
+     "area_mas2cond_40pct_mm2": 226
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 35.4,
+     "area_100pct_mm2": 984,
+     "area_60pct_mm2": 591,
+     "area_1cond_53pct_mm2": 522,
+     "area_2cond_31pct_mm2": 305,
+     "area_mas2cond_40pct_mm2": 394
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 40.3,
+     "area_100pct_mm2": 1276,
+     "area_60pct_mm2": 765,
+     "area_1cond_53pct_mm2": 676,
+     "area_2cond_31pct_mm2": 395,
+     "area_mas2cond_40pct_mm2": 510
+    },
+    {
+     "tipo": "LFNC-B (Art. 356)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 51.6,
+     "area_100pct_mm2": 2091,
+     "area_60pct_mm2": 1255,
+     "area_1cond_53pct_mm2": 1108,
+     "area_2cond_31pct_mm2": 648,
+     "area_mas2cond_40pct_mm2": 836
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 12,
+     "tamano_comercial_in": "3/8",
+     "diametro_interno_mm": 12.6,
+     "area_100pct_mm2": 125,
+     "area_60pct_mm2": 75,
+     "area_1cond_53pct_mm2": 66,
+     "area_2cond_31pct_mm2": 39,
+     "area_mas2cond_40pct_mm2": 50
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16,
+     "area_100pct_mm2": 201,
+     "area_60pct_mm2": 121,
+     "area_1cond_53pct_mm2": 107,
+     "area_2cond_31pct_mm2": 62,
+     "area_mas2cond_40pct_mm2": 80
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 21,
+     "area_100pct_mm2": 346,
+     "area_60pct_mm2": 208,
+     "area_1cond_53pct_mm2": 184,
+     "area_2cond_31pct_mm2": 107,
+     "area_mas2cond_40pct_mm2": 139
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 26.5,
+     "area_100pct_mm2": 552,
+     "area_60pct_mm2": 331,
+     "area_1cond_53pct_mm2": 292,
+     "area_2cond_31pct_mm2": 171,
+     "area_mas2cond_40pct_mm2": 221
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 35.1,
+     "area_100pct_mm2": 968,
+     "area_60pct_mm2": 581,
+     "area_1cond_53pct_mm2": 513,
+     "area_2cond_31pct_mm2": 300,
+     "area_mas2cond_40pct_mm2": 387
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 40.7,
+     "area_100pct_mm2": 1301,
+     "area_60pct_mm2": 781,
+     "area_1cond_53pct_mm2": 690,
+     "area_2cond_31pct_mm2": 403,
+     "area_mas2cond_40pct_mm2": 520
+    },
+    {
+     "tipo": "LFNC-A (Art. 356)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 52.4,
+     "area_100pct_mm2": 2157,
+     "area_60pct_mm2": 1294,
+     "area_1cond_53pct_mm2": 1143,
+     "area_2cond_31pct_mm2": 669,
+     "area_mas2cond_40pct_mm2": 863
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 12,
+     "tamano_comercial_in": "3/8",
+     "diametro_interno_mm": 12.5,
+     "area_100pct_mm2": 123,
+     "area_60pct_mm2": 74,
+     "area_1cond_53pct_mm2": 65,
+     "area_2cond_31pct_mm2": 38,
+     "area_mas2cond_40pct_mm2": 49
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16.1,
+     "area_100pct_mm2": 204,
+     "area_60pct_mm2": 122,
+     "area_1cond_53pct_mm2": 108,
+     "area_2cond_31pct_mm2": 63,
+     "area_mas2cond_40pct_mm2": 81
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 21.1,
+     "area_100pct_mm2": 350,
+     "area_60pct_mm2": 210,
+     "area_1cond_53pct_mm2": 185,
+     "area_2cond_31pct_mm2": 108,
+     "area_mas2cond_40pct_mm2": 140
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 26.8,
+     "area_100pct_mm2": 564,
+     "area_60pct_mm2": 338,
+     "area_1cond_53pct_mm2": 299,
+     "area_2cond_31pct_mm2": 175,
+     "area_mas2cond_40pct_mm2": 226
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 35.4,
+     "area_100pct_mm2": 984,
+     "area_60pct_mm2": 591,
+     "area_1cond_53pct_mm2": 522,
+     "area_2cond_31pct_mm2": 305,
+     "area_mas2cond_40pct_mm2": 394
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 40.3,
+     "area_100pct_mm2": 1276,
+     "area_60pct_mm2": 765,
+     "area_1cond_53pct_mm2": 676,
+     "area_2cond_31pct_mm2": 395,
+     "area_mas2cond_40pct_mm2": 510
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 51.6,
+     "area_100pct_mm2": 2091,
+     "area_60pct_mm2": 1255,
+     "area_1cond_53pct_mm2": 1108,
+     "area_2cond_31pct_mm2": 648,
+     "area_mas2cond_40pct_mm2": 836
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 63.3,
+     "area_100pct_mm2": 3147,
+     "area_60pct_mm2": 1888,
+     "area_1cond_53pct_mm2": 1668,
+     "area_2cond_31pct_mm2": 976,
+     "area_mas2cond_40pct_mm2": 1259
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 78.4,
+     "area_100pct_mm2": 4827,
+     "area_60pct_mm2": 2896,
+     "area_1cond_53pct_mm2": 2559,
+     "area_2cond_31pct_mm2": 1497,
+     "area_mas2cond_40pct_mm2": 1931
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 89.4,
+     "area_100pct_mm2": 6277,
+     "area_60pct_mm2": 3766,
+     "area_1cond_53pct_mm2": 3327,
+     "area_2cond_31pct_mm2": 1946,
+     "area_mas2cond_40pct_mm2": 2511
+    },
+    {
+     "tipo": "LFMC (Art. 350)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 102.1,
+     "area_100pct_mm2": 8187,
+     "area_60pct_mm2": 4912,
+     "area_1cond_53pct_mm2": 4339,
+     "area_2cond_31pct_mm2": 2538,
+     "area_mas2cond_40pct_mm2": 3275
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 16.1,
+     "area_100pct_mm2": 204,
+     "area_60pct_mm2": 122,
+     "area_1cond_53pct_mm2": 108,
+     "area_2cond_31pct_mm2": 63,
+     "area_mas2cond_40pct_mm2": 81
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 21.2,
+     "area_100pct_mm2": 353,
+     "area_60pct_mm2": 212,
+     "area_1cond_53pct_mm2": 187,
+     "area_2cond_31pct_mm2": 109,
+     "area_mas2cond_40pct_mm2": 141
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 27.0,
+     "area_100pct_mm2": 573,
+     "area_60pct_mm2": 344,
+     "area_1cond_53pct_mm2": 303,
+     "area_2cond_31pct_mm2": 177,
+     "area_mas2cond_40pct_mm2": 229
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 35.4,
+     "area_100pct_mm2": 984,
+     "area_60pct_mm2": 591,
+     "area_1cond_53pct_mm2": 522,
+     "area_2cond_31pct_mm2": 305,
+     "area_mas2cond_40pct_mm2": 394
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 41.2,
+     "area_100pct_mm2": 1333,
+     "area_60pct_mm2": 800,
+     "area_1cond_53pct_mm2": 707,
+     "area_2cond_31pct_mm2": 413,
+     "area_mas2cond_40pct_mm2": 533
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 52.9,
+     "area_100pct_mm2": 2198,
+     "area_60pct_mm2": 1319,
+     "area_1cond_53pct_mm2": 1165,
+     "area_2cond_31pct_mm2": 681,
+     "area_mas2cond_40pct_mm2": 879
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 63.2,
+     "area_100pct_mm2": 3137,
+     "area_60pct_mm2": 1882,
+     "area_1cond_53pct_mm2": 1663,
+     "area_2cond_31pct_mm2": 972,
+     "area_mas2cond_40pct_mm2": 1255
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 78.5,
+     "area_100pct_mm2": 4840,
+     "area_60pct_mm2": 2904,
+     "area_1cond_53pct_mm2": 2565,
+     "area_2cond_31pct_mm2": 1500,
+     "area_mas2cond_40pct_mm2": 1936
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 90.7,
+     "area_100pct_mm2": 6461,
+     "area_60pct_mm2": 3877,
+     "area_1cond_53pct_mm2": 3424,
+     "area_2cond_31pct_mm2": 2003,
+     "area_mas2cond_40pct_mm2": 2584
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 102.9,
+     "area_100pct_mm2": 8316,
+     "area_60pct_mm2": 4990,
+     "area_1cond_53pct_mm2": 4408,
+     "area_2cond_31pct_mm2": 2578,
+     "area_mas2cond_40pct_mm2": 3326
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 129,
+     "tamano_comercial_in": 5,
+     "diametro_interno_mm": 128.9,
+     "area_100pct_mm2": 13050,
+     "area_60pct_mm2": 7830,
+     "area_1cond_53pct_mm2": 6916,
+     "area_2cond_31pct_mm2": 4045,
+     "area_mas2cond_40pct_mm2": 5220
+    },
+    {
+     "tipo": "RMC (Art. 344)",
+     "designacion_metrica": 155,
+     "tamano_comercial_in": 6,
+     "diametro_interno_mm": 154.8,
+     "area_100pct_mm2": 18821,
+     "area_60pct_mm2": 11292,
+     "area_1cond_53pct_mm2": 9975,
+     "area_2cond_31pct_mm2": 5834,
+     "area_mas2cond_40pct_mm2": 7528
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 13.4,
+     "area_100pct_mm2": 141,
+     "area_60pct_mm2": 85,
+     "area_1cond_53pct_mm2": 75,
+     "area_2cond_31pct_mm2": 44,
+     "area_mas2cond_40pct_mm2": 56
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 18.3,
+     "area_100pct_mm2": 263,
+     "area_60pct_mm2": 158,
+     "area_1cond_53pct_mm2": 139,
+     "area_2cond_31pct_mm2": 82,
+     "area_mas2cond_40pct_mm2": 105
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 23.8,
+     "area_100pct_mm2": 445,
+     "area_60pct_mm2": 267,
+     "area_1cond_53pct_mm2": 236,
+     "area_2cond_31pct_mm2": 138,
+     "area_mas2cond_40pct_mm2": 178
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 31.9,
+     "area_100pct_mm2": 799,
+     "area_60pct_mm2": 480,
+     "area_1cond_53pct_mm2": 424,
+     "area_2cond_31pct_mm2": 248,
+     "area_mas2cond_40pct_mm2": 320
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 37.5,
+     "area_100pct_mm2": 1104,
+     "area_60pct_mm2": 663,
+     "area_1cond_53pct_mm2": 585,
+     "area_2cond_31pct_mm2": 342,
+     "area_mas2cond_40pct_mm2": 442
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 48.6,
+     "area_100pct_mm2": 1855,
+     "area_60pct_mm2": 1113,
+     "area_1cond_53pct_mm2": 983,
+     "area_2cond_31pct_mm2": 575,
+     "area_mas2cond_40pct_mm2": 742
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 58.2,
+     "area_100pct_mm2": 2660,
+     "area_60pct_mm2": 1596,
+     "area_1cond_53pct_mm2": 1410,
+     "area_2cond_31pct_mm2": 825,
+     "area_mas2cond_40pct_mm2": 1064
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 72.7,
+     "area_100pct_mm2": 4151,
+     "area_60pct_mm2": 2491,
+     "area_1cond_53pct_mm2": 2200,
+     "area_2cond_31pct_mm2": 1287,
+     "area_mas2cond_40pct_mm2": 1660
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 84.5,
+     "area_100pct_mm2": 5608,
+     "area_60pct_mm2": 3365,
+     "area_1cond_53pct_mm2": 2972,
+     "area_2cond_31pct_mm2": 1738,
+     "area_mas2cond_40pct_mm2": 2243
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 96.2,
+     "area_100pct_mm2": 7268,
+     "area_60pct_mm2": 4361,
+     "area_1cond_53pct_mm2": 3852,
+     "area_2cond_31pct_mm2": 2253,
+     "area_mas2cond_40pct_mm2": 2907
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 129,
+     "tamano_comercial_in": 5,
+     "diametro_interno_mm": 121.1,
+     "area_100pct_mm2": 11518,
+     "area_60pct_mm2": 6911,
+     "area_1cond_53pct_mm2": 6105,
+     "area_2cond_31pct_mm2": 3571,
+     "area_mas2cond_40pct_mm2": 4607
+    },
+    {
+     "tipo": "PVC Cédula 80 (Art. 352)",
+     "designacion_metrica": 155,
+     "tamano_comercial_in": 6,
+     "diametro_interno_mm": 145.0,
+     "area_100pct_mm2": 16513,
+     "area_60pct_mm2": 9908,
+     "area_1cond_53pct_mm2": 8752,
+     "area_2cond_31pct_mm2": 5119,
+     "area_mas2cond_40pct_mm2": 6605
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 15.3,
+     "area_100pct_mm2": 184,
+     "area_60pct_mm2": 110,
+     "area_1cond_53pct_mm2": 97,
+     "area_2cond_31pct_mm2": 57,
+     "area_mas2cond_40pct_mm2": 74
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 20.4,
+     "area_100pct_mm2": 327,
+     "area_60pct_mm2": 196,
+     "area_1cond_53pct_mm2": 173,
+     "area_2cond_31pct_mm2": 101,
+     "area_mas2cond_40pct_mm2": 131
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 26.1,
+     "area_100pct_mm2": 535,
+     "area_60pct_mm2": 321,
+     "area_1cond_53pct_mm2": 284,
+     "area_2cond_31pct_mm2": 166,
+     "area_mas2cond_40pct_mm2": 214
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 34.5,
+     "area_100pct_mm2": 935,
+     "area_60pct_mm2": 561,
+     "area_1cond_53pct_mm2": 495,
+     "area_2cond_31pct_mm2": 290,
+     "area_mas2cond_40pct_mm2": 374
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 40.4,
+     "area_100pct_mm2": 1282,
+     "area_60pct_mm2": 769,
+     "area_1cond_53pct_mm2": 679,
+     "area_2cond_31pct_mm2": 397,
+     "area_mas2cond_40pct_mm2": 513
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 52,
+     "area_100pct_mm2": 2124,
+     "area_60pct_mm2": 1274,
+     "area_1cond_53pct_mm2": 1126,
+     "area_2cond_31pct_mm2": 658,
+     "area_mas2cond_40pct_mm2": 849
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 62.1,
+     "area_100pct_mm2": 3029,
+     "area_60pct_mm2": 1817,
+     "area_1cond_53pct_mm2": 1605,
+     "area_2cond_31pct_mm2": 939,
+     "area_mas2cond_40pct_mm2": 1212
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 77.3,
+     "area_100pct_mm2": 4693,
+     "area_60pct_mm2": 2816,
+     "area_1cond_53pct_mm2": 2487,
+     "area_2cond_31pct_mm2": 1455,
+     "area_mas2cond_40pct_mm2": 1877
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 89.4,
+     "area_100pct_mm2": 6277,
+     "area_60pct_mm2": 3766,
+     "area_1cond_53pct_mm2": 3327,
+     "area_2cond_31pct_mm2": 1946,
+     "area_mas2cond_40pct_mm2": 2511
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 101.5,
+     "area_100pct_mm2": 8091,
+     "area_60pct_mm2": 4855,
+     "area_1cond_53pct_mm2": 4288,
+     "area_2cond_31pct_mm2": 2508,
+     "area_mas2cond_40pct_mm2": 3237
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 129,
+     "tamano_comercial_in": 5,
+     "diametro_interno_mm": 127.4,
+     "area_100pct_mm2": 12748,
+     "area_60pct_mm2": 7649,
+     "area_1cond_53pct_mm2": 6756,
+     "area_2cond_31pct_mm2": 3952,
+     "area_mas2cond_40pct_mm2": 5099
+    },
+    {
+     "tipo": "PVC Cédula 40 y HDPE (Art. 352/353)",
+     "designacion_metrica": 155,
+     "tamano_comercial_in": 6,
+     "diametro_interno_mm": 153.2,
+     "area_100pct_mm2": 18433,
+     "area_60pct_mm2": 11060,
+     "area_1cond_53pct_mm2": 9770,
+     "area_2cond_31pct_mm2": 5714,
+     "area_mas2cond_40pct_mm2": 7373
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 16,
+     "tamano_comercial_in": "1/2",
+     "diametro_interno_mm": 17.8,
+     "area_100pct_mm2": 249,
+     "area_60pct_mm2": 149,
+     "area_1cond_53pct_mm2": 132,
+     "area_2cond_31pct_mm2": 77,
+     "area_mas2cond_40pct_mm2": 100
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 21,
+     "tamano_comercial_in": "3/4",
+     "diametro_interno_mm": 23.1,
+     "area_100pct_mm2": 419,
+     "area_60pct_mm2": 251,
+     "area_1cond_53pct_mm2": 222,
+     "area_2cond_31pct_mm2": 130,
+     "area_mas2cond_40pct_mm2": 168
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 27,
+     "tamano_comercial_in": 1,
+     "diametro_interno_mm": 29.8,
+     "area_100pct_mm2": 697,
+     "area_60pct_mm2": 418,
+     "area_1cond_53pct_mm2": 370,
+     "area_2cond_31pct_mm2": 216,
+     "area_mas2cond_40pct_mm2": 279
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 35,
+     "tamano_comercial_in": "1-1/4",
+     "diametro_interno_mm": 38.1,
+     "area_100pct_mm2": 1140,
+     "area_60pct_mm2": 684,
+     "area_1cond_53pct_mm2": 604,
+     "area_2cond_31pct_mm2": 353,
+     "area_mas2cond_40pct_mm2": 456
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 41,
+     "tamano_comercial_in": "1-1/2",
+     "diametro_interno_mm": 43.7,
+     "area_100pct_mm2": 1500,
+     "area_60pct_mm2": 900,
+     "area_1cond_53pct_mm2": 795,
+     "area_2cond_31pct_mm2": 465,
+     "area_mas2cond_40pct_mm2": 600
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 54.7,
+     "area_100pct_mm2": 2350,
+     "area_60pct_mm2": 1410,
+     "area_1cond_53pct_mm2": 1245,
+     "area_2cond_31pct_mm2": 728,
+     "area_mas2cond_40pct_mm2": 940
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 63,
+     "tamano_comercial_in": "2-1/2",
+     "diametro_interno_mm": 66.9,
+     "area_100pct_mm2": 3515,
+     "area_60pct_mm2": 2109,
+     "area_1cond_53pct_mm2": 1863,
+     "area_2cond_31pct_mm2": 1090,
+     "area_mas2cond_40pct_mm2": 1406
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 82.0,
+     "area_100pct_mm2": 5281,
+     "area_60pct_mm2": 3169,
+     "area_1cond_53pct_mm2": 2799,
+     "area_2cond_31pct_mm2": 1637,
+     "area_mas2cond_40pct_mm2": 2112
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 93.7,
+     "area_100pct_mm2": 6896,
+     "area_60pct_mm2": 4137,
+     "area_1cond_53pct_mm2": 3655,
+     "area_2cond_31pct_mm2": 2138,
+     "area_mas2cond_40pct_mm2": 2758
+    },
+    {
+     "tipo": "PVC Tipo A (Art. 352)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 106.2,
+     "area_100pct_mm2": 8858,
+     "area_60pct_mm2": 5315,
+     "area_1cond_53pct_mm2": 4695,
+     "area_2cond_31pct_mm2": 2746,
+     "area_mas2cond_40pct_mm2": 3543
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 53,
+     "tamano_comercial_in": 2,
+     "diametro_interno_mm": 56.4,
+     "area_100pct_mm2": 2498,
+     "area_60pct_mm2": 1499,
+     "area_1cond_53pct_mm2": 1324,
+     "area_2cond_31pct_mm2": 774,
+     "area_mas2cond_40pct_mm2": 999
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 78,
+     "tamano_comercial_in": 3,
+     "diametro_interno_mm": 84.6,
+     "area_100pct_mm2": 5621,
+     "area_60pct_mm2": 3373,
+     "area_1cond_53pct_mm2": 2979,
+     "area_2cond_31pct_mm2": 1743,
+     "area_mas2cond_40pct_mm2": 2248
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 91,
+     "tamano_comercial_in": "3-1/2",
+     "diametro_interno_mm": 96.6,
+     "area_100pct_mm2": 7329,
+     "area_60pct_mm2": 4397,
+     "area_1cond_53pct_mm2": 3884,
+     "area_2cond_31pct_mm2": 2272,
+     "area_mas2cond_40pct_mm2": 2932
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 103,
+     "tamano_comercial_in": 4,
+     "diametro_interno_mm": 108.9,
+     "area_100pct_mm2": 9314,
+     "area_60pct_mm2": 5589,
+     "area_1cond_53pct_mm2": 4937,
+     "area_2cond_31pct_mm2": 2887,
+     "area_mas2cond_40pct_mm2": 3726
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 129,
+     "tamano_comercial_in": 5,
+     "diametro_interno_mm": 135.0,
+     "area_100pct_mm2": 14314,
+     "area_60pct_mm2": 8588,
+     "area_1cond_53pct_mm2": 7586,
+     "area_2cond_31pct_mm2": 4437,
+     "area_mas2cond_40pct_mm2": 5726
+    },
+    {
+     "tipo": "PVC Tipo EB (Art. 352)",
+     "designacion_metrica": 155,
+     "tamano_comercial_in": 6,
+     "diametro_interno_mm": 160.9,
+     "area_100pct_mm2": 20333,
+     "area_60pct_mm2": 12200,
+     "area_1cond_53pct_mm2": 10776,
+     "area_2cond_31pct_mm2": 6303,
+     "area_mas2cond_40pct_mm2": 8133
+    }
+   ]
+  },
+  "cap10-tabla5A_conductores_compactos": {
+   "referencia": "Capítulo 10, Tabla 5A",
+   "descripcion": "Dimensiones de conductores compactos",
+   "pagina_pdf": 935,
+   "filas": [
+    {
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diam_desnudo_mm": 3.404,
+     "THW_THHW_diam_mm": 6.477,
+     "THW_THHW_area_mm2": 32.9,
+     "THHN_diam_mm": null,
+     "THHN_area_mm2": null,
+     "XHHW_diam_mm": 5.69,
+     "XHHW_area_mm2": 25.42
+    },
+    {
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diam_desnudo_mm": 4.293,
+     "THW_THHW_diam_mm": 7.366,
+     "THW_THHW_area_mm2": 42.58,
+     "THHN_diam_mm": 6.096,
+     "THHN_area_mm2": 29.16,
+     "XHHW_diam_mm": 6.604,
+     "XHHW_area_mm2": 34.19
+    },
+    {
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diam_desnudo_mm": 5.41,
+     "THW_THHW_diam_mm": 8.509,
+     "THW_THHW_area_mm2": 56.84,
+     "THHN_diam_mm": 7.747,
+     "THHN_area_mm2": 47.1,
+     "XHHW_diam_mm": 7.747,
+     "XHHW_area_mm2": 47.1
+    },
+    {
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diam_desnudo_mm": 6.807,
+     "THW_THHW_diam_mm": 9.906,
+     "THW_THHW_area_mm2": 77.03,
+     "THHN_diam_mm": 9.144,
+     "THHN_area_mm2": 65.61,
+     "XHHW_diam_mm": 9.144,
+     "XHHW_area_mm2": 65.61
+    },
+    {
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diam_desnudo_mm": 7.595,
+     "THW_THHW_diam_mm": 11.81,
+     "THW_THHW_area_mm2": 109.5,
+     "THHN_diam_mm": 10.54,
+     "THHN_area_mm2": 87.23,
+     "XHHW_diam_mm": 10.54,
+     "XHHW_area_mm2": 87.23
+    },
+    {
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diam_desnudo_mm": 8.534,
+     "THW_THHW_diam_mm": 12.7,
+     "THW_THHW_area_mm2": 126.6,
+     "THHN_diam_mm": 11.43,
+     "THHN_area_mm2": 102.6,
+     "XHHW_diam_mm": 11.43,
+     "XHHW_area_mm2": 102.6
+    },
+    {
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diam_desnudo_mm": 9.55,
+     "THW_THHW_diam_mm": 13.84,
+     "THW_THHW_area_mm2": 150.5,
+     "THHN_diam_mm": 12.57,
+     "THHN_area_mm2": 124.1,
+     "XHHW_diam_mm": 12.45,
+     "XHHW_area_mm2": 121.6
+    },
+    {
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diam_desnudo_mm": 10.74,
+     "THW_THHW_diam_mm": 14.99,
+     "THW_THHW_area_mm2": 176.3,
+     "THHN_diam_mm": 13.72,
+     "THHN_area_mm2": 147.7,
+     "XHHW_diam_mm": 13.72,
+     "XHHW_area_mm2": 147.7
+    },
+    {
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diam_desnudo_mm": 12.07,
+     "THW_THHW_diam_mm": 16.38,
+     "THW_THHW_area_mm2": 210.8,
+     "THHN_diam_mm": 15.11,
+     "THHN_area_mm2": 179.4,
+     "XHHW_diam_mm": 14.99,
+     "XHHW_area_mm2": 176.3
+    },
+    {
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "diam_desnudo_mm": 13.21,
+     "THW_THHW_diam_mm": 18.42,
+     "THW_THHW_area_mm2": 266.3,
+     "THHN_diam_mm": 17.02,
+     "THHN_area_mm2": 227.4,
+     "XHHW_diam_mm": 16.76,
+     "XHHW_area_mm2": 220.7
+    },
+    {
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "diam_desnudo_mm": 14.48,
+     "THW_THHW_diam_mm": 19.69,
+     "THW_THHW_area_mm2": 304.3,
+     "THHN_diam_mm": 18.29,
+     "THHN_area_mm2": 262.6,
+     "XHHW_diam_mm": 18.16,
+     "XHHW_area_mm2": 259
+    },
+    {
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "diam_desnudo_mm": 15.65,
+     "THW_THHW_diam_mm": 20.83,
+     "THW_THHW_area_mm2": 340.7,
+     "THHN_diam_mm": 19.56,
+     "THHN_area_mm2": 300.4,
+     "XHHW_diam_mm": 19.3,
+     "XHHW_area_mm2": 292.6
+    },
+    {
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "diam_desnudo_mm": 16.74,
+     "THW_THHW_diam_mm": 21.97,
+     "THW_THHW_area_mm2": 379.1,
+     "THHN_diam_mm": 20.7,
+     "THHN_area_mm2": 336.5,
+     "XHHW_diam_mm": 20.32,
+     "XHHW_area_mm2": 324.3
+    },
+    {
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "diam_desnudo_mm": 18.69,
+     "THW_THHW_diam_mm": 23.88,
+     "THW_THHW_area_mm2": 447.7,
+     "THHN_diam_mm": 22.48,
+     "THHN_area_mm2": 396.8,
+     "XHHW_diam_mm": 22.35,
+     "XHHW_area_mm2": 392.4
+    },
+    {
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "diam_desnudo_mm": 20.65,
+     "THW_THHW_diam_mm": 26.67,
+     "THW_THHW_area_mm2": 558.6,
+     "THHN_diam_mm": 25.02,
+     "THHN_area_mm2": 491.6,
+     "XHHW_diam_mm": 24.89,
+     "XHHW_area_mm2": 486.6
+    },
+    {
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "diam_desnudo_mm": 22.28,
+     "THW_THHW_diam_mm": 28.19,
+     "THW_THHW_area_mm2": 624.3,
+     "THHN_diam_mm": 26.67,
+     "THHN_area_mm2": 558.6,
+     "XHHW_diam_mm": 26.67,
+     "XHHW_area_mm2": 558.6
+    },
+    {
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "diam_desnudo_mm": 23.06,
+     "THW_THHW_diam_mm": 29.21,
+     "THW_THHW_area_mm2": 670.1,
+     "THHN_diam_mm": 27.31,
+     "THHN_area_mm2": 585.5,
+     "XHHW_diam_mm": 27.69,
+     "XHHW_area_mm2": 602
+    },
+    {
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "diam_desnudo_mm": 25.37,
+     "THW_THHW_diam_mm": 31.09,
+     "THW_THHW_area_mm2": 759.1,
+     "THHN_diam_mm": 30.33,
+     "THHN_area_mm2": 722.5,
+     "XHHW_diam_mm": 29.69,
+     "XHHW_area_mm2": 692.3
+    },
+    {
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "diam_desnudo_mm": 26.92,
+     "THW_THHW_diam_mm": 32.64,
+     "THW_THHW_area_mm2": 836.6,
+     "THHN_diam_mm": 31.88,
+     "THHN_area_mm2": 798.1,
+     "XHHW_diam_mm": 31.24,
+     "XHHW_area_mm2": 766.6
+    }
+   ]
+  },
+  "cap10-tabla5_dimensiones_conductores": {
+   "referencia": "Capítulo 10, Tabla 5",
+   "descripcion": "Dimensiones de conductores aislados",
+   "pagina_pdf": 932,
+   "filas": [
+    {
+     "tipo_aislamiento": "RFH-2, FFH-2",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 3.454,
+     "area_aprox_mm2": 9.355,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RFH-2, FFH-2",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 3.759,
+     "area_aprox_mm2": 11.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 4.902,
+     "area_aprox_mm2": 18.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 5.385,
+     "area_aprox_mm2": 22.77,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 5.994,
+     "area_aprox_mm2": 28.19,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 8.28,
+     "area_aprox_mm2": 53.87,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 9.246,
+     "area_aprox_mm2": 67.16,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 10.46,
+     "area_aprox_mm2": 86.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 11.18,
+     "area_aprox_mm2": 98.13,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 11.99,
+     "area_aprox_mm2": 112.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 14.78,
+     "area_aprox_mm2": 171.6,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diametro_aprox_mm": 15.8,
+     "area_aprox_mm2": 196.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diametro_aprox_mm": 16.97,
+     "area_aprox_mm2": 226.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diametro_aprox_mm": 18.29,
+     "area_aprox_mm2": 262.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diametro_aprox_mm": 19.76,
+     "area_aprox_mm2": 306.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "diametro_aprox_mm": 22.73,
+     "area_aprox_mm2": 405.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "diametro_aprox_mm": 24.13,
+     "area_aprox_mm2": 457.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "diametro_aprox_mm": 25.43,
+     "area_aprox_mm2": 507.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "diametro_aprox_mm": 26.62,
+     "area_aprox_mm2": 556.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "diametro_aprox_mm": 28.78,
+     "area_aprox_mm2": 650.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "diametro_aprox_mm": 31.57,
+     "area_aprox_mm2": 782.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "diametro_aprox_mm": 33.38,
+     "area_aprox_mm2": 874.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "diametro_aprox_mm": 34.24,
+     "area_aprox_mm2": 920.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "diametro_aprox_mm": 35.05,
+     "area_aprox_mm2": 965.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "diametro_aprox_mm": 36.68,
+     "area_aprox_mm2": 1057.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "diametro_aprox_mm": 38.15,
+     "area_aprox_mm2": 1143.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 633,
+     "awg_kcmil": 1250,
+     "diametro_aprox_mm": 43.92,
+     "area_aprox_mm2": 1515.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 760,
+     "awg_kcmil": 1500,
+     "diametro_aprox_mm": 47.04,
+     "area_aprox_mm2": 1738.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 887,
+     "awg_kcmil": 1750,
+     "diametro_aprox_mm": 49.94,
+     "area_aprox_mm2": 1959.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH, RHW, RHW-2 (con cubierta exterior)",
+     "mm2": 1013,
+     "awg_kcmil": 2000,
+     "diametro_aprox_mm": 52.63,
+     "area_aprox_mm2": 2175.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "SF-2, SFF-2",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 3.073,
+     "area_aprox_mm2": 7.419,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "SF-2, SFF-2",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 3.378,
+     "area_aprox_mm2": 8.968,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "SF-2, SFF-2",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 3.759,
+     "area_aprox_mm2": 11.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "SF-1, SFF-1",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 2.311,
+     "area_aprox_mm2": 4.194,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RFH-1, XF, XFF",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 2.692,
+     "area_aprox_mm2": 5.69,
+     "nota": "ERRATA DOF: área impresa 5.161; se usa área calculada del diámetro"
+    },
+    {
+     "tipo_aislamiento": "TF, TFF, XF, XFF",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 2.997,
+     "area_aprox_mm2": 7.032,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 3.378,
+     "area_aprox_mm2": 8.968,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 3.861,
+     "area_aprox_mm2": 11.68,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 4.47,
+     "area_aprox_mm2": 15.69,
+     "nota": "ERRATA DOF: área impresa 55.68; se usa área calculada del diámetro"
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 5.994,
+     "area_aprox_mm2": 28.19,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "RHH*, RHW*, RHW-2* (sin cubierta exterior)",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 4.14,
+     "area_aprox_mm2": 13.48,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH*, RHW*, RHW-2* (sin cubierta exterior)",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 4.623,
+     "area_aprox_mm2": 16.67,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH*, RHW*, RHW-2* (sin cubierta exterior)",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 5.232,
+     "area_aprox_mm2": 21.48,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "RHH*, RHW*, RHW-2* (sin cubierta exterior)",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 6.756,
+     "area_aprox_mm2": 35.87,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 7.722,
+     "area_aprox_mm2": 46.84,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 8.941,
+     "area_aprox_mm2": 62.77,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 9.652,
+     "area_aprox_mm2": 73.16,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 10.46,
+     "area_aprox_mm2": 86.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 12.5,
+     "area_aprox_mm2": 122.6,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diametro_aprox_mm": 13.51,
+     "area_aprox_mm2": 143.4,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diametro_aprox_mm": 14.68,
+     "area_aprox_mm2": 169.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diametro_aprox_mm": 16.0,
+     "area_aprox_mm2": 201.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diametro_aprox_mm": 17.48,
+     "area_aprox_mm2": 239.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "diametro_aprox_mm": 19.43,
+     "area_aprox_mm2": 296.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "diametro_aprox_mm": 20.83,
+     "area_aprox_mm2": 340.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "diametro_aprox_mm": 22.12,
+     "area_aprox_mm2": 384.4,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "diametro_aprox_mm": 23.32,
+     "area_aprox_mm2": 427.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "diametro_aprox_mm": 25.48,
+     "area_aprox_mm2": 509.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "diametro_aprox_mm": 28.27,
+     "area_aprox_mm2": 627.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "diametro_aprox_mm": 30.07,
+     "area_aprox_mm2": 710.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "diametro_aprox_mm": 30.94,
+     "area_aprox_mm2": 751.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "diametro_aprox_mm": 31.75,
+     "area_aprox_mm2": 791.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "diametro_aprox_mm": 33.38,
+     "area_aprox_mm2": 874.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "diametro_aprox_mm": 34.85,
+     "area_aprox_mm2": 953.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 633,
+     "awg_kcmil": 1250,
+     "diametro_aprox_mm": 39.09,
+     "area_aprox_mm2": 1200.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 760,
+     "awg_kcmil": 1500,
+     "diametro_aprox_mm": 42.21,
+     "area_aprox_mm2": 1400.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 887,
+     "awg_kcmil": 1750,
+     "diametro_aprox_mm": 45.1,
+     "area_aprox_mm2": 1598.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TW, THW, THHW, THW-2, RHH*, RHW*, RHW-2*",
+     "mm2": 1013,
+     "awg_kcmil": 2000,
+     "diametro_aprox_mm": 47.8,
+     "area_aprox_mm2": 1795.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFN, TFFN",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 2.134,
+     "area_aprox_mm2": 3.548,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFN, TFFN",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 2.438,
+     "area_aprox_mm2": 4.645,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 2.819,
+     "area_aprox_mm2": 6.258,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 3.302,
+     "area_aprox_mm2": 8.581,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 4.166,
+     "area_aprox_mm2": 13.61,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 5.486,
+     "area_aprox_mm2": 23.61,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 6.452,
+     "area_aprox_mm2": 32.71,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 8.23,
+     "area_aprox_mm2": 53.16,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 8.941,
+     "area_aprox_mm2": 62.77,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 9.754,
+     "area_aprox_mm2": 74.71,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 11.33,
+     "area_aprox_mm2": 100.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diametro_aprox_mm": 12.34,
+     "area_aprox_mm2": 119.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diametro_aprox_mm": 13.51,
+     "area_aprox_mm2": 143.4,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diametro_aprox_mm": 14.83,
+     "area_aprox_mm2": 172.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diametro_aprox_mm": 16.31,
+     "area_aprox_mm2": 208.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "diametro_aprox_mm": 18.06,
+     "area_aprox_mm2": 256.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "diametro_aprox_mm": 19.46,
+     "area_aprox_mm2": 297.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "diametro_aprox_mm": 20.75,
+     "area_aprox_mm2": 338.2,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "diametro_aprox_mm": 21.95,
+     "area_aprox_mm2": 378.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "diametro_aprox_mm": 24.1,
+     "area_aprox_mm2": 456.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "diametro_aprox_mm": 26.7,
+     "area_aprox_mm2": 559.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "diametro_aprox_mm": 28.5,
+     "area_aprox_mm2": 637.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "diametro_aprox_mm": 29.36,
+     "area_aprox_mm2": 677.2,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "diametro_aprox_mm": 30.18,
+     "area_aprox_mm2": 715.2,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "diametro_aprox_mm": 31.8,
+     "area_aprox_mm2": 794.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "THHN, THWN, THWN-2",
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "diametro_aprox_mm": 33.27,
+     "area_aprox_mm2": 869.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "PF, PGFF, PGF, PFF, PTF, PAF, PTFF, PAFF",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 2.184,
+     "area_aprox_mm2": 3.742,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "PF, PGFF, PGF, PFF, PTF, PAF, PTFF, PAFF",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 2.489,
+     "area_aprox_mm2": 4.839,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "PF, PGFF, PGF, PFF, PTF, PAF, PTFF, PAFF",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 2.87,
+     "area_aprox_mm2": 6.452,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 3.353,
+     "area_aprox_mm2": 8.839,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 3.962,
+     "area_aprox_mm2": 12.32,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 5.232,
+     "area_aprox_mm2": 21.48,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 6.198,
+     "area_aprox_mm2": 30.19,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 7.417,
+     "area_aprox_mm2": 43.23,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 8.128,
+     "area_aprox_mm2": 51.87,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, FEP, PFA, FEPB, PFAH",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 8.941,
+     "area_aprox_mm2": 62.77,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, PFAH",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 10.72,
+     "area_aprox_mm2": 90.26,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, PFA, PFAH, Z",
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diametro_aprox_mm": 11.73,
+     "area_aprox_mm2": 108.1,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, PFA, PFAH, Z",
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diametro_aprox_mm": 12.9,
+     "area_aprox_mm2": 130.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, PFA, PFAH, Z",
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diametro_aprox_mm": 14.22,
+     "area_aprox_mm2": 158.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "TFE, PFA, PFAH, Z",
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diametro_aprox_mm": 15.7,
+     "area_aprox_mm2": 193.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "ZF, ZFF",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 1.93,
+     "area_aprox_mm2": 2.903,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "ZF, ZFF",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 2.235,
+     "area_aprox_mm2": 3.935,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z, ZF, ZFF",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 2.616,
+     "area_aprox_mm2": 5.355,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z, ZF, ZFF",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 3.099,
+     "area_aprox_mm2": 7.548,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z, ZF, ZFF",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 3.962,
+     "area_aprox_mm2": 12.32,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 4.978,
+     "area_aprox_mm2": 19.48,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 5.944,
+     "area_aprox_mm2": 27.74,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 7.163,
+     "area_aprox_mm2": 40.32,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 8.382,
+     "area_aprox_mm2": 55.16,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 9.195,
+     "area_aprox_mm2": 66.39,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "Z",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 10.21,
+     "area_aprox_mm2": 81.87,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 3.378,
+     "area_aprox_mm2": 8.968,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 3.861,
+     "area_aprox_mm2": 11.68,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 4.47,
+     "area_aprox_mm2": 15.68,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 8.37,
+     "awg_kcmil": 8,
+     "diametro_aprox_mm": 5.994,
+     "area_aprox_mm2": 28.19,
+     "nota": "mm2 impreso 6.63 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "diametro_aprox_mm": 6.96,
+     "area_aprox_mm2": 38.06,
+     "nota": "mm2 impreso 8.37 corregido según AWG"
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 21.2,
+     "awg_kcmil": 4,
+     "diametro_aprox_mm": 8.179,
+     "area_aprox_mm2": 52.52,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 26.7,
+     "awg_kcmil": 3,
+     "diametro_aprox_mm": 8.89,
+     "area_aprox_mm2": 62.06,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 33.6,
+     "awg_kcmil": 2,
+     "diametro_aprox_mm": 9.703,
+     "area_aprox_mm2": 73.94,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 42.4,
+     "awg_kcmil": 1,
+     "diametro_aprox_mm": 11.23,
+     "area_aprox_mm2": 98.97,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 53.5,
+     "awg_kcmil": "1/0",
+     "diametro_aprox_mm": 12.24,
+     "area_aprox_mm2": 117.7,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 67.4,
+     "awg_kcmil": "2/0",
+     "diametro_aprox_mm": 13.41,
+     "area_aprox_mm2": 141.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 85.0,
+     "awg_kcmil": "3/0",
+     "diametro_aprox_mm": 14.73,
+     "area_aprox_mm2": 170.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 107,
+     "awg_kcmil": "4/0",
+     "diametro_aprox_mm": 16.21,
+     "area_aprox_mm2": 206.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "diametro_aprox_mm": 17.91,
+     "area_aprox_mm2": 251.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "diametro_aprox_mm": 19.3,
+     "area_aprox_mm2": 292.6,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "diametro_aprox_mm": 20.6,
+     "area_aprox_mm2": 333.3,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "diametro_aprox_mm": 21.79,
+     "area_aprox_mm2": 373.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "diametro_aprox_mm": 23.95,
+     "area_aprox_mm2": 450.6,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "diametro_aprox_mm": 26.75,
+     "area_aprox_mm2": 561.9,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 355,
+     "awg_kcmil": 700,
+     "diametro_aprox_mm": 28.55,
+     "area_aprox_mm2": 640.2,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "diametro_aprox_mm": 29.41,
+     "area_aprox_mm2": 679.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 405,
+     "awg_kcmil": 800,
+     "diametro_aprox_mm": 30.23,
+     "area_aprox_mm2": 717.5,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 456,
+     "awg_kcmil": 900,
+     "diametro_aprox_mm": 31.85,
+     "area_aprox_mm2": 796.8,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "diametro_aprox_mm": 33.32,
+     "area_aprox_mm2": 872.2,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 633,
+     "awg_kcmil": 1250,
+     "diametro_aprox_mm": 37.57,
+     "area_aprox_mm2": 1108.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 760,
+     "awg_kcmil": 1500,
+     "diametro_aprox_mm": 40.69,
+     "area_aprox_mm2": 1300.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 887,
+     "awg_kcmil": 1750,
+     "diametro_aprox_mm": 43.59,
+     "area_aprox_mm2": 1492.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "XHHW, XHHW-2, XHH (ZW en calibres 14-2)",
+     "mm2": 1013,
+     "awg_kcmil": 2000,
+     "diametro_aprox_mm": 46.28,
+     "area_aprox_mm2": 1682.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-2, KFF-2",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 1.6,
+     "area_aprox_mm2": 2.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-2, KFF-2",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 1.905,
+     "area_aprox_mm2": 2.839,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-2, KFF-2",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 2.286,
+     "area_aprox_mm2": 4.129,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-2, KFF-2",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 2.769,
+     "area_aprox_mm2": 6.0,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-2, KFF-2",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 3.378,
+     "area_aprox_mm2": 8.968,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-1, KFF-1",
+     "mm2": 0.824,
+     "awg_kcmil": 18,
+     "diametro_aprox_mm": 1.448,
+     "area_aprox_mm2": 1.677,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-1, KFF-1",
+     "mm2": 1.31,
+     "awg_kcmil": 16,
+     "diametro_aprox_mm": 1.753,
+     "area_aprox_mm2": 2.387,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-1, KFF-1",
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "diametro_aprox_mm": 2.134,
+     "area_aprox_mm2": 3.548,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-1, KFF-1",
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "diametro_aprox_mm": 2.616,
+     "area_aprox_mm2": 5.355,
+     "nota": null
+    },
+    {
+     "tipo_aislamiento": "KF-1, KFF-1",
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "diametro_aprox_mm": 3.226,
+     "area_aprox_mm2": 8.194,
+     "nota": null
+    }
+   ]
+  },
+  "cap10-tabla8_propiedades_conductores": {
+   "referencia": "Capítulo 10, Tabla 8",
+   "descripcion": "Propiedades de conductores y resistencia en c.c. a 75 °C",
+   "pagina_pdf": 936,
+   "filas": [
+    {
+     "awg_kcmil": 18,
+     "area_mm2": 0.823,
+     "area_cmil": 1620,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 1.02,
+     "area_total_mm2": 0.823,
+     "R_cc_75C_cu_desnudo_ohm_km": 25.5,
+     "R_cc_75C_cu_recubierto_ohm_km": 26.5,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 18,
+     "area_mm2": 0.823,
+     "area_cmil": 1620,
+     "num_hilos": 7,
+     "diam_hilo_mm": 0.39,
+     "diam_total_mm": 1.16,
+     "area_total_mm2": 1.06,
+     "R_cc_75C_cu_desnudo_ohm_km": 26.1,
+     "R_cc_75C_cu_recubierto_ohm_km": 27.7,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 16,
+     "area_mm2": 1.31,
+     "area_cmil": 2580,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 1.29,
+     "area_total_mm2": 1.31,
+     "R_cc_75C_cu_desnudo_ohm_km": 16,
+     "R_cc_75C_cu_recubierto_ohm_km": 16.7,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 16,
+     "area_mm2": 1.31,
+     "area_cmil": 2580,
+     "num_hilos": 7,
+     "diam_hilo_mm": 0.49,
+     "diam_total_mm": 1.46,
+     "area_total_mm2": 1.68,
+     "R_cc_75C_cu_desnudo_ohm_km": 16.4,
+     "R_cc_75C_cu_recubierto_ohm_km": 17.3,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 14,
+     "area_mm2": 2.08,
+     "area_cmil": 4110,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 1.63,
+     "area_total_mm2": 2.08,
+     "R_cc_75C_cu_desnudo_ohm_km": 10.1,
+     "R_cc_75C_cu_recubierto_ohm_km": 10.4,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 14,
+     "area_mm2": 2.08,
+     "area_cmil": 4110,
+     "num_hilos": 7,
+     "diam_hilo_mm": 0.62,
+     "diam_total_mm": 1.85,
+     "area_total_mm2": 2.68,
+     "R_cc_75C_cu_desnudo_ohm_km": 10.3,
+     "R_cc_75C_cu_recubierto_ohm_km": 10.7,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 12,
+     "area_mm2": 3.31,
+     "area_cmil": 6530,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 2.05,
+     "area_total_mm2": 3.31,
+     "R_cc_75C_cu_desnudo_ohm_km": 6.34,
+     "R_cc_75C_cu_recubierto_ohm_km": 6.57,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 12,
+     "area_mm2": 3.31,
+     "area_cmil": 6530,
+     "num_hilos": 7,
+     "diam_hilo_mm": 0.78,
+     "diam_total_mm": 2.32,
+     "area_total_mm2": 4.25,
+     "R_cc_75C_cu_desnudo_ohm_km": 6.5,
+     "R_cc_75C_cu_recubierto_ohm_km": 6.73,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 10,
+     "area_mm2": 5.261,
+     "area_cmil": 10380,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 2.588,
+     "area_total_mm2": 5.26,
+     "R_cc_75C_cu_desnudo_ohm_km": 3.984,
+     "R_cc_75C_cu_recubierto_ohm_km": 4.148,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 10,
+     "area_mm2": 5.261,
+     "area_cmil": 10380,
+     "num_hilos": 7,
+     "diam_hilo_mm": 0.98,
+     "diam_total_mm": 2.95,
+     "area_total_mm2": 6.76,
+     "R_cc_75C_cu_desnudo_ohm_km": 4.07,
+     "R_cc_75C_cu_recubierto_ohm_km": 4.226,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 8,
+     "area_mm2": 8.367,
+     "area_cmil": 16510,
+     "num_hilos": 1,
+     "diam_hilo_mm": null,
+     "diam_total_mm": 3.264,
+     "area_total_mm2": 8.37,
+     "R_cc_75C_cu_desnudo_ohm_km": 2.506,
+     "R_cc_75C_cu_recubierto_ohm_km": 2.579,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 8,
+     "area_mm2": 8.367,
+     "area_cmil": 16510,
+     "num_hilos": 7,
+     "diam_hilo_mm": 1.23,
+     "diam_total_mm": 3.71,
+     "area_total_mm2": 10.76,
+     "R_cc_75C_cu_desnudo_ohm_km": 2.551,
+     "R_cc_75C_cu_recubierto_ohm_km": 2.653,
+     "R_cc_75C_al_ohm_km": null
+    },
+    {
+     "awg_kcmil": 6,
+     "area_mm2": 13.3,
+     "area_cmil": 26240,
+     "num_hilos": 7,
+     "diam_hilo_mm": 1.56,
+     "diam_total_mm": 4.67,
+     "area_total_mm2": 17.09,
+     "R_cc_75C_cu_desnudo_ohm_km": 1.608,
+     "R_cc_75C_cu_recubierto_ohm_km": 1.671,
+     "R_cc_75C_al_ohm_km": 2.652
+    },
+    {
+     "awg_kcmil": 4,
+     "area_mm2": 21.15,
+     "area_cmil": 41740,
+     "num_hilos": 7,
+     "diam_hilo_mm": 1.96,
+     "diam_total_mm": 5.89,
+     "area_total_mm2": 27.19,
+     "R_cc_75C_cu_desnudo_ohm_km": 1.01,
+     "R_cc_75C_cu_recubierto_ohm_km": 1.053,
+     "R_cc_75C_al_ohm_km": 1.666
+    },
+    {
+     "awg_kcmil": 3,
+     "area_mm2": 26.67,
+     "area_cmil": 52620,
+     "num_hilos": 7,
+     "diam_hilo_mm": 2.2,
+     "diam_total_mm": 6.6,
+     "area_total_mm2": 34.28,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.802,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.833,
+     "R_cc_75C_al_ohm_km": 1.32
+    },
+    {
+     "awg_kcmil": 2,
+     "area_mm2": 33.62,
+     "area_cmil": 66360,
+     "num_hilos": 7,
+     "diam_hilo_mm": 2.47,
+     "diam_total_mm": 7.42,
+     "area_total_mm2": 43.23,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.634,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.661,
+     "R_cc_75C_al_ohm_km": 1.045
+    },
+    {
+     "awg_kcmil": 1,
+     "area_mm2": 42.41,
+     "area_cmil": 83690,
+     "num_hilos": 19,
+     "diam_hilo_mm": 1.69,
+     "diam_total_mm": 8.43,
+     "area_total_mm2": 55.8,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.505,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.524,
+     "R_cc_75C_al_ohm_km": 0.829
+    },
+    {
+     "awg_kcmil": "1/0",
+     "area_mm2": 53.49,
+     "area_cmil": 105600,
+     "num_hilos": 19,
+     "diam_hilo_mm": 1.89,
+     "diam_total_mm": 9.45,
+     "area_total_mm2": 70.41,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.399,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.415,
+     "R_cc_75C_al_ohm_km": 0.66
+    },
+    {
+     "awg_kcmil": "2/0",
+     "area_mm2": 67.43,
+     "area_cmil": 133100,
+     "num_hilos": 19,
+     "diam_hilo_mm": 2.13,
+     "diam_total_mm": 10.62,
+     "area_total_mm2": 88.74,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.317,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.329,
+     "R_cc_75C_al_ohm_km": 0.523
+    },
+    {
+     "awg_kcmil": "3/0",
+     "area_mm2": 85.01,
+     "area_cmil": 167800,
+     "num_hilos": 19,
+     "diam_hilo_mm": 2.39,
+     "diam_total_mm": 11.94,
+     "area_total_mm2": 111.9,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.2512,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.261,
+     "R_cc_75C_al_ohm_km": 0.413
+    },
+    {
+     "awg_kcmil": "4/0",
+     "area_mm2": 107.2,
+     "area_cmil": 211600,
+     "num_hilos": 19,
+     "diam_hilo_mm": 2.68,
+     "diam_total_mm": 13.41,
+     "area_total_mm2": 141.1,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.1996,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.205,
+     "R_cc_75C_al_ohm_km": 0.328
+    },
+    {
+     "awg_kcmil": 250,
+     "area_mm2": 127,
+     "area_cmil": null,
+     "num_hilos": 37,
+     "diam_hilo_mm": 2.09,
+     "diam_total_mm": 14.61,
+     "area_total_mm2": 168,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.1687,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.1753,
+     "R_cc_75C_al_ohm_km": 0.2778
+    },
+    {
+     "awg_kcmil": 300,
+     "area_mm2": 152,
+     "area_cmil": null,
+     "num_hilos": 37,
+     "diam_hilo_mm": 2.29,
+     "diam_total_mm": 16,
+     "area_total_mm2": 201,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.1409,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.1463,
+     "R_cc_75C_al_ohm_km": 0.2318
+    },
+    {
+     "awg_kcmil": 350,
+     "area_mm2": 177,
+     "area_cmil": null,
+     "num_hilos": 37,
+     "diam_hilo_mm": 2.47,
+     "diam_total_mm": 17.3,
+     "area_total_mm2": 235,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.1205,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.1252,
+     "R_cc_75C_al_ohm_km": 0.1984
+    },
+    {
+     "awg_kcmil": 400,
+     "area_mm2": 203,
+     "area_cmil": null,
+     "num_hilos": 37,
+     "diam_hilo_mm": 2.64,
+     "diam_total_mm": 18.49,
+     "area_total_mm2": 268,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.1053,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.1084,
+     "R_cc_75C_al_ohm_km": 0.1737
+    },
+    {
+     "awg_kcmil": 500,
+     "area_mm2": 253,
+     "area_cmil": null,
+     "num_hilos": 37,
+     "diam_hilo_mm": 2.95,
+     "diam_total_mm": 20.65,
+     "area_total_mm2": 336,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0845,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0869,
+     "R_cc_75C_al_ohm_km": 0.1391
+    },
+    {
+     "awg_kcmil": 600,
+     "area_mm2": 304,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 2.52,
+     "diam_total_mm": 22.68,
+     "area_total_mm2": 404,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0704,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0732,
+     "R_cc_75C_al_ohm_km": 0.1159
+    },
+    {
+     "awg_kcmil": 700,
+     "area_mm2": 355,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 2.72,
+     "diam_total_mm": 24.49,
+     "area_total_mm2": 471,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0603,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0622,
+     "R_cc_75C_al_ohm_km": 0.0994
+    },
+    {
+     "awg_kcmil": 750,
+     "area_mm2": 380,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 2.82,
+     "diam_total_mm": 25.35,
+     "area_total_mm2": 505,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0563,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0579,
+     "R_cc_75C_al_ohm_km": 0.0927
+    },
+    {
+     "awg_kcmil": 800,
+     "area_mm2": 405,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 2.91,
+     "diam_total_mm": 26.16,
+     "area_total_mm2": 538,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0528,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0544,
+     "R_cc_75C_al_ohm_km": 0.0868
+    },
+    {
+     "awg_kcmil": 900,
+     "area_mm2": 456,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 3.09,
+     "diam_total_mm": 27.79,
+     "area_total_mm2": 606,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.047,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0481,
+     "R_cc_75C_al_ohm_km": 0.077
+    },
+    {
+     "awg_kcmil": 1000,
+     "area_mm2": 507,
+     "area_cmil": null,
+     "num_hilos": 61,
+     "diam_hilo_mm": 3.25,
+     "diam_total_mm": 29.26,
+     "area_total_mm2": 673,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0423,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0434,
+     "R_cc_75C_al_ohm_km": 0.0695
+    },
+    {
+     "awg_kcmil": 1250,
+     "area_mm2": 633,
+     "area_cmil": null,
+     "num_hilos": 91,
+     "diam_hilo_mm": 2.98,
+     "diam_total_mm": 32.74,
+     "area_total_mm2": 842,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0338,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0347,
+     "R_cc_75C_al_ohm_km": 0.0554
+    },
+    {
+     "awg_kcmil": 1500,
+     "area_mm2": 760,
+     "area_cmil": null,
+     "num_hilos": 91,
+     "diam_hilo_mm": 3.26,
+     "diam_total_mm": 35.86,
+     "area_total_mm2": 1011,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.02814,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.02814,
+     "R_cc_75C_al_ohm_km": 0.0464
+    },
+    {
+     "awg_kcmil": 1750,
+     "area_mm2": 887,
+     "area_cmil": null,
+     "num_hilos": 127,
+     "diam_hilo_mm": 2.98,
+     "diam_total_mm": 38.76,
+     "area_total_mm2": 1180,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.0241,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.0241,
+     "R_cc_75C_al_ohm_km": 0.0397
+    },
+    {
+     "awg_kcmil": 2000,
+     "area_mm2": 1013,
+     "area_cmil": null,
+     "num_hilos": 127,
+     "diam_hilo_mm": 3.19,
+     "diam_total_mm": 41.45,
+     "area_total_mm2": 1349,
+     "R_cc_75C_cu_desnudo_ohm_km": 0.02109,
+     "R_cc_75C_cu_recubierto_ohm_km": 0.02109,
+     "R_cc_75C_al_ohm_km": 0.0348
+    }
+   ]
+  },
+  "cap10-tabla9_R_X_Z_ca_600V": {
+   "referencia": "Capítulo 10, Tabla 9",
+   "descripcion": "R, XL y Z eficaz en c.a., 600 V, 3 fases, 60 Hz, 75 °C (Ω/km)",
+   "pagina_pdf": 938,
+   "filas": [
+    {
+     "mm2": 2.08,
+     "awg_kcmil": 14,
+     "XL_pvc_o_al_ohm_km": 0.19,
+     "XL_acero_ohm_km": 0.24,
+     "R_cu_pvc": 10.2,
+     "R_cu_al": 10.2,
+     "R_cu_acero": 10.2,
+     "R_al_pvc": null,
+     "R_al_al": null,
+     "R_al_acero": null,
+     "Zef085_cu_pvc": 8.9,
+     "Zef085_cu_al": 8.9,
+     "Zef085_cu_acero": 8.9,
+     "Zef085_al_pvc": null,
+     "Zef085_al_al": null,
+     "Zef085_al_acero": null
+    },
+    {
+     "mm2": 3.31,
+     "awg_kcmil": 12,
+     "XL_pvc_o_al_ohm_km": 0.177,
+     "XL_acero_ohm_km": 0.223,
+     "R_cu_pvc": 6.6,
+     "R_cu_al": 6.6,
+     "R_cu_acero": 6.6,
+     "R_al_pvc": null,
+     "R_al_al": null,
+     "R_al_acero": null,
+     "Zef085_cu_pvc": 5.6,
+     "Zef085_cu_al": 5.6,
+     "Zef085_cu_acero": 5.6,
+     "Zef085_al_pvc": null,
+     "Zef085_al_al": null,
+     "Zef085_al_acero": null
+    },
+    {
+     "mm2": 5.26,
+     "awg_kcmil": 10,
+     "XL_pvc_o_al_ohm_km": 0.164,
+     "XL_acero_ohm_km": 0.207,
+     "R_cu_pvc": 3.9,
+     "R_cu_al": 3.9,
+     "R_cu_acero": 3.9,
+     "R_al_pvc": null,
+     "R_al_al": null,
+     "R_al_acero": null,
+     "Zef085_cu_pvc": 3.6,
+     "Zef085_cu_al": 3.6,
+     "Zef085_cu_acero": 3.6,
+     "Zef085_al_pvc": null,
+     "Zef085_al_al": null,
+     "Zef085_al_acero": null
+    },
+    {
+     "mm2": 8.36,
+     "awg_kcmil": 8,
+     "XL_pvc_o_al_ohm_km": 0.171,
+     "XL_acero_ohm_km": 0.213,
+     "R_cu_pvc": 2.56,
+     "R_cu_al": 2.56,
+     "R_cu_acero": 2.56,
+     "R_al_pvc": null,
+     "R_al_al": null,
+     "R_al_acero": null,
+     "Zef085_cu_pvc": 2.26,
+     "Zef085_cu_al": 2.26,
+     "Zef085_cu_acero": 2.3,
+     "Zef085_al_pvc": null,
+     "Zef085_al_al": null,
+     "Zef085_al_acero": null
+    },
+    {
+     "mm2": 13.3,
+     "awg_kcmil": 6,
+     "XL_pvc_o_al_ohm_km": 0.167,
+     "XL_acero_ohm_km": 0.21,
+     "R_cu_pvc": 1.61,
+     "R_cu_al": 1.61,
+     "R_cu_acero": 1.61,
+     "R_al_pvc": 2.66,
+     "R_al_al": 2.66,
+     "R_al_acero": 2.66,
+     "Zef085_cu_pvc": 1.44,
+     "Zef085_cu_al": 1.48,
+     "Zef085_cu_acero": 1.48,
+     "Zef085_al_pvc": 2.33,
+     "Zef085_al_al": 2.36,
+     "Zef085_al_acero": 2.36
+    },
+    {
+     "mm2": 21.15,
+     "awg_kcmil": 4,
+     "XL_pvc_o_al_ohm_km": 0.157,
+     "XL_acero_ohm_km": 0.197,
+     "R_cu_pvc": 1.02,
+     "R_cu_al": 1.02,
+     "R_cu_acero": 1.02,
+     "R_al_pvc": 1.67,
+     "R_al_al": 1.67,
+     "R_al_acero": 1.67,
+     "Zef085_cu_pvc": 0.95,
+     "Zef085_cu_al": 0.95,
+     "Zef085_cu_acero": 0.98,
+     "Zef085_al_pvc": 1.51,
+     "Zef085_al_al": 1.51,
+     "Zef085_al_acero": 1.51
+    },
+    {
+     "mm2": 26.67,
+     "awg_kcmil": 3,
+     "XL_pvc_o_al_ohm_km": 0.154,
+     "XL_acero_ohm_km": 0.194,
+     "R_cu_pvc": 0.82,
+     "R_cu_al": 0.82,
+     "R_cu_acero": 0.82,
+     "R_al_pvc": 1.31,
+     "R_al_al": 1.35,
+     "R_al_acero": 1.31,
+     "Zef085_cu_pvc": 0.75,
+     "Zef085_cu_al": 0.79,
+     "Zef085_cu_acero": 0.79,
+     "Zef085_al_pvc": 1.21,
+     "Zef085_al_al": 1.21,
+     "Zef085_al_acero": 1.21
+    },
+    {
+     "mm2": 33.62,
+     "awg_kcmil": 2,
+     "XL_pvc_o_al_ohm_km": 0.148,
+     "XL_acero_ohm_km": 0.187,
+     "R_cu_pvc": 0.62,
+     "R_cu_al": 0.66,
+     "R_cu_acero": 0.66,
+     "R_al_pvc": 1.05,
+     "R_al_al": 1.05,
+     "R_al_acero": 1.05,
+     "Zef085_cu_pvc": 0.62,
+     "Zef085_cu_al": 0.62,
+     "Zef085_cu_acero": 0.66,
+     "Zef085_al_pvc": 0.98,
+     "Zef085_al_al": 0.98,
+     "Zef085_al_acero": 0.98
+    },
+    {
+     "mm2": 42.41,
+     "awg_kcmil": 1,
+     "XL_pvc_o_al_ohm_km": 0.151,
+     "XL_acero_ohm_km": 0.187,
+     "R_cu_pvc": 0.49,
+     "R_cu_al": 0.52,
+     "R_cu_acero": 0.52,
+     "R_al_pvc": 0.82,
+     "R_al_al": 0.85,
+     "R_al_acero": 0.82,
+     "Zef085_cu_pvc": 0.52,
+     "Zef085_cu_al": 0.52,
+     "Zef085_cu_acero": 0.52,
+     "Zef085_al_pvc": 0.79,
+     "Zef085_al_al": 0.79,
+     "Zef085_al_acero": 0.82
+    },
+    {
+     "mm2": 53.49,
+     "awg_kcmil": "1/0",
+     "XL_pvc_o_al_ohm_km": 0.144,
+     "XL_acero_ohm_km": 0.18,
+     "R_cu_pvc": 0.39,
+     "R_cu_al": 0.43,
+     "R_cu_acero": 0.39,
+     "R_al_pvc": 0.66,
+     "R_al_al": 0.69,
+     "R_al_acero": 0.66,
+     "Zef085_cu_pvc": 0.43,
+     "Zef085_cu_al": 0.43,
+     "Zef085_cu_acero": 0.43,
+     "Zef085_al_pvc": 0.62,
+     "Zef085_al_al": 0.66,
+     "Zef085_al_acero": 0.66
+    },
+    {
+     "mm2": 67.43,
+     "awg_kcmil": "2/0",
+     "XL_pvc_o_al_ohm_km": 0.141,
+     "XL_acero_ohm_km": 0.177,
+     "R_cu_pvc": 0.33,
+     "R_cu_al": 0.33,
+     "R_cu_acero": 0.33,
+     "R_al_pvc": 0.52,
+     "R_al_al": 0.52,
+     "R_al_acero": 0.52,
+     "Zef085_cu_pvc": 0.36,
+     "Zef085_cu_al": 0.36,
+     "Zef085_cu_acero": 0.36,
+     "Zef085_al_pvc": 0.52,
+     "Zef085_al_al": 0.52,
+     "Zef085_al_acero": 0.52
+    },
+    {
+     "mm2": 85.01,
+     "awg_kcmil": "3/0",
+     "XL_pvc_o_al_ohm_km": 0.138,
+     "XL_acero_ohm_km": 0.171,
+     "R_cu_pvc": 0.253,
+     "R_cu_al": 0.269,
+     "R_cu_acero": 0.259,
+     "R_al_pvc": 0.43,
+     "R_al_al": 0.43,
+     "R_al_acero": 0.43,
+     "Zef085_cu_pvc": 0.289,
+     "Zef085_cu_al": 0.302,
+     "Zef085_cu_acero": 0.308,
+     "Zef085_al_pvc": 0.43,
+     "Zef085_al_al": 0.43,
+     "Zef085_al_acero": 0.46
+    },
+    {
+     "mm2": 107.2,
+     "awg_kcmil": "4/0",
+     "XL_pvc_o_al_ohm_km": 0.135,
+     "XL_acero_ohm_km": 0.167,
+     "R_cu_pvc": 0.203,
+     "R_cu_al": 0.22,
+     "R_cu_acero": 0.207,
+     "R_al_pvc": 0.33,
+     "R_al_al": 0.36,
+     "R_al_acero": 0.33,
+     "Zef085_cu_pvc": 0.243,
+     "Zef085_cu_al": 0.256,
+     "Zef085_cu_acero": 0.262,
+     "Zef085_al_pvc": 0.36,
+     "Zef085_al_al": 0.36,
+     "Zef085_al_acero": 0.36
+    },
+    {
+     "mm2": 127,
+     "awg_kcmil": 250,
+     "XL_pvc_o_al_ohm_km": 0.135,
+     "XL_acero_ohm_km": 0.171,
+     "R_cu_pvc": 0.171,
+     "R_cu_al": 0.187,
+     "R_cu_acero": 0.177,
+     "R_al_pvc": 0.279,
+     "R_al_al": 0.295,
+     "R_al_acero": 0.282,
+     "Zef085_cu_pvc": 0.217,
+     "Zef085_cu_al": 0.23,
+     "Zef085_cu_acero": 0.24,
+     "Zef085_al_pvc": 0.308,
+     "Zef085_al_al": 0.322,
+     "Zef085_al_acero": 0.33
+    },
+    {
+     "mm2": 152,
+     "awg_kcmil": 300,
+     "XL_pvc_o_al_ohm_km": 0.135,
+     "XL_acero_ohm_km": 0.167,
+     "R_cu_pvc": 0.144,
+     "R_cu_al": 0.161,
+     "R_cu_acero": 0.148,
+     "R_al_pvc": 0.233,
+     "R_al_al": 0.249,
+     "R_al_acero": 0.236,
+     "Zef085_cu_pvc": 0.194,
+     "Zef085_cu_al": 0.207,
+     "Zef085_cu_acero": 0.213,
+     "Zef085_al_pvc": 0.269,
+     "Zef085_al_al": 0.282,
+     "Zef085_al_acero": 0.289
+    },
+    {
+     "mm2": 177,
+     "awg_kcmil": 350,
+     "XL_pvc_o_al_ohm_km": 0.131,
+     "XL_acero_ohm_km": 0.164,
+     "R_cu_pvc": 0.125,
+     "R_cu_al": 0.141,
+     "R_cu_acero": 0.128,
+     "R_al_pvc": 0.2,
+     "R_al_al": 0.217,
+     "R_al_acero": 0.207,
+     "Zef085_cu_pvc": 0.174,
+     "Zef085_cu_al": 0.19,
+     "Zef085_cu_acero": 0.197,
+     "Zef085_al_pvc": 0.24,
+     "Zef085_al_al": 0.253,
+     "Zef085_al_acero": 0.262
+    },
+    {
+     "mm2": 203,
+     "awg_kcmil": 400,
+     "XL_pvc_o_al_ohm_km": 0.131,
+     "XL_acero_ohm_km": 0.161,
+     "R_cu_pvc": 0.108,
+     "R_cu_al": 0.125,
+     "R_cu_acero": 0.115,
+     "R_al_pvc": 0.177,
+     "R_al_al": 0.194,
+     "R_al_acero": 0.18,
+     "Zef085_cu_pvc": 0.161,
+     "Zef085_cu_al": 0.174,
+     "Zef085_cu_acero": 0.184,
+     "Zef085_al_pvc": 0.217,
+     "Zef085_al_al": 0.233,
+     "Zef085_al_acero": 0.24
+    },
+    {
+     "mm2": 253,
+     "awg_kcmil": 500,
+     "XL_pvc_o_al_ohm_km": 0.128,
+     "XL_acero_ohm_km": 0.157,
+     "R_cu_pvc": 0.089,
+     "R_cu_al": 0.105,
+     "R_cu_acero": 0.095,
+     "R_al_pvc": 0.141,
+     "R_al_al": 0.157,
+     "R_al_acero": 0.148,
+     "Zef085_cu_pvc": 0.141,
+     "Zef085_cu_al": 0.157,
+     "Zef085_cu_acero": 0.164,
+     "Zef085_al_pvc": 0.187,
+     "Zef085_al_al": 0.2,
+     "Zef085_al_acero": 0.21
+    },
+    {
+     "mm2": 304,
+     "awg_kcmil": 600,
+     "XL_pvc_o_al_ohm_km": 0.128,
+     "XL_acero_ohm_km": 0.157,
+     "R_cu_pvc": 0.075,
+     "R_cu_al": 0.092,
+     "R_cu_acero": 0.082,
+     "R_al_pvc": 0.118,
+     "R_al_al": 0.135,
+     "R_al_acero": 0.125,
+     "Zef085_cu_pvc": 0.131,
+     "Zef085_cu_al": 0.144,
+     "Zef085_cu_acero": 0.154,
+     "Zef085_al_pvc": 0.167,
+     "Zef085_al_al": 0.18,
+     "Zef085_al_acero": 0.19
+    },
+    {
+     "mm2": 380,
+     "awg_kcmil": 750,
+     "XL_pvc_o_al_ohm_km": 0.125,
+     "XL_acero_ohm_km": 0.157,
+     "R_cu_pvc": 0.062,
+     "R_cu_al": 0.079,
+     "R_cu_acero": 0.069,
+     "R_al_pvc": 0.095,
+     "R_al_al": 0.112,
+     "R_al_acero": 0.102,
+     "Zef085_cu_pvc": 0.118,
+     "Zef085_cu_al": 0.131,
+     "Zef085_cu_acero": 0.141,
+     "Zef085_al_pvc": 0.148,
+     "Zef085_al_al": 0.161,
+     "Zef085_al_acero": 0.171
+    },
+    {
+     "mm2": 507,
+     "awg_kcmil": 1000,
+     "XL_pvc_o_al_ohm_km": 0.121,
+     "XL_acero_ohm_km": 0.151,
+     "R_cu_pvc": 0.049,
+     "R_cu_al": 0.062,
+     "R_cu_acero": 0.059,
+     "R_al_pvc": 0.075,
+     "R_al_al": 0.089,
+     "R_al_acero": 0.082,
+     "Zef085_cu_pvc": 0.105,
+     "Zef085_cu_al": 0.118,
+     "Zef085_cu_acero": 0.131,
+     "Zef085_al_pvc": 0.128,
+     "Zef085_al_al": 0.138,
+     "Zef085_al_acero": 0.151
+    }
+   ]
+  }
+ }
+}

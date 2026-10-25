@@ -1,0 +1,132 @@
+{
+  "id": "nom-001-sede-2012/tabla-220-12",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 220-12",
+    "article": "220-12",
+    "title": "Carga de alumbrado general por tipo de inmueble (VA/m²)"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      56
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla 220-12_carga_alumbrado_por_inmueble); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "tipo_inmueble",
+        "label": "tipo_inmueble"
+      },
+      {
+        "key": "VA_por_m2",
+        "label": "VA_por_m2"
+      },
+      {
+        "key": "nota",
+        "label": "nota"
+      }
+    ],
+    "rows": [
+      {
+        "tipo_inmueble": "Bancos",
+        "VA_por_m2": 39,
+        "nota": "ver 220-14(k)"
+      },
+      {
+        "tipo_inmueble": "Casas de huéspedes",
+        "VA_por_m2": 17
+      },
+      {
+        "tipo_inmueble": "Clubes",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Cuarteles y auditorios",
+        "VA_por_m2": 11
+      },
+      {
+        "tipo_inmueble": "Depósitos (almacenamiento)",
+        "VA_por_m2": 3
+      },
+      {
+        "tipo_inmueble": "Edificios de oficinas",
+        "VA_por_m2": 39,
+        "nota": "ver 220-14(k)"
+      },
+      {
+        "tipo_inmueble": "Edificios industriales y comerciales (lugares de almacenamiento)",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Escuelas",
+        "VA_por_m2": 33
+      },
+      {
+        "tipo_inmueble": "Estacionamientos comerciales",
+        "VA_por_m2": 6
+      },
+      {
+        "tipo_inmueble": "Hospitales",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Hoteles y moteles, incluidos apartamentos sin cocineta",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Iglesias",
+        "VA_por_m2": 11
+      },
+      {
+        "tipo_inmueble": "Juzgados",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Lugares de almacenamiento",
+        "VA_por_m2": 3
+      },
+      {
+        "tipo_inmueble": "Peluquerías y salones de belleza",
+        "VA_por_m2": 33
+      },
+      {
+        "tipo_inmueble": "Restaurantes",
+        "VA_por_m2": 22
+      },
+      {
+        "tipo_inmueble": "Tiendas",
+        "VA_por_m2": 33
+      },
+      {
+        "tipo_inmueble": "Unidades de vivienda",
+        "VA_por_m2": 33,
+        "nota": "ver 220-14(j)"
+      },
+      {
+        "tipo_inmueble": "Vestíbulos, pasillos, closets, escaleras (excepto viviendas)",
+        "VA_por_m2": 6
+      },
+      {
+        "tipo_inmueble": "Lugares de reunión y auditorios (excepto viviendas)",
+        "VA_por_m2": 11
+      },
+      {
+        "tipo_inmueble": "Bodegas (excepto viviendas)",
+        "VA_por_m2": 3
+      }
+    ]
+  }
+}

@@ -87,7 +87,7 @@ Para cada alimentador o circuito derivado (el cable más la protección en su or
 | AL-12 (VFD-01) | 1.25·31.36 = **39.20** | **40 A** | 60 °C | **8 AWG** | 40 | ampacidad | 0.848 | 10 AWG |
 | AL-13 (M-03) | 1.25·14 = **17.50** | 250 %·14 = **35 A** | 75 °C (letra B) | **14 AWG** | 20 | ampacidad | 1.333 | 14 AWG (≤ fase) |
 | AL-2 (TR-2) | I_pri = **90.21** | 125 %·90.21 = 112.8 → **125 A** | 75 °C | **2 AWG** | 115 | **protección** | 0.113 | 6 AWG |
-| AL-3 (secundario TR-2) | 1.25·2.916 + 3.779 + 43.739 = **51.16** | sin protección en su origen | 60 °C | **6 AWG** | 55 | ampacidad | 0.604 | — |
+| AL-3 (secundario TR-2) | 1.25·2.916 + 3.779 + 43.739 = **51.16** | sin protección en su origen | 60 °C | **6 AWG** | 55 | ampacidad | 0.604 | 8 (puente de unión, Tabla 250-66) |
 | AL-21 (L-01) | 1.25·8.748 = **10.93** | **15 A** | 60 °C | **12 AWG** | 20 | **caída** | 2.486 | 12 AWG |
 | AL-22 (C-01) | **11.34** | **15 A** | 60 °C | **12 AWG** | 20 | **caída** | 2.685 | 12 AWG |
 | AL-23 (CG-01) | **43.74** | **45 A** | 60 °C | **6 AWG** | 55 | ampacidad | 2.096 | 10 AWG |
@@ -124,7 +124,7 @@ Todos cumplen ampacidad, protección y caída de tensión. Los conductores de ti
 
 1. **VFD-01** (información): la protección del circuito del variador debe confirmarse con su fabricante (430-130).
 2. **AL-3** (advertencia): son conductores del secundario de TR-2 sin protección en su origen. Hay que verificar 240-21(c): longitud y protección en su extremo de carga. En un proyecto real se agregaría el interruptor principal de TAB-A.
-3. **AL-3** (información): el puente de unión del sistema derivado se dimensiona con 250-30(a) y la Tabla 250-66, en una fase posterior.
+3. **AL-3**: el puente de unión del lado de alimentación se dimensiona con 250-30(a), 250-102(c)(1) y la Tabla 250-66 (p. 122): fase 6 AWG = 13.3 mm² ≤ 33.6 mm² → **8 AWG Cu**. Con el calibre fijado del ejemplo (250 kcmil = 127 mm², renglón «más de 3/0 a 350») resulta **2 AWG Cu**. Agregado el 2026-10-25 al integrar la Tabla 250-66.
 
 ## 6. Alcance y supuestos (fase 1)
 

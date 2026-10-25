@@ -1,0 +1,53 @@
+{
+  "id": "nom-001-sede-2012/cap10-tabla-1",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Capítulo 10, Tabla 1",
+    "article": "Capítulo 10",
+    "title": "Porcentaje máximo de llenado de tubo conduit"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      927
+    ],
+    "method": "captura-usuario",
+    "extractor": "Extracción entregada por el usuario (fuentes/nom-001-sede-2012-externa/tablas_NOM-001-SEDE-2012.json, tabla cap10-tabla1_porcentaje_llenado); valores copiados sin modificar"
+  },
+  "notes": [
+    "Los rangos se conservan como texto, como en la tabla publicada (p. ej. \"12-23\", \"43+\")."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "num_conductores",
+        "label": "num_conductores"
+      },
+      {
+        "key": "porcentaje_max",
+        "label": "porcentaje_max"
+      }
+    ],
+    "rows": [
+      {
+        "num_conductores": 1,
+        "porcentaje_max": 53
+      },
+      {
+        "num_conductores": 2,
+        "porcentaje_max": 31
+      },
+      {
+        "num_conductores": "3+",
+        "porcentaje_max": 40
+      }
+    ]
+  }
+}

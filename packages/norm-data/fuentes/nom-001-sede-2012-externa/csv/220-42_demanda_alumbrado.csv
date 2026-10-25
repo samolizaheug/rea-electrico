@@ -1,0 +1,12 @@
+﻿tipo_inmueble,VA_desde,VA_hasta,factor_demanda_pct,nota
+Almacenes,0,12500,100,
+Almacenes,12500,,50,
+Hospitales,0,50000,40,"no aplica a zonas donde todo el alumbrado se usa a la vez (quirófanos, comedores)"
+Hospitales,50000,,20,
+Hoteles y moteles (incl. apartamentos sin cocina),0,20000,50,no aplica a zonas donde todo el alumbrado se usa a la vez
+Hoteles y moteles (incl. apartamentos sin cocina),20000,100000,40,
+Hoteles y moteles (incl. apartamentos sin cocina),100000,,30,
+Unidades de vivienda,0,3000,100,
+Unidades de vivienda,3000,120000,35,
+Unidades de vivienda,120000,,25,
+Todos los demás,0,,100,

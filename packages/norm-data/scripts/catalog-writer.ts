@@ -72,6 +72,11 @@ function mdTable(head: string[], rows: string[][]): string {
 
 function renderData(t: NormTable): string {
   switch (t.kind) {
+    case "rows-table":
+      return mdTable(
+        t.data.columns.map((c) => c.label),
+        t.data.rows.map((r) => t.data.columns.map((c) => (r[c.key] === null || r[c.key] === undefined ? "–" : String(r[c.key])))),
+      );
     case "iec-ampacity": {
       const methods = [...new Set(t.data.columns.map((c) => c.method))];
       const head = `Referencia: ${t.data.reference.medium} a ${t.data.reference.temperatureC} °C${t.data.reference.note ? ` (${t.data.reference.note})` : ""}`;

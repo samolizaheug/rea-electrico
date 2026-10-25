@@ -9,14 +9,15 @@ import { nom001Sede2012 } from "./nom-001-sede-2012";
 export * from "./nom-001-sede-2012";
 export * from "./iec-60364-2001";
 
-const NEC_REASON = "Tablas del NEC pendientes de captura (ver packages/norm-data/plantillas/nec).";
 const IEC_REASON = "Edición vigente de IEC 60364-5-52 sin fuente disponible; use la edición 2001 (fuente secundaria ABB).";
 
+/**
+ * El NEC (NFPA 70) no se incluye: su texto tiene derechos de autor y no hay fuente gratuita
+ * (decisión del usuario, 2026-10-25). Se usa la NOM-001-SEDE-2012, documento público basado en
+ * el NEC 2011. Un modo NEC se agregaría como conjunto de datos aparte, con fuente autorizada.
+ */
 export const normModules: NormModule[] = [
   nom001Sede2012,
-  unavailableNormModule("nec", "2020", "NEC (NFPA 70) 2020", NEC_REASON),
-  unavailableNormModule("nec", "2023", "NEC (NFPA 70) 2023", NEC_REASON),
-  unavailableNormModule("nec", "2026", "NEC (NFPA 70) 2026", NEC_REASON),
   iec60364_2001,
   unavailableNormModule("iec-60364", "2009+A1:2024", "IEC 60364-5-52:2009+A1:2024", IEC_REASON),
 ];
