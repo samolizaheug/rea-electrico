@@ -125,17 +125,17 @@
     },
     "cap10-tabla-4": {
       "status": "verificado",
-      "fingerprint": "500b45fdddf856ddf01f680f41ca9317a9f1ebd20da044a6d6bc42a41cbda00b",
-      "by": "Claude (asistente IA)",
+      "fingerprint": "046eadd35dd426a70a0e129d161b2189f93fb645a76024854aa38cad53ed0b61",
+      "by": "Ing. RGLR",
       "date": "2026-10-25",
-      "notes": "Comparacion celda por celda contra las paginas 928-932 y 285-286 renderizadas como imagen; consistencia interna verificada (area = pi d2/4; 60/53/31/40 %). Pendiente de aval del Ing. RGLR. Notas de titulos del DOF (EMT 'no metalico'; segunda 'Cedula 80' = tipo EB por confirmar) y posible errata en factor Sd de la columna 4 de 392-22(a)."
+      "notes": "Verificacion avalada por Ing. RGLR. Comparacion celda por celda contra las paginas 928-932 renderizadas como imagen (Claude, asistente IA) y consistencia interna (area = pi d2/4; 60/53/31/40 %). Hallazgos E9-E12 aceptados como se documentan; E10: seccion pvc-eb = PVC tipo EB."
     },
     "tabla-392-22-a": {
       "status": "verificado",
       "fingerprint": "8f2afe0a7a99182946322903be8702247e5f67196a91d1aea76ff1a001d14509",
-      "by": "Claude (asistente IA)",
+      "by": "Ing. RGLR",
       "date": "2026-10-25",
-      "notes": "Comparacion celda por celda contra las paginas 928-932 y 285-286 renderizadas como imagen; consistencia interna verificada (area = pi d2/4; 60/53/31/40 %). Pendiente de aval del Ing. RGLR. Notas de titulos del DOF (EMT 'no metalico'; segunda 'Cedula 80' = tipo EB por confirmar) y posible errata en factor Sd de la columna 4 de 392-22(a)."
+      "notes": "Verificacion avalada por Ing. RGLR. Comparacion celda por celda contra las paginas 928-932 y 285-286 renderizadas como imagen (Claude, asistente IA) y consistencia interna (area = pi d2/4; 60/53/31/40 %). Hallazgos E9-E12 aceptados como se documentan."
     }
   }
 }

@@ -30,9 +30,10 @@ Cada método define cuatro cosas que usará el cálculo:
 | | Fondo sólido | 392 | 392-80 (E6) | **PVC (supuesto)** | Tabla 392-22(a) |
 | Enterradas | Directamente enterrado | 300-5 | (b)(16) | **PVC (supuesto)** | No aplica |
 | | Banco de ductos PVC / HDPE | 352/353 | (b)(16) | PVC | Tabla 4: PVC cédula 40 / HDPE |
+| | Banco de ductos PVC tipo EB embebido en concreto | 352 | (b)(16) | PVC | Tabla 4: PVC tipo EB (hallazgo E10) |
 | Aire libre | Conductores individuales | 310-15(b) | (b)(17) | **PVC (supuesto)** | No aplica |
 
-## Supuestos pendientes de confirmación del usuario
+## Supuestos (aprobados por el usuario, Ing. RGLR, 2026-10-24)
 
 La Tabla 9 de la NOM da R y XL **solo para tres conductores en tubo conduit** de PVC, aluminio o acero. Donde no aplica directamente se declara un supuesto, que aparecerá en la memoria de cálculo:
 

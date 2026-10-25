@@ -54,7 +54,7 @@ Ejemplos:
 
 Otras referencias de fabricantes:
 - ABB (*Electrical installation handbook*, 4.ª ed.): por debajo de 85 % de la tensión nominal, la retención de un contactor no es confiable. Se aplicará en el estudio de arranque, en fases posteriores.
-- **NOM 110-4** dice que "la tensión nominal de un equipo no debe ser menor a la tensión real del circuito al que está conectado". La herramienta aplica las tolerancias de producto anteriores; la interpretación de 110-4 para pares normalizados como 460/480 V queda pendiente de confirmación del usuario.
+- **NOM 110-4** dice que "la tensión nominal de un equipo no debe ser menor a la tensión real del circuito al que está conectado". Interpretación confirmada por el usuario (Ing. RGLR, 2026-10-24): se aplican las tolerancias de producto anteriores; los pares normalizados como 460/480 V cumplen.
 
 ## Límites de caída de tensión (los usa el cálculo de la E5)
 

@@ -536,7 +536,7 @@ const TABLE4_SECTIONS = [
   { id: "pvc-80", article: "352", label: "Tubo conduit rígido de PVC, cédula 80", title: /^Artículo 352 – .*Cédula 80/ },
   { id: "pvc-40-hdpe", article: "352/353", label: "Tubo conduit rígido de PVC cédula 40 y conduit HDPE", title: /^Artículos 352 y 353 – / },
   { id: "pvc-a", article: "352", label: "Tubo conduit rígido de PVC, tipo A", title: /^Artículo 352 – .*Tipo A/ },
-  { id: "pvc-eb", article: "352", label: "Tubo conduit rígido de PVC, tipo EB (rotulada \"Cédula 80\" en el DOF; por confirmar)", title: /^Artículo 352 – .*Cédula 80/ },
+  { id: "pvc-eb", article: "352", label: "Tubo conduit rígido de PVC, tipo EB (rotulada \"Cédula 80\" en el DOF)", title: /^Artículo 352 – .*Cédula 80/ },
 ] as const;
 
 function racewayDimensions(): NormTable {
@@ -585,7 +585,7 @@ function racewayDimensions(): NormTable {
     notes: [
       "\"––\" en la tabla publicada (designación no disponible para ese tipo) se guarda como null.",
       "Nota de transcripción: la primera sección se titula en el DOF \"Artículo 358 – Tubo conduit no metálico (EMT)\"; 358-2 define el EMT como tubo conduit METÁLICO ligero. Se usa el nombre de 358-2; los valores no cambian.",
-      "Nota de transcripción: la última sección repite el título \"Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80\" con valores distintos de la primera sección de cédula 80 (p. ej. 53 mm: 56.40 mm contra 48.60 mm). Por sus valores corresponde al PVC tipo EB de la tabla equivalente del NEC; queda identificada como \"pvc-eb\" y POR CONFIRMAR por el usuario. No se ofrece como opción hasta confirmarla.",
+      "Nota de transcripción: la última sección repite el título \"Artículo 352 – Tubo conduit rígido de PVC (PVC), Cédula 80\" con valores distintos de la primera sección de cédula 80 (p. ej. 53 mm: 56.40 mm contra 48.60 mm). Por sus valores corresponde al PVC tipo EB de la tabla equivalente del NEC; queda identificada como \"pvc-eb\" (hallazgo E10, aceptado por el usuario el 2026-10-24).",
     ],
     errata: [],
   };

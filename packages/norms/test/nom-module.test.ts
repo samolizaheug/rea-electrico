@@ -41,7 +41,7 @@ describe("módulos normativos", () => {
     // Todo supuesto no cubierto por la norma queda declarado.
     for (const m of RACEWAY_METHODS) {
       if (["conduit-rmc-inox", "ducto-metalico", "charola-escalera", "charola-fondo-solido", "enterrado-directo", "aire-libre"].includes(m.value)) {
-        expect(m.impedanceAssumption, m.value).toMatch(/Pendiente de confirmación/);
+        expect(m.impedanceAssumption, m.value).toMatch(/Supuesto aprobado por el usuario/);
       }
     }
   });

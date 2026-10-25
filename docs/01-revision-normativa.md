@@ -89,10 +89,10 @@ Detalles menores que no afectan el cálculo: la sección 1/0 aparece como 53.49 
 
 | Tabla | p. | Estado |
 |---|---|---|
-| Capítulo 10, Tabla 4: dimensiones de tubo conduit por artículo (12 secciones) | 928–932 | Verificada visualmente por Claude; pendiente de aval del Ing. RGLR. Consistencia: área = π·d²/4 y 60/53/31/40 % en todos los renglones |
+| Capítulo 10, Tabla 4: dimensiones de tubo conduit por artículo (12 secciones) | 928–932 | Verificada visualmente por Claude; avalada por el Ing. RGLR. Consistencia: área = π·d²/4 y 60/53/31/40 % en todos los renglones |
 | Tabla 392-22(a): área de ocupación de charolas, 5–90 cm | 285–286 | Igual que la anterior |
 
-**Hallazgos nuevos en el texto del DOF (pendientes de tu decisión; ninguno se usa en el cálculo de la fase 1):**
+**Hallazgos nuevos en el texto del DOF (aceptados por el usuario el 2026-10-24 tal como se proponen):**
 
 | # | Ubicación | Hallazgo | Propuesta |
 |---|---|---|---|

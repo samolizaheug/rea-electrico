@@ -64,7 +64,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     ampacityTable: T16,
     impedanceColumn: "acero",
     impedanceAssumption:
-      "La Tabla 9 no tiene columna para acero inoxidable; se usan R y XL de la columna de acero (valores más altos, caída de tensión conservadora). Pendiente de confirmación del usuario.",
+      "La Tabla 9 no tiene columna para acero inoxidable; se usan R y XL de la columna de acero (valores más altos, caída de tensión conservadora). Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "tabla-4", section: "rmc" },
   },
 
@@ -82,7 +82,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     ampacityTable: T16,
     groupingRule: "376-22(b): los factores de ajuste de 310-15(b)(3)(a) se aplican solo si hay más de 30 conductores portadores de corriente. Llenado máximo 20 % (376-22(a)).",
     impedanceColumn: "acero",
-    impedanceAssumption: "La Tabla 9 es para tres conductores en tubo conduit; para ducto metálico se usa la columna de acero como aproximación conservadora. Pendiente de confirmación del usuario.",
+    impedanceAssumption: "La Tabla 9 es para tres conductores en tubo conduit; para ducto metálico se usa la columna de acero como aproximación conservadora. Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "ducto-catalogo" },
   },
 
@@ -95,7 +95,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     ampacityTable: null,
     ampacityRule: "392-80(a): ampacidad según el tipo de cable (multiconductor o conductores individuales) y su disposición en la charola. Se implementa en la etapa E6.",
     impedanceColumn: "pvc",
-    impedanceAssumption: "La Tabla 9 es para tubo conduit; para charola (sin envolvente magnética) se usa la columna de PVC como aproximación. Pendiente de confirmación del usuario.",
+    impedanceAssumption: "La Tabla 9 es para tubo conduit; para charola (sin envolvente magnética) se usa la columna de PVC como aproximación. Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "charola" },
   },
   {
@@ -106,7 +106,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     ampacityTable: null,
     ampacityRule: "392-80(a): ampacidad según el tipo de cable y su disposición en la charola; fondo sólido con tapa tiene factores propios. Se implementa en la etapa E6.",
     impedanceColumn: "pvc",
-    impedanceAssumption: "La Tabla 9 es para tubo conduit; para charola se usa la columna de PVC como aproximación. Pendiente de confirmación del usuario.",
+    impedanceAssumption: "La Tabla 9 es para tubo conduit; para charola se usa la columna de PVC como aproximación. Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "charola" },
   },
 
@@ -118,7 +118,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     article: "300-5",
     ampacityTable: T16,
     impedanceColumn: "pvc",
-    impedanceAssumption: "La Tabla 9 es para tubo conduit; para cable directamente enterrado se usa la columna de PVC (sin envolvente magnética) como aproximación. Pendiente de confirmación del usuario.",
+    impedanceAssumption: "La Tabla 9 es para tubo conduit; para cable directamente enterrado se usa la columna de PVC (sin envolvente magnética) como aproximación. Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "ninguna" },
   },
   {
@@ -130,6 +130,15 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     impedanceColumn: "pvc",
     sizes: { kind: "tabla-4", section: "pvc-40-hdpe" },
   },
+  {
+    value: "enterrado-banco-pvc-eb",
+    label: "Banco de ductos de PVC tipo EB embebido en concreto",
+    group: "Instalaciones enterradas",
+    article: "352, 300-5",
+    ampacityTable: T16,
+    impedanceColumn: "pvc",
+    sizes: { kind: "tabla-4", section: "pvc-eb" },
+  },
 
   // ---- Aire libre
   {
@@ -139,7 +148,7 @@ export const RACEWAY_METHODS: RacewayMethod[] = [
     article: "310-15(b)",
     ampacityTable: T17,
     impedanceColumn: "pvc",
-    impedanceAssumption: "La Tabla 9 es para tubo conduit; al aire libre se usa la columna de PVC como aproximación (la reactancia real depende de la separación entre conductores). Pendiente de confirmación del usuario.",
+    impedanceAssumption: "La Tabla 9 es para tubo conduit; al aire libre se usa la columna de PVC como aproximación (la reactancia real depende de la separación entre conductores). Supuesto aprobado por el usuario (Ing. RGLR, 2026-10-24).",
     sizes: { kind: "ninguna" },
   },
 ];
