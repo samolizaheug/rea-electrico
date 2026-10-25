@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E6** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, con memoria de cálculo). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E7** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, memoria por elemento, vista en tabla y cuadros de carga con balance de fases). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -39,17 +39,26 @@ packages/
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
 apps/
   web/         Editor de unifilares (React + React Flow + Zustand)
+docs/          Plan, revisión normativa, formato de archivo, guías
+referencias/   Documentos normativos fuente (no versionados)
+```
 
-## Editor (E3)
+## Editor
 
 - Arrastra elementos desde la biblioteca, o haz doble clic en uno para agregarlo al centro de la vista.
 - Para conectar, arrastra de un puerto a otro; los puertos aparecen al pasar el ratón sobre el elemento.
 - Atajos: Supr elimina · Ctrl+Z / Ctrl+Y deshacen / rehacen · Ctrl+C / Ctrl+V copian / pegan · Ctrl+D duplica · R gira 90° · Shift+arrastre hace selección múltiple.
 - Simbología ANSI/IEEE ↔ IEC desde la barra superior: cambia solo el dibujo, no el modelo.
 - Guardar descarga un `.rea.json`; Abrir lo carga y lo valida. Además hay autoguardado en el navegador.
-docs/          Plan, revisión normativa, formato de archivo, guías
-referencias/   Documentos normativos fuente (no versionados)
-```
+
+## Resultados (E7)
+
+El cálculo se repite solo con cada cambio, siempre que no haya errores de datos ni de topología.
+
+- **Diagrama**: con «Mostrar resultados» activo, cada elemento muestra su calibre, protección, corriente, caída de tensión y tensión en barras. Los valores fuera de límite se marcan en ámbar (advertencia) o en rojo (error).
+- **Inspector → Resultados y memoria**: datos calculados del elemento seleccionado y su memoria paso a paso (flujo de carga, dimensionamiento y selección de la protección). Cada paso indica fórmula, valores, tabla y artículo.
+- **Tabla**: todos los elementos en filas, agrupados por tipo. Los parámetros se editan en las celdas y los resultados aparecen al lado.
+- **Cuadros de carga**: un cuadro por tablero o CCM con la carga de cada circuito por fase (VA), sus totales, la corriente por fase y el desbalance, calculado como (Fmáx − Fmín) / Fmáx.
 
 ## Documentación
 
