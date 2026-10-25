@@ -149,8 +149,8 @@ Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria A
 | # | Ubicación | Hallazgo | Tratamiento actual |
 |---|---|---|---|
 | ABB-1 | Tabla 4, mineral 70 °C, 45 °C | 0.87, mayor que el de 40 °C (0.85); rompe la secuencia | Se transcribe tal cual. No se usa: la herramienta no ofrece aislamiento mineral |
-| ABB-2 | Tabla 8, A1, Al PVC, 2 cargados, 2.5 mm² | 4.ª ed. = 15 A; 2.ª ed. = 14.5 A | Se usa 15 A (4.ª ed.). **Por decidir** |
-| ABB-3 | Tabla 8, A2, Al PVC, 2 cargados, 4 mm² | 4.ª ed. = 19.5 A; 2.ª ed. = 20 A | Se usa 19.5 A (4.ª ed.) |
+| ABB-2 | Tabla 8, A1, Al PVC, 2 cargados, 2.5 mm² | 4.ª ed. = 15 A; 2.ª ed. = 14.5 A | Se usa **14.5 A**, el valor menor. Errata registrada; aprobada por el Ing. RGLR el 2026-10-24 |
+| ABB-3 | Tabla 8, A2, Al PVC, 2 cargados, 4 mm² | 4.ª ed. = 19.5 A; 2.ª ed. = 20 A | Se usa 19.5 A, valor publicado y menor de los dos (criterio aprobado el 2026-10-24) |
 
 **Decisiones del módulo** (supuestos de la herramienta, explícitos en la memoria):
 - IEC no aplica un 125 % a cargas continuas. **Ib** es la suma de corrientes con el factor de demanda de cada carga. En un transformador, Ib es su corriente nominal de primario.
@@ -159,14 +159,14 @@ Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria A
 - **k1**: si la temperatura no está en la tabla, se usa el renglón de la temperatura inmediata superior (conservador).
 - **k2**: si hay más de 9 circuitos en las disposiciones 2 a 5, no hay reducción adicional, como indica la fuente.
 - **Método D**: k2′ (ductos adyacentes) = 1 y k3 = 1 (suelo de 2.5 K·m/W). Ambos se anotan en la memoria.
-- **Motores**: IEC no tiene tabla de corrientes; se pide la corriente de placa. La tabla aproximada de ABB (Anexo B) es «solo informativa» y no se usa.
+- **Motores**: IEC no tiene tabla de corrientes, y lo correcto es la corriente de placa. Si no se capturó, se usa la tabla aproximada de ABB (Anexo B, Tabla 5, p. 248: jaula, 4 polos, 50 Hz, «solo informativa») y se emite una **advertencia**. Decisión del usuario del 2026-10-24.
 - **PE en circuitos en paralelo**: se dimensiona con la sección de un conductor y se pone uno por circuito en paralelo (criterio de la herramienta).
 - **Al cambiar de norma** el proyecto se adapta en un solo paso de deshacer, previa confirmación:
   - aislamiento, método y canalización que no existen en la nueva norma toman el valor por defecto de esa norma;
   - los calibres fijados se vacían, porque «4» AWG no es «4» mm²;
   - los límites de caída del proyecto bajan al máximo de la norma (IEC: 4 %).
 
-**Verificación.** Las 10 tablas están registradas como `fuente_secundaria` a nombre de «Claude (asistente IA)». Falta tu aval como «Ing. RGLR» y, cuando haya acceso a la norma, el cotejo con IEC 60364-5-52.
+**Verificación.** Las 11 tablas (incluida la de motores) están registradas como `fuente_secundaria`, avaladas por el **Ing. RGLR** el 2026-10-24. Falta el cotejo con IEC 60364-5-52 cuando haya acceso a la norma.
 
 ## 4. Estados de un dato normativo
 

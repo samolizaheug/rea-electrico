@@ -111,9 +111,16 @@ describe("IEC: impedancia y frecuencia (ABB cap. 2.2.2)", () => {
   it("multiconductor (B2) usa la columna de cable multiconductor", () => {
     expect(iecCalc.conductorImpedance({ designation: "10", material: "Cu", installationMethod: "B2" })).toMatchObject({ ok: true, rOhmPerKm: 2.27, xOhmPerKm: 0.0861 });
   });
-  it("motores: sin tabla en IEC, se pide la corriente de placa", () => {
+  it("motores: tabla aproximada de la fuente con advertencia (7.5 kW, 380-400 V → 15.5 A)", () => {
     const r = iecCalc.motorFlc({ ratedPower: 7.5, ratedPowerUnit: "kW", voltageV: 400, phases: "3F", synchronous: false });
-    expect(r.ok).toBe(false);
+    expect(r).toMatchObject({ ok: true, amps: 15.5, tableVoltageV: 400 });
+    expect(r.ok && r.warnings?.[0]).toContain("placa");
+    // Por potencia en hp (PS) y tensión dentro del intervalo 220-230 V.
+    expect(iecCalc.motorFlc({ ratedPower: 10, ratedPowerUnit: "hp", voltageV: 220, phases: "3F", synchronous: false })).toMatchObject({ ok: true, amps: 27.4, tableVoltageV: 230 });
+  });
+  it("motores: 480 V o monofásico no están en la tabla → se pide la placa", () => {
+    expect(iecCalc.motorFlc({ ratedPower: 7.5, ratedPowerUnit: "kW", voltageV: 480, phases: "3F", synchronous: false }).ok).toBe(false);
+    expect(iecCalc.motorFlc({ ratedPower: 0.75, ratedPowerUnit: "kW", voltageV: 230, phases: "1F", synchronous: false }).ok).toBe(false);
   });
 });
 
@@ -152,6 +159,20 @@ describe("IEC: circuito completo con el motor de cálculo", () => {
     expect(c.conductor.designation).toBe("10");
     expect(c.protection.ratingA).toBe(50);
     expect(s.loadFlow.elements.get(id("AL"))!.dropPct).toBeCloseTo(2.15403, 4);
+  });
+
+  it("motor sin corriente de placa: se usa la tabla aproximada y aparece una advertencia", () => {
+    const { p: base, id } = project(50);
+    let p = base;
+    const m = addElement(p, registry, "motor", { tag: "M-1", params: { ratedPower: 7.5, ratedPowerUnit: "kW", voltageV: 400, system: "3F3H", currentSource: "tabla" } });
+    p = m.project;
+    const cg = p.connections.find((c) => c.a.elementId === id("CG") || c.b.elementId === id("CG"))!;
+    p = { ...p, connections: p.connections.filter((c) => c !== cg), elements: p.elements.filter((e) => e.id !== id("CG")) };
+    p = connect(p, registry, { elementId: id("AL"), portId: "to" }, { elementId: m.elementId, portId: "in" }).project;
+    const s = runSizing(p, registry, iec60364_2001);
+    expect(s.calculated).toBe(true);
+    expect(s.circuits.get(id("AL"))!.protection.loadA).toBe(15.5);
+    expect(s.issues.some((i) => i.severity === "warning" && i.code === "dato-aproximado" && i.message.startsWith("M-1"))).toBe(true);
   });
 
   it("60 Hz: X × 1.2 → ΔV = 2.165 %", () => {

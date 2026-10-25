@@ -22,7 +22,8 @@ assertSourceHash(SOURCE_ID);
 
 const SECONDARY = "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.";
 
-function envelope(id: string, table: string, article: string, title: string, pages: number[], notes: string[] = []) {
+interface Errata { path: string; asPublished: number; corrected: number; reason: string; approvedBy: string; approvedAt: string }
+function envelope(id: string, table: string, article: string, title: string, pages: number[], notes: string[] = [], errata: Errata[] = []) {
   return {
     id: `${DS}/${id}`,
     norm: NORM,
@@ -36,7 +37,7 @@ function envelope(id: string, table: string, article: string, title: string, pag
       extractor: "Claude (asistente IA), desde la imagen de la página (pdftoppm 170 ppp)",
     },
     notes: [SECONDARY, ...notes],
-    errata: [],
+    errata,
   };
 }
 
@@ -84,7 +85,7 @@ const stdCols = (method: string): ColDef[] =>
 
 const A1: Row[] = [
   [1.5, 19, 17, 14.5, 13.5, _, _, _, _],
-  [2.5, 26, 23, 19.5, 18, 20, 19, 15, 14],
+  [2.5, 26, 23, 19.5, 18, 20, 19, 14.5, 14], // Al PVC 2: publicado 15 en la 4.ª ed.; errata ABB-2 aprobada
   [4, 35, 31, 26, 24, 27, 25, 20, 18.5],
   [6, 45, 40, 34, 31, 35, 32, 26, 24],
   [10, 61, 54, 46, 42, 48, 44, 36, 32],
@@ -286,10 +287,20 @@ tables.push({
     [
       "Las celdas grises de la tabla publicada se registran como null: la fuente no da valores de B1 y B2 para secciones mayores de 120 mm², ni de A1/A2/E para más de 300 mm², ni de F y G para menos de 25 mm².",
       "Método F: dos unipolares en contacto, tres en trébol y tres en plano en contacto; método G: tres unipolares separados, en horizontal o en vertical (De entre cables).",
-      "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos, que se registran como publicadas en la 4.ª ed. y quedan pendientes de cotejo con la norma IEC:",
-      "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A.",
-      "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A.",
+      "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos; en ambas se usa el valor menor (conservador) hasta el cotejo con la norma IEC (decisión del Ing. RGLR, 2026-10-24):",
+      "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A → se usa 14.5 A (errata registrada).",
+      "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A → se usa 19.5 A (valor publicado, ya es el menor).",
       "La capa de texto de la p. 43 lee «845» en F trébol, Al PVC, 25 mm²; la imagen muestra 84.",
+    ],
+    [
+      {
+        path: "columns[6].values[1]",
+        asPublished: 15,
+        corrected: 14.5,
+        reason: "ABB-2: la 2.ª ed. del mismo manual publica 14.5 A; se usa el valor menor (conservador) hasta el cotejo con IEC 60364-5-52.",
+        approvedBy: "Ing. RGLR",
+        approvedAt: "2026-10-24",
+      },
     ],
   ),
   kind: "iec-ampacity",
@@ -534,6 +545,87 @@ tables.push({
   data: {
     inverseTimeA: [4, 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200, 250, 320, 400, 500, 630, 800, 1000, 1250, 1600],
     additionalFuseA: [],
+  },
+} as NormTable);
+
+// ---------------------------------------------------------------- Motores (valores aproximados, informativos)
+
+/** [kW, PS (= hp según la fuente), 220-230 V, 240 V, 380-400 V, 415 V, 440 V, 500 V, 600 V, 660-690 V]. */
+const MOTORS: [number, string, ...(number | null)[]][] = [
+  [0.06, "1/12", 0.38, 0.35, 0.22, 0.2, 0.19, 0.16, 0.12, _],
+  [0.09, "1/8", 0.55, 0.5, 0.33, 0.3, 0.28, 0.24, 0.21, _],
+  [0.12, "1/6", 0.76, 0.68, 0.42, 0.4, 0.37, 0.33, 0.27, _],
+  [0.18, "1/4", 1.1, 1, 0.64, 0.6, 0.55, 0.46, 0.4, _],
+  [0.25, "1/3", 1.4, 1.38, 0.88, 0.85, 0.76, 0.59, 0.56, _],
+  [0.37, "1/2", 2.1, 1.93, 1.22, 1.15, 1.06, 0.85, 0.77, 0.7],
+  [0.55, "3/4", 2.7, 2.3, 1.5, 1.4, 1.25, 1.2, 1.02, 0.9],
+  [0.75, "1", 3.3, 3.1, 2, 2, 1.67, 1.48, 1.22, 1.1],
+  [1.1, "1.5", 4.9, 4.1, 2.6, 2.5, 2.26, 2.1, 1.66, 1.5],
+  [1.5, "2", 6.2, 5.6, 3.5, 3.5, 3.03, 2.6, 2.22, 2],
+  [2.2, "3", 8.7, 7.9, 5, 5, 4.31, 3.8, 3.16, 2.9],
+  [2.5, "3.4", 9.8, 8.9, 5.7, 5.5, 4.9, 4.3, 3.59, 3.3],
+  [3, "4", 11.6, 10.6, 6.6, 6.5, 5.8, 5.1, 4.25, 3.5],
+  [3.7, "5", 14.2, 13, 8.2, 7.5, 7.1, 6.2, 5.2, 4.4],
+  [4, "5.5", 15.3, 14, 8.5, 8.4, 7.6, 6.5, 5.6, 4.9],
+  [5, "6.8", 18.9, 17.2, 10.5, 10, 9.4, 8.1, 6.9, 6],
+  [5.5, "7.5", 20.6, 18.9, 11.5, 11, 10.3, 8.9, 7.5, 6.7],
+  [6.5, "8.8", 23.7, 21.8, 13.8, 12.5, 12, 10.4, 8.7, 8.1],
+  [7.5, "10", 27.4, 24.8, 15.5, 14, 13.5, 11.9, 9.9, 9],
+  [8, "11", 28.8, 26.4, 16.7, 15.4, 14.4, 12.7, 10.6, 9.7],
+  [9, "12.5", 32, 29.3, 18.3, 17, 15.8, 13.9, 11.6, 10.6],
+  [11, "15", 39.2, 35.3, 22, 21, 19.3, 16.7, 14.1, 13],
+  [12.5, "17", 43.8, 40.2, 25, 23, 21.9, 19, 16.1, 15],
+  [15, "20", 52.6, 48.2, 30, 28, 26.3, 22.5, 19.3, 17.5],
+  [18.5, "25", 64.9, 58.7, 37, 35, 32, 28.5, 23.5, 21],
+  [20, "27", 69.3, 63.4, 40, 37, 34.6, 30.6, 25.4, 23],
+  [22, "30", 75.2, 68, 44, 40, 37.1, 33, 27.2, 25],
+  [25, "34", 84.4, 77.2, 50, 47, 42.1, 38, 30.9, 28],
+  [30, "40", 101, 92.7, 60, 55, 50.1, 44, 37.1, 33],
+  [37, "50", 124, 114, 72, 66, 61.9, 54, 45.4, 42],
+  [40, "54", 134, 123, 79, 72, 67, 60, 49.1, 44],
+  [45, "60", 150, 136, 85, 80, 73.9, 64.5, 54.2, 49],
+  [51, "70", 168, 154, 97, 90, 83.8, 73.7, 61.4, 56],
+  [55, "75", 181, 166, 105, 96, 90.3, 79, 66.2, 60],
+  [59, "80", 194, 178, 112, 105, 96.9, 85.3, 71.1, 66],
+  [75, "100", 245, 226, 140, 135, 123, 106, 90.3, 82],
+  [80, "110", 260, 241, 147, 138, 131, 112, 96.3, 86],
+  [90, "125", 292, 268, 170, 165, 146, 128, 107, 98],
+  [100, "136", 325, 297, 188, 182, 162, 143, 119, 107],
+  [110, "150", 358, 327, 205, 200, 178, 156, 131, 118],
+  [129, "175", 420, 384, 242, 230, 209, 184, 153, 135],
+  [132, "180", 425, 393, 245, 242, 214, 186, 157, 140],
+  [140, "190", 449, 416, 260, 250, 227, 200, 167, 145],
+  [147, "200", 472, 432, 273, 260, 236, 207, 173, 152],
+  [160, "220", 502, 471, 295, 280, 256, 220, 188, 170],
+  [180, "245", 578, 530, 333, 320, 289, 254, 212, 190],
+  [184, "250", 590, 541, 340, 325, 295, 259, 217, 200],
+  [200, "270", 626, 589, 370, 340, 321, 278, 235, 215],
+  [220, "300", 700, 647, 408, 385, 353, 310, 260, 235],
+  [250, "340", 803, 736, 460, 425, 401, 353, 295, 268],
+  [257, "350", 826, 756, 475, 450, 412, 363, 302, 280],
+  [295, "400", 948, 868, 546, 500, 473, 416, 348, 320],
+  [315, "430", 990, 927, 580, 535, 505, 445, 370, 337],
+  [355, "480", 1080, 1010, 636, 580, 549, 483, 405, 366],
+  [400, "545", 1250, 1130, 710, 650, 611, 538, 450, 410],
+  [450, "610", 1410, 1270, 800, 740, 688, 608, 508, 460],
+  [475, "645", 1490, 1340, 850, 780, 730, 645, 540, 485],
+  [500, "680", 1570, 1420, 890, 830, 770, 680, 565, 510],
+  [560, "760", 1750, 1580, 1000, 920, 860, 760, 630, 570],
+  [600, "810", _, _, 1080, 990, 920, 810, 680, 610],
+  [670, "910", _, _, 1200, 1100, 1030, 910, 760, 680],
+];
+
+tables.push({
+  ...envelope("anexo-b-tabla-5-motores", "Anexo B, Tabla 5 (ABB)", "Valores de fabricante (IEC 60364 no tabula corrientes de motores)", "Corriente aproximada de motores trifásicos de jaula de ardilla, 1500 rpm, 50 Hz", [248], [
+    "La fuente indica que los valores son aproximados, solo informativos, y que varían según el fabricante y el número de polos. La herramienta los usa únicamente si no se capturó la corriente de placa, con una advertencia.",
+    "Las columnas 220-230 V, 380-400 V y 660-690 V se registran como 230, 400 y 690 V; la consulta acepta tensiones dentro de esos intervalos.",
+    "La columna «PS = hp» se registra en el campo hp tal como la publica la fuente.",
+  ]),
+  kind: "motor-flc",
+  data: {
+    motorKind: "3F",
+    groups: [{ id: "jaula-4p-50hz", label: "Motor trifásico de jaula, 1500 rpm, 50 Hz (aproximado)", voltagesV: [230, 240, 400, 415, 440, 500, 600, 690] }],
+    rows: MOTORS.map(([kW, hp, ...a]) => ({ hp, kW, currentsA: { "jaula-4p-50hz": a } })),
   },
 } as NormTable);
 

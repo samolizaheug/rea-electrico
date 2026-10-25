@@ -47,6 +47,29 @@ describe("IEC 60364 (ABB): ampacidades", () => {
     expect(v(air, "B1-Cu-PVC-3", 150)).toBeNull();
     expect(v(ground, "D-Cu-XLPE-3", 300)).toBe(396);
   });
+
+  it("errata ABB-2 aplicada (valor menor de las dos ediciones) y registrada", () => {
+    const v = air.data.columns.find((c) => c.id === "A1-Al-PVC-2")!.values[air.data.sizesMm2.indexOf(2.5)];
+    expect(v).toBe(14.5);
+    expect(air.errata).toEqual([expect.objectContaining({ path: "columns[6].values[1]", asPublished: 15, corrected: 14.5, approvedBy: "Ing. RGLR" })]);
+    expect(air.data.columns[6]!.id).toBe("A1-Al-PVC-2");
+  });
+});
+
+describe("IEC 60364 (ABB): tabla aproximada de motores", () => {
+  const t = ds.table("anexo-b-tabla-5-motores", "motor-flc");
+  it("61 renglones; la corriente crece con la potencia y baja con la tensión", () => {
+    expect(t.data.rows).toHaveLength(61);
+    const g = t.data.groups[0]!.id;
+    for (let j = 0; j < 8; j++) {
+      const col = t.data.rows.map((r) => r.currentsA[g]![j]).filter((x): x is number => x !== null);
+      for (let i = 1; i < col.length; i++) expect(col[i]!, `col ${j} #${i}`).toBeGreaterThanOrEqual(col[i - 1]!);
+    }
+    for (const r of t.data.rows) {
+      const a = r.currentsA[g]!.filter((x): x is number => x !== null);
+      for (let i = 1; i < a.length; i++) expect(a[i]!, `${r.kW} kW`).toBeLessThanOrEqual(a[i - 1]!);
+    }
+  });
 });
 
 describe("IEC 60364 (ABB): R y X contra las tablas de caída específica (cap. 2.2.2, Tablas 3, 4 y 8)", () => {

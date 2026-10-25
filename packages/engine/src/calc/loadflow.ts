@@ -155,6 +155,7 @@ function solveIsland(
       const el = els.get(lid)!;
       const d = loadDemand(el, registry.get(el.type), norm, node.vNomLL, node.vcNom);
       if (d.error) issues.push({ severity: "error", code: "dato-carga", message: d.error, elementIds: [lid] });
+      for (const w of d.warnings ?? []) issues.push({ severity: "warning", code: "dato-aproximado", message: w, elementIds: [lid] });
       loadS.set(lid, d.s);
       loadTrace.set(lid, { trace: d.trace, ratedCurrentA: d.ratedCurrentA });
     }

@@ -65,7 +65,8 @@ export const DEFAULT_EQUIPMENT_VOLTAGE: EquipmentVoltageCriteria = {
 };
 
 /** Resultado de una consulta a tablas de la norma, con su traza. */
-export type Lookup<T> = ({ ok: true } & T & { refs: string[]; notes: string[] }) | { ok: false; error: string };
+/** `warnings`: avisos que deben aparecer como advertencias del proyecto (p. ej. un valor aproximado). */
+export type Lookup<T> = ({ ok: true } & T & { refs: string[]; notes: string[]; warnings?: string[] }) | { ok: false; error: string };
 
 export interface MotorFlcQuery {
   ratedPower: number;

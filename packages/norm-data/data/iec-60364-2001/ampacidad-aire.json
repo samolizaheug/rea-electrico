@@ -26,12 +26,21 @@
     "Fuente secundaria: ABB SACE, Electrical installation handbook Vol. 2, 4.ª ed. (2006), que reproduce IEC 60364-5-52:2001. Pendiente de cotejo con la norma IEC.",
     "Las celdas grises de la tabla publicada se registran como null: la fuente no da valores de B1 y B2 para secciones mayores de 120 mm², ni de A1/A2/E para más de 300 mm², ni de F y G para menos de 25 mm².",
     "Método F: dos unipolares en contacto, tres en trébol y tres en plano en contacto; método G: tres unipolares separados, en horizontal o en vertical (De entre cables).",
-    "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos, que se registran como publicadas en la 4.ª ed. y quedan pendientes de cotejo con la norma IEC:",
-    "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A.",
-    "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A.",
+    "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos; en ambas se usa el valor menor (conservador) hasta el cotejo con la norma IEC (decisión del Ing. RGLR, 2026-10-24):",
+    "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A → se usa 14.5 A (errata registrada).",
+    "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A → se usa 19.5 A (valor publicado, ya es el menor).",
     "La capa de texto de la p. 43 lee «845» en F trébol, Al PVC, 25 mm²; la imagen muestra 84."
   ],
-  "errata": [],
+  "errata": [
+    {
+      "path": "columns[6].values[1]",
+      "asPublished": 15,
+      "corrected": 14.5,
+      "reason": "ABB-2: la 2.ª ed. del mismo manual publica 14.5 A; se usa el valor menor (conservador) hasta el cotejo con IEC 60364-5-52.",
+      "approvedBy": "Ing. RGLR",
+      "approvedAt": "2026-10-24"
+    }
+  ],
   "kind": "iec-ampacity",
   "data": {
     "reference": {
@@ -236,7 +245,7 @@
         "loadedConductors": 2,
         "values": [
           null,
-          15,
+          14.5,
           20,
           26,
           36,

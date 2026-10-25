@@ -123,7 +123,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
     }
   }
   const loadFlow = runLoadFlow(sized, registry, norm, { mode: "nominal" });
-  issues.push(...loadFlow.issues.filter((i) => ["caida-total", "tension-terminales", "bomba-contra-incendio"].includes(i.code)));
+  issues.push(...loadFlow.issues.filter((i) => ["caida-total", "tension-terminales", "bomba-contra-incendio", "dato-aproximado"].includes(i.code)));
   return { calculated: true, circuits, sizedProject: sized, loadFlow, issues };
 }
 

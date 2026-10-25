@@ -10,6 +10,8 @@ export interface LoadDemand {
   ratedCurrentA?: number;
   trace: Trace;
   error?: string;
+  /** Avisos para la lista de observaciones (p. ej. corriente de motor aproximada). */
+  warnings?: string[];
 }
 
 const n = (v: unknown, fallback = NaN) => (typeof v === "number" ? v : fallback);
@@ -29,6 +31,7 @@ export function loadDemand(el: ProjectElement, def: ElementTypeDefinition, norm:
 
   let sVA: number;
   let ratedCurrentA: number | undefined;
+  const warnings: string[] = [];
   switch (def.calcBehavior) {
     case "load.motor": {
       const sys = String(el.params.system ?? "3F3H");
@@ -50,6 +53,7 @@ export function loadDemand(el: ProjectElement, def: ElementTypeDefinition, norm:
         });
         if (!r.ok) return fail(r.error);
         ratedCurrentA = r.amps;
+        for (const w of r.warnings ?? []) warnings.push(`${el.tag}: ${w}`);
         steps.push({
           label: "Corriente a plena carga del motor (tabla)",
           substitution: `${r.hp} hp, ${phases === "3F" ? "trifásico" : "monofásico"}, columna de ${r.tableVoltageV} V`,
@@ -107,5 +111,5 @@ export function loadDemand(el: ProjectElement, def: ElementTypeDefinition, norm:
     substitution: `P = ${fmtNum(sd, 1)} · ${pf} ;  Q = ${fmtNum(sd, 1)} · ${fmtNum(sinOf(pf), 4)}`,
     result: `P = ${fmtNum(s.re / 1000, 3)} kW ;  Q = ${fmtNum(s.im / 1000, 3)} kvar`,
   });
-  return { s, ratedCurrentA, trace: { title, steps } };
+  return { s, ratedCurrentA, trace: { title, steps }, warnings };
 }
