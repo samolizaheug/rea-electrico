@@ -97,6 +97,8 @@ export const diagramSchema = z.object({
       x: z.number().finite(),
       y: z.number().finite(),
       rotation: z.union([z.literal(0), z.literal(90), z.literal(180), z.literal(270)]),
+      /** Solo barras, tableros y CCM: longitud dibujada de la barra (px, sin girar). Vacío = la del símbolo. */
+      length: z.number().positive().optional(),
     }),
   ),
   wires: z.record(z.object({ waypoints: z.array(pointSchema) })),

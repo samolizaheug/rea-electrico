@@ -2,8 +2,10 @@ import { rotationTransform, symbolBody } from "@rea/symbols";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { memo, useMemo } from "react";
 import { resultBadge } from "../results/format";
+import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
 import { useValidation } from "../state/validation";
+import { BusHandles } from "./BusHandles";
 import { handleId, nodeGeometry } from "./geometry";
 
 const POSITION = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right } as const;
@@ -27,13 +29,15 @@ function ElementNodeImpl({ id, selected, data }: NodeProps) {
   if (!geometry || !element) return null;
   const { width, height, anchors } = geometry;
   const badge = showResults && results ? resultBadge(id, element.type, results) : [];
-  // Etiqueta a la derecha en símbolos verticales angostos; arriba en barras y en símbolos girados.
-  const labelOnSide = width <= 60 && (geometry.rotation === 0 || geometry.rotation === 180);
+  // Cargas: etiqueta debajo del símbolo (el conductor llega por arriba). Otros símbolos verticales
+  // angostos: a la derecha. Barras y símbolos girados: arriba.
+  const isLoad = registry.tryGet(element.type)?.category === "carga" && registry.get(element.type).ports.length === 1;
+  const labelPos = isLoad ? "below" : width <= 60 && (geometry.rotation === 0 || geometry.rotation === 180) ? "side" : "above";
 
   return (
     <div className={`element-node${selected ? " selected" : ""}${issue ? ` issue-${issue}` : ""}`} style={{ width, height }}>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="visible" dangerouslySetInnerHTML={{ __html: svgBody }} />
-      <div className={`element-tag ${labelOnSide ? "side" : "above"}`}>
+      <div className={`element-tag ${labelPos}`}>
         {issue ? <span className={`issue-badge ${issue}`} aria-label={issue === "error" ? "error" : "advertencia"}>{issue === "error" ? "!" : "?"}</span> : null}
         {element.tag}
         {badge.map((line) => (
@@ -42,6 +46,7 @@ function ElementNodeImpl({ id, selected, data }: NodeProps) {
           </span>
         ))}
       </div>
+      {selected && geometry.symbol.bus ? <BusHandles id={id} geometry={geometry} /> : null}
       {Object.entries(anchors).flatMap(([portId, list]) =>
         list.map((a, i) => (
           <Handle

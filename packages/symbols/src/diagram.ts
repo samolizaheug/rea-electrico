@@ -16,13 +16,46 @@ export interface NodeGeometry {
   anchors: Record<string, Anchor[]>;
 }
 
+/**
+ * Estira horizontalmente un símbolo de barra hasta `width`: lo que está a la izquierda del centro
+ * se queda, lo que está a la derecha se recorre todo el aumento y lo que está en el centro, la mitad.
+ * Así la barra crece por ambos extremos y los detalles (p. ej. el texto «CCM») conservan su tamaño.
+ */
+export function stretchBusSymbol(s: SymbolDef, width: number): SymbolDef {
+  if (!s.bus || width <= s.width) return s;
+  const extra = width - s.width;
+  const cx = s.width / 2;
+  const mx = (x: number) => (x < cx - 1e-9 ? x : x > cx + 1e-9 ? x + extra : x + extra / 2);
+  return {
+    ...s,
+    width,
+    ports: Object.fromEntries(Object.entries(s.ports).map(([k, list]) => [k, list.map((a) => ({ ...a, x: mx(a.x) }))])),
+    shapes: s.shapes.map((p) => {
+      switch (p.k) {
+        case "line":
+          return { ...p, x1: mx(p.x1), x2: mx(p.x2) };
+        case "rect":
+          return { ...p, x: mx(p.x), w: mx(p.x + p.w) - mx(p.x) };
+        case "circle":
+          return { ...p, cx: mx(p.cx) };
+        case "text":
+          return { ...p, x: mx(p.x) };
+        case "path":
+          return p;
+      }
+    }),
+    bus: { ...s.bus, halfLength: s.bus.halfLength + extra / 2 },
+  };
+}
+
 export function nodeGeometry(project: Project, registry: ElementRegistry, elementId: string): NodeGeometry | null {
   const el = project.elements.find((e) => e.id === elementId);
   const node = project.diagram.nodes[elementId];
   if (!el || !node) return null;
   const def = registry.tryGet(el.type);
   if (!def) return null;
-  const symbol = symbolFor(def, project.settings.symbology);
+  const base = symbolFor(def, project.settings.symbology);
+  const symbol = base.bus && node.length ? stretchBusSymbol(base, node.length) : base;
   const rotation = node.rotation as Rotation;
   return { symbol, rotation, ...rotatedSize(symbol, rotation), anchors: rotatedAnchors(symbol, rotation) };
 }

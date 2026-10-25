@@ -1,7 +1,7 @@
 import type { ElementRegistry, Project, ProjectElement } from "@rea/core";
 import type { LoadFlowResult } from "./loadflow";
 import { buildIslands, type Island, type NetEdge } from "./network";
-import type { SizingRunResult } from "./sizing";
+import { wiringText, type SizingRunResult } from "./sizing";
 
 /**
  * Cuadros de carga por tablero: un renglón por circuito de salida, con la potencia demandada
@@ -117,7 +117,7 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
         const head = els.get(e.elementId)!;
         const size = circ?.conductor.designation ?? (typeof cableEl?.params.forcedSize === "string" ? cableEl.params.forcedSize : undefined);
         const npar = n(cableEl?.params.conductorsPerPhase, 1);
-        const conductor = size && size !== "—" ? `${npar > 1 ? `${npar} × ` : ""}${size}${circ?.conductor.egc ? ` + ${circ.conductor.egc.designation} T` : ""}` : undefined;
+        const conductor = circ && circ.conductor.designation !== "—" ? wiringText(circ) : size && size !== "—" ? `${npar > 1 ? `${npar} × ` : ""}${size}` : undefined;
         const prot = circ?.protection.ratingA ?? (defOf(e.elementId).calcBehavior === "switch.protective" ? n(head.params.forcedRatingA) : NaN);
         const totalVA = va.a + va.b + va.c;
         rows.push({

@@ -81,7 +81,7 @@ export function TableView() {
                       </td>
                     );
                   })}
-                  <td className="result-cell">{v.results ? resultBadge(el.id, el.type, v.results).join(" · ") || "—" : "—"}</td>
+                  <td className="result-cell">{v.results ? resultBadge(el.id, el.type, v.results).join(" · ").replace(/ · \+/g, "+") || "—" : "—"}</td>
                 </tr>
               );
             })}

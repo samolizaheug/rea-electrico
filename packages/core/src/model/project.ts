@@ -253,6 +253,20 @@ export function moveElement(project: Project, elementId: string, x: number, y: n
   };
 }
 
+/**
+ * Cambia la longitud dibujada de una barra o tablero (y su posición, para que el extremo
+ * contrario quede fijo). Solo afecta al diagrama, no al modelo eléctrico.
+ */
+export function resizeBus(project: Project, elementId: string, length: number, x: number, y: number): Project {
+  const node = project.diagram.nodes[elementId];
+  if (!node) throw new ModelError(`No existe el elemento "${elementId}" en el diagrama.`);
+  if (!(length > 0)) throw new ModelError("La longitud de la barra debe ser positiva.");
+  return {
+    ...project,
+    diagram: { ...project.diagram, nodes: { ...project.diagram.nodes, [elementId]: { ...node, x, y, length } } },
+  };
+}
+
 /** Fragmento copiado (portapapeles): elementos, sus conexiones internas y su posición. */
 export interface Clip {
   elements: ProjectElement[];
@@ -295,7 +309,7 @@ export function pasteClip(
     p = {
       ...p,
       elements: src.notes ? p.elements.map((e) => (e.id === added.elementId ? { ...e, notes: src.notes } : e)) : p.elements,
-      diagram: { ...p.diagram, nodes: { ...p.diagram.nodes, [added.elementId]: { ...node, rotation: pos.rotation } } },
+      diagram: { ...p.diagram, nodes: { ...p.diagram.nodes, [added.elementId]: { ...node, rotation: pos.rotation, ...(pos.length ? { length: pos.length } : {}) } } },
     };
   }
   for (const c of clip.connections) {

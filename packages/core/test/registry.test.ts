@@ -17,7 +17,7 @@ describe("biblioteca estándar", () => {
       [
         "utility", "generator", "ups",
         "transformer",
-        "panelboard", "mcc", "busbar", "breaker", "ats", "cable",
+        "panelboard", "mcc", "busbar", "breaker", "ats", "cable", "cable-mt",
         "motor", "vfd", "receptacle", "luminaire", "generic-load", "grouped-load",
       ].sort(),
     );

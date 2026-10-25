@@ -176,5 +176,13 @@ export const libraryEn: Record<string, string> = {
   Variable: "Variable",
   "Variador de frecuencia": "Variable frequency drive",
   General: "General",
+  "Cable de media tensión": "Medium-voltage cable",
+  "Clase de aislamiento": "Insulation class",
+  "Nivel de aislamiento": "Insulation level",
+  Calibre: "Conductor size",
+  "100 % (sistemas con liberación rápida de fallas a tierra)": "100 % (systems with fast ground-fault clearing)",
+  "133 % (liberación de falla a tierra en más de 1 min)": "133 % (ground-fault clearing over 1 min)",
+  "Tensión nominal entre fases del cable; debe ser igual o mayor que la del sistema.": "Cable phase-to-phase rating; must be equal to or higher than the system voltage.",
+  "Dato informativo en la fase 1: el calibre de media tensión no se calcula.": "Informative in phase 1: medium-voltage conductor size is not calculated.",
   "(no válido)": "(not valid)",
 };

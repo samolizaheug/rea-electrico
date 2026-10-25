@@ -7,6 +7,7 @@ import {
   duplicateProject,
   extractClip,
   moveElement,
+  resizeBus,
   pasteClip,
   removeElements,
   rotateElements,
@@ -74,6 +75,8 @@ interface EditorState {
   connectPorts(a: PortRef, b: PortRef): void;
   remove(elementIds: string[], connectionIds: string[]): void;
   moveTransient(moves: { id: string; x: number; y: number }[]): void;
+  /** Cambia la longitud de una barra mientras se arrastra su extremo (se confirma con commitDrag). */
+  resizeBusTransient(id: string, length: number, x: number, y: number): void;
   commitDrag(): void;
   rotate(elementIds: string[]): void;
   retag(elementId: string, tag: string): boolean;
@@ -161,6 +164,11 @@ export const useEditor = create<EditorState>((set, get) => {
       const base = s.dragBase ?? s.history.present;
       const next = moves.reduce((acc, m) => moveElement(acc, m.id, m.x, m.y), s.history.present);
       set({ dragBase: base, history: replace(s.history, next) });
+    },
+    resizeBusTransient: (id, length, x, y) => {
+      const s = get();
+      const base = s.dragBase ?? s.history.present;
+      set({ dragBase: base, history: replace(s.history, resizeBus(s.history.present, id, length, x, y)) });
     },
     commitDrag: () => {
       const { dragBase } = get();

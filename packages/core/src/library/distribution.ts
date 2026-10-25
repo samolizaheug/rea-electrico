@@ -348,4 +348,79 @@ export const cable: ElementTypeDefinition = {
   ],
 };
 
-export const distributionTypes = [panelboard, mcc, busbar, breaker, ats, cable];
+/**
+ * Cable de media tensión (más de 1000 V), p. ej. de la acometida al primario de un transformador.
+ * En la fase 1 se dibuja, se conecta y se verifica su clase de aislamiento contra la tensión de la
+ * zona, pero no se dimensiona (las tablas de ampacidad de media tensión, NOM 310-60, no están
+ * capturadas) y su impedancia no se incluye en el flujo de carga.
+ */
+export const mvCable: ElementTypeDefinition = {
+  type: "cable-mt",
+  name: "Cable de media tensión",
+  category: "distribucion",
+  electricalRole: "branch",
+  ports: [
+    { id: "from", label: "Origen", side: "top" },
+    { id: "to", label: "Destino", side: "bottom" },
+  ],
+  internalLinks: [{ a: "from", b: "to" }],
+  voltageTransparent: true,
+  tag: { prefix: "MT", style: "number" },
+  symbols: { ANSI: "ansi/cable", IEC: "iec/cable" },
+  calcBehavior: "branch.cable-mv",
+  params: [
+    { key: "lengthM", label: "Longitud", kind: "number", unit: "m", default: 50, min: 0, minExclusive: true, required: true, group: "Trayectoria" },
+    {
+      key: "material",
+      label: "Material del conductor",
+      kind: "enum",
+      options: [
+        { value: "Cu", label: "Cobre" },
+        { value: "Al", label: "Aluminio" },
+      ],
+      default: "Cu",
+      required: true,
+      group: "Conductor",
+    },
+    {
+      key: "insulationKV",
+      label: "Clase de aislamiento",
+      kind: "enum",
+      options: [
+        { value: "5", label: "5 kV" },
+        { value: "8", label: "8 kV" },
+        { value: "15", label: "15 kV" },
+        { value: "25", label: "25 kV" },
+        { value: "35", label: "35 kV" },
+      ],
+      default: "25",
+      required: true,
+      group: "Conductor",
+      description: "Tensión nominal entre fases del cable; debe ser igual o mayor que la del sistema.",
+    },
+    {
+      key: "insulationLevelPct",
+      label: "Nivel de aislamiento",
+      kind: "enum",
+      options: [
+        { value: "100", label: "100 % (sistemas con liberación rápida de fallas a tierra)" },
+        { value: "133", label: "133 % (liberación de falla a tierra en más de 1 min)" },
+      ],
+      default: "100",
+      required: true,
+      group: "Conductor",
+    },
+    {
+      key: "forcedSize",
+      label: "Calibre",
+      kind: "enum",
+      options: { provider: "norm:conductorSizes" },
+      default: null,
+      group: "Conductor",
+      description: "Dato informativo en la fase 1: el calibre de media tensión no se calcula.",
+    },
+    { key: "conductorsPerPhase", label: "Conductores por fase (paralelo)", kind: "number", default: 1, min: 1, max: 12, integer: true, required: true, group: "Conductor" },
+  ],
+};
+
+export const distributionTypes = [panelboard, mcc, busbar, breaker, ats, cable, mvCable];

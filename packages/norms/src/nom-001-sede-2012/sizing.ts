@@ -54,7 +54,7 @@ function protection(c: SizingCircuit): ProtectionDecision {
     // ---- Alimentador de un transformador: 450-3(b), protección del primario solamente.
     const t = trafos[0]!.transformer!;
     const ip = t.ratedPrimaryA;
-    if (t.primaryV > 600) issues.push({ severity: "error", message: `${trafos[0]!.tag}: primario de más de 600 V; la protección y los conductores de media tensión (450-3(a), 310-60) están fuera del alcance de la fase 1.` });
+    if (t.primaryV > 600) issues.push({ severity: "error", message: `${trafos[0]!.tag}: primario de más de 600 V alimentado con un «Alimentador (cable)» de baja tensión; para la media tensión use «Cable de media tensión» (su protección, 450-3(a), y sus conductores, 310-60, no se calculan en la fase 1).` });
     steps.push({ label: "Corriente nominal del primario", formula: c.m === 3 ? "I = Sn / (√3 · V)" : "I = Sn / V", substitution: `I = ${fmtNum(t.sn, 0)} / ${c.m === 3 ? `(√3 · ${fmtNum(t.primaryV, 0)})` : fmtNum(t.primaryV, 0)}`, result: A(ip) });
     const pct = ip >= 9 ? 125 : ip >= 2 ? 167 : 300;
     const max = (pct / 100) * ip;
@@ -224,7 +224,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     return { designation: "—", system: "", areaMm2: 0, conductorsPerPhase: npar, material, ampacityA: 0, governing: "ampacidad", dropPct: NaN, steps, issues };
   };
   if (!method) return fail("método de instalación no reconocido.");
-  if (c.vNomLL > 2000) return fail("circuitos de más de 2000 V (media tensión) fuera del alcance de la fase 1.");
+  if (c.vNomLL > 2000) return fail(`circuito de ${fmtNum(c.vNomLL / 1000, 2)} kV: los cables de baja tensión de la Tabla 310-15(b)(16) llegan a 2000 V; use el elemento «Cable de media tensión».`);
 
   // ---- Temperatura del conductor (Tabla 310-104(a)).
   const ins = data().table("tabla-310-104-a", "insulation-types").data.rows.find((r) => r.type === c.params.insulationType);

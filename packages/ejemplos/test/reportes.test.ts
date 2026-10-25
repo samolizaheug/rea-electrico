@@ -22,15 +22,20 @@ describe("reportes del sistema de ejemplo", () => {
     // Resultados junto al símbolo y cajetín.
     expect(svg).toContain("2/0 AWG");
     expect(svg).toContain("NOM-001-SEDE-2012");
-    expect(svgAspect(svg)).toBeGreaterThan(1);
+    // Proporción alto/ancho leída del SVG (1 sería el valor por omisión si faltara width/height).
+    expect(svgAspect(svg)).not.toBe(1);
+    expect(svgAspect(svg)).toBeGreaterThan(0.5);
+    expect(svgAspect(svg)).toBeLessThan(2);
   });
 
   it("cédula de circuitos: un renglón por cable, con origen y destino", () => {
     const rows = circuitRows(input);
     expect(rows).toHaveLength(sizing.circuits.size);
     const by = (tag: string) => rows.find((r) => r.tag === tag)!;
-    // Unidades del proyecto: calibres en mm² → designación AWG con su área entre paréntesis.
-    expect(by("AL-1")).toMatchObject({ from: "TG", to: "CCM-1", protectionA: 200, conductor: "2/0 AWG (67.4 mm²) Cu", breakerTag: "INT-1" });
+    // Configuración del cable: CCM-1 es de 3 hilos (sin neutro).
+    expect(by("AL-1")).toMatchObject({ from: "TG", to: "CCM-1", protectionA: 200, conductor: "3x#2/0AWG(Ph)+1x#4AWG(Gnd)", breakerTag: "INT-1" });
+    // TAB-A es 3F4H: lleva neutro del calibre de fase; el puente de unión del secundario sale de la Tabla 250-66.
+    expect(by("AL-3").conductor).toBe("3x250kcmil(Ph)+1x250kcmil(N)+1x#2AWG(Gnd)");
     expect(by("AL-3")).toMatchObject({ from: "TR-2", to: "TAB-A" });
     expect(by("AL-21")).toMatchObject({ from: "TAB-A", to: "L-01" });
     expect(by("AL-12").to).toBe("VFD-01");

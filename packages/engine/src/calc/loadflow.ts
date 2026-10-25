@@ -165,7 +165,7 @@ function solveIsland(
   const edges = new Map<string, EdgeData>(); // por nodo hijo
   for (const id of order) {
     const e = island.parentEdge.get(id);
-    if (e) edges.set(id, edgeData(e, els.get(e.elementId)!, nodes.get(e.parent)!, nodes.get(id)!, island, nodes, norm, issues, project.settings.frequencyHz));
+    if (e) edges.set(id, edgeData(e, els.get(e.elementId)!, nodes.get(e.parent)!, nodes.get(id)!, island, nodes, norm, issues, project.settings.frequencyHz, registry.get(els.get(e.elementId)!.type).calcBehavior === "branch.cable-mv"));
   }
 
   // ---- Impedancia de la fuente (si se capturó la potencia de cortocircuito de la red).
@@ -379,11 +379,17 @@ function edgeData(
   norm: NormModule,
   issues: LoadFlowIssue[],
   frequencyHz: number,
+  mvCable = false,
 ): EdgeData {
   const base: EdgeData = { edge, el, z: Complex.ZERO, k: child.m === 1 ? 2 : 1, ratio: 1, vScale: 1, traces: [], hasImpedance: false };
   // Escala de envío para un circuito monofásico derivado de un nodo trifásico o de 1F3H.
   if (child.circuit && !parent.circuit) base.vScale = child.vcNom / parent.vcNom;
 
+  if (edge.role === "branch" && mvCable) {
+    // Cable de media tensión: en la fase 1 su impedancia no se incluye (ver la biblioteca, «cable-mt»).
+    base.traces.push({ title: `: cable de media tensión`, steps: [{ label: "Impedancia", result: "No se incluye en la fase 1 (sin tablas de media tensión): caída de tensión 0 %" }] });
+    return base;
+  }
   if (edge.role === "branch") {
     base.circuitKind = el.params.circuitKind === "alimentador" || el.params.circuitKind === "derivado" ? el.params.circuitKind : subtreeHasBus(edge.child, island, nodes) ? "alimentador" : "derivado";
     const size = el.params.forcedSize;

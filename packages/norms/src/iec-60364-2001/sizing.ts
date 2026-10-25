@@ -40,7 +40,7 @@ function protection(c: SizingCircuit): ProtectionDecision {
   let ib = 0;
   if (c.items.length === 1 && trafos.length === 1) {
     const t = trafos[0]!.transformer!;
-    if (t.primaryV > 1000) issues.push({ severity: "error", message: `${trafos[0]!.tag}: primario de más de 1000 V; la media tensión está fuera del alcance de IEC 60364 y de la fase 1.` });
+    if (t.primaryV > 1000) issues.push({ severity: "error", message: `${trafos[0]!.tag}: primario de más de 1000 V alimentado con un cable de baja tensión; para la media tensión use «Cable de media tensión» (fuera del alcance de IEC 60364 y de la fase 1).` });
     ib = t.ratedPrimaryA;
     steps.push({ label: "Corriente de diseño Ib: corriente nominal del primario", formula: c.m === 3 ? "Ib = Sn / (√3 · V)" : "Ib = Sn / V", substitution: `Ib = ${fmtNum(t.sn, 0)} / ${c.m === 3 ? `(√3 · ${fmtNum(t.primaryV, 0)})` : fmtNum(t.primaryV, 0)}`, result: A(ib) });
     issues.push({ severity: "info", message: `${trafos[0]!.tag}: verifique que la protección soporte la corriente de energización del transformador (dato del fabricante).` });
@@ -130,7 +130,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     return { designation: "—", system: "mm2", areaMm2: 0, conductorsPerPhase: npar, material, ampacityA: 0, governing: "ampacidad", dropPct: NaN, steps, issues };
   };
   if (!m) return fail("método de instalación no reconocido para IEC 60364; elija uno de la lista (A1 … G).");
-  if (c.vNomLL > 1000) return fail("circuitos de más de 1000 V están fuera del alcance de IEC 60364 (baja tensión).");
+  if (c.vNomLL > 1000) return fail(`circuito de ${fmtNum(c.vNomLL / 1000, 2)} kV: IEC 60364 es de baja tensión (≤ 1000 V); use el elemento «Cable de media tensión».`);
   const ins = c.params.insulationType === "XLPE" ? "XLPE" : c.params.insulationType === "PVC" ? "PVC" : null;
   if (!ins) return fail(`aislamiento "${String(c.params.insulationType)}" no es válido en IEC; elija PVC o XLPE/EPR.`);
 

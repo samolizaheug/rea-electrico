@@ -86,15 +86,19 @@ export function diagramSvg(project: Project, registry: ElementRegistry, opts: Di
     }
     const lh = (s: number) => s + 2;
     const blockH = lines.reduce((s, l) => s + lh(l.size), 0);
-    const onSide = g.width <= 60 && (g.rotation === 0 || g.rotation === 180);
-    const lx = onSide ? g.width + 6 : 0;
-    let ly = onSide ? g.height / 2 - blockH / 2 : -2 - blockH;
+    // Igual que en el editor: cargas con la etiqueta debajo; símbolos verticales angostos a la derecha; el resto arriba.
+    const below = registry.tryGet(el.type)?.category === "carga" && registry.get(el.type).ports.length === 1;
+    const onSide = !below && g.width <= 60 && (g.rotation === 0 || g.rotation === 180);
+    const lx = below ? g.width / 2 : onSide ? g.width + 6 : 0;
+    let ly = below ? g.height + 4 : onSide ? g.height / 2 - blockH / 2 : -2 - blockH;
     const texts = lines.map((l) => {
       const y = ly + l.size;
       ly += lh(l.size);
-      grow(box, n.x + lx + textWidth(l.text, l.size), n.y + y + 3);
-      grow(box, n.x + lx, n.y + y - l.size);
-      return `<text x="${r1(lx)}" y="${r1(y)}" font-size="${l.size}" font-weight="${l.weight}" font-family="${FONT}" fill="${l.fill}">${esc(l.text)}</text>`;
+      const w = textWidth(l.text, l.size);
+      const left = below ? lx - w / 2 : lx;
+      grow(box, n.x + left + w, n.y + y + 3);
+      grow(box, n.x + left, n.y + y - l.size);
+      return `<text x="${r1(lx)}" y="${r1(y)}"${below ? ' text-anchor="middle"' : ""} font-size="${l.size}" font-weight="${l.weight}" font-family="${FONT}" fill="${l.fill}">${esc(l.text)}</text>`;
     });
     parts.push(
       `<g transform="translate(${n.x} ${n.y})" color="${color}" stroke="none"><g>${t ? `<g transform="${t}">${body}</g>` : body}</g>${texts.join("")}</g>`,

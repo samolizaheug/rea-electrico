@@ -467,6 +467,12 @@ table.grid tfoot td {
   bottom: calc(100% + 2px);
   left: 0;
 }
+.element-tag.below {
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 .react-flow__handle.port {
   width: 9px;
   height: 9px;
@@ -825,4 +831,25 @@ input[aria-invalid="true"] {
 .crash .actions {
   display: flex;
   gap: 8px;
+}
+
+/* Agarraderas para alargar barras y tableros (BusHandles). */
+.bus-handle {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  background: var(--panel);
+  border: 2px solid var(--accent);
+  border-radius: 3px;
+  z-index: 5;
+  cursor: ew-resize;
+}
+.bus-handle.v {
+  width: 18px;
+  height: 10px;
+  cursor: ns-resize;
+}
+.bus-handle:hover {
+  background: var(--accent);
 }

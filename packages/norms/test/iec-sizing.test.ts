@@ -27,6 +27,7 @@ function circuit(items: SizingLoadItem[], params: Record<string, ParamValue> = {
     ambientSource: "prueba",
     transformerSecondary: false,
     downstreamMotorProtection: [],
+    wiring: { phases: 3, neutral: false, reason: "prueba" },
     ...extra,
   };
 }

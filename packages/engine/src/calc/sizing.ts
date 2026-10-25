@@ -1,5 +1,5 @@
 import type { ElementRegistry, Project, ProjectElement } from "@rea/core";
-import type { ConductorDecision, NormModule, ProtectionDecision, SizingCircuit, SizingLoadItem } from "../norm-module";
+import type { ConductorDecision, NormModule, ProtectionDecision, SizingCircuit, SizingLoadItem, Wiring } from "../norm-module";
 import { fmtNum } from "../trace";
 import { runLoadFlow, type LoadFlowIssue, type LoadFlowResult } from "./loadflow";
 import { buildIslands, type Island, type NetEdge } from "./network";
@@ -21,6 +21,8 @@ export interface CircuitSizing {
   circuitKind: "alimentador" | "derivado";
   protection: ProtectionDecision;
   conductor: ConductorDecision;
+  /** Fases y neutro del circuito (para su configuración de conductores). */
+  wiring: Wiring;
 }
 
 export interface SizingRunResult {
@@ -51,6 +53,21 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
 
   for (const island of buildIslands(project, registry)) {
     const cableEdges = island.order.map((id) => island.parentEdge.get(id)).filter((e): e is NetEdge => !!e && defOf(e.elementId).calcBehavior === "branch.cable");
+
+    // ---- Cables de media tensión: no se dimensionan en la fase 1; se verifica su clase de aislamiento.
+    for (const id of island.order) {
+      const pe = island.parentEdge.get(id);
+      if (!pe || defOf(pe.elementId).calcBehavior !== "branch.cable-mv") continue;
+      const el = els.get(pe.elementId)!;
+      const vLL = island.nodes.get(pe.child)!.vNomLL;
+      const kv = Number(el.params.insulationKV);
+      if (Number.isFinite(kv) && vLL > kv * 1000 + 1e-6)
+        issues.push({ severity: "error", code: "aislamiento-mt", message: `${el.tag}: cable de clase ${kv} kV en un sistema de ${fmtNum(vLL / 1000, 2)} kV; elija una clase de aislamiento igual o mayor.`, elementIds: [el.id] });
+      else if (vLL <= 1000)
+        issues.push({ severity: "warning", code: "cable-mt-en-bt", message: `${el.tag}: cable de media tensión en un circuito de ${fmtNum(vLL, 0)} V; para baja tensión use «Alimentador (cable)», que sí se dimensiona.`, elementIds: [el.id] });
+      else
+        issues.push({ severity: "info", code: "cable-mt", message: `${el.tag}: cable de media tensión (${fmtNum(vLL / 1000, 2)} kV, clase ${kv} kV): no se dimensiona ni se incluye su impedancia en la fase 1.`, elementIds: [el.id] });
+    }
 
     // ---- Circuitos.
     const circuitOf = new Map<string, SizingCircuit>();
@@ -107,7 +124,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
       };
       const cd = norm.sizing.conductor(c, p, dropFor);
       cumAt.set(id, parentCum + (Number.isFinite(cd.dropPct) ? cd.dropPct : 0));
-      circuits.set(e.elementId, { cableId: e.elementId, tag: c.tag, breakerId: c.breaker?.elementId, circuitKind: c.circuitKind, protection: p, conductor: cd });
+      circuits.set(e.elementId, { cableId: e.elementId, tag: c.tag, breakerId: c.breaker?.elementId, circuitKind: c.circuitKind, protection: p, conductor: cd, wiring: c.wiring });
       for (const i of [...p.issues, ...cd.issues]) issues.push({ severity: i.severity, code: "dimensionamiento", message: i.message, elementIds: [e.elementId, ...(c.breaker ? [c.breaker.elementId] : [])] });
     }
   }
@@ -163,14 +180,21 @@ function buildCircuit(
   const assembly100 = originNode.buses.some((b) => els.get(b)!.params.ratedFor100Pct === true);
   const transformerSecondary = !breakerEl && upstream?.role === "transformer";
 
-  // Cargas y equipos alimentados.
+  // Cargas y equipos alimentados; de paso se ve si el circuito necesita neutro.
   const items: SizingLoadItem[] = [];
   const amps = (sVA: number) => sVA / (child.m * child.vcNom);
+  const neutralBy: string[] = [];
   const walk = (nodeId: string) => {
     const node = island.nodes.get(nodeId)!;
+    for (const b of node.buses) {
+      const sys = els.get(b)!.params.system;
+      if (sys === "3F4H" || sys === "1F3H") neutralBy.push(`${els.get(b)!.tag} (${sys})`);
+    }
+    if (node.circuit?.connection === "LN") neutralBy.push("cargas fase-neutro");
     for (const lid of node.loads) {
       const el = els.get(lid)!;
       const def = defOf(lid);
+      if (el.params.system === "3F4H" || el.params.system === "1F3H") neutralBy.push(`${el.tag} (${String(el.params.system)})`);
       const lf = base.elements.get(lid);
       const sVA = (lf?.power?.sKVA ?? 0) * 1000;
       if (def.calcBehavior === "load.motor") {
@@ -227,6 +251,17 @@ function buildCircuit(
   };
   walk(e.child);
 
+  // Fases y neutro: circuito monofásico respecto a la zona (fase-neutro o entre fases) o zona
+  // monofásica/trifásica; el neutro va si lo que se alimenta trabaja a 4 hilos o fase-neutro.
+  const phases: Wiring["phases"] = child.circuit ? (child.circuit.connection === "LN" ? 1 : 2) : child.system === "1F3H" ? 2 : child.system === "1F2H" ? 1 : 3;
+  const forcedNeutral = child.circuit?.connection === "LN" || child.system === "1F2H";
+  const neutral = forcedNeutral || (child.system !== "3F3H" && neutralBy.length > 0);
+  const wiring: Wiring = {
+    phases,
+    neutral,
+    reason: forcedNeutral ? "circuito fase-neutro" : neutral ? `alimenta a ${[...new Set(neutralBy)].slice(0, 3).join(", ")}` : "lo que alimenta no usa neutro",
+  };
+
   const params = cable.params;
   const method = String(params.installationMethod ?? "");
   const buried = norm.isBuried ? norm.isBuried(method) : method.startsWith("enterrado");
@@ -247,5 +282,27 @@ function buildCircuit(
     ambientSource: Number.isFinite(ambientParam) ? "capturada en el alimentador" : buried ? "temperatura del terreno del proyecto" : "temperatura ambiente del proyecto",
     transformerSecondary,
     downstreamMotorProtection: [],
+    wiring,
   };
+}
+
+/** Designación compacta de un calibre: «#2AWG», «#1/0AWG», «250kcmil», «25mm²». */
+export function sizeShort(designation: string, system: string): string {
+  return system === "AWG" ? `#${designation}AWG` : system === "kcmil" ? `${designation}kcmil` : system === "mm2" ? `${designation}mm²` : designation;
+}
+
+/**
+ * Configuración de los conductores de un circuito, p. ej.
+ * «3x#2AWG(Ph)+1x#10AWG(Gnd)», «3x#2AWG(Ph)+1x#2AWG(N)+1x#10AWG(Gnd)» o, con 2 conductores por fase,
+ * «2[3x#2AWG(Ph)+1x#10AWG(Gnd)]». El neutro se indica del mismo calibre que la fase.
+ * En IEC (calibres en mm²) el conductor de protección se rotula PE.
+ */
+export function wiringText(c: Pick<CircuitSizing, "conductor" | "wiring">): string {
+  const d = c.conductor;
+  if (d.designation === "—") return "—";
+  const ph = sizeShort(d.designation, d.system);
+  let core = `${c.wiring.phases}x${ph}(Ph)`;
+  if (c.wiring.neutral) core += `+1x${ph}(N)`;
+  if (d.egc) core += `+1x${sizeShort(d.egc.designation, d.egc.system)}(${d.system === "mm2" ? "PE" : "Gnd"})`;
+  return d.conductorsPerPhase > 1 ? `${d.conductorsPerPhase}[${core}]` : core;
 }

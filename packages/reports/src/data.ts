@@ -1,5 +1,5 @@
 import type { ElementRegistry, Project } from "@rea/core";
-import { buildIslands, type ElementFlow, type Island, type PanelSchedule, type SizingRunResult, type Trace } from "@rea/engine";
+import { buildIslands, sizeShort, wiringText, type ElementFlow, type Island, type PanelSchedule, type SizingRunResult, type Trace } from "@rea/engine";
 import { getNormDataset, type VerificationStatus } from "@rea/norm-data";
 import { getReportLanguage, rs, type ReportStringKey } from "./strings";
 import { DEFAULT_UNITS, sizeText, type DisplayUnits } from "./units";
@@ -134,7 +134,7 @@ export function circuitRows(input: ReportInput): CircuitRow[] {
         designA: c.protection.designA,
         rule: c.protection.rule,
         protectionA: c.protection.ratingA,
-        conductor: conductorLabel(c.conductor, p.settings.units),
+        conductor: wiringText(c),
         egc: c.conductor.egc ? egcLabel(c.conductor.egc, p.settings.units) : undefined,
         ampacityA: c.conductor.ampacityA,
         lengthM: typeof cable?.params.lengthM === "number" ? cable.params.lengthM : undefined,
@@ -201,6 +201,7 @@ export function elementReport(elementId: string, sizing: SizingRunResult, regist
     const c = circuit.conductor;
     facts.push([rs("designCurrent"), `${fmt(circuit.protection.designA, 2)} A (${circuit.protection.rule})`]);
     facts.push([rs("conductor"), `${conductorLabel(c, units)} — ${fmt(c.ampacityA, 1)} A (${rs("governing").toLowerCase()}: ${rs(`governing.${c.governing}` as ReportStringKey)})`]);
+    if (c.designation !== "—") facts.push([rs("wiring"), `${wiringText(circuit)} (${circuit.wiring.reason}; neutro del calibre de fase)`]);
     if (c.egc) facts.push([rs("egc"), `${egcLabel(c.egc, units)}${c.egc.perRaceway ? " en cada canalización" : ""}`]);
     if (circuit.protection.ratingA !== undefined) facts.push([rs("protection").replace(" (A)", ""), `${circuit.protection.ratingA} A`]);
   }
@@ -228,7 +229,16 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
     case "cable": {
       if (!flow) return [];
       const size = circuit && circuit.conductor.designation !== "—" ? conductorLabel({ ...circuit.conductor, material: undefined }, sizing.sizedProject.settings.units).replace(" × ", "×") : "sin calibre";
-      return [size, `${fmt(flow.currentA)} A · ΔV ${fmt(flow.dropPct, 2)} %`];
+      // Debajo del calibre, la configuración del cable: 3x#2AWG(Ph)+1x#10AWG(Gnd), 2[...] en paralelo.
+      // Un renglón por grupo de conductores para que no invada los circuitos vecinos.
+      const config = circuit && circuit.conductor.designation !== "—" ? wiringText(circuit).split(/(?=\+)/) : [];
+      return [size, ...config, `${fmt(flow.currentA)} A · ΔV ${fmt(flow.dropPct, 2)} %`];
+    }
+    case "cable-mt": {
+      if (!flow) return [];
+      const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
+      const size = typeof el?.params.forcedSize === "string" ? ` · ${sizeShort(el.params.forcedSize, Number.isNaN(Number(el.params.forcedSize)) || el.params.forcedSize.includes("/") ? "AWG" : sizing.sizedProject.settings.norm.id === "iec-60364" ? "mm2" : Number(el.params.forcedSize) >= 250 ? "kcmil" : "AWG")}` : "";
+      return [`MT ${String(el?.params.insulationKV ?? "")} kV${size}`, `${fmt(flow.currentA)} A`];
     }
     case "breaker": {
       const r = [...sizing.circuits.values()].find((c) => c.breakerId === elementId)?.protection.ratingA;

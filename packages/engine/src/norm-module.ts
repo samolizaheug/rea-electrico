@@ -139,6 +139,16 @@ export interface SizingCircuit {
   transformerSecondary: boolean;
   /** Protecciones de los circuitos derivados de motor aguas abajo (para 430-62). */
   downstreamMotorProtection: { elementId: string; tag: string; ratingA: number; flcA: number }[];
+  /** Conductores del circuito: fases y si lleva neutro (según lo que alimenta). */
+  wiring: Wiring;
+}
+
+/** Configuración de conductores de un circuito (sin contar el de puesta a tierra). */
+export interface Wiring {
+  phases: 1 | 2 | 3;
+  neutral: boolean;
+  /** Por qué lleva o no neutro (para la memoria). */
+  reason: string;
 }
 
 export interface ProtectionDecision {
