@@ -153,7 +153,7 @@ Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria A
 | # | Ubicación | Hallazgo | Tratamiento actual |
 |---|---|---|---|
 | ABB-1 | Tabla 4, mineral 70 °C, 45 °C | 0.87, mayor que el de 40 °C (0.85); rompe la secuencia | Se transcribe tal cual. No se usa: la herramienta no ofrece aislamiento mineral |
-| ABB-2 | Tabla 8, A1, Al PVC, 2 cargados, 2.5 mm² | 4.ª ed. = 15 A; 2.ª ed. = 14.5 A | Se usa **14.5 A**, el valor menor. Errata registrada; aprobada por el Ing. RGLR el 2026-10-24 |
+| ABB-2 | Tabla 8, A1, Al PVC, 2 cargados, 2.5 mm² | 4.ª ed. = 15 A; 2.ª ed. = 14.5 A | Se usa **15 A**: lo confirma la edición 2009 (cotejo del 2026-10-25). Decisión del Ing. RGLR el 2026-10-25; la errata provisional de 14.5 A se retiró |
 | ABB-3 | Tabla 8, A2, Al PVC, 2 cargados, 4 mm² | 4.ª ed. = 19.5 A; 2.ª ed. = 20 A | Se usa 19.5 A, valor publicado y menor de los dos (criterio aprobado el 2026-10-24) |
 
 **Decisiones del módulo** (supuestos de la herramienta, explícitos en la memoria):
@@ -174,9 +174,9 @@ Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria A
 
 | Resultado | Detalle |
 |---|---|
-| Métodos A1, A2, B1, B2 y C: **568 celdas idénticas** | Única diferencia: ABB-2. La edición 2009 da **15 A**, el valor de la 4.ª ed. de ABB; el 14.5 de la 2.ª ed. era el error. Hoy se usa 14.5 A (conservador, aprobado). **Por decidir:** volver a 15 A |
+| Métodos A1, A2, B1, B2 y C: **568 celdas idénticas** | Única diferencia: ABB-2. La edición 2009 da **15 A**, el valor de la 4.ª ed. de ABB; el 14.5 de la 2.ª ed. era el error. Se usa 15 A |
 | ABB-3 | La edición 2009 da 19.5 A, igual que lo que se usa |
-| B1 y B2 de 150 a 300 mm² | La edición 2009 sí tiene valores; ABB los deja en gris. El módulo no ofrece esas secciones en B1/B2: pide conductores en paralelo u otro método |
+| B1 y B2 de 150 a 300 mm² | La edición 2009 sí tiene valores; ABB los deja en gris. **Se completaron con la edición 2009** (32 celdas; decisión del Ing. RGLR, 2026-10-25). La memoria indica el origen cuando se usan |
 | Método D (ductos enterrados) | La edición 2009 lo sustituyó por D1, con valores **iguales o menores**: 111 de 124 celdas son menores, hasta **8.5 %** (Cu XLPE 3 conductores, 300 mm²: 396 → 365 A). El cálculo emite una advertencia cuando se usa el método D |
 
 Las tablas de factores (B.52.14, B.52.17) en esa fuente son imágenes; no se cotejaron. Las de ABB coinciden con la 2.ª ed. del mismo manual.

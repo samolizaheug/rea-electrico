@@ -44,15 +44,24 @@ describe("IEC 60364 (ABB): ampacidades", () => {
     expect(v(air, "A1-Cu-PVC-2", 2.5)).toBe(19.5);
     expect(v(air, "C-Cu-PVC-2", 25)).toBe(112);
     expect(v(air, "C-Cu-XLPE-3", 25)).toBe(119);
-    expect(v(air, "B1-Cu-PVC-3", 150)).toBeNull();
+    expect(v(air, "B1-Cu-PVC-3", 150)).toBe(262); // edición 2009
     expect(v(ground, "D-Cu-XLPE-3", 300)).toBe(396);
   });
 
-  it("errata ABB-2 aplicada (valor menor de las dos ediciones) y registrada", () => {
+  it("ABB-2: 15 A, valor de la 4.ª ed. confirmado por la edición 2009 (sin errata)", () => {
     const v = air.data.columns.find((c) => c.id === "A1-Al-PVC-2")!.values[air.data.sizesMm2.indexOf(2.5)];
-    expect(v).toBe(14.5);
-    expect(air.errata).toEqual([expect.objectContaining({ path: "columns[6].values[1]", asPublished: 15, corrected: 14.5, approvedBy: "Ing. RGLR" })]);
-    expect(air.data.columns[6]!.id).toBe("A1-Al-PVC-2");
+    expect(v).toBe(15);
+    expect(air.errata).toEqual([]);
+  });
+
+  it("B1 y B2 de 150 a 300 mm² completados con la edición 2009 (valores de control)", () => {
+    const v = (id: string, s: number) => air.data.columns.find((c) => c.id === id)!.values[air.data.sizesMm2.indexOf(s)];
+    expect(v("B1-Cu-PVC-2", 150)).toBe(300);
+    expect(v("B1-Cu-XLPE-3", 300)).toBe(514);
+    expect(v("B2-Al-PVC-3", 240)).toBe(232);
+    expect(v("B2-Cu-XLPE-2", 185)).toBe(384);
+    expect(v("B1-Cu-PVC-2", 400)).toBeNull();
+    expect(air.notes.join(" ")).toContain("2009");
   });
 });
 
@@ -160,7 +169,9 @@ describe.skipIf(!existsSync(TEXT))("IEC 60364 (ABB): cada valor aparece en la ca
   };
 
   it("Tabla 8 y Tabla 15", () => {
-    const vals = (t: typeof air) => t.data.columns.flatMap((c) => c.values.filter((v): v is number => v !== null));
+    // Las celdas de B1/B2 > 120 mm² vienen de la edición 2009, no de ABB: no se buscan en su texto.
+    const fromAbb = (c: (typeof air)["data"]["columns"][number], i: number, t: typeof air) => !((c.method === "B1" || c.method === "B2") && t.data.sizesMm2[i]! > 120);
+    const vals = (t: typeof air) => t.data.columns.flatMap((c) => c.values.filter((v, i): v is number => v !== null && fromAbb(c, i, t)));
     // La capa de texto pega dos números en uno en una celda de F (p. 43/44: «845» = 84 y 5 de otra línea);
     // se reportan los faltantes para revisarlos contra la imagen.
     const missingAir = expectAllPresent(vals(air), [41, 42, 43, 44]);

@@ -245,6 +245,11 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
   steps.push({ label: "Caída de tensión con la sección elegida", result: `${fmtNum(dr.pct, 3)} % ${dr.pct <= dr.limitPct + 1e-9 ? "≤" : ">"} ${dr.limitPct} % (${dr.limitSource})` });
   if (dr.pct > dr.limitPct + 1e-9) issues.push({ severity: "error", message: `${c.tag}: caída de tensión ${fmtNum(dr.pct, 2)} % > ${dr.limitPct} % (${dr.limitSource})${Number.isFinite(forcedSize) ? " con la sección fijada" : "; ni la mayor sección con datos de impedancia cumple, considere conductores en paralelo"}.` });
   if (governing === "caida-de-tension") steps.push({ label: "Sección aumentada por caída de tensión", result: `${sizeLabel(chosen.size)} mm²` });
+  if ((m.method === "B1" || m.method === "B2") && chosen.size > 120)
+    steps.push({
+      label: "Origen del valor de ampacidad",
+      result: `${m.method}, ${sizeLabel(chosen.size)} mm²: IEC 60364-5-52:2009 (Tablas B.52.2–B.52.5, reproducción de TiSoft); la fuente ABB no publica B1/B2 arriba de 120 mm²`,
+    });
 
   // ---- Conductor de protección (IEC 60364-5-54, Tabla 2 del cap. 2.5 de la fuente).
   let egc: ConductorDecision["egc"];

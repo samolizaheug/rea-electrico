@@ -6,10 +6,10 @@
   "tables": {
     "ampacidad-aire": {
       "status": "fuente_secundaria",
-      "fingerprint": "89667efefd0203b504db461b18fa981d038cd42ea147459f8e282751bd9c0566",
+      "fingerprint": "7e9f051ad2714a9eab6fdfd72b139dbe3afc8a7dd4f736cf119246d42fc8a151",
       "by": "Ing. RGLR",
       "date": "2026-10-25",
-      "notes": "Aval del Ing. RGLR (2026-10-24). Transcripcion manual por Claude (asistente IA) desde la imagen de las paginas del manual ABB (4.a ed., 2006), cotejada con la capa de texto del PDF y con la 2.a ed. del mismo manual; errata ABB-2 aplicada (valor menor). R y X comprobadas contra las tablas de caida especifica del mismo manual. Pendiente de cotejo con IEC 60364-5-52."
+      "notes": "Aval del Ing. RGLR (2026-10-25). Transcripcion de ABB (4.a ed.) cotejada con la capa de texto, con la 2.a ed. y con IEC 60364-5-52:2009 (TiSoft, 568 celdas A1-C identicas). ABB-2 = 15 A (edicion 2009). B1/B2 150-300 mm2 completados con la edicion 2009 (TiSoft)."
     },
     "ampacidad-terreno": {
       "status": "fuente_secundaria",

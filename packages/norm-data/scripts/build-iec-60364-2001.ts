@@ -85,7 +85,7 @@ const stdCols = (method: string): ColDef[] =>
 
 const A1: Row[] = [
   [1.5, 19, 17, 14.5, 13.5, _, _, _, _],
-  [2.5, 26, 23, 19.5, 18, 20, 19, 14.5, 14], // Al PVC 2: publicado 15 en la 4.ª ed.; errata ABB-2 aprobada
+  [2.5, 26, 23, 19.5, 18, 20, 19, 15, 14], // Al PVC 2: 15 A (4.ª ed. y edición 2009); la 2.ª ed. publica 14.5 (ABB-2)
   [4, 35, 31, 26, 24, 27, 25, 20, 18.5],
   [6, 45, 40, 34, 31, 35, 32, 26, 24],
   [10, 61, 54, 46, 42, 48, 44, 36, 32],
@@ -132,6 +132,11 @@ const B1: Row[] = [
   [70, 253, 222, 192, 171, 200, 179, 150, 133],
   [95, 306, 269, 232, 207, 242, 217, 181, 161],
   [120, 354, 312, 269, 239, 281, 251, 210, 186],
+  // 150–300 mm²: complemento de la edición 2009 (ABB no publica estos valores), ver B1B2_2009_NOTE.
+  [150, 393, 342, 300, 262, 307, 267, 234, 204],
+  [185, 449, 384, 341, 296, 351, 300, 266, 230],
+  [240, 528, 450, 400, 346, 412, 351, 312, 269],
+  [300, 603, 514, 458, 394, 471, 402, 358, 306],
 ];
 const B2: Row[] = [
   [1.5, 22, 19.5, 16.5, 15, _, _, _, _],
@@ -146,7 +151,21 @@ const B2: Row[] = [
   [70, 221, 194, 168, 149, 175, 156, 131, 116],
   [95, 265, 233, 201, 179, 210, 188, 157, 139],
   [120, 305, 268, 232, 206, 242, 216, 181, 160],
+  // 150–300 mm²: complemento de la edición 2009 (ABB no publica estos valores), ver B1B2_2009_NOTE.
+  [150, 334, 300, 258, 225, 261, 240, 201, 176],
+  [185, 384, 340, 294, 255, 300, 272, 230, 199],
+  [240, 459, 398, 344, 297, 358, 318, 269, 232],
+  [300, 532, 455, 394, 339, 415, 364, 308, 265],
 ];
+
+/**
+ * B1 y B2 de 150 a 300 mm²: ABB (edición 2001) deja esas celdas en gris. Se completan con
+ * IEC 60364-5-52:2009, Tablas B.52.2 a B.52.5, según la reproducción de TiSoft (ayuda de
+ * ElectricalDesign, consultada el 2026-10-25). En esas tablas, las 568 celdas de A1–C que sí
+ * publica ABB son idénticas. Decisión del Ing. RGLR, 2026-10-25.
+ */
+export const B1B2_2009_NOTE =
+  "valores de IEC 60364-5-52:2009, Tablas B.52.2 a B.52.5, según su reproducción en TiSoft (consultada el 2026-10-25); en esas tablas, las celdas de A1 a C que también publica ABB coinciden todas. Decisión del Ing. RGLR, 2026-10-25.";
 const C: Row[] = [
   [1.5, 24, 22, 19.5, 17.5, _, _, _, _],
   [2.5, 33, 30, 27, 24, 26, 24, 21, 18.5],
@@ -285,22 +304,13 @@ tables.push({
     "Ampacidad de cables con aislamiento de PVC o EPR/XLPE, métodos A1, A2, B1, B2, C, E, F y G (30 °C en aire)",
     [41, 42, 43, 44],
     [
-      "Las celdas grises de la tabla publicada se registran como null: la fuente no da valores de B1 y B2 para secciones mayores de 120 mm², ni de A1/A2/E para más de 300 mm², ni de F y G para menos de 25 mm².",
+      "Las celdas grises de la tabla publicada se registran como null: la fuente no da valores de A1/A2/E para más de 300 mm², ni de F y G para menos de 25 mm².",
+      `B1 y B2 de 150 a 300 mm² (gris en ABB): ${B1B2_2009_NOTE}`,
       "Método F: dos unipolares en contacto, tres en trébol y tres en plano en contacto; método G: tres unipolares separados, en horizontal o en vertical (De entre cables).",
-      "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos; en ambas se usa el valor menor (conservador) hasta el cotejo con la norma IEC (decisión del Ing. RGLR, 2026-10-24):",
-      "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A → se usa 14.5 A (errata registrada).",
-      "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A → se usa 19.5 A (valor publicado, ya es el menor).",
+      "Cotejo con la 2.ª ed. del mismo manual (1SDC010001D0202): coinciden todas las celdas salvo dos (ABB-2 y ABB-3). Cotejo con IEC 60364-5-52:2009 Tablas B.52.2–B.52.5 (reproducción de TiSoft): 568 celdas de A1–C idénticas, y confirma la 4.ª ed. en ambas:",
+      "ABB-2: A1, Al PVC, 2 conductores cargados, 2.5 mm²: 4.ª ed. = 15 A; 2.ª ed. = 14.5 A; edición 2009 = 15 A → se usa 15 A (decisión del Ing. RGLR, 2026-10-25).",
+      "ABB-3: A2, Al PVC, 2 conductores cargados, 4 mm²: 4.ª ed. = 19.5 A; 2.ª ed. = 20 A; edición 2009 = 19.5 A → se usa 19.5 A.",
       "La capa de texto de la p. 43 lee «845» en F trébol, Al PVC, 25 mm²; la imagen muestra 84.",
-    ],
-    [
-      {
-        path: "columns[6].values[1]",
-        asPublished: 15,
-        corrected: 14.5,
-        reason: "ABB-2: la 2.ª ed. del mismo manual publica 14.5 A; se usa el valor menor (conservador) hasta el cotejo con IEC 60364-5-52.",
-        approvedBy: "Ing. RGLR",
-        approvedAt: "2026-10-24",
-      },
     ],
   ),
   kind: "iec-ampacity",
