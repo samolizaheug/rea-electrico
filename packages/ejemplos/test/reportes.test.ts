@@ -20,7 +20,10 @@ describe("reportes del sistema de ejemplo", () => {
     expect(svg).not.toMatch(/NaN|undefined|Infinity/);
     for (const el of project.elements) expect(svg).toContain(`>${el.tag}<`);
     // Resultados junto al símbolo y cajetín.
-    expect(svg).toContain("2/0 AWG");
+    // El cable muestra solo su configuración (ya trae el calibre); los tableros de 4 hilos, V L-L / V L-N.
+    expect(svg).toContain("3x#2/0AWG(Ph)");
+    expect(svg).not.toContain("2/0 AWG (");
+    expect(svg).toMatch(/216\.\d\/124\.\d V/);
     expect(svg).toContain("NOM-001-SEDE-2012");
     // Proporción alto/ancho leída del SVG (1 sería el valor por omisión si faltara width/height).
     expect(svgAspect(svg)).not.toBe(1);

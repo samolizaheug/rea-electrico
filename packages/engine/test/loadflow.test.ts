@@ -48,8 +48,8 @@ class Net {
     this.p = updateParams(this.p, this.ids[tag]!, params);
     return this;
   }
-  run(mode: "nominal" | "barrido" = "barrido") {
-    const r = runLoadFlow(this.p, registry, stubNorm, { mode });
+  run(mode: "nominal" | "barrido" = "barrido", norm: NormModule = stubNorm) {
+    const r = runLoadFlow(this.p, registry, norm, { mode });
     return { r, f: (tag: string) => r.elements.get(this.ids[tag]!)!, codes: r.issues.map((i) => `${i.code}:${i.severity}`) };
   }
 }
@@ -130,11 +130,35 @@ describe("verificación de criterios", () => {
   it("transformador sin X/R: error explícito (no se inventa el dato)", () => {
     const n = new Net()
       .add("ACOM", "utility")
-      .add("TR", "transformer", { xrRatio: null })
+      .add("TR", "transformer", { xrSource: "placa", xrRatio: null })
       .add("TAB", "panelboard")
       .wire("ACOM.out", "TR.primary")
       .wire("TR.secondary", "TAB.bus");
     expect(n.run().codes).toContain("transformador-xr:error");
+  });
+
+  it("transformador: %R por pérdidas en carga de placa y por valor típico de la norma", () => {
+    const tr = (params: Record<string, ParamValue>, norm = stubNorm) => {
+      const n = new Net()
+        .add("ACOM", "utility")
+        .add("TR", "transformer", { ratedKVA: 500, impedancePct: 5.75, ...params })
+        .add("TAB", "panelboard")
+        .wire("ACOM.out", "TR.primary")
+        .wire("TR.secondary", "TAB.bus");
+      return n.run("barrido", norm);
+    };
+    // 4 600 W en 500 kVA: %R = 4 600 / 5 000 = 0.92 %; %X = √(5.75² − 0.92²).
+    const placa = tr({ xrSource: "perdidas", loadLossesW: 4600 });
+    expect(placa.codes).toEqual([]);
+    const trace = placa.f("TR").traces.find((t) => t.title.includes("impedancia del transformador"))!;
+    expect(trace.steps.map((s) => s.result).join(" ")).toContain("%R = 0.92");
+    // Sin consulta de valores típicos en la norma: error que pide el dato.
+    expect(tr({ xrSource: "tipico" }).codes).toContain("transformador-xr:error");
+    // Con valores típicos: advertencia de dato aproximado, no error.
+    const typical: NormModule = { ...stubNorm, calc: { ...stubNorm.calc!, transformerLoadLosses: () => ({ ok: true, lossW: 4600, tableKVA: 500, column: "prueba", substitution: "prueba", refs: ["tabla de pérdidas de prueba"], notes: [], warnings: ["valor típico"] }) } };
+    expect(tr({ xrSource: "tipico" }, typical).codes).toEqual(["dato-aproximado:warning"]);
+    // Pérdidas incongruentes con %Z: error.
+    expect(tr({ xrSource: "perdidas", loadLossesW: 40000 }).codes).toContain("transformador-xr:error");
   });
 
   it("cable sin calibre: advertencia, el cálculo continúa", () => {

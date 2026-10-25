@@ -1,4 +1,4 @@
-import type { ElementRegistry, Project } from "@rea/core";
+import { voltageText, type ElementRegistry, type Project } from "@rea/core";
 import { buildIslands, sizeShort, wiringText, type ElementFlow, type Island, type PanelSchedule, type SizingRunResult, type Trace } from "@rea/engine";
 import { getNormDataset, type VerificationStatus } from "@rea/norm-data";
 import { getReportLanguage, rs, type ReportStringKey } from "./strings";
@@ -194,7 +194,11 @@ export function elementReport(elementId: string, sizing: SizingRunResult, regist
   if (flow?.currentA !== undefined) facts.push([rs("current"), `${fmt(flow.currentA, 2)} A`]);
   if (flow?.currentSecondaryA !== undefined) facts.push([rs("currentSecondary"), `${fmt(flow.currentSecondaryA, 2)} A`]);
   if (flow?.power) facts.push([rs("power"), `${fmt(flow.power.pKW, 3)} kW · ${fmt(flow.power.qKvar, 3)} kvar · ${fmt(flow.power.sKVA, 3)} kVA · FP ${fmt(flow.power.pf, 3)}`]);
-  if (flow?.voltage) facts.push([rs("voltage"), `${fmt(flow.voltage.v, 1)} V (${fmt(flow.voltage.pct, 2)} % de ${fmt(flow.voltage.vNom, 1)} V ${flow.voltage.basis})`]);
+  if (flow?.voltage) {
+    const sys = el.params.system;
+    const pair = registry.tryGet(el.type)?.electricalRole === "bus" && (sys === "3F4H" || sys === "1F3H") ? ` — ${voltageText(flow.voltage.v, sys, 1)}` : "";
+    facts.push([rs("voltage"), `${fmt(flow.voltage.v, 1)} V (${fmt(flow.voltage.pct, 2)} % de ${fmt(flow.voltage.vNom, 1)} V ${flow.voltage.basis})${pair}`]);
+  }
   if (flow?.dropPct !== undefined) facts.push([rs("drop"), `${fmt(flow.dropPct, 3)} %`]);
   if (flow?.cumulativeDropPct !== undefined) facts.push([rs("cumulative"), `${fmt(flow.cumulativeDropPct, 3)} %`]);
   if (circuit) {
@@ -228,11 +232,10 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
   switch (type) {
     case "cable": {
       if (!flow) return [];
-      const size = circuit && circuit.conductor.designation !== "—" ? conductorLabel({ ...circuit.conductor, material: undefined }, sizing.sizedProject.settings.units).replace(" × ", "×") : "sin calibre";
-      // Debajo del calibre, la configuración del cable: 3x#2AWG(Ph)+1x#10AWG(Gnd), 2[...] en paralelo.
+      // La configuración del cable ya trae el calibre: 3x#2AWG(Ph)+1x#10AWG(Gnd), 2[...] en paralelo.
       // Un renglón por grupo de conductores para que no invada los circuitos vecinos.
-      const config = circuit && circuit.conductor.designation !== "—" ? wiringText(circuit).split(/(?=\+)/) : [];
-      return [size, ...config, `${fmt(flow.currentA)} A · ΔV ${fmt(flow.dropPct, 2)} %`];
+      const config = circuit && circuit.conductor.designation !== "—" ? wiringText(circuit).split(/(?=\+)/) : ["sin calibre"];
+      return [...config, `${fmt(flow.currentA)} A · ΔV ${fmt(flow.dropPct, 2)} %`];
     }
     case "cable-mt": {
       if (!flow) return [];
@@ -249,7 +252,12 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
     case "panelboard":
     case "mcc":
     case "busbar":
-      return flow?.voltage ? [`${fmt(flow.voltage.v)} V (${fmt(flow.voltage.pct, 2)} %)`] : [];
+    {
+      // Con neutro: línea a línea / fase a neutro, p. ej. «216.2/124.8 V (98.29 %)».
+      if (!flow?.voltage) return [];
+      const system = sizing.sizedProject.elements.find((e) => e.id === elementId)?.params.system;
+      return [`${voltageText(flow.voltage.v, system, 1)} (${fmt(flow.voltage.pct, 2)} %)`];
+    }
     case "utility":
     case "generator":
       return flow ? [`${fmt(flow.power?.sKVA)} kVA · ${fmt(flow.currentA)} A`] : [];

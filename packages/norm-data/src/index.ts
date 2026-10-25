@@ -20,6 +20,7 @@ import {
 
 export * from "./schema";
 export * from "./nom-001-sede-2012";
+export * from "./nom-002-sede-2010";
 export { canonicalJson, fingerprint, sha256Hex } from "./fingerprint";
 
 export interface TableStatus {

@@ -94,6 +94,17 @@ export interface NormCalc {
   motorFlc(q: MotorFlcQuery): Lookup<{ amps: number; tableVoltageV: number; hp: string; step?: { label: string; formula?: string; substitution: string } }>;
   /** R y XL de un conductor (Ω/km, por conductor, a la temperatura de la tabla). */
   conductorImpedance(q: ConductorImpedanceQuery): Lookup<{ rOhmPerKm: number; xOhmPerKm: number; column: string; temperatureC: number }>;
+  /**
+   * Pérdidas debidas a la carga típicas de un transformador (W), para estimar %R cuando no hay
+   * X/R ni pérdidas de placa. Opcional: sin ella, el transformador exige el dato de placa.
+   */
+  transformerLoadLosses?(q: TransformerLossQuery): Lookup<{ lossW: number; tableKVA: number; column: string; substitution: string }>;
+}
+
+export interface TransformerLossQuery {
+  ratedKVA: number;
+  phases: 1 | 3;
+  primaryVoltageV: number;
 }
 
 // ---------------------------------------------------------------- Dimensionamiento

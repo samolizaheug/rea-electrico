@@ -43,8 +43,11 @@ import t40 from "../data/nom-001-sede-2012/tabla-430-248.json";
 import t41 from "../data/nom-001-sede-2012/tabla-430-250.json";
 import t42 from "../data/nom-001-sede-2012/tabla-430-52.json";
 import v43 from "../data/nom-001-sede-2012/verificacion.json";
+import t44 from "../data/nom-002-sede-2010/tabla-2.json";
+import v45 from "../data/nom-002-sede-2010/verificacion.json";
 
 export const rawCatalog: Record<string, { tables: unknown[]; verification: unknown }> = {
   "iec-60364-2001": { tables: [t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10], verification: v11 },
   "nom-001-sede-2012": { tables: [t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42], verification: v43 },
+  "nom-002-sede-2010": { tables: [t44], verification: v45 },
 };

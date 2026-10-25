@@ -37,7 +37,7 @@ export function sistemaEjemplo(): Project {
 
   // Fuente y transformador principal.
   add("ACOM-1", "utility", 580, 0, { voltageV: 23000, system: "3F3H", operatingVoltagePu: 1 });
-  add("TR-1", "transformer", 580, 100, { ratedKVA: 750, primaryVoltageV: 23000, primarySystem: "3F3H", secondaryVoltageV: 480, system: "3F4H", connection: "Dyn1", impedancePct: 5.75, xrRatio: 6, tapPct: 0 });
+  add("TR-1", "transformer", 580, 100, { ratedKVA: 750, primaryVoltageV: 23000, primarySystem: "3F3H", secondaryVoltageV: 480, system: "3F4H", connection: "Dyn1", impedancePct: 5.75, xrSource: "placa", xrRatio: 6, tapPct: 0 });
   add("TG", "panelboard", 300, 240, { voltageV: 480, system: "3F4H", boardUse: "distribucion" });
   wire("ACOM-1.out", "TR-1.primary");
   wire("TR-1.secondary", "TG.bus");
@@ -69,7 +69,7 @@ export function sistemaEjemplo(): Project {
   // Alimentador al TR-2 y TAB-A.
   add("INT-2", "breaker", 780, 320);
   cable("AL-2", 780, 420, "2", 20, "conduit-emt-acero");
-  add("TR-2", "transformer", 780, 520, { ratedKVA: 75, primaryVoltageV: 480, primarySystem: "3F3H", secondaryVoltageV: 220, system: "3F4H", connection: "Dyn1", impedancePct: 4, xrRatio: 2, tapPct: 0 });
+  add("TR-2", "transformer", 780, 520, { ratedKVA: 75, primaryVoltageV: 480, primarySystem: "3F3H", secondaryVoltageV: 220, system: "3F4H", connection: "Dyn1", impedancePct: 4, xrSource: "placa", xrRatio: 2, tapPct: 0 });
   cable("AL-3", 780, 640, "250", 10, "conduit-pvc-40");
   add("TAB-A", "panelboard", 660, 760, { voltageV: 220, system: "3F4H", boardUse: "alumbrado-contactos" });
   wire("TG.bus", "INT-2.line");

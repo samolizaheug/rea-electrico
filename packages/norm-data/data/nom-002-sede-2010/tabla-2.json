@@ -1,0 +1,256 @@
+{
+  "id": "nom-002-sede-2010/tabla-2",
+  "norm": {
+    "id": "nom-002-sede",
+    "edition": "2010"
+  },
+  "reference": {
+    "table": "Tabla 2",
+    "article": "5.2.2",
+    "title": "Pérdidas en vacío y totales máximas permitidas"
+  },
+  "source": {
+    "document": "fuentes/nom-002-sede-2010/dof-nom-002-sede-2010.htm (https://dof.gob.mx/normasOficiales/4577/sener/sener.htm)",
+    "sha256": "825F7AC987C865792AE47FFC961C551124C036105460C7BC0B3475B522F40A05",
+    "publication": "DOF (texto firmado el 28/11/2011)",
+    "pages": [
+      1
+    ],
+    "method": "extraccion-automatica",
+    "extractor": "Texto del HTML publicado por el DOF (documento de una sola página); renglones copiados sin modificar y cotejados contra el texto plano del mismo archivo."
+  },
+  "notes": [
+    "NOTA 1 de la tabla: las pérdidas son máximas y no se admiten tolerancias.",
+    "NOTA 2: las pérdidas totales incluyen las debidas a la carga, corregidas a la temperatura de referencia (75 °C u 85 °C según el diseño, numeral 6.2.1).",
+    "NOTA 3: capacidades intermedias cumplen con las pérdidas de la capacidad preferente inmediata superior.",
+    "Columnas por nivel básico de aislamiento: 95 kV (clase 15 kV), 150 kV (clase 18 y 25 kV), 200 kV (clase 34,5 kV).",
+    "Uso en REA Eléctrico: estimación de %R (pérdidas debidas a la carga = totales − en vacío) para un X/R aproximado cuando no hay dato de placa."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "tipo",
+        "label": "Tipo de alimentación"
+      },
+      {
+        "key": "kva",
+        "label": "Capacidad",
+        "unit": "kVA"
+      },
+      {
+        "key": "vacio_95",
+        "label": "En vacío, NBA 95 kV",
+        "unit": "W"
+      },
+      {
+        "key": "totales_95",
+        "label": "Totales, NBA 95 kV",
+        "unit": "W"
+      },
+      {
+        "key": "vacio_150",
+        "label": "En vacío, NBA 150 kV",
+        "unit": "W"
+      },
+      {
+        "key": "totales_150",
+        "label": "Totales, NBA 150 kV",
+        "unit": "W"
+      },
+      {
+        "key": "vacio_200",
+        "label": "En vacío, NBA 200 kV",
+        "unit": "W"
+      },
+      {
+        "key": "totales_200",
+        "label": "Totales, NBA 200 kV",
+        "unit": "W"
+      }
+    ],
+    "rows": [
+      {
+        "tipo": "monofasico",
+        "kva": 5,
+        "vacio_95": 30,
+        "totales_95": 107,
+        "vacio_150": 38,
+        "totales_150": 112,
+        "vacio_200": 63,
+        "totales_200": 118
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 10,
+        "vacio_95": 47,
+        "totales_95": 178,
+        "vacio_150": 57,
+        "totales_150": 188,
+        "vacio_200": 83,
+        "totales_200": 199
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 15,
+        "vacio_95": 62,
+        "totales_95": 244,
+        "vacio_150": 75,
+        "totales_150": 259,
+        "vacio_200": 115,
+        "totales_200": 275
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 25,
+        "vacio_95": 86,
+        "totales_95": 368,
+        "vacio_150": 100,
+        "totales_150": 394,
+        "vacio_200": 145,
+        "totales_200": 419
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 37.5,
+        "vacio_95": 114,
+        "totales_95": 513,
+        "vacio_150": 130,
+        "totales_150": 552,
+        "vacio_200": 185,
+        "totales_200": 590
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 50,
+        "vacio_95": 138,
+        "totales_95": 633,
+        "vacio_150": 160,
+        "totales_150": 684,
+        "vacio_200": 210,
+        "totales_200": 736
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 75,
+        "vacio_95": 186,
+        "totales_95": 834,
+        "vacio_150": 215,
+        "totales_150": 911,
+        "vacio_200": 270,
+        "totales_200": 988
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 100,
+        "vacio_95": 235,
+        "totales_95": 1061,
+        "vacio_150": 265,
+        "totales_150": 1163,
+        "vacio_200": 320,
+        "totales_200": 1266
+      },
+      {
+        "tipo": "monofasico",
+        "kva": 167,
+        "vacio_95": 365,
+        "totales_95": 1687,
+        "vacio_150": 415,
+        "totales_150": 1857,
+        "vacio_200": 425,
+        "totales_200": 2028
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 15,
+        "vacio_95": 88,
+        "totales_95": 314,
+        "vacio_150": 110,
+        "totales_150": 330,
+        "vacio_200": 135,
+        "totales_200": 345
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 30,
+        "vacio_95": 137,
+        "totales_95": 534,
+        "vacio_150": 165,
+        "totales_150": 565,
+        "vacio_200": 210,
+        "totales_200": 597
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 45,
+        "vacio_95": 180,
+        "totales_95": 755,
+        "vacio_150": 215,
+        "totales_150": 802,
+        "vacio_200": 265,
+        "totales_200": 848
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 75,
+        "vacio_95": 255,
+        "totales_95": 1142,
+        "vacio_150": 305,
+        "totales_150": 1220,
+        "vacio_200": 365,
+        "totales_200": 1297
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 112.5,
+        "vacio_95": 350,
+        "totales_95": 1597,
+        "vacio_150": 405,
+        "totales_150": 1713,
+        "vacio_200": 450,
+        "totales_200": 1829
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 150,
+        "vacio_95": 450,
+        "totales_95": 1976,
+        "vacio_150": 500,
+        "totales_150": 2130,
+        "vacio_200": 525,
+        "totales_200": 2284
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 225,
+        "vacio_95": 750,
+        "totales_95": 2844,
+        "vacio_150": 820,
+        "totales_150": 3080,
+        "vacio_200": 900,
+        "totales_200": 3310
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 300,
+        "vacio_95": 910,
+        "totales_95": 3644,
+        "vacio_150": 1000,
+        "totales_150": 3951,
+        "vacio_200": 1100,
+        "totales_200": 4260
+      },
+      {
+        "tipo": "trifasico",
+        "kva": 500,
+        "vacio_95": 1330,
+        "totales_95": 5561,
+        "vacio_150": 1475,
+        "totales_150": 6073,
+        "vacio_200": 1540,
+        "totales_200": 6586
+      }
+    ]
+  }
+}

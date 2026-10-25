@@ -54,6 +54,20 @@ export const transformer: ElementTypeDefinition = {
       description: "Impedancia de cortocircuito en por ciento sobre la base del propio transformador (dato de placa).",
     },
     {
+      key: "xrSource",
+      label: "Origen de X/R",
+      kind: "enum",
+      options: [
+        { value: "tipico", label: "Valor típico (estimado con NOM-002-SEDE-2010)" },
+        { value: "placa", label: "Relación X/R de placa o de fabricante" },
+        { value: "perdidas", label: "Pérdidas en carga de placa (W)" },
+      ],
+      default: "tipico",
+      group: "Eléctrico",
+      description:
+        "Valor típico: %R con las pérdidas máximas de la NOM-002-SEDE-2010 Tabla 2 (hasta 500 kVA trifásico, 167 kVA monofásico); se marca como dato aproximado. Para el cálculo definitivo use el dato de placa o del protocolo de pruebas.",
+    },
+    {
       key: "xrRatio",
       label: "Relación X/R",
       kind: "number",
@@ -61,7 +75,20 @@ export const transformer: ElementTypeDefinition = {
       min: 0,
       minExclusive: true,
       group: "Eléctrico",
-      description: "Dato de placa o de fabricante. Si no se captura, el cálculo lo marca como pendiente.",
+      visibleWhen: { param: "xrSource", equals: ["placa", null] },
+      description: "Dato de placa o de fabricante.",
+    },
+    {
+      key: "loadLossesW",
+      label: "Pérdidas en carga",
+      kind: "number",
+      unit: "W",
+      default: null,
+      min: 0,
+      minExclusive: true,
+      group: "Eléctrico",
+      visibleWhen: { param: "xrSource", equals: "perdidas" },
+      description: "Pérdidas debidas a la carga (en el cobre) a corriente nominal, del protocolo de pruebas: %R = P / (10 · kVA).",
     },
     {
       key: "tapPct",

@@ -1,6 +1,7 @@
 import type { EnumOption, ParamDef, ParamIssue, ParamValue } from "@rea/core";
 import { useEffect, useState } from "react";
 import { fromDisplayLength, toDisplayLength } from "@rea/reports/src/units";
+import { OptionHelpButton } from "../help/OptionHelpDialog";
 import { lib, t } from "../i18n";
 import { useProject } from "../state/store";
 
@@ -18,11 +19,13 @@ interface FieldProps {
   /** Opciones resueltas para enums con proveedor de la norma (undefined = la norma no las tiene). */
   providerOptions?: EnumOption[];
   issues: ParamIssue[];
+  /** Texto auxiliar junto al control, p. ej. «220/127 V» en sistemas con neutro. */
+  hint?: string;
   onCommit(value: ParamValue): void;
 }
 
 /** Campo de captura genérico, construido a partir de la definición del parámetro. */
-export function ParamField({ def, value, providerOptions, issues, onCommit }: FieldProps) {
+export function ParamField({ def, value, providerOptions, issues, hint, onCommit }: FieldProps) {
   const id = `param-${def.key}`;
   const error = issues.find((i) => i.severity === "error");
   return (
@@ -30,7 +33,15 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
       <label htmlFor={id} title={lib(def.description)}>
         {lib(def.label)}
       </label>
-      <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
+      {def.kind === "enum" ? (
+        <span className="control-help">
+          <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
+          <OptionHelpButton paramKey={def.key} label={lib(def.label)} options={(Array.isArray(def.options) ? def.options : providerOptions) ?? []} value={value} onCommit={onCommit} />
+        </span>
+      ) : (
+        <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
+      )}
+      {hint ? <span className="field-hint">{hint}</span> : null}
       {issues.map((i) => (
         <span key={i.message} className={`field-msg ${i.severity}`}>
           {i.message.replace(`${def.label}: `, "")}
@@ -42,7 +53,7 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
 }
 
 /** Control de captura de un parámetro (sin etiqueta); lo usan el panel de propiedades y la tabla. */
-export function Control({ id, def, value, providerOptions, onCommit }: { id: string } & Omit<FieldProps, "issues">) {
+export function Control({ id, def, value, providerOptions, onCommit }: { id: string } & Omit<FieldProps, "issues" | "hint">) {
   switch (def.kind) {
     case "number":
       return def.unit === "m" ? (

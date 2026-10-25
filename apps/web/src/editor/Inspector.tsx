@@ -28,6 +28,7 @@ export function Inspector() {
         <p>{t("inspector.multi", { n: selection.elements.length })}</p>
         <div className="actions">
           <button onClick={() => ed.rotate(selection.elements)}>{t("inspector.rotate")}</button>
+          <button title={t("inspector.disconnectHelp")} onClick={() => ed.disconnectElements(selection.elements)}>{t("inspector.disconnect")}</button>
           <button className="danger" onClick={() => ed.remove(selection.elements, selection.connections)}>
             {t("inspector.delete")}
           </button>
@@ -77,6 +78,13 @@ export function Inspector() {
       </div>
       <div className="actions">
         <button onClick={() => ed.rotate([el.id])}>{t("inspector.rotate")}</button>
+        <button
+          title={t("inspector.disconnectHelp")}
+          disabled={!project.connections.some((c) => c.a.elementId === el.id || c.b.elementId === el.id)}
+          onClick={() => ed.disconnectElements([el.id])}
+        >
+          {t("inspector.disconnect")}
+        </button>
         <button className="danger" onClick={() => ed.remove([el.id], [])}>
           {t("inspector.delete")}
         </button>

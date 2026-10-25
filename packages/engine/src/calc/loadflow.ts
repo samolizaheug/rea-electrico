@@ -387,7 +387,7 @@ function edgeData(
 
   if (edge.role === "branch" && mvCable) {
     // Cable de media tensión: en la fase 1 su impedancia no se incluye (ver la biblioteca, «cable-mt»).
-    base.traces.push({ title: `: cable de media tensión`, steps: [{ label: "Impedancia", result: "No se incluye en la fase 1 (sin tablas de media tensión): caída de tensión 0 %" }] });
+    base.traces.push({ title: `${el.tag}: cable de media tensión`, steps: [{ label: "Impedancia", result: "No se incluye en la fase 1 (sin tablas de media tensión): caída de tensión 0 %" }] });
     return base;
   }
   if (edge.role === "branch") {
@@ -420,16 +420,16 @@ function edgeData(
   if (edge.role === "transformer") {
     const sn = n(el.params.ratedKVA) * 1000;
     const zPct = n(el.params.impedancePct);
-    const xr = n(el.params.xrRatio);
     const tap = edge.reverse ? 0 : n(el.params.tapPct, 0);
     base.k = 1;
     base.ratio = child.vcNom / (parent.vcNom * (1 + tap / 100));
-    if (!(xr > 0)) {
-      issues.push({ severity: "error", code: "transformador-xr", message: `${el.tag}: falta la relación X/R (dato de placa o de fabricante); sin ella no se puede separar %Z en %R y %X.`, elementIds: [el.id] });
+    const split = transformerRX(el, zPct, sn / 1000, norm);
+    for (const w of split.warnings) issues.push({ severity: "warning", code: "dato-aproximado", message: `${el.tag}: ${w}`, elementIds: [el.id] });
+    if (!split.ok) {
+      issues.push({ severity: "error", code: "transformador-xr", message: `${el.tag}: ${split.error}`, elementIds: [el.id] });
       return base;
     }
-    const rPct = zPct / Math.sqrt(1 + xr * xr);
-    const xPct = rPct * xr;
+    const { rPct, xPct } = split;
     const zb = (child.m * child.vcNom * child.vcNom) / sn;
     base.z = new Complex((rPct / 100) * zb, (xPct / 100) * zb);
     base.tr = { sn, rPct, xPct };
@@ -437,7 +437,7 @@ function edgeData(
     base.traces.push({
       title: `${el.tag}: impedancia del transformador`,
       steps: [
-        { label: "Separación de %Z", formula: "%R = %Z / √(1 + (X/R)²) ;  %X = %R · X/R", substitution: `%R = ${zPct} / √(1 + ${xr}²)`, result: `%R = ${fmtNum(rPct, 4)} % ;  %X = ${fmtNum(xPct, 4)} %` },
+        ...split.steps,
         { label: "Impedancia base del secundario", formula: "Zb = V² / Sn", substitution: `Zb = ${fmtNum(child.m === 3 ? child.vNomLL : child.vcNom, 1)}² / ${fmtNum(sn, 0)}`, result: `${fmtNum(zb, 5)} Ω` },
         { label: "Impedancia referida al secundario", result: `R = ${fmtNum(base.z.re, 5)} Ω ;  X = ${fmtNum(base.z.im, 5)} Ω` },
       ],
@@ -458,6 +458,54 @@ function edgeData(
   }
 
   return base; // interruptores y ATS: sin impedancia
+}
+
+type RXSplit = ({ ok: true; rPct: number; xPct: number; steps: TraceStep[] } | { ok: false; error: string }) & { warnings: string[] };
+
+/**
+ * Separa %Z del transformador en %R y %X según el origen elegido:
+ * X/R de placa, pérdidas en carga de placa o valor típico de la norma (dato aproximado).
+ * Proyectos anteriores sin `xrSource` usan la X/R de placa.
+ */
+export function transformerRX(el: ProjectElement, zPct: number, kva: number, norm: NormModule): RXSplit {
+  const source = el.params.xrSource ?? "placa";
+  const fromLoss = (lossW: number, steps: TraceStep[], warnings: string[]): RXSplit => {
+    const rPct = lossW / (10 * kva);
+    if (!(rPct < zPct)) return { ok: false, error: `las pérdidas en carga (${fmtNum(lossW, 0)} W) dan %R = ${fmtNum(rPct, 3)} %, mayor o igual que %Z = ${zPct} %; revise los datos.`, warnings };
+    const xPct = Math.sqrt(zPct * zPct - rPct * rPct);
+    return {
+      ok: true,
+      rPct,
+      xPct,
+      warnings,
+      steps: [
+        ...steps,
+        { label: "Resistencia por pérdidas en carga", formula: "%R = P carga / (10 · kVA) ;  %X = √(%Z² − %R²)", substitution: `%R = ${fmtNum(lossW, 0)} / (10 · ${kva})`, result: `%R = ${fmtNum(rPct, 4)} % ;  %X = ${fmtNum(xPct, 4)} % ;  X/R = ${fmtNum(xPct / rPct, 2)}` },
+      ],
+    };
+  };
+  if (source === "perdidas") {
+    const w = n(el.params.loadLossesW);
+    if (!(w > 0)) return { ok: false, error: "faltan las pérdidas en carga de placa (W).", warnings: [] };
+    return fromLoss(w, [{ label: "Pérdidas en carga", substitution: "Dato de placa o del protocolo de pruebas", result: `${fmtNum(w, 0)} W` }], []);
+  }
+  if (source === "tipico") {
+    const q = norm.calc?.transformerLoadLosses?.({ ratedKVA: kva, phases: el.params.connection === "1F" ? 1 : 3, primaryVoltageV: n(el.params.primaryVoltageV) });
+    if (!q) return { ok: false, error: `la norma ${norm.label} no tiene valores típicos de pérdidas; capture la relación X/R o las pérdidas en carga de placa.`, warnings: [] };
+    if (!q.ok) return { ok: false, error: q.error, warnings: [] };
+    return fromLoss(q.lossW, [{ label: "Pérdidas en carga típicas", substitution: `${q.substitution} (${q.tableKVA} kVA, ${q.column})`, result: `${fmtNum(q.lossW, 0)} W`, refs: [...q.refs, ...q.notes] }], q.warnings ?? []);
+  }
+  const xr = n(el.params.xrRatio);
+  if (!(xr > 0)) return { ok: false, error: "falta la relación X/R (dato de placa o de fabricante); capture el dato o elija «Valor típico» o «Pérdidas en carga» en Origen de X/R.", warnings: [] };
+  const rPct = zPct / Math.sqrt(1 + xr * xr);
+  const xPct = rPct * xr;
+  return {
+    ok: true,
+    rPct,
+    xPct,
+    warnings: [],
+    steps: [{ label: "Separación de %Z", formula: "%R = %Z / √(1 + (X/R)²) ;  %X = %R · X/R", substitution: `%R = ${zPct} / √(1 + ${xr}²)`, result: `%R = ${fmtNum(rPct, 4)} % ;  %X = ${fmtNum(xPct, 4)} %` }],
+  };
 }
 
 function subtreeHasBus(nodeId: string, island: Island, nodes: Map<string, NetNode>): boolean {

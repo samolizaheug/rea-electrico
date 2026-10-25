@@ -79,6 +79,8 @@ interface EditorState {
   resizeBusTransient(id: string, length: number, x: number, y: number): void;
   commitDrag(): void;
   rotate(elementIds: string[]): void;
+  /** Quita todas las conexiones de los elementos sin eliminarlos (para moverlos a otro circuito). */
+  disconnectElements(elementIds: string[]): void;
   retag(elementId: string, tag: string): boolean;
   copy(): void;
   paste(): void;
@@ -173,6 +175,11 @@ export const useEditor = create<EditorState>((set, get) => {
     commitDrag: () => {
       const { dragBase } = get();
       if (dragBase) set((s) => ({ history: commitFrom(s.history, dragBase), dragBase: null }));
+    },
+    disconnectElements: (elementIds) => {
+      const ids = new Set(elementIds);
+      const conns = get().history.present.connections.filter((c) => ids.has(c.a.elementId) || ids.has(c.b.elementId));
+      if (conns.length) apply((p) => conns.reduce((acc, c) => disconnect(acc, c.id), p));
     },
     rotate: (elementIds) => {
       if (elementIds.length) apply((p) => rotateElements(p, elementIds, 90));

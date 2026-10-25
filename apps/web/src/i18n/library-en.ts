@@ -57,6 +57,16 @@ export const libraryEn: Record<string, string> = {
   "Corta duración": "Short-time",
   "Cortocircuito (fase posterior)": "Short circuit (later phase)",
   "Dato de placa": "Nameplate data",
+  "Dato de placa o de fabricante.": "Nameplate or manufacturer data.",
+  "Origen de X/R": "X/R source",
+  "Valor típico (estimado con NOM-002-SEDE-2010)": "Typical value (estimated with NOM-002-SEDE-2010)",
+  "Relación X/R de placa o de fabricante": "Nameplate or manufacturer X/R ratio",
+  "Pérdidas en carga de placa (W)": "Nameplate load losses (W)",
+  "Pérdidas en carga": "Load losses",
+  "Valor típico: %R con las pérdidas máximas de la NOM-002-SEDE-2010 Tabla 2 (hasta 500 kVA trifásico, 167 kVA monofásico); se marca como dato aproximado. Para el cálculo definitivo use el dato de placa o del protocolo de pruebas.":
+    "Typical value: %R from the maximum losses of NOM-002-SEDE-2010 Table 2 (up to 500 kVA three-phase, 167 kVA single-phase); flagged as approximate data. For the final calculation use nameplate or test-report data.",
+  "Pérdidas debidas a la carga (en el cobre) a corriente nominal, del protocolo de pruebas: %R = P / (10 · kVA).":
+    "Load (copper) losses at rated current, from the test report: %R = P / (10 · kVA).",
   "Dato de placa o de fabricante. Si no se captura, el cálculo lo marca como pendiente.": "Nameplate or manufacturer data. If not entered, the calculation flags it as pending.",
   "Dato del suministrador. Se usa también como impedancia equivalente de la red en el flujo de carga si se captura.": "Utility data. If entered, it is also used as the network equivalent impedance in the load flow.",
   "Define la regla de ampacidad en charolas portacables (NOM 392-80(a)(1) o (a)(2)).": "Sets the ampacity rule for cable trays (NOM 392-80(a)(1) or (a)(2)).",

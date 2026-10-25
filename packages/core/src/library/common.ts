@@ -25,6 +25,17 @@ export const PHASE_OPTIONS: EnumOption[] = [
   { value: "CA", label: "C-A" },
 ];
 
+/**
+ * Tensión de un sistema para mostrar: en sistemas con neutro, línea a línea / fase a neutro
+ * (3F4H: V/√3, p. ej. «220/127 V»; 1F3H: V/2, p. ej. «240/120 V»); en los demás, solo «V».
+ */
+export function voltageText(v: number, system: unknown, digits = 0): string {
+  const f = (x: number) => (digits === 0 ? String(Math.round(x)) : x.toFixed(digits));
+  if (system === "3F4H") return `${f(v)}/${f(v / Math.sqrt(3))} V`;
+  if (system === "1F3H") return `${f(v)}/${f(v / 2)} V`;
+  return `${f(v)} V`;
+}
+
 export function voltageParam(key: string, label: string, def: number, group = "Eléctrico"): NumberParamDef {
   return { key, label, kind: "number", unit: "V", default: def, min: 0, minExclusive: true, required: true, group };
 }

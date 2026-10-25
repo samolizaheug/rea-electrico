@@ -1,5 +1,6 @@
 import type { ConductorImpedanceQuery, MotorFlcQuery, NormCalc } from "@rea/engine";
 import { getNormDataset } from "@rea/norm-data";
+import { transformerLoadLosses } from "../transformer-losses";
 import { iecMethod } from "./methods";
 
 export const iecData = () => getNormDataset("iec-60364", "2001");
@@ -94,4 +95,4 @@ function conductorImpedance(q: ConductorImpedanceQuery): ReturnType<NormCalc["co
   };
 }
 
-export const iecCalc: NormCalc = { motorFlc, conductorImpedance };
+export const iecCalc: NormCalc = { motorFlc, conductorImpedance, transformerLoadLosses };

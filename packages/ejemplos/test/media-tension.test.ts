@@ -20,7 +20,7 @@ function sistema(insulationKV: string): { p: Project; id: (t: string) => string 
   };
   add("ACOM", "utility", { voltageV: 23000, system: "3F3H" });
   add("MT-1", "cable-mt", { lengthM: 80, insulationKV, forcedSize: "1/0" });
-  add("TR-1", "transformer", { ratedKVA: 150, primaryVoltageV: 23000, primarySystem: "3F3H", secondaryVoltageV: 220, system: "3F4H", impedancePct: 4.5, xrRatio: 3 });
+  add("TR-1", "transformer", { ratedKVA: 150, primaryVoltageV: 23000, primarySystem: "3F3H", secondaryVoltageV: 220, system: "3F4H", impedancePct: 4.5, xrSource: "placa", xrRatio: 3 });
   add("TG", "panelboard", { voltageV: 220, system: "3F4H" });
   add("INT", "breaker", {});
   add("AL", "cable", { insulationType: "THHW-LS", installationMethod: "conduit-pvc-40", lengthM: 20 });

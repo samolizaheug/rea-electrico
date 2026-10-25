@@ -1,3 +1,4 @@
+import { voltageText } from "@rea/core";
 import ExcelJS from "exceljs";
 import { circuitRows, elementReports, fmtDate, isDraft, normTables, type ReportInput } from "./data";
 import { rs } from "./strings";
@@ -149,7 +150,7 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
   // ---- Cuadros de carga: una hoja por tablero; los totales son fórmulas de Excel.
   for (const sch of input.schedules) {
     const ws = wb.addWorksheet(sheetName(wb, rs("sheetSchedule", { tag: sch.tag })), { views: [{ state: "frozen", ySplit: 3 }] });
-    ws.getCell("A1").value = `${sch.tag} — ${sch.vNomLL} V · ${sch.system ?? ""}`;
+    ws.getCell("A1").value = `${sch.tag} — ${voltageText(sch.vNomLL, sch.system)} · ${sch.system ?? ""}`;
     ws.getCell("A1").font = { bold: true, size: 12 };
     const first = 4;
     const last = table(
