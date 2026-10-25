@@ -1,8 +1,8 @@
 # REA Eléctrico: cálculo y diseño de instalaciones eléctricas
 
-Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
+Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Normas: NOM-001-SEDE-2012 e IEC 60364-5-52:2001 (con tablas de fuente secundaria ABB). El NEC 2020/2023/2026 queda preparado y pendiente de la captura de sus tablas. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E9** (editor de unifilares, validación de la red, flujo de carga y caída de tensión, dimensionamiento de conductores, protecciones y tierra según NOM-001-SEDE-2012, resultados sobre el diagrama, cuadros de carga con balance de fases, reportes en PDF, SVG, PNG y Excel, y módulo IEC 60364-5-52:2001 con tablas de fuente secundaria ABB; NEC pendiente de captura de tablas). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1 completa (etapas E1 a E10)**. Pendiente: módulo NEC, que espera la captura de tablas (`packages/norm-data/plantillas/nec`). Plan en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -27,7 +27,7 @@ pnpm norm:construir-iec-2001   # tablas IEC desde la transcripción (fuente: man
 pnpm norm:verificar nom-001-sede-2012 <tabla> --por "Ing. Nombre"
 ```
 
-Revisión de tablas: [docs/tablas/nom-001-sede-2012.md](docs/tablas/nom-001-sede-2012.md) (detalles en [packages/norm-data/README.md](packages/norm-data/README.md)).
+Revisión de tablas: [NOM](docs/tablas/nom-001-sede-2012.md) · [IEC](docs/tablas/iec-60364-2001.md) (detalles en [packages/norm-data/README.md](packages/norm-data/README.md)).
 
 ## Estructura
 
@@ -53,6 +53,27 @@ referencias/   Documentos normativos fuente (no versionados)
 - Atajos: Supr elimina · Ctrl+Z / Ctrl+Y deshacen / rehacen · Ctrl+C / Ctrl+V copian / pegan · Ctrl+D duplica · R gira 90° · Shift+arrastre hace selección múltiple.
 - Simbología ANSI/IEEE ↔ IEC desde la barra superior: cambia solo el dibujo, no el modelo.
 - Guardar descarga un `.rea.json`; Abrir lo carga y lo valida. Además hay autoguardado en el navegador.
+
+## Normas
+
+| Norma | Datos | Estado |
+|---|---|---|
+| NOM-001-SEDE-2012 | 19 tablas extraídas del PDF del DOF, con erratas aprobadas | Verificadas, avaladas por el Ing. RGLR |
+| IEC 60364-5-52:2001 (y 4-43, 5-54) | 11 tablas transcritas del manual ABB (4.ª ed.), cotejadas con el texto del PDF y con la 2.ª ed. | Fuente secundaria, avaladas por el Ing. RGLR; pendiente el cotejo con la norma IEC |
+| NEC 2020 / 2023 / 2026 | Plantillas de captura listas | Sin datos: no seleccionable |
+
+Al cambiar de norma en el proyecto, el editor pide confirmación y adapta el proyecto en un solo paso de deshacer:
+- el aislamiento y el método de instalación toman los valores por defecto de la nueva norma;
+- los calibres fijados se vacían;
+- los límites de caída bajan al máximo de la norma.
+
+## Idioma y unidades (E10)
+
+En **Proyecto → Criterios de diseño**:
+
+- **Idioma:** español o inglés. Se traducen la interfaz, la biblioteca de elementos y los textos fijos de los reportes. Las opciones que da la norma (aislamientos, métodos), los mensajes de validación y los pasos de la memoria quedan en español, el idioma de las normas soportadas.
+- **Longitudes:** m o ft. Se capturan y se muestran en la unidad elegida; el archivo guarda siempre metros.
+- **Calibres:** mm² o AWG. Se muestra la designación de la norma con su equivalente: «2/0 AWG (67.4 mm²)» o «25 mm² (≈ 3 AWG)». El equivalente AWG/kcmil se calcula con la fórmula del diámetro AWG (ASTM B258) y es el de área más cercana.
 
 ## Resultados (E7)
 

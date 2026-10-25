@@ -2,6 +2,7 @@ import "@xyflow/react/dist/style.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { ErrorBoundary } from "./ErrorBoundary";
 import { useEditor } from "./state/store";
 import "./styles.css";
 
@@ -10,6 +11,8 @@ if (import.meta.env.DEV) (window as unknown as { __rea: typeof useEditor }).__re
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );

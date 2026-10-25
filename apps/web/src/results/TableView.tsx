@@ -1,7 +1,7 @@
 import { isParamActive } from "@rea/core";
 import { useMemo, useState } from "react";
 import { Control } from "../editor/fields";
-import { t } from "../i18n";
+import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
 import { useValidation } from "../state/validation";
@@ -30,7 +30,7 @@ export function TableView() {
           <select value={current} onChange={(e) => setType(e.target.value)}>
             {types.map((tp) => (
               <option key={tp} value={tp}>
-                {registry.get(tp).name} ({project.elements.filter((e) => e.type === tp).length})
+                {lib(registry.get(tp).name)} ({project.elements.filter((e) => e.type === tp).length})
               </option>
             ))}
           </select>
@@ -43,9 +43,9 @@ export function TableView() {
             <tr>
               <th className="sticky">{t("inspector.tag")}</th>
               {params.map((p) => (
-                <th key={p.key} title={p.description}>
-                  {p.label}
-                  {p.kind === "number" && p.unit ? <span className="unit"> ({p.unit === "pu" ? "p.u." : p.unit})</span> : null}
+                <th key={p.key} title={lib(p.description)}>
+                  {lib(p.label)}
+                  {p.kind === "number" && p.unit ? <span className="unit"> ({p.unit === "pu" ? "p.u." : p.unit === "m" ? project.settings.units.length : p.unit})</span> : null}
                 </th>
               ))}
               <th>{t("table.results")}</th>

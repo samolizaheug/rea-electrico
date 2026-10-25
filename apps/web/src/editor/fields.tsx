@@ -1,6 +1,8 @@
 import type { EnumOption, ParamDef, ParamIssue, ParamValue } from "@rea/core";
 import { useEffect, useState } from "react";
-import { t } from "../i18n";
+import { fromDisplayLength, toDisplayLength } from "@rea/reports/src/units";
+import { lib, t } from "../i18n";
+import { useProject } from "../state/store";
 
 /** Convierte texto capturado a número; acepta coma decimal. Vacío = null. */
 export function parseNumber(text: string): number | null | "invalid" {
@@ -25,8 +27,8 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
   const error = issues.find((i) => i.severity === "error");
   return (
     <div className={`field${error ? " invalid" : ""}`}>
-      <label htmlFor={id} title={def.description}>
-        {def.label}
+      <label htmlFor={id} title={lib(def.description)}>
+        {lib(def.label)}
       </label>
       <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
       {issues.map((i) => (
@@ -34,7 +36,7 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
           {i.message.replace(`${def.label}: `, "")}
         </span>
       ))}
-      {def.description && !issues.length ? <span className="field-help">{def.description}</span> : null}
+      {def.description && !issues.length ? <span className="field-help">{lib(def.description)}</span> : null}
     </div>
   );
 }
@@ -43,7 +45,11 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
 export function Control({ id, def, value, providerOptions, onCommit }: { id: string } & Omit<FieldProps, "issues">) {
   switch (def.kind) {
     case "number":
-      return <NumberInput id={id} unit={def.unit} value={typeof value === "number" ? value : null} onCommit={onCommit} />;
+      return def.unit === "m" ? (
+        <LengthInput id={id} value={typeof value === "number" ? value : null} onCommit={onCommit} />
+      ) : (
+        <NumberInput id={id} unit={def.unit} value={typeof value === "number" ? value : null} onCommit={onCommit} />
+      );
     case "enum": {
       const options = Array.isArray(def.options) ? def.options : providerOptions;
       if (!options) return <span className="field-help">{t("field.noNormData")}</span>;
@@ -60,16 +66,16 @@ export function Control({ id, def, value, providerOptions, onCommit }: { id: str
       const render = (list: EnumOption[]) =>
         list.map((o) => (
           <option key={o.value} value={o.value}>
-            {o.label}
+            {lib(o.label)}
           </option>
         ));
       return (
         <select id={id} value={current} onChange={(e) => onCommit(e.target.value === "" ? null : e.target.value)}>
           {!def.required || !current ? <option value="">{def.required ? t("field.none") : t("field.auto")}</option> : null}
-          {!known && current ? <option value={current}>{current} (no válido)</option> : null}
+          {!known && current ? <option value={current}>{current} {t("field.invalidOption")}</option> : null}
           {groups.map(([g, list], i) =>
             g ? (
-              <optgroup key={`${g}-${i}`} label={g}>
+              <optgroup key={`${g}-${i}`} label={lib(g)}>
                 {render(list)}
               </optgroup>
             ) : (
@@ -84,6 +90,27 @@ export function Control({ id, def, value, providerOptions, onCommit }: { id: str
     case "string":
       return <TextInput id={id} value={typeof value === "string" ? value : ""} onCommit={onCommit} />;
   }
+}
+
+/**
+ * Longitud: el modelo guarda metros; se muestra y captura en la unidad del proyecto (m o ft).
+ * Se redondea a 0.01 en pantalla para que la conversión de ida y vuelta no altere el valor guardado.
+ */
+function LengthInput({ id, value, onCommit }: { id: string; value: number | null; onCommit(v: ParamValue): void }) {
+  const units = useProject().settings.units;
+  const shown = value === null ? null : Number(toDisplayLength(value, units).toFixed(2));
+  return (
+    <NumberInput
+      id={id}
+      unit={units.length}
+      value={shown}
+      onCommit={(v) => {
+        if (typeof v !== "number") return onCommit(v);
+        const m = units.length === "ft" ? fromDisplayLength(v, units) : v;
+        if (value === null || Math.abs(m - value) > 1e-9) onCommit(Number(m.toFixed(6)));
+      }}
+    />
+  );
 }
 
 function NumberInput({ id, unit, value, onCommit }: { id: string; unit?: string; value: number | null; onCommit(v: ParamValue): void }) {

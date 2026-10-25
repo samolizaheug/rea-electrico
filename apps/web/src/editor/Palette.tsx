@@ -1,6 +1,6 @@
 import type { ElementCategory } from "@rea/core";
 import { symbolFor, symbolToSvg } from "@rea/symbols";
-import { t } from "../i18n";
+import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
 import { useReactFlow } from "@xyflow/react";
@@ -29,7 +29,7 @@ export function Palette() {
                   key={def.type}
                   className="palette-item"
                   draggable
-                  title={def.name}
+                  title={lib(def.name)}
                   onDragStart={(e) => {
                     e.dataTransfer.setData(DND_TYPE, def.type);
                     e.dataTransfer.effectAllowed = "copy";
@@ -45,7 +45,7 @@ export function Palette() {
                     style={{ transform: `scale(${scale})` }}
                     dangerouslySetInnerHTML={{ __html: symbolToSvg(s) }}
                   />
-                  <span className="palette-label">{def.name}</span>
+                  <span className="palette-label">{lib(def.name)}</span>
                 </button>
               );
             })}

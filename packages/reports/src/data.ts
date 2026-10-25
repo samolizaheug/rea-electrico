@@ -1,7 +1,10 @@
 import type { ElementRegistry, Project } from "@rea/core";
 import { buildIslands, type ElementFlow, type Island, type PanelSchedule, type SizingRunResult, type Trace } from "@rea/engine";
 import { getNormDataset, type VerificationStatus } from "@rea/norm-data";
-import { rs, type ReportStringKey } from "./strings";
+import { getReportLanguage, rs, type ReportStringKey } from "./strings";
+import { DEFAULT_UNITS, sizeText, type DisplayUnits } from "./units";
+
+export * from "./units";
 
 /**
  * Datos que comparten todos los reportes. Se arman a partir del resultado del motor
@@ -40,7 +43,7 @@ export function fmt(v: number | undefined, d = 1): string {
 }
 
 export function fmtDate(d: Date): string {
-  return d.toLocaleDateString("es-MX", { year: "numeric", month: "long", day: "numeric" });
+  return d.toLocaleDateString(getReportLanguage() === "en" ? "en-US" : "es-MX", { year: "numeric", month: "long", day: "numeric" });
 }
 
 // ---------------------------------------------------------------- Cédula de circuitos
@@ -97,10 +100,15 @@ function destinationOf(island: Island, project: Project, nodeId: string): string
   return out;
 }
 
-export function conductorLabel(c: { designation: string; system: string; conductorsPerPhase: number; material?: string }): string {
+/** Calibre por fase con su equivalente según las unidades del proyecto, p. ej. "2 × 250 kcmil (127 mm²) Cu". */
+export function conductorLabel(c: { designation: string; system: string; conductorsPerPhase: number; material?: string; areaMm2?: number }, u: DisplayUnits = DEFAULT_UNITS): string {
   if (c.designation === "—") return "—";
-  const unit = c.system === "AWG" ? " AWG" : c.system === "kcmil" ? " kcmil" : c.system === "mm2" ? " mm²" : "";
-  return `${c.conductorsPerPhase > 1 ? `${c.conductorsPerPhase} × ` : ""}${c.designation}${unit}${c.material ? ` ${c.material}` : ""}`;
+  return `${c.conductorsPerPhase > 1 ? `${c.conductorsPerPhase} × ` : ""}${sizeText(c.designation, c.system, c.areaMm2, u)}${c.material ? ` ${c.material}` : ""}`;
+}
+
+/** Conductor de puesta a tierra / protección con su equivalente. */
+export function egcLabel(g: { designation: string; system: string; areaMm2: number }, u: DisplayUnits = DEFAULT_UNITS): string {
+  return sizeText(g.designation, g.system, g.areaMm2, u);
 }
 
 export function circuitRows(input: ReportInput): CircuitRow[] {
@@ -126,8 +134,8 @@ export function circuitRows(input: ReportInput): CircuitRow[] {
         designA: c.protection.designA,
         rule: c.protection.rule,
         protectionA: c.protection.ratingA,
-        conductor: conductorLabel(c.conductor),
-        egc: c.conductor.egc ? `${c.conductor.egc.designation}${c.conductor.egc.system === "AWG" ? " AWG" : c.conductor.egc.system === "kcmil" ? " kcmil" : ""}` : undefined,
+        conductor: conductorLabel(c.conductor, p.settings.units),
+        egc: c.conductor.egc ? egcLabel(c.conductor.egc, p.settings.units) : undefined,
         ampacityA: c.conductor.ampacityA,
         lengthM: typeof cable?.params.lengthM === "number" ? cable.params.lengthM : undefined,
         dropPct: f?.dropPct,
@@ -176,6 +184,7 @@ export interface ElementReport {
 export function elementReport(elementId: string, sizing: SizingRunResult, registry: ElementRegistry): ElementReport | null {
   const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
   if (!el) return null;
+  const units = sizing.sizedProject.settings.units;
   const flow: ElementFlow | undefined = sizing.loadFlow.elements.get(elementId);
   const circuit = sizing.circuits.get(elementId);
   const asBreaker = [...sizing.circuits.values()].find((c) => c.breakerId === elementId);
@@ -191,8 +200,8 @@ export function elementReport(elementId: string, sizing: SizingRunResult, regist
   if (circuit) {
     const c = circuit.conductor;
     facts.push([rs("designCurrent"), `${fmt(circuit.protection.designA, 2)} A (${circuit.protection.rule})`]);
-    facts.push([rs("conductor"), `${conductorLabel(c)} — ${fmt(c.ampacityA, 1)} A (${rs("governing").toLowerCase()}: ${rs(`governing.${c.governing}` as ReportStringKey)})`]);
-    if (c.egc) facts.push([rs("egc"), `${c.egc.designation} ${c.egc.system}${c.egc.perRaceway ? " en cada canalización" : ""}`]);
+    facts.push([rs("conductor"), `${conductorLabel(c, units)} — ${fmt(c.ampacityA, 1)} A (${rs("governing").toLowerCase()}: ${rs(`governing.${c.governing}` as ReportStringKey)})`]);
+    if (c.egc) facts.push([rs("egc"), `${egcLabel(c.egc, units)}${c.egc.perRaceway ? " en cada canalización" : ""}`]);
     if (circuit.protection.ratingA !== undefined) facts.push([rs("protection").replace(" (A)", ""), `${circuit.protection.ratingA} A`]);
   }
   if (asBreaker) facts.push([rs("protection").replace(" (A)", ""), `${asBreaker.protection.ratingA ?? "—"} A (${asBreaker.protection.rule})`]);
@@ -218,7 +227,7 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
   switch (type) {
     case "cable": {
       if (!flow) return [];
-      const size = circuit && circuit.conductor.designation !== "—" ? conductorLabel({ ...circuit.conductor, material: undefined }).replace(" × ", "×") : "sin calibre";
+      const size = circuit && circuit.conductor.designation !== "—" ? conductorLabel({ ...circuit.conductor, material: undefined }, sizing.sizedProject.settings.units).replace(" × ", "×") : "sin calibre";
       return [size, `${fmt(flow.currentA)} A · ΔV ${fmt(flow.dropPct, 2)} %`];
     }
     case "breaker": {

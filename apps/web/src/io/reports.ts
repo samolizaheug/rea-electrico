@@ -48,6 +48,7 @@ export async function exportReport(kind: ExportKind): Promise<string> {
   const project = useEditor.getState().history.present;
   const v = validationFor(project);
   const r = await import("@rea/reports");
+  r.setReportLanguage(project.settings.language);
   const base = baseNameFor(project);
   const issues = v.issues.map((i) => ({ severity: i.severity, message: i.message, elementIds: i.elementIds }));
   const showResults = useEditor.getState().showResults && !!v.results;

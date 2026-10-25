@@ -1,5 +1,6 @@
 import { t } from "../i18n";
-import { useEditor } from "../state/store";
+import { toDisplayLength } from "@rea/reports/src/units";
+import { useEditor, useProject } from "../state/store";
 import { useValidation } from "../state/validation";
 import { f1 } from "./format";
 
@@ -7,6 +8,7 @@ import { f1 } from "./format";
 export function SchedulesView() {
   const v = useValidation();
   const ed = useEditor.getState();
+  const u = useProject().settings.units;
   if (!v.results) return <div className="schedules"><p className="muted">{t("results.notCalculated")}</p></div>;
   if (!v.results.schedules.length) return <div className="schedules"><p className="muted">{t("schedules.none")}</p></div>;
 
@@ -40,7 +42,7 @@ export function SchedulesView() {
                     <th className="num">I (A)</th>
                     <th className="num">{t("schedules.protection")}</th>
                     <th>{t("schedules.conductor")}</th>
-                    <th className="num">L (m)</th>
+                    <th className="num">L ({u.length})</th>
                     <th className="num">ΔV (%)</th>
                   </tr>
                 </thead>
@@ -61,7 +63,7 @@ export function SchedulesView() {
                       <td className="num">{f1(r.currentA, 2)}</td>
                       <td className="num">{r.protectionA !== undefined ? `${r.protectionA} A${r.poles ? ` / ${r.poles}P` : ""}` : "—"}</td>
                       <td>{r.conductor ?? "—"}</td>
-                      <td className="num">{f1(r.lengthM, 0)}</td>
+                      <td className="num">{f1(r.lengthM === undefined ? undefined : toDisplayLength(r.lengthM, u), 0)}</td>
                       <td className="num">{f1(r.dropPct, 2)}</td>
                     </tr>
                   ))}

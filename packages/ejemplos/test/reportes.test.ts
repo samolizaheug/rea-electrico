@@ -2,7 +2,7 @@ import ExcelJS from "exceljs";
 import { createDefaultRegistry } from "@rea/core";
 import { panelSchedules, runSizing, scheduleIssues } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
-import { buildWorkbook, circuitRows, diagramSvg, elementReports, isDraft, memoriaDocDefinition, svgAspect, type ReportInput } from "@rea/reports";
+import { buildWorkbook, circuitRows, diagramSvg, elementReports, isDraft, memoriaDocDefinition, setReportLanguage, sizeText, svgAspect, toDisplayLength, type ReportInput } from "@rea/reports";
 import { renderPdf } from "@rea/reports/src/node";
 import { describe, expect, it } from "vitest";
 import { sistemaEjemplo } from "../src";
@@ -29,10 +29,30 @@ describe("reportes del sistema de ejemplo", () => {
     const rows = circuitRows(input);
     expect(rows).toHaveLength(sizing.circuits.size);
     const by = (tag: string) => rows.find((r) => r.tag === tag)!;
-    expect(by("AL-1")).toMatchObject({ from: "TG", to: "CCM-1", protectionA: 200, conductor: "2/0 AWG Cu", breakerTag: "INT-1" });
+    // Unidades del proyecto: calibres en mm² → designación AWG con su área entre paréntesis.
+    expect(by("AL-1")).toMatchObject({ from: "TG", to: "CCM-1", protectionA: 200, conductor: "2/0 AWG (67.4 mm²) Cu", breakerTag: "INT-1" });
     expect(by("AL-3")).toMatchObject({ from: "TR-2", to: "TAB-A" });
     expect(by("AL-21")).toMatchObject({ from: "TAB-A", to: "L-01" });
     expect(by("AL-12").to).toBe("VFD-01");
+  });
+
+  it("unidades: con calibres en AWG no se agrega el área; equivalencias AWG de secciones IEC", () => {
+    const awg = { conductorSize: "AWG" as const, length: "m" as const };
+    expect(sizeText("2/0", "AWG", 67.43, awg)).toBe("2/0 AWG");
+    // 25 mm² está más cerca de 3 AWG (26.7 mm²) que de 4 AWG (21.2 mm²).
+    expect(sizeText("25", "mm2", 25, awg)).toBe("25 mm² (≈ 3 AWG)");
+    expect(sizeText("120", "mm2", 120, awg)).toBe("120 mm² (≈ 250 kcmil)");
+    expect(toDisplayLength(30.48, { conductorSize: "mm2", length: "ft" })).toBeCloseTo(100, 9);
+  });
+
+  it("reportes en inglés: textos fijos traducidos", async () => {
+    setReportLanguage("en");
+    try {
+      const def = memoriaDocDefinition(input);
+      expect(JSON.stringify(def.content)).toContain("Conductor and protection schedule");
+    } finally {
+      setReportLanguage("es");
+    }
   });
 
   it("memoria por elemento: de la fuente hacia las cargas, con trazas", () => {

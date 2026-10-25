@@ -1,6 +1,7 @@
 import ExcelJS from "exceljs";
 import { circuitRows, elementReports, fmtDate, isDraft, normTables, type ReportInput } from "./data";
 import { rs } from "./strings";
+import { toDisplayLength } from "./units";
 
 /**
  * Libro de Excel con la cédula de circuitos, un cuadro de carga por hoja, la memoria paso a
@@ -61,6 +62,8 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
   const m = project.meta;
   const s = project.settings;
   const date = input.date ?? new Date();
+  const u = s.units;
+  const len = (m: number | undefined) => (m === undefined ? undefined : toDisplayLength(m, u));
   const wb = new ExcelJS.Workbook();
   wb.creator = m.author || "REA Eléctrico";
   wb.title = `${rs("memoriaTitle")} — ${m.name}`;
@@ -135,12 +138,12 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
       { header: rs("conductor"), width: 18 },
       { header: rs("egc"), width: 10 },
       { header: rs("ampacity"), width: 12, numFmt: "0.0" },
-      { header: rs("length"), width: 8, numFmt: "0.0" },
+      { header: rs("length", { unit: u.length }), width: 8, numFmt: "0.0" },
       { header: rs("dropPct"), width: 11, numFmt: "0.000" },
       { header: rs("cumulativePct"), width: 11, numFmt: "0.000" },
       { header: rs("governing"), width: 16 },
     ],
-    circuitRows(input).map((c) => [c.tag, c.breakerTag ?? "—", c.from, c.to, c.kind, c.loadA, c.designA, c.rule, c.protectionA, c.conductor, c.egc ?? "—", c.ampacityA, c.lengthM, c.dropPct, c.cumulativePct, c.governing]),
+    circuitRows(input).map((c) => [c.tag, c.breakerTag ?? "—", c.from, c.to, c.kind, c.loadA, c.designA, c.rule, c.protectionA, c.conductor, c.egc ?? "—", c.ampacityA, len(c.lengthM), c.dropPct, c.cumulativePct, c.governing]),
   );
 
   // ---- Cuadros de carga: una hoja por tablero; los totales son fórmulas de Excel.
@@ -165,10 +168,10 @@ export async function buildWorkbook(input: ReportInput): Promise<ExcelJS.Workboo
         { header: "I (A)", width: 9, numFmt: "0.00" },
         { header: rs("protection"), width: 12, numFmt: "0" },
         { header: rs("conductor"), width: 18 },
-        { header: rs("length"), width: 8, numFmt: "0.0" },
+        { header: rs("length", { unit: u.length }), width: 8, numFmt: "0.0" },
         { header: rs("dropPct"), width: 11, numFmt: "0.000" },
       ],
-      sch.rows.map((r) => [r.circuit, r.description, r.phases, r.va.a, r.va.b, r.va.c, r.totalVA, r.pKW, r.qKvar, r.currentA, r.protectionA, r.conductor ?? "—", r.lengthM, r.dropPct]),
+      sch.rows.map((r) => [r.circuit, r.description, r.phases, r.va.a, r.va.b, r.va.c, r.totalVA, r.pKW, r.qKvar, r.currentA, r.protectionA, r.conductor ?? "—", len(r.lengthM), r.dropPct]),
     ) - 1;
     const tot = ws.getRow(last + 1);
     tot.getCell(1).value = rs("totals");

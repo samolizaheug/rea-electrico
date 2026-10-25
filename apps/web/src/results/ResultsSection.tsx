@@ -24,6 +24,7 @@ export function ResultsSection({ elementId }: { elementId: string }) {
         ))}
       </dl>
       <h3>{t("results.memoria")}</h3>
+      {t("results.tracesLanguage") ? <p className="muted small">{t("results.tracesLanguage")}</p> : null}
       {report.traces.map((tr, i) => (
         <details key={`${tr.title}-${i}`} className="trace" open={i === 0}>
           <summary>{tr.title}</summary>

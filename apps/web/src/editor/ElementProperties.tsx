@@ -1,5 +1,5 @@
 import { isParamActive, type ProjectElement } from "@rea/core";
-import { t } from "../i18n";
+import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor } from "../state/store";
 import { useValidation } from "../state/validation";
@@ -35,7 +35,7 @@ export function ElementProperties({ element }: { element: ProjectElement }) {
       ) : null}
       {[...groups.entries()].map(([group, params]) => (
         <fieldset key={group}>
-          <legend>{group}</legend>
+          <legend>{lib(group)}</legend>
           {params.map((p) => (
             <ParamField
               key={p.key}

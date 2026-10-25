@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { t } from "../i18n";
+import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
 import { ResultsSection } from "../results/ResultsSection";
@@ -70,7 +70,7 @@ export function Inspector() {
 
   return (
     <aside className="inspector">
-      <h2>{def.name}</h2>
+      <h2>{lib(def.name)}</h2>
       <div className="field">
         <label htmlFor="el-tag">{t("inspector.tag")}</label>
         <input id="el-tag" value={tag} onChange={(e) => setTag(e.target.value)} onBlur={commitTag} onKeyDown={(e) => e.key === "Enter" && commitTag()} />

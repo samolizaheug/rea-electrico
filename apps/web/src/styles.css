@@ -806,3 +806,23 @@ input[aria-invalid="true"] {
   background: var(--danger);
   color: #fff;
 }
+
+/* Aviso de error de la interfaz (ErrorBoundary). */
+.crash {
+  max-width: 640px;
+  margin: 10vh auto;
+  padding: 24px;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+}
+.crash pre {
+  white-space: pre-wrap;
+  font-size: 12px;
+  color: var(--danger);
+}
+.crash .actions {
+  display: flex;
+  gap: 8px;
+}

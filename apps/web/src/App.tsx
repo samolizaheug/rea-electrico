@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Inspector } from "./editor/Inspector";
 import { Palette } from "./editor/Palette";
 import { Toolbar } from "./editor/Toolbar";
-import { t } from "./i18n";
+import { setLanguage, t } from "./i18n";
 import { loadAutosave, saveAutosave } from "./io/files";
 import { useEditor, useProject } from "./state/store";
 import { useValidation } from "./state/validation";
@@ -96,9 +96,12 @@ function StatusBar() {
 export function App() {
   useShortcuts();
   useAutosave();
+  // El idioma es parte del proyecto; al cambiarlo se vuelve a montar la interfaz con los textos nuevos.
+  const lang = useEditor((s) => s.history.present.settings.language);
+  setLanguage(lang);
   return (
     <ReactFlowProvider>
-      <div className="app">
+      <div className="app" key={lang}>
         <Toolbar />
         <Palette />
         <Workspace />

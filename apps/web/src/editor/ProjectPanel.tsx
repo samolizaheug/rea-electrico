@@ -1,5 +1,5 @@
 import { getNormModule, normModules } from "@rea/norms";
-import { t } from "../i18n";
+import { lib, t } from "../i18n";
 import { adaptToNorm } from "../state/norm-switch";
 import { useEditor, useProject } from "../state/store";
 import { TextInput } from "./fields";
@@ -62,6 +62,13 @@ export function ProjectPanel() {
           </select>
         </div>
         <div className="field">
+          <label htmlFor="set-lang">{t("project.language")}</label>
+          <select id="set-lang" value={s.language} onChange={(e) => ed.setSettings({ language: e.target.value as "es" | "en" })}>
+            <option value="es">Español</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div className="field">
           <label htmlFor="set-sym">{t("project.symbology")}</label>
           <select id="set-sym" value={s.symbology} onChange={(e) => ed.setSettings({ symbology: e.target.value as "ANSI" | "IEC" })}>
             <option value="ANSI">ANSI / IEEE</option>
@@ -117,9 +124,19 @@ export function ProjectPanel() {
         ))}
         {vd?.special.length ? (
           <span className="field-help">
-            Límites obligatorios especiales:{" "}
+            {t("project.vdSpecial")}{" "}
             {vd.special
-              .map((sp) => `${sp.label}: ${[sp.branch && `derivado ${sp.branch.pct} %`, sp.total && `total ${sp.total.pct} %`, sp.motorRunning && `operación ${sp.motorRunning.pct} % en terminales del motor`, sp.motorStarting && `arranque ${sp.motorStarting.pct} % en el controlador`].filter(Boolean).join(", ")} (${(sp.branch ?? sp.motorRunning)?.source})`)
+              .map(
+                (sp) =>
+                  `${lib(sp.label)}: ${[
+                    sp.branch && t("project.vdSpecialBranch", { pct: sp.branch.pct }),
+                    sp.total && t("project.vdSpecialTotal", { pct: sp.total.pct }),
+                    sp.motorRunning && t("project.vdSpecialRunning", { pct: sp.motorRunning.pct }),
+                    sp.motorStarting && t("project.vdSpecialStarting", { pct: sp.motorStarting.pct }),
+                  ]
+                    .filter(Boolean)
+                    .join(", ")} (${(sp.branch ?? sp.motorRunning)?.source})`,
+              )
               .join(" · ")}
           </span>
         ) : null}

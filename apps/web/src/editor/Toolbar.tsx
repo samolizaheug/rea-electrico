@@ -50,7 +50,7 @@ export function Toolbar() {
         <button
           onClick={() => {
             if (!confirm(t("confirm.new"))) return;
-            const n = prompt(t("prompt.newName"), "Proyecto sin título");
+            const n = prompt(t("prompt.newName"), t("prompt.defaultName"));
             if (n) ed.newProject(n);
           }}
         >

@@ -3,6 +3,7 @@ import type { PanelSchedule, TraceStep } from "@rea/engine";
 import { circuitRows, elementReports, fmt, fmtDate, isDraft, issueSeverityByElement, normTables, type ReportInput } from "./data";
 import { diagramSvg } from "./diagram-svg";
 import { rs } from "./strings";
+import { toDisplayLength, type DisplayUnits } from "./units";
 
 /**
  * Memoria de cálculo en PDF (definición de pdfmake). Contenido:
@@ -52,10 +53,10 @@ function stepContent(s: TraceStep): Content {
   };
 }
 
-function scheduleTable(s: PanelSchedule): Content[] {
+function scheduleTable(s: PanelSchedule, u: DisplayUnits): Content[] {
   const ln = s.vNomLL / Math.sqrt(3);
   const body: TableCell[][] = [
-    [th(rs("circuit")), th(rs("fedBy")), th(rs("phases"), "center"), th("A (VA)", "right"), th("B (VA)", "right"), th("C (VA)", "right"), th(`${rs("total")} (VA)`, "right"), th("I (A)", "right"), th(rs("protection"), "right"), th(rs("conductor")), th(rs("length"), "right"), th(rs("dropPct"), "right")],
+    [th(rs("circuit")), th(rs("fedBy")), th(rs("phases"), "center"), th("A (VA)", "right"), th("B (VA)", "right"), th("C (VA)", "right"), th(`${rs("total")} (VA)`, "right"), th("I (A)", "right"), th(rs("protection"), "right"), th(rs("conductor")), th(rs("length", { unit: u.length }), "right"), th(rs("dropPct"), "right")],
     ...s.rows.map((r) => [
       td(r.circuit),
       td(r.description),
@@ -67,7 +68,7 @@ function scheduleTable(s: PanelSchedule): Content[] {
       num(r.currentA, 2),
       td(r.protectionA !== undefined ? `${r.protectionA}${r.poles ? ` / ${r.poles}P` : ""}` : "—", "right"),
       td(r.conductor),
-      num(r.lengthM, 0),
+      num(r.lengthM === undefined ? undefined : toDisplayLength(r.lengthM, u), 0),
       num(r.dropPct, 2),
     ]),
     [
@@ -142,6 +143,7 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
   const circuits = circuitRows(input);
   const elements = elementReports(input);
   const issueMap = issueSeverityByElement(input.issues);
+  const u = project.settings.units;
 
   // ---- Portada, datos y criterios.
   const intro: Content[] = [
@@ -168,7 +170,7 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
       [rs("vdBranch"), `${s.voltageDrop.branchPct} %`],
       [rs("vdFeeder"), `${s.voltageDrop.feederPct} %`],
       [rs("vdTotal"), `${s.voltageDrop.totalPct} %`],
-      [rs("unbalance"), `${s.phaseUnbalance.maxPct} % (la norma no fija un valor; criterio de práctica)`],
+      [rs("unbalance"), `${s.phaseUnbalance.maxPct} % (${rs("unbalanceNote")})`],
       [rs("symbology"), s.symbology === "ANSI" ? "ANSI / IEEE" : "IEC"],
     ]),
   ];
@@ -188,7 +190,7 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
         dontBreakRows: true,
         widths: [38, 44, "*", 50, 36, 36, 40, 76, 40, 40, 28, 34, 34, 52],
         body: [
-          [th(rs("circuit")), th(rs("from")), th(rs("to")), th(rs("kind")), th(rs("loadA"), "right"), th(rs("designA"), "right"), th(rs("protection"), "right"), th(rs("conductor")), th(rs("egc")), th(rs("ampacity"), "right"), th(rs("length"), "right"), th(rs("dropPct"), "right"), th(rs("cumulativePct"), "right"), th(rs("governing"))],
+          [th(rs("circuit")), th(rs("from")), th(rs("to")), th(rs("kind")), th(rs("loadA"), "right"), th(rs("designA"), "right"), th(rs("protection"), "right"), th(rs("conductor")), th(rs("egc")), th(rs("ampacity"), "right"), th(rs("length", { unit: u.length }), "right"), th(rs("dropPct"), "right"), th(rs("cumulativePct"), "right"), th(rs("governing"))],
           ...circuits.map((c) => [
             td(c.tag),
             td(c.from),
@@ -200,7 +202,7 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
             td(c.conductor),
             td(c.egc),
             num(c.ampacityA, 1),
-            num(c.lengthM, 0),
+            num(c.lengthM === undefined ? undefined : toDisplayLength(c.lengthM, u), 0),
             num(c.dropPct, 2),
             num(c.cumulativePct, 2),
             td(c.governing),
@@ -210,11 +212,11 @@ export function memoriaDocDefinition(input: ReportInput): TDocumentDefinitions {
       layout: GRID,
       fontSize: 7.5,
     },
-    { text: "Corriente de diseño según la regla indicada en la memoria de cada circuito (p. ej. 125 % de cargas continuas). Caídas con el método nominal.", style: "refs", margin: [0, 3, 0, 0] },
+    { text: rs("circuitsNote"), style: "refs", margin: [0, 3, 0, 0] },
   ];
 
   // ---- Cuadros de carga.
-  const schedules: Content[] = [{ text: `5. ${rs("secSchedules")}`, style: "h2", headlineLevel: 1 }, ...input.schedules.flatMap(scheduleTable)];
+  const schedules: Content[] = [{ text: `5. ${rs("secSchedules")}`, style: "h2", headlineLevel: 1 }, ...input.schedules.flatMap((x) => scheduleTable(x, u))];
 
   // ---- Memoria por elemento.
   const memoria: Content[] = [{ text: `6. ${rs("secMemoria")}`, style: "h2", headlineLevel: 1 }];

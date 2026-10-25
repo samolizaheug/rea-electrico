@@ -49,7 +49,7 @@ export const reportStrings = {
   conductor: "Conductor",
   egc: "Tierra",
   ampacity: "Ampacidad (A)",
-  length: "L (m)",
+  length: "L ({unit})",
   dropPct: "ΔV tramo (%)",
   cumulativePct: "ΔV acum. (%)",
   governing: "Rige",
@@ -99,12 +99,117 @@ export const reportStrings = {
   sheetMemoria: "Memoria",
   sheetIssues: "Observaciones",
   sheetSchedule: "Cuadro {tag}",
+  circuitsNote: "Corriente de diseño según la regla indicada en la memoria de cada circuito. Caídas con el método nominal.",
+  unbalanceNote: "la norma no fija un valor; criterio de práctica",
 } as const;
 
 export type ReportStringKey = keyof typeof reportStrings;
 
+/** Textos en inglés (mismas claves). Los pasos de la memoria vienen del motor y de la norma, en su idioma. */
+export const reportStringsEn: Record<ReportStringKey, string> = {
+  memoriaTitle: "Calculation report",
+  diagramTitle: "One-line diagram",
+  draft: "DRAFT",
+  draftReason: "There are code tables pending verification or errors in the project: results are preliminary.",
+  page: "Sheet {n} of {total}",
+  generated: "Generated",
+  disclaimer: "This document supports the design and does not replace the review and signature of a responsible engineer.",
+  secProject: "Project data",
+  secCriteria: "Design criteria",
+  secDiagram: "One-line diagram",
+  secCircuits: "Conductor and protection schedule",
+  secSchedules: "Panel schedules",
+  secMemoria: "Calculations by element",
+  secIssues: "Findings",
+  secTables: "Code tables used",
+  secSignatures: "Signatures",
+  name: "Name",
+  client: "Client",
+  location: "Location",
+  author: "Prepared by",
+  reviewed: "Reviewed by",
+  description: "Description",
+  norm: "Code",
+  frequency: "Frequency",
+  ambientAir: "Ambient temperature (air)",
+  ambientGround: "Ground temperature",
+  vdBranch: "Max. drop, branch circuit",
+  vdFeeder: "Max. drop, feeder",
+  vdTotal: "Max. drop, total",
+  unbalance: "Max. phase unbalance",
+  method: "Calculation method",
+  methodValue: "Nominal (currents at nominal voltage). This is the report method; the phasor sweep is kept as a reference.",
+  symbology: "Symbols",
+  circuit: "Circuit",
+  from: "From",
+  to: "To",
+  kind: "Type",
+  loadA: "Load I (A)",
+  designA: "Design I (A)",
+  protection: "Protection (A)",
+  conductor: "Conductor",
+  egc: "Ground",
+  ampacity: "Ampacity (A)",
+  length: "L ({unit})",
+  dropPct: "Run ΔV (%)",
+  cumulativePct: "Cum. ΔV (%)",
+  governing: "Governs",
+  "governing.ampacidad": "ampacity",
+  "governing.proteccion": "protection",
+  "governing.caida-de-tension": "voltage drop",
+  "governing.fijado": "fixed size",
+  phases: "Phases",
+  total: "Total",
+  totals: "Totals",
+  phaseCurrent: "Current per phase (A)",
+  unbalanceShort: "Unbalance",
+  limit: "limit",
+  fedBy: "Feeds",
+  current: "Current",
+  currentSecondary: "Secondary current",
+  power: "Power",
+  voltage: "Voltage",
+  drop: "Run voltage drop",
+  cumulative: "Cumulative conductor voltage drop",
+  designCurrent: "Design current",
+  sizingTrace: "Sizing",
+  protectionTrace: "Protection selection",
+  formula: "Formula",
+  substitution: "Substitution",
+  result: "Result",
+  refs: "References",
+  severity: "Type",
+  message: "Description",
+  error: "Error",
+  warning: "Warning",
+  info: "Note",
+  noIssues: "No findings.",
+  table: "Table",
+  article: "Article",
+  title: "Title",
+  status: "Status",
+  element: "Element",
+  step: "Step",
+  sheetProject: "Project",
+  sheetCircuits: "Circuits",
+  sheetMemoria: "Calculations",
+  sheetIssues: "Findings",
+  sheetSchedule: "Schedule {tag}",
+  circuitsNote: "Design current per the rule stated in each circuit's calculations. Voltage drops by the nominal method.",
+  unbalanceNote: "the code sets no value; practice criterion",
+};
+
+let reportLang: "es" | "en" = "es";
+/** Idioma de los textos fijos de los reportes (el del proyecto). */
+export function setReportLanguage(lang: string): void {
+  reportLang = lang === "en" ? "en" : "es";
+}
+export function getReportLanguage(): "es" | "en" {
+  return reportLang;
+}
+
 export function rs(key: ReportStringKey, vars?: Record<string, string | number>): string {
-  let s: string = reportStrings[key];
+  let s: string = reportLang === "en" ? reportStringsEn[key] : reportStrings[key];
   if (vars) for (const [k, v] of Object.entries(vars)) s = s.replace(`{${k}}`, String(v));
   return s;
 }
