@@ -39,7 +39,8 @@ export function ParamField({ def, value, providerOptions, issues, onCommit }: Fi
   );
 }
 
-function Control({ id, def, value, providerOptions, onCommit }: { id: string } & Omit<FieldProps, "issues">) {
+/** Control de captura de un parámetro (sin etiqueta); lo usan el panel de propiedades y la tabla. */
+export function Control({ id, def, value, providerOptions, onCommit }: { id: string } & Omit<FieldProps, "issues">) {
   switch (def.kind) {
     case "number":
       return <NumberInput id={id} unit={def.unit} value={typeof value === "number" ? value : null} onCommit={onCommit} />;

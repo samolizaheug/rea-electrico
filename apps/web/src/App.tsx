@@ -1,6 +1,5 @@
 import { ReactFlowProvider } from "@xyflow/react";
 import { useEffect } from "react";
-import { Canvas } from "./editor/Canvas";
 import { Inspector } from "./editor/Inspector";
 import { Palette } from "./editor/Palette";
 import { Toolbar } from "./editor/Toolbar";
@@ -8,6 +7,7 @@ import { t } from "./i18n";
 import { loadAutosave, saveAutosave } from "./io/files";
 import { useEditor, useProject } from "./state/store";
 import { useValidation } from "./state/validation";
+import { Workspace } from "./Workspace";
 
 function isTyping(target: EventTarget | null): boolean {
   const el = target as HTMLElement | null;
@@ -101,7 +101,7 @@ export function App() {
       <div className="app">
         <Toolbar />
         <Palette />
-        <Canvas />
+        <Workspace />
         <Inspector />
         <StatusBar />
         <ToastView />

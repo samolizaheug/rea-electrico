@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
+import { ResultsSection } from "../results/ResultsSection";
 import { ElementProperties } from "./ElementProperties";
 import { ProjectPanel } from "./ProjectPanel";
 
@@ -17,6 +18,7 @@ export function Inspector() {
   const ed = useEditor.getState();
   const el = selection.elements.length === 1 ? project.elements.find((e) => e.id === selection.elements[0]) : undefined;
   const [tag, setTag] = useState(el?.tag ?? "");
+  const [panel, setPanel] = useState<"propiedades" | "resultados">("propiedades");
   useEffect(() => setTag(el?.tag ?? ""), [el?.id, el?.tag]);
 
   if (selection.elements.length > 1) {
@@ -79,7 +81,14 @@ export function Inspector() {
           {t("inspector.delete")}
         </button>
       </div>
-      <ElementProperties element={el} />
+      <nav className="tabs small-tabs" role="tablist">
+        {(["propiedades", "resultados"] as const).map((id) => (
+          <button key={id} role="tab" aria-selected={panel === id} className={panel === id ? "active" : ""} onClick={() => setPanel(id)}>
+            {t(`inspector.tab.${id}`)}
+          </button>
+        ))}
+      </nav>
+      {panel === "propiedades" ? <ElementProperties element={el} /> : <ResultsSection elementId={el.id} />}
     </aside>
   );
 }

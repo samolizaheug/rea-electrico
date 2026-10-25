@@ -49,6 +49,12 @@ interface EditorState {
   /** Panel de observaciones de validación abierto. */
   issuesOpen: boolean;
   setIssuesOpen(open: boolean): void;
+  /** Vista central: diagrama, tabla de elementos o cuadros de carga. */
+  view: "diagrama" | "tabla" | "cuadros";
+  setView(view: EditorState["view"]): void;
+  /** Mostrar resultados del cálculo sobre el diagrama. */
+  showResults: boolean;
+  setShowResults(v: boolean): void;
 
   // Proyecto
   newProject(name: string): void;
@@ -103,6 +109,10 @@ export const useEditor = create<EditorState>((set, get) => {
     toast: null,
     issuesOpen: false,
     setIssuesOpen: (issuesOpen) => set({ issuesOpen }),
+    view: "diagrama",
+    setView: (view) => set({ view }),
+    showResults: true,
+    setShowResults: (showResults) => set({ showResults }),
 
     newProject: (name) => set({ history: initHistory(createProject({ name })), selection: { elements: [], connections: [] } }),
     loadProject: (p) => set({ history: initHistory(p), selection: { elements: [], connections: [] } }),

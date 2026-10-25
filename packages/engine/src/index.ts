@@ -10,4 +10,5 @@ export { Complex } from "./calc/complex";
 export { buildIslands, type Island, type NetEdge, type NetNode } from "./calc/network";
 export * from "./calc/loadflow";
 export * from "./calc/sizing";
+export * from "./calc/schedules";
 export { DisjointSets } from "./topology/dsu";

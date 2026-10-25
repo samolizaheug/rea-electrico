@@ -135,8 +135,8 @@ Todos cumplen ampacidad, protección y caída de tensión. Los conductores de ti
 - **Calibres de 700, 800 y 900 kcmil y mayores de 1000 kcmil**: no se ofrecen en la selección automática porque la Tabla 9 no da su impedancia.
 - **Factores de demanda**: se usa el que se capture en cada carga. Las tablas del Art. 220 (220-42, 220-44) se aplican en los cuadros de carga (E7).
 
-## 7. Preguntas para el revisor
+## 7. Decisiones del revisor (Ing. RGLR, 2026-10-24)
 
-1. En **AL-3** (secundario de un transformador sin interruptor), ¿prefieres que el programa **exija** un interruptor principal en el tablero, en vez de solo advertir?
-2. Para la **protección del variador**, ¿propongo 125 % de la corriente de entrada (como hoy) o prefieres capturar siempre el valor del fabricante?
-3. La **temperatura de terminales** se determina por la capacidad del circuito (≤ 100 A → 60 °C). ¿Está bien, o prefieres que el valor por defecto de los tableros modernos sea 75 °C?
+1. **Secundario de transformador sin interruptor en su origen:** se reporta como **advertencia** (240-21(c)), no como error.
+2. **Protección del variador:** se propone el valor estándar ≥ 125 % de la corriente de entrada, con la nota de confirmarlo con el fabricante (430-130).
+3. **Temperatura de terminales por defecto:** se mantiene 110-14(c): 60 °C en circuitos de 100 A o menos y 75 °C arriba; editable por alimentador.

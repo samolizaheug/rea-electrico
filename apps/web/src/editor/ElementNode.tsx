@@ -1,7 +1,9 @@
 import { rotationTransform, symbolBody } from "@rea/symbols";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import { memo, useMemo } from "react";
-import { useProject } from "../state/store";
+import { resultBadge } from "../results/format";
+import { useEditor, useProject } from "../state/store";
+import { useValidation } from "../state/validation";
 import { handleId, nodeGeometry } from "./geometry";
 
 const POSITION = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right } as const;
@@ -10,6 +12,8 @@ const POSITION = { top: Position.Top, bottom: Position.Bottom, left: Position.Le
 function ElementNodeImpl({ id, selected, data }: NodeProps) {
   const issue = (data as { issue?: "error" | "warning" | null }).issue ?? null;
   const project = useProject();
+  const showResults = useEditor((s) => s.showResults);
+  const results = useValidation().results;
   const geometry = nodeGeometry(project, id);
   const element = project.elements.find((e) => e.id === id);
 
@@ -22,6 +26,7 @@ function ElementNodeImpl({ id, selected, data }: NodeProps) {
 
   if (!geometry || !element) return null;
   const { width, height, anchors } = geometry;
+  const badge = showResults && results ? resultBadge(id, element.type, results) : [];
   // Etiqueta a la derecha en símbolos verticales angostos; arriba en barras y en símbolos girados.
   const labelOnSide = width <= 60 && (geometry.rotation === 0 || geometry.rotation === 180);
 
@@ -31,6 +36,11 @@ function ElementNodeImpl({ id, selected, data }: NodeProps) {
       <div className={`element-tag ${labelOnSide ? "side" : "above"}`}>
         {issue ? <span className={`issue-badge ${issue}`} aria-label={issue === "error" ? "error" : "advertencia"}>{issue === "error" ? "!" : "?"}</span> : null}
         {element.tag}
+        {badge.map((line) => (
+          <span key={line} className="element-result">
+            {line}
+          </span>
+        ))}
       </div>
       {Object.entries(anchors).flatMap(([portId, list]) =>
         list.map((a, i) => (

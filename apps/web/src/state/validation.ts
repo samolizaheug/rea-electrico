@@ -1,17 +1,36 @@
 import { validateParams, type ParamIssue, type ParamValue, type Project } from "@rea/core";
-import { DEFAULT_EQUIPMENT_VOLTAGE, validateDesignCriteria, validateTopology, type NormModule, type TopologyReport } from "@rea/engine";
+import {
+  DEFAULT_EQUIPMENT_VOLTAGE,
+  panelSchedules,
+  runSizing,
+  validateDesignCriteria,
+  validateTopology,
+  type ElementFlow,
+  type NormModule,
+  type PanelSchedule,
+  type SizingRunResult,
+  type TopologyReport,
+} from "@rea/engine";
 import { getNormModule } from "@rea/norms";
 import { useMemo } from "react";
 import { registry } from "./registry";
 import { useProject } from "./store";
 
 export interface UiIssue {
-  severity: "error" | "warning";
-  origin: "parametros" | "topologia" | "criterios";
+  severity: "error" | "warning" | "info";
+  origin: "parametros" | "topologia" | "criterios" | "calculo";
   message: string;
   elementIds: string[];
   /** Parámetro afectado (solo en problemas de parámetros). */
   paramKey?: string;
+}
+
+/** Resultados del cálculo (flujo de carga + dimensionamiento + cuadros). */
+export interface Results {
+  sizing: SizingRunResult;
+  schedules: PanelSchedule[];
+  /** Resultado del flujo final por elemento. */
+  flow: (id: string) => ElementFlow | undefined;
 }
 
 export interface ValidationState {
@@ -23,6 +42,8 @@ export interface ValidationState {
   paramIssues: Map<string, ParamIssue[]>;
   errors: number;
   warnings: number;
+  /** null si hay errores que impiden calcular. */
+  results: Results | null;
 }
 
 export function normOf(project: Project): NormModule {
@@ -47,25 +68,41 @@ export function computeValidation(project: Project): ValidationState {
   const topology = validateTopology(project, registry, DEFAULT_EQUIPMENT_VOLTAGE);
   for (const i of topology.issues) issues.push({ severity: i.severity, origin: "topologia", message: i.message, elementIds: i.elementIds });
   for (const i of validateDesignCriteria(project, norm.voltageDrop)) issues.push({ severity: i.severity, origin: "criterios", message: i.message, elementIds: [] });
-  issues.sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "error" ? -1 : 1));
 
+  // El cálculo se ejecuta solo si los datos y la topología no tienen errores.
+  let results: Results | null = null;
+  const blocking = issues.some((i) => i.severity === "error");
+  if (!blocking && norm.available && project.elements.length) {
+    const sizing = runSizing(project, registry, norm);
+    if (sizing.calculated) {
+      results = { sizing, schedules: panelSchedules(project, registry, sizing.loadFlow, sizing), flow: (id) => sizing.loadFlow.elements.get(id) };
+    }
+    for (const i of sizing.issues) issues.push({ severity: i.severity, origin: "calculo", message: i.message, elementIds: i.elementIds });
+  }
+
+  const rank = { error: 0, warning: 1, info: 2 } as const;
+  issues.sort((a, b) => rank[a.severity] - rank[b.severity]);
   const byElement = new Map<string, "error" | "warning">();
   for (const i of issues) {
+    if (i.severity === "info") continue;
     for (const id of i.elementIds) if (byElement.get(id) !== "error") byElement.set(id, i.severity);
   }
   const errors = issues.filter((i) => i.severity === "error").length;
-  return { norm, topology, issues, byElement, paramIssues, errors, warnings: issues.length - errors };
+  const warnings = issues.filter((i) => i.severity === "warning").length;
+  return { norm, topology, issues, byElement, paramIssues, errors, warnings, results };
 }
 
-// Varios componentes leen la validación; se calcula una sola vez por versión del proyecto.
-let cached: { project: Project; value: ValidationState } | null = null;
+// El análisis no depende del dibujo: se recalcula solo si cambian elementos, conexiones o configuración
+// (mover símbolos no dispara el cálculo).
+let cached: { key: [unknown, unknown, unknown]; value: ValidationState } | null = null;
 function validationFor(project: Project): ValidationState {
-  if (cached?.project !== project) cached = { project, value: computeValidation(project) };
+  const key: [unknown, unknown, unknown] = [project.elements, project.connections, project.settings];
+  if (!cached || cached.key.some((k, i) => k !== key[i])) cached = { key, value: computeValidation(project) };
   return cached.value;
 }
 
-/** Validación del proyecto actual; se recalcula solo cuando cambia el proyecto. */
+/** Validación y resultados del proyecto actual. */
 export function useValidation(): ValidationState {
   const project = useProject();
-  return useMemo(() => validationFor(project), [project]);
+  return useMemo(() => validationFor(project), [project.elements, project.connections, project.settings]);
 }
