@@ -75,6 +75,9 @@ export interface MotorFlcQuery {
   /** "3F" trifásico, "1F" monofásico, "cc" corriente continua. */
   phases: "3F" | "1F" | "cc";
   synchronous: boolean;
+  /** Datos de placa opcionales (eficiencia en %, factor de potencia) para normas que calculan la corriente. */
+  efficiencyPct?: number | null;
+  powerFactor?: number | null;
 }
 
 export interface ConductorImpedanceQuery {
@@ -88,7 +91,7 @@ export interface ConductorImpedanceQuery {
 /** Cálculos y consultas que dependen de la norma (tablas de motores, impedancias...). */
 export interface NormCalc {
   /** Corriente a plena carga de motores según las tablas de la norma. */
-  motorFlc(q: MotorFlcQuery): Lookup<{ amps: number; tableVoltageV: number; hp: string }>;
+  motorFlc(q: MotorFlcQuery): Lookup<{ amps: number; tableVoltageV: number; hp: string; step?: { label: string; formula?: string; substitution: string } }>;
   /** R y XL de un conductor (Ω/km, por conductor, a la temperatura de la tabla). */
   conductorImpedance(q: ConductorImpedanceQuery): Lookup<{ rOhmPerKm: number; xOhmPerKm: number; column: string; temperatureC: number }>;
 }

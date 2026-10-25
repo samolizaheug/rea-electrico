@@ -3,6 +3,9 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
+  // Rutas relativas: el sitio funciona igual en la raíz de un dominio o en una subcarpeta
+  // (p. ej. https://usuario.github.io/rea-electrico/ en GitHub Pages).
+  base: "./",
   server: { port: 5173, strictPort: true },
   build: {
     // pdfmake (con sus fuentes) y ExcelJS pesan cerca de 1 MB cada uno, pero se cargan solo al

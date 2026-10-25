@@ -69,6 +69,12 @@ Los criterios del proyecto **pueden ser más estrictos que la norma, nunca más 
 | Bomba contra incendio, en operación | 5 % en terminales del motor a 115 % de la corriente a plena carga | **Obligatorio**, 695-7(b) |
 | Bomba contra incendio, en arranque | 15 % en terminales de línea del controlador | **Obligatorio**, 695-7(a) |
 
+| Caso | Límite IEC 60364-5-52:2001 (módulo IEC) | Carácter |
+|---|---|---|
+| Desde el origen de la instalación del usuario hasta el equipo | 4 % | Recomendación, cláusula 525 (citada en ABB EIH Vol. 2, cap. 2.2.2). Un solo límite: el módulo lo aplica a derivado, alimentador y total |
+
+La edición 2009 de IEC 60364-5-52 sustituyó ese 4 % por el Anexo G (informativo): 3 % / 5 % con suministro público en BT y 6 % / 8 % con subestación propia (ver Schneider abajo). El módulo usa el de la edición 2001, que es la de sus tablas; el proyecto siempre puede fijar límites más estrictos.
+
 Los fabricantes coinciden con estos valores o son más estrictos:
 - Schneider (*Electrical Installation Guide*, IEC 60364-5-52 Tabla G.52.1): 3 % en alumbrado y 5 % en otros usos con suministro público en BT; 6 % y 8 % con subestación propia. Advierte que 8 % puede causar problemas en el arranque de motores.
 - ABB: IEC 60204-1 limita la caída a 5 % hasta la carga en maquinaria.

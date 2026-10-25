@@ -165,6 +165,11 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     result: `k2 = ${kg.k}`,
     refs: [`${SRC}: Tabla 5`],
   });
+  if (buried)
+    issues.push({
+      severity: "warning",
+      message: `${c.tag}: método D con la Tabla 15 de la edición 2001. La edición 2009 de IEC 60364-5-52 (método D1, ductos enterrados) da ampacidades iguales o menores, hasta 8.5 % menores según su reproducción en fuentes secundarias; verifique la sección con la edición vigente.`,
+    });
   if (buried) steps.push({ label: "Instalación enterrada (método D)", result: "k2' (ductos adyacentes, Tablas 12–13) = 1 y k3 (resistividad del suelo 2.5 K·m/W, Tabla 14) = 1: supuestos de la herramienta; verifique si hay otros ductos cercanos o un suelo de mayor resistividad." });
   const ktot = kt.k * kg.k;
 

@@ -140,6 +140,22 @@ Cada etapa termina con algo que puedes ejecutar o revisar. No paso a la siguient
 | 10 | Persistencia | Solo navegador: archivos JSON locales + autoguardado. Sin servidor |
 | 11 | Vista tabular | **Sí**, en la etapa E7 |
 
+## 9. Estado al cierre de la fase 1 (2026-10-25)
+
+Etapas E1 a E10 terminadas, salvo el módulo NEC, que espera la captura de sus tablas. Diferencias entre lo planeado y lo implementado:
+
+| Punto del plan | Implementación | Motivo |
+|---|---|---|
+| §6: el motor «se niega a calcular» con tablas `por_verificar`, salvo en modo borrador | Calcula siempre. La memoria y el Excel llevan la marca «BORRADOR» si hay tablas pendientes o errores | El usuario ve los resultados mientras revisa; la marca impide usarlos como definitivos |
+| §5: PDF del unifilar con jsPDF/svg2pdf | pdfmake para la memoria y para el unifilar (SVG embebido) | Una sola biblioteca de PDF, que también funciona en Node (reportes del ejemplo y pruebas) |
+| §5: deshacer con parches de Immer | Historial de instantáneas del proyecto (el modelo es inmutable) | Más simple y suficiente para el tamaño de los proyectos |
+| §5: i18n con i18next | Diccionarios propios (`apps/web/src/i18n`) con las mismas claves en `es` y `en` | Sin dependencia adicional; la biblioteca de elementos se traduce por su texto original |
+| §8 decisión 9 (motores IEC) | Orden: corriente de placa → calculada con η y FP capturados («no normativa») → tabla aproximada de ABB con advertencia | Decisiones del usuario del 2026-10-24 y 2026-10-25 |
+| E9: «mismo ejemplo calculado con las tres normas» | NOM e IEC. El cambio de norma adapta el proyecto (aislamiento, método, calibres fijados, límites de caída) | NEC sin datos |
+| IEC 60364-5-52:2009+A1:2024 | Edición 2001, con las tablas del manual ABB (fuente secundaria) cotejadas contra la edición 2009 | Única fuente de tablas disponible; ver `docs/01-revision-normativa.md` §3.2 |
+
+Publicación: GitHub Pages con GitHub Actions; la guía está en `docs/publicar-github.md`.
+
 **Entorno:** Node 24, pnpm 9.15.9 y Git 2.56 instalados el 2026-10-24. Se usan **pnpm workspaces**.
 
 **Erratas del DOF E1 a E7:** correcciones aprobadas por el usuario el 2026-10-24 (ver `docs/01-revision-normativa.md`).

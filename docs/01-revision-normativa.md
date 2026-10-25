@@ -166,6 +166,17 @@ Por eso el módulo se registra como **«IEC 60364-5-52:2001 (fuente secundaria A
   - los calibres fijados se vacían, porque «4» AWG no es «4» mm²;
   - los límites de caída del proyecto bajan al máximo de la norma (IEC: 4 %).
 
+**Cotejo con la edición 2009 (2026-10-25).** TiSoft (ti-soft.com, ayuda de *ElectricalDesign*) reproduce las Tablas B.52.2 a B.52.5 de IEC 60364-5-52:2009 con cobre y aluminio. Comparación automática de las 4 tablas contra la transcripción ABB:
+
+| Resultado | Detalle |
+|---|---|
+| Métodos A1, A2, B1, B2 y C: **568 celdas idénticas** | Única diferencia: ABB-2. La edición 2009 da **15 A**, el valor de la 4.ª ed. de ABB; el 14.5 de la 2.ª ed. era el error. Hoy se usa 14.5 A (conservador, aprobado). **Por decidir:** volver a 15 A |
+| ABB-3 | La edición 2009 da 19.5 A, igual que lo que se usa |
+| B1 y B2 de 150 a 300 mm² | La edición 2009 sí tiene valores; ABB los deja en gris. El módulo no ofrece esas secciones en B1/B2: pide conductores en paralelo u otro método |
+| Método D (ductos enterrados) | La edición 2009 lo sustituyó por D1, con valores **iguales o menores**: 111 de 124 celdas son menores, hasta **8.5 %** (Cu XLPE 3 conductores, 300 mm²: 396 → 365 A). El cálculo emite una advertencia cuando se usa el método D |
+
+Las tablas de factores (B.52.14, B.52.17) en esa fuente son imágenes; no se cotejaron. Las de ABB coinciden con la 2.ª ed. del mismo manual.
+
 **Verificación.** Las 11 tablas (incluida la de motores) están registradas como `fuente_secundaria`, avaladas por el **Ing. RGLR** el 2026-10-24. Falta el cotejo con IEC 60364-5-52 cuando haya acceso a la norma.
 
 ## 4. Estados de un dato normativo

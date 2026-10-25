@@ -24,6 +24,29 @@ const VOLTAGE_RANGES: [number, number, number][] = [
  */
 function motorFlc(q: MotorFlcQuery): ReturnType<NormCalc["motorFlc"]> {
   const ask = "capture la corriente nominal de placa (fuente de corriente = placa)";
+  // Decisión 9 del plan: sin corriente de placa, si hay eficiencia y FP capturados se calcula
+  // Ib = P / (√3 · V · η · cosφ) (monofásico: P / (V · η · cosφ)), marcado como «calculado, no normativo».
+  const eta = q.efficiencyPct ?? null;
+  const pf = q.powerFactor ?? null;
+  if (eta !== null && eta > 0 && eta <= 100 && pf !== null && pf > 0 && pf <= 1 && q.phases !== "cc") {
+    const pW = q.ratedPowerUnit === "kW" ? q.ratedPower * 1000 : q.ratedPower * 745.7;
+    const k = q.phases === "3F" ? Math.sqrt(3) : 1;
+    const amps = pW / (k * q.voltageV * (eta / 100) * pf);
+    return {
+      ok: true,
+      amps: Number(amps.toFixed(3)),
+      tableVoltageV: q.voltageV,
+      hp: q.ratedPowerUnit === "hp" ? String(q.ratedPower) : "",
+      step: {
+        label: "Corriente del motor (calculada, no normativa)",
+        formula: q.phases === "3F" ? "Ib = P / (√3 · V · η · cosφ)" : "Ib = P / (V · η · cosφ)",
+        substitution: `Ib = ${pW.toFixed(0)} W / (${q.phases === "3F" ? "√3 · " : ""}${q.voltageV} · ${eta / 100} · ${pf})${q.ratedPowerUnit === "hp" ? ` (1 hp = 745.7 W)` : ""}`,
+      },
+      refs: ["IEC 60364 no tabula corrientes de motores; cálculo con la eficiencia y el factor de potencia capturados (decisión 9 del plan)."],
+      notes: [],
+      warnings: [`corriente de motor calculada con η y FP capturados (${amps.toFixed(1)} A); la corriente de placa del fabricante es la referencia definitiva.`],
+    };
+  }
   if (q.phases !== "3F") return { ok: false, error: `IEC 60364 no tiene tabla de corrientes para motores ${q.phases === "1F" ? "monofásicos" : "de c.c."}; ${ask}.` };
   const t = iecData().table("anexo-b-tabla-5-motores", "motor-flc");
   const g = t.data.groups[0]!;

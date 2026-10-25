@@ -50,13 +50,16 @@ export function loadDemand(el: ProjectElement, def: ElementTypeDefinition, norm:
           voltageV: vRated,
           phases,
           synchronous: el.params.motorType === "sincrono",
+          efficiencyPct: typeof el.params.efficiencyPct === "number" ? el.params.efficiencyPct : null,
+          powerFactor: Number.isFinite(pf) ? pf : null,
         });
         if (!r.ok) return fail(r.error);
         ratedCurrentA = r.amps;
         for (const w of r.warnings ?? []) warnings.push(`${el.tag}: ${w}`);
         steps.push({
-          label: "Corriente a plena carga del motor (tabla)",
-          substitution: `${r.hp} hp, ${phases === "3F" ? "trifásico" : "monofásico"}, columna de ${r.tableVoltageV} V`,
+          label: r.step?.label ?? "Corriente a plena carga del motor (tabla)",
+          formula: r.step?.formula,
+          substitution: r.step?.substitution ?? `${r.hp} hp, ${phases === "3F" ? "trifásico" : "monofásico"}, columna de ${r.tableVoltageV} V`,
           result: `${fmtNum(r.amps, 1)} A`,
           refs: [...r.refs, ...r.notes],
         });

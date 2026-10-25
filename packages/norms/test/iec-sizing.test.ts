@@ -91,6 +91,13 @@ describe("IEC: sección del conductor", () => {
     expect(cd).toMatchObject({ designation: "1.5", ampacityA: 17.5 });
   });
 
+  it("método D (enterrado): ampacidad de la Tabla 15 y advertencia por el cambio de la edición 2009", () => {
+    const { cd } = size(circuit([load(IB)], { installationMethod: "D" }, { ambientC: 20 }));
+    // D, Cu PVC, 3 cargados: 10 mm² = 52 A ≥ In 50 A.
+    expect(cd).toMatchObject({ designation: "10", ampacityA: 52 });
+    expect(cd.issues.some((i) => i.severity === "warning" && i.message.includes("2009"))).toBe(true);
+  });
+
   it("método G no tiene columna de 2 conductores cargados: error", () => {
     const { cd } = size(circuit([load(10)], { installationMethod: "G-horizontal" }, { m: 1, system: "1F2H", vNomLL: 230, vc: 230 }));
     expect(cd.issues.some((i) => i.severity === "error" && i.message.includes("método G"))).toBe(true);
@@ -117,6 +124,13 @@ describe("IEC: impedancia y frecuencia (ABB cap. 2.2.2)", () => {
     expect(r.ok && r.warnings?.[0]).toContain("placa");
     // Por potencia en hp (PS) y tensión dentro del intervalo 220-230 V.
     expect(iecCalc.motorFlc({ ratedPower: 10, ratedPowerUnit: "hp", voltageV: 220, phases: "3F", synchronous: false })).toMatchObject({ ok: true, amps: 27.4, tableVoltageV: 230 });
+  });
+  it("motores: con η y FP capturados se calcula Ib = P / (√3·V·η·cosφ) (decisión 9): 7.5 kW, 400 V, 90 %, 0.85 → 14.15 A", () => {
+    const r = iecCalc.motorFlc({ ratedPower: 7.5, ratedPowerUnit: "kW", voltageV: 400, phases: "3F", synchronous: false, efficiencyPct: 90, powerFactor: 0.85 });
+    expect(r.ok && r.amps).toBeCloseTo(7500 / (Math.sqrt(3) * 400 * 0.9 * 0.85), 2);
+    expect(r.ok && r.step?.label).toContain("calculada");
+    // Funciona también a 480 V, donde la tabla aproximada no tiene columna.
+    expect(iecCalc.motorFlc({ ratedPower: 10, ratedPowerUnit: "hp", voltageV: 480, phases: "3F", synchronous: false, efficiencyPct: 91, powerFactor: 0.86 }).ok).toBe(true);
   });
   it("motores: 480 V o monofásico no están en la tabla → se pide la placa", () => {
     expect(iecCalc.motorFlc({ ratedPower: 7.5, ratedPowerUnit: "kW", voltageV: 480, phases: "3F", synchronous: false }).ok).toBe(false);
