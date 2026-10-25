@@ -26,6 +26,13 @@ export const capacitorBank: ElementTypeDefinition = {
 };
 ```
 
+Para que el validador de la red entienda el elemento, la definición también declara:
+- `ports[].voltage`: qué parámetros dan la tensión, el sistema y la fase en ese puerto.
+- `internalLinks`: cómo se conectan internamente sus puertos. Pueden depender de un parámetro (`when`) y tener sentido de flujo (`directional`).
+- `voltageTransparent`: si la tensión pasa sin cambio a través del elemento.
+
+Detalle en [validacion-topologia.md](validacion-topologia.md).
+
 Agrégala al arreglo de su categoría (p. ej. `loadTypes`). El registro la valida al cargarla y rechaza:
 - ids repetidos o con formato incorrecto;
 - puertos o parámetros duplicados;

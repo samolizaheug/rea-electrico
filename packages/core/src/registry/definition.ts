@@ -90,6 +90,23 @@ export interface PortDef {
   side: "top" | "bottom" | "left" | "right";
   /** Número máximo de conexiones; `null` = ilimitado (barras, tableros). Por defecto 1. */
   maxConnections?: number | null;
+  /**
+   * Parámetros que declaran la tensión nominal y el sistema en este puerto (para validar
+   * compatibilidad de tensiones). `phase` indica el parámetro de fase de conexión en cargas monofásicas.
+   */
+  voltage?: { param: string; system?: string; phase?: string };
+}
+
+/**
+ * Conexión interna entre dos puertos del mismo elemento (cable, interruptor, devanados...).
+ * `when`: solo existe si el parámetro tiene ese valor (interruptor cerrado, posición del ATS).
+ * `directional`: el sentido normal de flujo es de `a` hacia `b` (primario → secundario).
+ */
+export interface InternalLink {
+  a: string;
+  b: string;
+  when?: VisibleWhen;
+  directional?: boolean;
 }
 
 export type ElementCategory = "fuente" | "transformacion" | "distribucion" | "carga";
@@ -117,6 +134,13 @@ export interface ElementTypeDefinition {
   category: ElementCategory;
   electricalRole: ElectricalRole;
   ports: PortDef[];
+  /** Conexiones internas entre puertos; sin ellas, los puertos del elemento quedan aislados entre sí. */
+  internalLinks?: InternalLink[];
+  /**
+   * La tensión pasa sin cambio por las conexiones internas (cables, interruptores, ATS).
+   * En transformadores, UPS y variadores es false: cada lado tiene su propia tensión.
+   */
+  voltageTransparent?: boolean;
   params: ParamDef[];
   tag: { prefix: string; style: TagStyle };
   /** Clave del símbolo en cada simbología. El dibujo vive en el paquete de símbolos. */

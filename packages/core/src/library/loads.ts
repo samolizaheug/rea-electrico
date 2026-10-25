@@ -1,7 +1,7 @@
 import type { ElementTypeDefinition } from "../registry/definition";
 import { efficiencyParam, loadCommonParams, powerFactorParam, voltageParam } from "./common";
 
-const loadPort = [{ id: "in", label: "Alimentación", side: "top" as const }];
+const loadPort = [{ id: "in", label: "Alimentación", side: "top" as const, voltage: { param: "voltageV", system: "system", phase: "phase" } }];
 
 /** Motor. La corriente para dimensionar se toma de la tabla de la norma (NOM 430-6(a)(1)) salvo que se indique placa. */
 export const motor: ElementTypeDefinition = {
@@ -148,9 +148,10 @@ export const vfd: ElementTypeDefinition = {
   category: "carga",
   electricalRole: "converter",
   ports: [
-    { id: "in", label: "Entrada", side: "top" },
+    { id: "in", label: "Entrada", side: "top", voltage: { param: "inputVoltageV" } },
     { id: "out", label: "Salida al motor", side: "bottom" },
   ],
+  internalLinks: [{ a: "in", b: "out", directional: true }],
   tag: { prefix: "VFD", style: "number2" },
   symbols: { ANSI: "ansi/vfd", IEC: "iec/vfd" },
   calcBehavior: "converter.vfd",

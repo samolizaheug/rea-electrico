@@ -14,7 +14,9 @@ import {
 } from "@xyflow/react";
 import { useCallback, useMemo, type DragEvent } from "react";
 import { useEditor, useProject } from "../state/store";
+import { useValidation } from "../state/validation";
 import { ElementNode } from "./ElementNode";
+import { IssuesPanel } from "./IssuesPanel";
 import { GRID, busGeometry, chooseHandles, portOfHandle, snap, symbolOf } from "./geometry";
 import { WireEdge, type WireEdgeType } from "./WireEdge";
 
@@ -29,13 +31,21 @@ export function Canvas() {
   const { add, connectPorts, remove, moveTransient, commitDrag, select } = useEditor.getState();
   const flow = useReactFlow();
 
+  const validation = useValidation();
+  const issuesOpen = useEditor((s) => s.issuesOpen);
   const nodes: Node[] = useMemo(() => {
     const selected = new Set(selection.elements);
     return project.elements.map((el) => {
       const n = project.diagram.nodes[el.id] ?? { x: 0, y: 0, rotation: 0 };
-      return { id: el.id, type: "element", position: { x: n.x, y: n.y }, data: {}, selected: selected.has(el.id) };
+      return {
+        id: el.id,
+        type: "element",
+        position: { x: n.x, y: n.y },
+        data: { issue: validation.byElement.get(el.id) ?? null },
+        selected: selected.has(el.id),
+      };
     });
-  }, [project, selection.elements]);
+  }, [project, selection.elements, validation]);
 
   const edges: Edge[] = useMemo(() => {
     const selected = new Set(selection.connections);
@@ -139,6 +149,7 @@ export function Canvas() {
         <Controls showInteractive={false} />
         <MiniMap pannable zoomable className="minimap" />
       </ReactFlow>
+      {issuesOpen ? <IssuesPanel onClose={() => useEditor.getState().setIssuesOpen(false)} /> : null}
     </div>
   );
 }

@@ -1,0 +1,12 @@
+{
+  "name": "@rea/engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Motor de cálculo independiente de la norma y de la interfaz: topología, flujo de carga, trazas de memoria.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@rea/core": "workspace:*"
+  }
+}

@@ -60,10 +60,10 @@ export function Toolbar() {
         <input ref={fileInput} type="file" accept=".json,application/json" hidden onChange={(e) => onOpen(e.target.files?.[0]).finally(() => (e.target.value = ""))} />
       </div>
       <div className="group">
-        <button onClick={() => ed.undo()} disabled={!canUndo} title="Ctrl+Z">
+        <button onClick={() => ed.undo()} disabled={!canUndo} title={`${t("toolbar.undo")} (Ctrl+Z)`}>
           {t("toolbar.undo")}
         </button>
-        <button onClick={() => ed.redo()} disabled={!canRedo} title="Ctrl+Y">
+        <button onClick={() => ed.redo()} disabled={!canRedo} title={`${t("toolbar.redo")} (Ctrl+Y)`}>
           {t("toolbar.redo")}
         </button>
         <button onClick={() => flow.fitView({ padding: 0.2 })}>{t("toolbar.fit")}</button>

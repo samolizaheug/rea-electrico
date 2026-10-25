@@ -8,9 +8,10 @@ export const transformer: ElementTypeDefinition = {
   category: "transformacion",
   electricalRole: "transformer",
   ports: [
-    { id: "primary", label: "Primario", side: "top" },
-    { id: "secondary", label: "Secundario", side: "bottom" },
+    { id: "primary", label: "Primario", side: "top", voltage: { param: "primaryVoltageV", system: "primarySystem" } },
+    { id: "secondary", label: "Secundario", side: "bottom", voltage: { param: "secondaryVoltageV", system: "system" } },
   ],
+  internalLinks: [{ a: "primary", b: "secondary", directional: true }],
   tag: { prefix: "TR", style: "number" },
   symbols: { ANSI: "ansi/transformer-2w", IEC: "iec/transformer-2w" },
   calcBehavior: "transformer.two-winding",

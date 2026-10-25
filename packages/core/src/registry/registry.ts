@@ -54,6 +54,20 @@ function assertWellFormed(def: ElementTypeDefinition): void {
     portIds.add(port.id);
   }
 
+  for (const port of def.ports) {
+    if (port.voltage) {
+      for (const k of [port.voltage.param, port.voltage.system, port.voltage.phase]) {
+        if (k && !def.params.some((p) => p.key === k)) throw new Error(`${where}: el puerto "${port.id}" usa un parámetro inexistente "${k}".`);
+      }
+    }
+  }
+  for (const link of def.internalLinks ?? []) {
+    if (!portIds.has(link.a) || !portIds.has(link.b)) throw new Error(`${where}: conexión interna con puerto inexistente (${link.a}–${link.b}).`);
+    if (link.when && !def.params.some((p) => p.key === link.when!.param)) {
+      throw new Error(`${where}: conexión interna condicionada a un parámetro inexistente "${link.when.param}".`);
+    }
+  }
+
   const keys = new Set<string>();
   for (const p of def.params) {
     if (keys.has(p.key)) throw new Error(`${where}: parámetro duplicado "${p.key}".`);

@@ -1,0 +1,14 @@
+{
+  "name": "@rea/norms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Módulos normativos intercambiables (NOM-001-SEDE, NEC, IEC 60364) que implementan NormModule.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@rea/core": "workspace:*",
+    "@rea/engine": "workspace:*",
+    "@rea/norm-data": "workspace:*"
+  }
+}

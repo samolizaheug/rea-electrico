@@ -7,7 +7,8 @@ import { handleId, nodeGeometry } from "./geometry";
 const POSITION = { top: Position.Top, bottom: Position.Bottom, left: Position.Left, right: Position.Right } as const;
 
 /** Nodo del lienzo: dibuja el símbolo en la simbología del proyecto, sus puertos y su etiqueta. */
-function ElementNodeImpl({ id, selected }: NodeProps) {
+function ElementNodeImpl({ id, selected, data }: NodeProps) {
+  const issue = (data as { issue?: "error" | "warning" | null }).issue ?? null;
   const project = useProject();
   const geometry = nodeGeometry(project, id);
   const element = project.elements.find((e) => e.id === id);
@@ -25,9 +26,12 @@ function ElementNodeImpl({ id, selected }: NodeProps) {
   const labelOnSide = width <= 60 && (geometry.rotation === 0 || geometry.rotation === 180);
 
   return (
-    <div className={`element-node${selected ? " selected" : ""}`} style={{ width, height }}>
+    <div className={`element-node${selected ? " selected" : ""}${issue ? ` issue-${issue}` : ""}`} style={{ width, height }}>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} overflow="visible" dangerouslySetInnerHTML={{ __html: svgBody }} />
-      <div className={`element-tag ${labelOnSide ? "side" : "above"}`}>{element.tag}</div>
+      <div className={`element-tag ${labelOnSide ? "side" : "above"}`}>
+        {issue ? <span className={`issue-badge ${issue}`} aria-label={issue === "error" ? "error" : "advertencia"}>{issue === "error" ? "!" : "?"}</span> : null}
+        {element.tag}
+      </div>
       {Object.entries(anchors).flatMap(([portId, list]) =>
         list.map((a, i) => (
           <Handle

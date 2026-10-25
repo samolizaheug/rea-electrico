@@ -1,7 +1,7 @@
 import type { ElementTypeDefinition, ParamDef } from "../registry/definition";
 import { systemParam, voltageParam } from "./common";
 
-const busPort = [{ id: "bus", label: "Barra", side: "bottom" as const, maxConnections: null }];
+const busPort = [{ id: "bus", label: "Barra", side: "bottom" as const, maxConnections: null, voltage: { param: "voltageV", system: "system" } }];
 
 function boardParams(defaultUse: string): ParamDef[] {
   return [
@@ -94,6 +94,8 @@ export const breaker: ElementTypeDefinition = {
     { id: "line", label: "Línea", side: "top" },
     { id: "load", label: "Carga", side: "bottom" },
   ],
+  internalLinks: [{ a: "line", b: "load", when: { param: "state", equals: "cerrado" } }],
+  voltageTransparent: true,
   tag: { prefix: "INT", style: "number" },
   symbols: { ANSI: "ansi/breaker", IEC: "iec/breaker" },
   calcBehavior: "switch.protective",
@@ -163,6 +165,11 @@ export const ats: ElementTypeDefinition = {
     { id: "emergency", label: "Emergencia", side: "right" },
     { id: "load", label: "Carga", side: "bottom" },
   ],
+  internalLinks: [
+    { a: "normal", b: "load", when: { param: "position", equals: "normal" } },
+    { a: "emergency", b: "load", when: { param: "position", equals: "emergencia" } },
+  ],
+  voltageTransparent: true,
   tag: { prefix: "ATS", style: "number" },
   symbols: { ANSI: "ansi/ats", IEC: "iec/ats" },
   calcBehavior: "switch.transfer",
@@ -193,6 +200,8 @@ export const cable: ElementTypeDefinition = {
     { id: "from", label: "Origen", side: "top" },
     { id: "to", label: "Destino", side: "bottom" },
   ],
+  internalLinks: [{ a: "from", b: "to" }],
+  voltageTransparent: true,
   tag: { prefix: "AL", style: "number" },
   symbols: { ANSI: "ansi/cable", IEC: "iec/cable" },
   calcBehavior: "branch.cable",

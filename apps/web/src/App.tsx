@@ -7,6 +7,7 @@ import { Toolbar } from "./editor/Toolbar";
 import { t } from "./i18n";
 import { loadAutosave, saveAutosave } from "./io/files";
 import { useEditor, useProject } from "./state/store";
+import { useValidation } from "./state/validation";
 
 function isTyping(target: EventTarget | null): boolean {
   const el = target as HTMLElement | null;
@@ -72,11 +73,20 @@ function ToastView() {
 
 function StatusBar() {
   const p = useProject();
+  const v = useValidation();
+  const open = useEditor((s) => s.issuesOpen);
   return (
     <footer className="statusbar">
+      <button
+        className={`validation-chip ${v.errors ? "error" : v.warnings ? "warning" : "ok"}`}
+        aria-pressed={open}
+        onClick={() => useEditor.getState().setIssuesOpen(!open)}
+      >
+        {t("issues.title")}: {t("issues.summary", { errors: v.errors, warnings: v.warnings })}
+      </button>
       <span>{t("status.counts", { elements: p.elements.length, connections: p.connections.length })}</span>
       <span>
-        {p.settings.norm.id.toUpperCase()} {p.settings.norm.edition} · {p.settings.symbology}
+        {v.norm.label} · {p.settings.symbology}
       </span>
       <span className="muted">{t("status.saved")}</span>
     </footer>

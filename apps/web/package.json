@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@rea/core": "workspace:*",
+    "@rea/engine": "workspace:*",
+    "@rea/norms": "workspace:*",
     "@rea/symbols": "workspace:*",
     "@xyflow/react": "12.3.6",
     "react": "18.3.1",

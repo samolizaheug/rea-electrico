@@ -26,6 +26,12 @@ importers:
       '@rea/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@rea/engine':
+        specifier: workspace:*
+        version: link:../../packages/engine
+      '@rea/norms':
+        specifier: workspace:*
+        version: link:../../packages/norms
       '@rea/symbols':
         specifier: workspace:*
         version: link:../../packages/symbols
@@ -65,6 +71,12 @@ importers:
         specifier: 3.23.5
         version: 3.23.5(zod@3.23.8)
 
+  packages/engine:
+    dependencies:
+      '@rea/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/norm-data:
     dependencies:
       zod:
@@ -74,6 +86,18 @@ importers:
       pdfjs-dist:
         specifier: 4.10.38
         version: 4.10.38
+
+  packages/norms:
+    dependencies:
+      '@rea/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rea/engine':
+        specifier: workspace:*
+        version: link:../engine
+      '@rea/norm-data':
+        specifier: workspace:*
+        version: link:../norm-data
 
   packages/symbols:
     dependencies:

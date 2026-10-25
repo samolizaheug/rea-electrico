@@ -10,13 +10,19 @@ import {
   pasteClip,
   removeElements,
   rotateElements,
+  setNotes,
   setTag,
   updateMeta,
+  updateParams,
   updateSettings,
   type Clip,
+  type ParamValue,
   type PortRef,
   type Project,
+  type ProjectMeta,
+  type ProjectSettings,
 } from "@rea/core";
+import { getNormModule } from "@rea/norms";
 import { create } from "zustand";
 import { t } from "../i18n";
 import { commitFrom, initHistory, push, redo, replace, undo, type History } from "./history";
@@ -40,6 +46,9 @@ interface EditorState {
   /** Proyecto al iniciar un arrastre; al soltar se confirma como una sola entrada del historial. */
   dragBase: Project | null;
   toast: Toast | null;
+  /** Panel de observaciones de validación abierto. */
+  issuesOpen: boolean;
+  setIssuesOpen(open: boolean): void;
 
   // Proyecto
   newProject(name: string): void;
@@ -47,6 +56,10 @@ interface EditorState {
   duplicateCurrent(): void;
   setName(name: string): void;
   setSymbology(s: "ANSI" | "IEC"): void;
+  setSettings(changes: Partial<ProjectSettings>): void;
+  setMeta(changes: Partial<Pick<ProjectMeta, "name" | "client" | "location" | "author" | "description">>): void;
+  setParams(elementId: string, changes: Record<string, ParamValue>): void;
+  setElementNotes(elementId: string, notes: string): void;
 
   // Edición
   add(type: string, position: { x: number; y: number }): string | null;
@@ -88,6 +101,8 @@ export const useEditor = create<EditorState>((set, get) => {
     clipboard: null,
     dragBase: null,
     toast: null,
+    issuesOpen: false,
+    setIssuesOpen: (issuesOpen) => set({ issuesOpen }),
 
     newProject: (name) => set({ history: initHistory(createProject({ name })), selection: { elements: [], connections: [] } }),
     loadProject: (p) => set({ history: initHistory(p), selection: { elements: [], connections: [] } }),
@@ -99,11 +114,17 @@ export const useEditor = create<EditorState>((set, get) => {
       if (name.trim()) apply((p) => updateMeta(p, { name: name.trim() }));
     },
     setSymbology: (symbology) => apply((p) => updateSettings(p, { symbology })),
+    setSettings: (changes) => apply((p) => updateSettings(p, changes)),
+    setMeta: (changes) => apply((p) => updateMeta(p, changes)),
+    setParams: (elementId, changes) => apply((p) => updateParams(p, elementId, changes)),
+    setElementNotes: (elementId, notes) => apply((p) => setNotes(p, elementId, notes)),
 
     add: (type, position) => {
       let id: string | null = null;
       apply((p) => {
-        const r = addElement(p, registry, type, { position });
+        // La norma activa propone valores por defecto (p. ej. aislamiento y canalización de los cables).
+        const params = getNormModule(p.settings.norm.id, p.settings.norm.edition).paramDefaults(type);
+        const r = addElement(p, registry, type, { position, params });
         id = r.elementId;
         return r.project;
       });

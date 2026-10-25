@@ -2,7 +2,7 @@
 
 Aplicación web para crear diagramas unifilares y calcular instalaciones eléctricas de baja tensión. Las normas soportadas son NOM-001-SEDE-2012, NEC (2020/2023/2026) e IEC 60364-5-52. Cada resultado incluye su **memoria de cálculo trazable**: fórmula, valores, tabla y artículo aplicados.
 
-> Estado: **fase 1, etapa E3** (modelo de datos, tablas NOM-001-SEDE-2012 verificadas y editor de unifilares). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
+> Estado: **fase 1, etapa E4** (modelo de datos, tablas NOM-001-SEDE-2012 verificadas, editor de unifilares, propiedades y validación de la red). Plan completo en [docs/00-analisis-rea-y-plan.md](docs/00-analisis-rea-y-plan.md).
 
 ## Requisitos
 
@@ -33,8 +33,8 @@ Revisión de tablas: [docs/tablas/nom-001-sede-2012.md](docs/tablas/nom-001-sede
 packages/
   core/        Modelo: tipos de elemento, biblioteca, proyecto, formato de archivo (sin UI ni cálculo)
   symbols/     Símbolos ANSI/IEC como geometría (editor y exportación)
-  engine/      (E5) Motor de cálculo: flujo de carga, caída de tensión, trazas de memoria
-  norms/       (E6, E9) Módulos normativos intercambiables
+  engine/      Motor de cálculo: validación de topología (E4); flujo de carga y caída de tensión (E5)
+  norms/       Módulos normativos intercambiables (NOM-001-SEDE-2012; NEC e IEC pendientes de datos)
   norm-data/   Tablas normativas en JSON con referencia a la fuente y estado de verificación
 apps/
   web/         Editor de unifilares (React + React Flow + Zustand)
@@ -56,6 +56,7 @@ referencias/   Documentos normativos fuente (no versionados)
 - [Revisión normativa: fuentes, tablas y erratas](docs/01-revision-normativa.md)
 - [Formato de archivo de proyecto](docs/formato-proyecto.md)
 - [Cómo agregar un tipo de elemento](docs/agregar-tipo-elemento.md)
+- [Validación de la red](docs/validacion-topologia.md)
 
 ## Advertencia
 

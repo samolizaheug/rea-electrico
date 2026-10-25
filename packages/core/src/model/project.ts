@@ -169,6 +169,19 @@ function assertTagFree(project: Project, tag: string, exceptElementId?: string):
   }
 }
 
+/** Notas libres de un elemento (aparecen en la memoria). Texto vacío elimina la nota. */
+export function setNotes(project: Project, elementId: string, notes: string): Project {
+  getElement(project, elementId);
+  return touch({
+    ...project,
+    elements: project.elements.map((e) => {
+      if (e.id !== elementId) return e;
+      const { notes: _old, ...rest } = e;
+      return notes.trim() ? { ...rest, notes } : rest;
+    }),
+  });
+}
+
 /** Cambia la etiqueta de un elemento (la marca como editada por el usuario). */
 export function setTag(project: Project, elementId: string, tag: string): Project {
   getElement(project, elementId);
