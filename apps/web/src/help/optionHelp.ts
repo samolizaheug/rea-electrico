@@ -5,6 +5,9 @@
 import { getLanguage } from "../i18n";
 import creditos from "./creditos.json";
 
+/** Ruta base de la app (Vite la define; en pruebas fuera de Vite vale «/»). */
+const BASE_URL: string = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? "/";
+
 export interface PhotoCredit {
   file: string;
   title: string;
@@ -275,7 +278,7 @@ export function photosOf(h: OptionHelp): PublicPhoto[] {
   const keys = h.photo === undefined ? [] : Array.isArray(h.photo) ? h.photo : [h.photo];
   return keys.flatMap((k) => {
     const c = (creditos as Record<string, PhotoCredit>)[k];
-    return c ? [{ ...c, key: k, src: `${import.meta.env.BASE_URL}ayuda/${c.file}`, note: PHOTO_NOTES[k] }] : [];
+    return c ? [{ ...c, key: k, src: `${BASE_URL}ayuda/${c.file}`, note: PHOTO_NOTES[k] }] : [];
   });
 }
 
@@ -319,10 +322,10 @@ let localPhotos: Promise<Record<string, LocalPhoto[]>> | undefined;
 
 /** Fotos locales por valor de opción ({} si la carpeta no existe, como en la web publicada). */
 export function loadLocalPhotos(): Promise<Record<string, LocalPhoto[]>> {
-  localPhotos ??= fetch(`${import.meta.env.BASE_URL}ayuda-local/manifest.json`)
+  localPhotos ??= fetch(`${BASE_URL}ayuda-local/manifest.json`)
     .then((r) => (r.ok ? r.json() : {}))
     .then((m: { opciones?: Record<string, Omit<LocalPhoto, "src">[]> }) =>
-      Object.fromEntries(Object.entries(m.opciones ?? {}).map(([k, list]) => [k, list.map((p) => ({ ...p, src: `${import.meta.env.BASE_URL}ayuda-local/${p.file}` }))])),
+      Object.fromEntries(Object.entries(m.opciones ?? {}).map(([k, list]) => [k, list.map((p) => ({ ...p, src: `${BASE_URL}ayuda-local/${p.file}` }))])),
     )
     .catch(() => ({}));
   return localPhotos;
