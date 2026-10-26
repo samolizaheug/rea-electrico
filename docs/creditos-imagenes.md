@@ -22,3 +22,36 @@ Fotografías de la ayuda visual de opciones (apps/web/public/ayuda/). Todas prov
 | conduit-emt.jpg | [Training panel for EMT conduit J. Morris CC BY-SA-3.0.jpg](https://commons.wikimedia.org/wiki/File:Training_panel_for_EMT_conduit_J._Morris_CC_BY-SA-3.0.jpg) | Jcmorris2 | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) |
 | charola-escalera.jpg | [Cable ladder01.jpg](https://commons.wikimedia.org/wiki/File:Cable_ladder01.jpg) | Leotard | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) |
 | banco-ductos.jpg | [Installing conduits, concrete reinforcement and form work for the traction power duct bank in future Mid-day Storage Yard. (CQ033, 4-18-2018) (39778355820).jpg](https://commons.wikimedia.org/wiki/File:Installing_conduits,_concrete_reinforcement_and_form_work_for_the_traction_power_duct_bank_in_future_Mid-day_Storage_Yard._(CQ033,_4-18-2018)_(39778355820).jpg) | MTA Capital Construction Mega Projects | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) |
+
+## Fotos de referencia locales (no publicadas)
+
+Fotos de canalizaciones de distribuidores y fabricantes, tomadas del catálogo de referencia del Ing. RGLR (Catalogo_Canalizaciones_Electricas.pdf). **Derechos reservados por sus titulares; uso interno / referencia.** Se guardan en apps/web/public/ayuda-local/ (carpeta excluida de git): la app las muestra solo en la copia local y la web publicada usa las fotos libres de arriba o el texto. Formato: JPG de 500 × 375 px, sin deformar, con relleno blanco.
+
+| Opción (método de instalación) | Archivo | Elemento | Sitio de origen |
+|---|---|---|---|
+| conduit-pvc-40 | conduit-pvc-ced40.jpg | Tubo conduit de PVC rígido cédula 40 (Art. 352) | lowes.com |
+| conduit-pvc-80 | conduit-pvc-ced80.jpg | Tubo conduit de PVC rígido cédula 80 (Art. 352) | graybar.com |
+| conduit-pvc-a | conduit-pvc-ligero.jpg | Tubo conduit de PVC tipo ligero (pared delgada, para ahogar en concreto) | ferreteria-laestrella.com |
+| conduit-hdpe | conduit-pad-corrugado-mt.jpg | Tubo corrugado de polietileno de alta densidad (PAD / HDPE) para media tensión (Art. 353) | dhidraulica.mx |
+| conduit-rmc-acero | conduit-rmc-acero-galvanizado.jpg | Tubo conduit metálico rígido pared gruesa (RMC), acero galvanizado (Art. 344) | homedepot.com |
+| conduit-rmc-acero | conduit-rmc-recubrimiento-pvc.jpg | Tubo conduit rígido de acero con recubrimiento de PVC (variante para ambientes corrosivos) | solarwindsolutions.net |
+| conduit-imc-acero | conduit-imc-acero-galvanizado.jpg | Tubo conduit metálico semipesado (IMC), acero galvanizado (Art. 342) | zoro.com |
+| conduit-emt-acero | conduit-emt-acero-galvanizado.jpg | Tubo metálico pared delgada (EMT), acero galvanizado (Art. 358) | stoneshc.com |
+| conduit-rmc-aluminio | conduit-rmc-aluminio.jpg | Tubo conduit rígido de aluminio (Art. 344) | lumen.ca |
+| conduit-rmc-inox | conduit-rmc-inoxidable.jpg | Tubo conduit rígido de acero inoxidable 304 / 316 (Art. 344) | smcelectric.com |
+| conduit-fmc | conduit-fmc.jpg | Tubo conduit metálico flexible (FMC) (Art. 348) | southwire.com |
+| conduit-lfmc | conduit-lfmc.jpg | Tubo conduit metálico flexible hermético a los líquidos (LFMC, tipo «Liquatite») (Art. 350) | atkore.com |
+| charola-escalera | charola-escalera-acero-galvanizado.jpg | Charola tipo escalera de acero galvanizado (Art. 392) | legrand.us |
+| charola-escalera | charola-escalera-aluminio.jpg | Charola tipo escalera de aluminio (Art. 392) | rexelusa.com |
+| charola-escalera | charola-escalera-inoxidable.jpg | Charola tipo escalera de acero inoxidable 304 / 316 (Art. 392) | cable-ladder.com |
+| charola-escalera | charola-escalera-frp.jpg | Charola tipo escalera de fibra de vidrio (FRP) (Art. 392) | longtimefrp.en.made-in-china.com |
+| charola-escalera | charola-canal-ventilado.jpg | Charola tipo canal ventilado, fondo perforado (Art. 392) | legrand.ca |
+| charola-escalera | charola-malla.jpg | Charola de malla (wire mesh) (Art. 392) | legrand.us |
+| charola-fondo-solido | charola-fondo-solido.jpg | Charola de fondo sólido (Art. 392) | adiglobaldistribution.us |
+| ducto-metalico | ducto-nema1-tapa-embisagrada.jpg | Ducto cuadrado NEMA 1, tapa embisagrada (Art. 376) | southernele.com |
+| ducto-metalico | ducto-nema1-tapa-atornillada.jpg | Ducto cuadrado NEMA 1, tapa atornillada, con knockouts (Art. 376) | amazon.in |
+| ducto-metalico | ducto-nema12-embisagrado.jpg | Ducto cuadrado NEMA 12, tapa embisagrada (lay-in) (Art. 376) | rexelusa.com |
+| ducto-metalico | ducto-nema3r.jpg | Ducto cuadrado NEMA 3R, tapa embisagrada (Art. 376) | gordonelectricsupply.com |
+| (sin opción en el proyecto) | charola-canal.jpg | Charola tipo canal (Art. 392) | rexelusa.com |
+| (sin opción en el proyecto) | charola-monorriel.jpg | Charola tipo monorriel (Art. 392) | mphusky.com |
+| (sin opción en el proyecto) | charola-accesorios.jpg | Accesorios de charola: tee, curva y reducción | legrand.us |

@@ -212,16 +212,16 @@ const HELP: Record<string, Record<string, OptionHelp>> = {
   },
   installationMethod: {
     "conduit-pvc-40": { text: conduitText.pvc, photo: "conduit-pvc" },
-    "conduit-pvc-80": { text: conduitText.pvc, photo: "conduit-pvc" },
-    "conduit-pvc-a": { text: conduitText.pvc, photo: "conduit-pvc" },
+    "conduit-pvc-80": { text: conduitText.pvc },
+    "conduit-pvc-a": { text: conduitText.pvc },
     "conduit-hdpe": { text: L("Conduit de polietileno de alta densidad (HDPE), en rollos; para instalaciones enterradas y perforación direccional.", "High-density polyethylene (HDPE) conduit, supplied in coils; for underground runs and directional boring.") },
     "conduit-ent": { text: L("Tubo no metálico (ENT) corrugado y flexible; para muros y losas, no para uso expuesto en áreas con daño físico.", "Corrugated, pliable electrical non-metallic tubing (ENT); for walls and slabs, not for exposed use where subject to damage."), photo: "conduit-ent" },
     "conduit-rmc-acero": { text: conduitText.rmc, photo: "conduit-acero-pesado" },
-    "conduit-imc-acero": { text: conduitText.rmc, photo: "conduit-acero-pesado" },
+    "conduit-imc-acero": { text: conduitText.rmc },
     "conduit-rmc-aluminio": { text: conduitText.rmc },
     "conduit-rmc-inox": { text: conduitText.rmc },
     "conduit-emt-acero": { text: conduitText.emt, photo: "conduit-emt" },
-    "conduit-emt-aluminio": { text: conduitText.emt, photo: "conduit-emt" },
+    "conduit-emt-aluminio": { text: conduitText.emt },
     "conduit-fmc": { text: conduitText.flexible },
     "conduit-lfmc": { text: conduitText.flexible },
     "conduit-lfnc": { text: conduitText.flexible },
@@ -258,3 +258,33 @@ export function photoOf(h: OptionHelp): (PhotoCredit & { src: string }) | undefi
 }
 
 export const pick = (s: { es: string; en: string }) => s[getLanguage()];
+
+// ---------------------------------------------------------------- Fotos locales de referencia
+
+/**
+ * Fotos de referencia de fabricantes y distribuidores (derechos reservados, uso interno). Viven en
+ * public/ayuda-local/, carpeta excluida de git: solo existen en la copia local y nunca se publican.
+ * Si existen, se muestran en lugar de la foto libre; si no, la ayuda usa la foto libre o el texto.
+ */
+export interface LocalPhoto {
+  file: string;
+  /** Nombre técnico (texto alternativo y pie de foto). */
+  nombre: string;
+  /** Sitio de origen de la foto. */
+  fuente: string;
+  nota?: string;
+  src: string;
+}
+
+let localPhotos: Promise<Record<string, LocalPhoto[]>> | undefined;
+
+/** Fotos locales por valor de opción ({} si la carpeta no existe, como en la web publicada). */
+export function loadLocalPhotos(): Promise<Record<string, LocalPhoto[]>> {
+  localPhotos ??= fetch(`${import.meta.env.BASE_URL}ayuda-local/manifest.json`)
+    .then((r) => (r.ok ? r.json() : {}))
+    .then((m: { opciones?: Record<string, Omit<LocalPhoto, "src">[]> }) =>
+      Object.fromEntries(Object.entries(m.opciones ?? {}).map(([k, list]) => [k, list.map((p) => ({ ...p, src: `${import.meta.env.BASE_URL}ayuda-local/${p.file}` }))])),
+    )
+    .catch(() => ({}));
+  return localPhotos;
+}

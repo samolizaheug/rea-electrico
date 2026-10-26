@@ -6,3 +6,9 @@ coverage/
 # Documentos normativos fuente (derechos de autor / tamaño). Ver referencias/README.md
 referencias/normas/
 # (incluye referencias/normas/_texto/, texto extraído de los PDF)
+
+# Fotos de referencia de fabricantes y distribuidores (derechos reservados, uso interno):
+# la app las usa en local si existen; no se publican. Ver docs/creditos-imagenes.md
+apps/web/public/ayuda-local/
+# Respaldos locales de imágenes
+_backup_imagenes/
