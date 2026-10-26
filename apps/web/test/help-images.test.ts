@@ -12,7 +12,8 @@ describe("imágenes de la ayuda de opciones", () => {
 
   it("cada «photo» del catálogo tiene crédito", () => {
     const src = readFileSync(new URL("src/help/optionHelp.ts", root), "utf8");
-    const keys = [...src.matchAll(/photo: "([^"]+)"/g)].map((m) => m[1]!);
+    // photo: "clave" o photo: ["clave", ...]
+    const keys = [...src.matchAll(/photo: (\[[^\]]*\]|"[^"]+")/g)].flatMap((m) => [...m[1]!.matchAll(/"([^"]+)"/g)].map((k) => k[1]!));
     expect(keys.length).toBeGreaterThan(0);
     for (const k of keys) expect(Object.keys(creditos), k).toContain(k);
   });

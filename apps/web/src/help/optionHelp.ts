@@ -14,10 +14,13 @@ export interface PhotoCredit {
   source: string;
 }
 
+type CreditKey = keyof typeof creditos;
+
 export interface OptionHelp {
   text: { es: string; en: string };
   /** Clave de `creditos.json` (foto en public/ayuda/). */
-  photo?: keyof typeof creditos;
+  /** Claves de `creditos.json` (fotos en public/ayuda/): la primera es la principal; las demás, variantes. */
+  photo?: CreditKey | CreditKey[];
   /** Pie de foto cuando la foto es solo representativa. */
   caption?: { es: string; en: string };
   /** Esquema SVG propio (usa currentColor). */
@@ -211,27 +214,27 @@ const HELP: Record<string, Record<string, OptionHelp>> = {
     "1F": { text: L("Transformador monofásico de dos devanados.", "Two-winding single-phase transformer."), svg: singlePhaseTransformerSvg },
   },
   installationMethod: {
-    "conduit-pvc-40": { text: conduitText.pvc, photo: "conduit-pvc" },
+    "conduit-pvc-40": { text: conduitText.pvc, photo: ["conduit-pvc-ced40"] },
     "conduit-pvc-80": { text: conduitText.pvc },
     "conduit-pvc-a": { text: conduitText.pvc },
-    "conduit-hdpe": { text: L("Conduit de polietileno de alta densidad (HDPE), en rollos; para instalaciones enterradas y perforación direccional.", "High-density polyethylene (HDPE) conduit, supplied in coils; for underground runs and directional boring.") },
-    "conduit-ent": { text: L("Tubo no metálico (ENT) corrugado y flexible; para muros y losas, no para uso expuesto en áreas con daño físico.", "Corrugated, pliable electrical non-metallic tubing (ENT); for walls and slabs, not for exposed use where subject to damage."), photo: "conduit-ent" },
-    "conduit-rmc-acero": { text: conduitText.rmc, photo: "conduit-acero-pesado" },
+    "conduit-hdpe": { text: L("Conduit de polietileno de alta densidad (HDPE), en rollos; para instalaciones enterradas y perforación direccional.", "High-density polyethylene (HDPE) conduit, supplied in coils; for underground runs and directional boring."), photo: ["conduit-hdpe-carretes", "conduit-ductos-polietileno"] },
+    "conduit-ent": { text: L("Tubo no metálico (ENT) corrugado y flexible; para muros y losas, no para uso expuesto en áreas con daño físico.", "Corrugated, pliable electrical non-metallic tubing (ENT); for walls and slabs, not for exposed use where subject to damage."), photo: ["conduit-ent-azul"] },
+    "conduit-rmc-acero": { text: conduitText.rmc, photo: ["conduit-rmc-instalado", "conduit-acero-roscado"] },
     "conduit-imc-acero": { text: conduitText.rmc },
     "conduit-rmc-aluminio": { text: conduitText.rmc },
-    "conduit-rmc-inox": { text: conduitText.rmc },
-    "conduit-emt-acero": { text: conduitText.emt, photo: "conduit-emt" },
+    "conduit-rmc-inox": { text: conduitText.rmc, photo: ["conduit-rmc-inoxidable"] },
+    "conduit-emt-acero": { text: conduitText.emt, photo: ["conduit-emt", "conduit-emt-sin-rosca"] },
     "conduit-emt-aluminio": { text: conduitText.emt },
-    "conduit-fmc": { text: conduitText.flexible },
-    "conduit-lfmc": { text: conduitText.flexible },
-    "conduit-lfnc": { text: conduitText.flexible },
-    "ducto-metalico": { text: L("Ducto metálico con tapa embisagrada (ducto cuadrado): canal para alojar varios circuitos, con acceso a lo largo de su recorrido.", "Metal wireway with hinged cover: a trough for several circuits, accessible along its length.") },
-    "charola-escalera": { text: L("Charola portacables tipo escalera (o malla / fondo ventilado): largueros con travesaños; buena disipación de calor.", "Ladder (or wire-mesh / ventilated-bottom) cable tray: side rails with rungs; good heat dissipation."), photo: "charola-escalera" },
+    "conduit-fmc": { text: conduitText.flexible, photo: ["conduit-fmc", "conduit-fmc-acero", "conduit-fmc-instalado"] },
+    "conduit-lfmc": { text: conduitText.flexible, photo: ["conduit-lfmc"] },
+    "conduit-lfnc": { text: conduitText.flexible, photo: ["conduit-lfnc"] },
+    "ducto-metalico": { text: L("Ducto metálico con tapa embisagrada (ducto cuadrado): canal para alojar varios circuitos, con acceso a lo largo de su recorrido.", "Metal wireway with hinged cover: a trough for several circuits, accessible along its length."), photo: ["ducto-metalico"] },
+    "charola-escalera": { text: L("Charola portacables tipo escalera (o malla / fondo ventilado): largueros con travesaños; buena disipación de calor.", "Ladder (or wire-mesh / ventilated-bottom) cable tray: side rails with rungs; good heat dissipation."), photo: ["charola-escalera", "charola-escalera-cables", "charola-malla"] },
     "charola-fondo-solido": { text: L("Charola de fondo sólido: protege los cables de goteo y polvo, pero disipa menos calor (menor ampacidad que la tipo escalera).", "Solid-bottom cable tray: protects cables from dripping and dust but dissipates less heat (lower ampacity than ladder tray).") },
-    "enterrado-directo": { text: L("Cables directamente enterrados en zanja, con profundidad mínima y protección según el artículo 300-5.", "Cables directly buried in a trench, with minimum cover and protection per article 300-5.") },
-    "enterrado-banco-pvc": { text: L("Banco de ductos enterrado: varios tubos agrupados, normalmente embebidos en concreto.", "Underground duct bank: several conduits grouped together, usually encased in concrete."), photo: "banco-ductos" },
+    "enterrado-directo": { text: L("Cables directamente enterrados en zanja, con profundidad mínima y protección según el artículo 300-5.", "Cables directly buried in a trench, with minimum cover and protection per article 300-5."), photo: ["enterrado-directo", "enterrado-directo-empalme"] },
+    "enterrado-banco-pvc": { text: L("Banco de ductos enterrado: varios tubos agrupados, normalmente embebidos en concreto.", "Underground duct bank: several conduits grouped together, usually encased in concrete."), photo: ["banco-ductos", "banco-ductos-pvc"] },
     "enterrado-banco-pvc-eb": { text: L("Banco de ductos de PVC tipo EB embebido en concreto.", "Type EB PVC duct bank encased in concrete."), photo: "banco-ductos" },
-    "aire-libre": { text: L("Conductores individuales al aire libre, separados, con libre circulación de aire (Tabla 310-15(b)(17)).", "Single insulated conductors in free air, spaced, with free air circulation (NOM Table 310-15(b)(17)).") },
+    "aire-libre": { text: L("Conductores individuales al aire libre, separados, con libre circulación de aire (Tabla 310-15(b)(17)).", "Single insulated conductors in free air, spaced, with free air circulation (NOM Table 310-15(b)(17))."), photo: ["conductores-aire-libre"] },
   },
   insulationLevelPct: {
     "100": { text: L("Nivel de aislamiento 100 %: sistemas donde las fallas a tierra se liberan rápido (protección que opera en menos de 1 minuto).", "100 % insulation level: systems where ground faults are cleared quickly (protection operates in under 1 minute).") },
@@ -251,10 +254,44 @@ export function helpFor(paramKey: string): Record<string, OptionHelp> | undefine
   return HELP[ALIASES[paramKey] ?? paramKey];
 }
 
-export function photoOf(h: OptionHelp): (PhotoCredit & { src: string }) | undefined {
-  if (!h.photo) return undefined;
-  const c = (creditos as Record<string, PhotoCredit>)[h.photo];
-  return c ? { ...c, src: `${import.meta.env.BASE_URL}ayuda/${c.file}` } : undefined;
+/** Notas de correspondencia de algunas fotos libres (cuando la foto es de referencia). */
+const PHOTO_NOTES: Partial<Record<CreditKey, { es: string; en: string }>> = {
+  "conduit-pvc-ced40": L("Tubo de PVC gris rotulado «SCH 40» (cédula 40).", "Gray PVC tube marked “SCH 40” (schedule 40)."),
+  "conduit-acero-roscado": L("Tubo de acero galvanizado de pared gruesa (norma japonesa JIS, equivalente al RMC).", "Thick-wall galvanized steel conduit (Japanese JIS standard, RMC equivalent)."),
+  "conduit-emt-sin-rosca": L("Tubo de acero de pared delgada sin rosca (norma japonesa JIS, equivalente al EMT).", "Thin-wall threadless steel conduit (Japanese JIS standard, EMT equivalent)."),
+  "conduit-rmc-inoxidable": L("Tubos de acero inoxidable sujetos con abrazaderas (referencia del material).", "Stainless steel tubes held by clamps (material reference)."),
+  "conduit-lfmc": L("Tramo flexible hermético entre un desconectador y una caja de paso, con conectores herméticos.", "Liquidtight flexible run between a disconnect and a conduit body, with liquidtight connectors."),
+  "conduit-lfnc": L("Tubo flexible hermético gris llegando a gabinetes exteriores (referencia).", "Gray liquidtight flexible conduit entering outdoor enclosures (reference)."),
+  "conduit-ductos-polietileno": L("Ductos de polietileno en rollo para tendido subterráneo.", "Polyethylene ducts in coils for underground runs."),
+  "conductores-aire-libre": L("Conductores aislados individuales, separados y al aire sobre aisladores.", "Single insulated conductors, spaced, in free air on insulators."),
+};
+
+export type PublicPhoto = PhotoCredit & { key: string; src: string; note?: { es: string; en: string } };
+
+/** Fotos libres de una opción, en orden (principal y variantes). */
+export function photosOf(h: OptionHelp): PublicPhoto[] {
+  const keys = h.photo === undefined ? [] : Array.isArray(h.photo) ? h.photo : [h.photo];
+  return keys.flatMap((k) => {
+    const c = (creditos as Record<string, PhotoCredit>)[k];
+    return c ? [{ ...c, key: k, src: `${import.meta.env.BASE_URL}ayuda/${c.file}`, note: PHOTO_NOTES[k] }] : [];
+  });
+}
+
+/** Nombre del sitio de origen de una foto libre, a partir de su URL. */
+export function sourceSite(url: string): string {
+  const host = (() => {
+    try {
+      return new URL(url).hostname;
+    } catch {
+      return "";
+    }
+  })();
+  if (host.includes("wikimedia")) return "Wikimedia Commons";
+  if (host.includes("flickr")) return "Flickr";
+  if (host.includes("unsplash")) return "Unsplash";
+  if (host.includes("pexels")) return "Pexels";
+  if (host.includes("pixabay")) return "Pixabay";
+  return host || "—";
 }
 
 export const pick = (s: { es: string; en: string }) => s[getLanguage()];

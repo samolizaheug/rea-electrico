@@ -1,7 +1,7 @@
 import type { EnumOption, ParamValue } from "@rea/core";
 import { useEffect, useState } from "react";
 import { lib, t } from "../i18n";
-import { helpFor, loadLocalPhotos, photoOf, pick, type LocalPhoto, type OptionHelp } from "./optionHelp";
+import { helpFor, loadLocalPhotos, photosOf, pick, sourceSite, type LocalPhoto, type OptionHelp, type PublicPhoto } from "./optionHelp";
 
 /**
  * Botón «?» junto a un combo: abre un cuadro con todas las opciones ilustradas
@@ -67,10 +67,16 @@ function OptionHelpDialog({ label, options, value, help, onClose, onPick }: { la
   );
 }
 
+/** Una foto de la galería de una opción: local (de referencia) o libre (con licencia). */
+type GalleryItem = { key: string; src: string; alt: string; local?: LocalPhoto; free?: PublicPhoto };
+
 function OptionCard({ option, help: h, local, selected, onPick }: { option: EnumOption; help: OptionHelp | undefined; local: LocalPhoto[]; selected: boolean; onPick(v: string): void }) {
   const [variant, setVariant] = useState(0);
-  const photo = h ? photoOf(h) : undefined;
-  const ref = local[Math.min(variant, local.length - 1)];
+  // Las fotos locales de referencia (si existen) sustituyen a las libres; si no, se usan las libres.
+  const gallery: GalleryItem[] = local.length
+    ? local.map((p) => ({ key: p.file, src: p.src, alt: p.nombre, local: p }))
+    : (h ? photosOf(h) : []).map((p) => ({ key: p.key, src: p.src, alt: p.note ? pick(p.note) : lib(option.label), free: p }));
+  const item = gallery[Math.min(variant, gallery.length - 1)];
   return (
     <div
       role="button"
@@ -81,20 +87,18 @@ function OptionCard({ option, help: h, local, selected, onPick }: { option: Enum
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onPick(option.value))}
     >
       <div className="help-media">
-        {ref ? (
-          <img src={ref.src} alt={ref.nombre} loading="lazy" />
-        ) : photo ? (
-          <img src={photo.src} alt={lib(option.label)} loading="lazy" />
+        {item ? (
+          <img src={item.src} alt={item.alt} loading="lazy" />
         ) : h?.svg ? (
           <span className="help-svg" dangerouslySetInnerHTML={{ __html: h.svg }} />
         ) : (
           <span className="muted small">{t("help.noImage")}</span>
         )}
       </div>
-      {local.length > 1 ? (
+      {gallery.length > 1 ? (
         <div className="help-variants" onClick={(e) => e.stopPropagation()}>
-          {local.map((p, i) => (
-            <button key={p.file} type="button" title={p.nombre} aria-label={p.nombre} aria-pressed={i === variant} className={i === variant ? "active" : ""} onClick={() => setVariant(i)}>
+          {gallery.map((p, i) => (
+            <button key={p.key} type="button" title={p.alt} aria-label={p.alt} aria-pressed={i === variant} className={i === variant ? "active" : ""} onClick={() => setVariant(i)}>
               <img src={p.src} alt="" loading="lazy" />
             </button>
           ))}
@@ -102,24 +106,25 @@ function OptionCard({ option, help: h, local, selected, onPick }: { option: Enum
       ) : null}
       <strong>{lib(option.label)}</strong>
       {h ? <span className="help-text">{pick(h.text)}</span> : null}
-      {ref ? (
+      {item?.local ? (
         <>
-          <span className="help-caption">{ref.nombre}</span>
-          {ref.nota ? <span className="help-caption">{ref.nota}</span> : null}
-          <span className="help-credit">{t("help.localPhoto", { source: ref.fuente })}</span>
+          <span className="help-caption">{item.local.nombre}</span>
+          {item.local.nota ? <span className="help-caption">{item.local.nota}</span> : null}
+          <span className="help-credit">{t("help.localPhoto", { source: item.local.fuente })}</span>
         </>
       ) : (
         <>
+          {item?.free?.note ? <span className="help-caption">{pick(item.free.note)}</span> : null}
           {h?.caption ? <span className="help-caption">{pick(h.caption)}</span> : null}
-          {photo ? (
+          {item?.free ? (
             <span className="help-credit" onClick={(e) => e.stopPropagation()}>
-              {t("help.photo")}: {photo.author || "—"} ·{" "}
-              <a href={photo.licenseUrl || photo.source} target="_blank" rel="noreferrer">
-                {photo.license}
+              {t("help.photo")}: {item.free.author || "—"} ·{" "}
+              <a href={item.free.licenseUrl || item.free.source} target="_blank" rel="noreferrer">
+                {item.free.license}
               </a>{" "}
               ·{" "}
-              <a href={photo.source} target="_blank" rel="noreferrer">
-                Wikimedia Commons
+              <a href={item.free.source} target="_blank" rel="noreferrer">
+                {sourceSite(item.free.source)}
               </a>
             </span>
           ) : null}

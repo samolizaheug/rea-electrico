@@ -33,7 +33,7 @@ export const en: Messages = {
   "inspector.disconnect": "Disconnect",
   "help.options": "Show options with pictures",
   "help.close": "Close",
-  "help.pickHint": "Click an option to choose it. Free-license photos from Wikimedia Commons and own sketches; the local copy may also show manufacturer reference photos (thumbnails show variants).",
+  "help.pickHint": "Click an option to choose it; thumbnails show variants. Free-license photos (Wikimedia Commons, Flickr, Unsplash, Pexels, Pixabay) and own sketches; the local copy may also show manufacturer reference photos.",
   "help.noImage": "No picture",
   "help.photo": "Photo",
   "help.localPhoto": "Reference photo: {source} · rights reserved by the owner, internal use (local copy only)",

@@ -95,30 +95,6 @@
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Commutator_and_brushes_DC_motor.jpg"
   },
-  "conduit-pvc": {
-    "file": "conduit-pvc.jpg",
-    "title": "File:Rigid Non-Metallic Conduit 1.jpg",
-    "author": "Anibal Maysonet",
-    "license": "CC BY-SA 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rigid_Non-Metallic_Conduit_1.jpg"
-  },
-  "conduit-ent": {
-    "file": "conduit-ent.jpg",
-    "title": "File:Electrical conduit.JPG",
-    "author": "Dmitry G",
-    "license": "CC BY-SA 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Electrical_conduit.JPG"
-  },
-  "conduit-acero-pesado": {
-    "file": "conduit-acero-pesado.jpg",
-    "title": "File:Layout and installation of galvanized steel conduits for the fire alarm system in an electrical conduit room of a power sub-station. (CS179, 01-02-2019) (46549500372).jpg",
-    "author": "MTA Capital Construction Mega Projects",
-    "license": "CC BY 2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Layout_and_installation_of_galvanized_steel_conduits_for_the_fire_alarm_system_in_an_electrical_conduit_room_of_a_power_sub-station._(CS179,_01-02-2019)_(46549500372).jpg"
-  },
   "conduit-emt": {
     "file": "conduit-emt.jpg",
     "title": "File:Training panel for EMT conduit J. Morris CC BY-SA-3.0.jpg",
@@ -142,5 +118,165 @@
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Installing_conduits,_concrete_reinforcement_and_form_work_for_the_traction_power_duct_bank_in_future_Mid-day_Storage_Yard._(CQ033,_4-18-2018)_(39778355820).jpg"
+  },
+  "conduit-ent-azul": {
+    "file": "conduit-ent-azul.jpg",
+    "title": "File:ENT Plastic Conduit Blue 2 J. Morris CC BY-SA-3.0.jpg",
+    "author": "Jeremy Morris",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:ENT_Plastic_Conduit_Blue_2_J._Morris_CC_BY-SA-3.0.jpg"
+  },
+  "conduit-hdpe-carretes": {
+    "file": "conduit-hdpe-carretes.jpg",
+    "title": "File:Reels of orange HDPE innerduct - Flickr - joncutrer.jpg",
+    "author": "Jonathan Cutrer from San Angelo, Texas, United States",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Reels_of_orange_HDPE_innerduct_-_Flickr_-_joncutrer.jpg"
+  },
+  "conduit-acero-roscado": {
+    "file": "conduit-acero-roscado.jpg",
+    "title": "File:厚鋼電線管 (G36).JPG",
+    "author": "Uri (Wikimedia Commons)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:%E5%8E%9A%E9%8B%BC%E9%9B%BB%E7%B7%9A%E7%AE%A1_(G36).JPG"
+  },
+  "conduit-emt-sin-rosca": {
+    "file": "conduit-emt-sin-rosca.jpg",
+    "title": "File:ねじなし電線管 (E25).JPG",
+    "author": "ユーリ (talk · contribs)",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:%E3%81%AD%E3%81%98%E3%81%AA%E3%81%97%E9%9B%BB%E7%B7%9A%E7%AE%A1_(E25).JPG"
+  },
+  "ducto-metalico": {
+    "file": "ducto-metalico.jpg",
+    "title": "File:Ducto Metalico.jpg",
+    "author": "Javier.Eduardo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ducto_Metalico.jpg"
+  },
+  "charola-malla": {
+    "file": "charola-malla.jpg",
+    "title": "File:Chemin de câble.jpg",
+    "author": "Gripple Europe",
+    "license": "CC BY-SA 1.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/1.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chemin_de_c%C3%A2ble.jpg"
+  },
+  "enterrado-directo-empalme": {
+    "file": "enterrado-directo-empalme.jpg",
+    "title": "File:Erdkabel3.jpg",
+    "author": "Olli1800",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Erdkabel3.jpg"
+  },
+  "banco-ductos-pvc": {
+    "file": "banco-ductos-pvc.jpg",
+    "title": "File:Duct bank.jpg",
+    "author": "Piperunner",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Duct_bank.jpg"
+  },
+  "conduit-pvc-ced40": {
+    "file": "conduit-pvc-ced40.jpg",
+    "title": "sched 40 highlighted grey tube",
+    "author": "The EnergySmart Academy",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://www.flickr.com/photos/117168856@N06/16237465493/"
+  },
+  "conduit-rmc-instalado": {
+    "file": "conduit-rmc-instalado.jpg",
+    "title": "CS179 12th St. - 1-inch Galvanized Rigid Conduit Installation on P3 (12-06-2016)",
+    "author": "MTA Construction & Development Mega Projects",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/59595815@N03/30674077104/"
+  },
+  "conduit-fmc-instalado": {
+    "file": "conduit-fmc-instalado.jpg",
+    "title": "Electrical Service Panel Installation and Conduit Wiring in Metal Building",
+    "author": "Third Loft",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.flickr.com/photos/203570843@N03/54923454872/"
+  },
+  "enterrado-directo": {
+    "file": "enterrado-directo.jpg",
+    "title": "Underground cable in trench",
+    "author": "Cape Hatteras National Seashore (U.S. National Park Service)",
+    "license": "Dominio público (PDM 1.0)",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "source": "https://www.flickr.com/photos/106602675@N05/50855598013/"
+  },
+  "conductores-aire-libre": {
+    "file": "conductores-aire-libre.jpg",
+    "title": "knob and tube wiring",
+    "author": "laurascudder",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "source": "https://www.flickr.com/photos/26890781@N06/2857594151/"
+  },
+  "conduit-fmc-acero": {
+    "file": "conduit-fmc-acero.jpg",
+    "title": "171213-conduit-flex-metal-steel.jpg",
+    "author": "r. nial bradshaw",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "source": "https://www.flickr.com/photos/33227787@N05/38329094684/"
+  },
+  "conduit-fmc": {
+    "file": "conduit-fmc.jpg",
+    "title": "Manguera flexible de metal gris",
+    "author": "Gabriel Komorov",
+    "license": "Licencia de Unsplash",
+    "licenseUrl": "https://unsplash.com/license",
+    "source": "https://unsplash.com/photos/KzO790VF5oU"
+  },
+  "conduit-lfmc": {
+    "file": "conduit-lfmc.jpg",
+    "title": "Electrical boxes on white brick wall in Chattanooga (recorte)",
+    "author": "Anh-Bao Tran-Le",
+    "license": "Licencia de Pexels",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/electrical-boxes-on-white-brick-wall-in-chattanooga-30144993/"
+  },
+  "conduit-lfnc": {
+    "file": "conduit-lfnc.jpg",
+    "title": "Outdoor electrical installation with utility boxes",
+    "author": "panumas nikhomkhai",
+    "license": "Licencia de Pexels",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/outdoor-electrical-installation-with-utility-boxes-37685875/"
+  },
+  "conduit-rmc-inoxidable": {
+    "file": "conduit-rmc-inoxidable.jpg",
+    "title": "Industrial stainless steel tubes",
+    "author": "martinelle",
+    "license": "Licencia de Pixabay",
+    "licenseUrl": "https://pixabay.com/service/license-summary/",
+    "source": "https://pixabay.com/photos/tube-pipes-stainless-steel-481504/"
+  },
+  "charola-escalera-cables": {
+    "file": "charola-escalera-cables.jpg",
+    "title": "Electricity technique piping",
+    "author": "aileino",
+    "license": "Licencia de Pixabay",
+    "licenseUrl": "https://pixabay.com/service/license-summary/",
+    "source": "https://pixabay.com/photos/electricity-technique-piping-1269204/"
+  },
+  "conduit-ductos-polietileno": {
+    "file": "conduit-ductos-polietileno.jpg",
+    "title": "Conduit pipes coils rolls",
+    "author": "pdpics",
+    "license": "Licencia de Pixabay",
+    "licenseUrl": "https://pixabay.com/service/license-summary/",
+    "source": "https://pixabay.com/photos/conduit-pipes-coils-rolls-colours-166802/"
   }
 }

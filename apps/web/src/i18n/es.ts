@@ -31,7 +31,7 @@ export const es = {
   "inspector.disconnect": "Desconectar",
   "help.options": "Ver opciones con imagen",
   "help.close": "Cerrar",
-  "help.pickHint": "Haga clic en una opción para elegirla. Fotos de Wikimedia Commons con licencia libre y esquemas propios; en la copia local pueden aparecer fotos de referencia de fabricantes (con miniaturas para ver variantes).",
+  "help.pickHint": "Haga clic en una opción para elegirla; las miniaturas muestran variantes. Fotos con licencia libre (Wikimedia Commons, Flickr, Unsplash, Pexels, Pixabay) y esquemas propios; en la copia local pueden aparecer fotos de referencia de fabricantes.",
   "help.noImage": "Sin imagen",
   "help.photo": "Foto",
   "help.localPhoto": "Foto de referencia: {source} · derechos de su titular, uso interno (solo en la copia local)",
