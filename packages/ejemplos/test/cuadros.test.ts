@@ -33,7 +33,7 @@ describe("cuadros de carga del sistema de ejemplo", () => {
 
   it("renglones con protección, conductor (fase + tierra), longitud y caída", () => {
     const r = board("TAB-A").rows[0]!;
-    expect(r).toMatchObject({ protectionA: 15, conductor: "1x#12AWG(Ph)+1x#12AWG(N)+1x#12AWG(Gnd)", lengthM: 30, poles: 3 });
+    expect(r).toMatchObject({ protectionA: 15, conductor: "1x#12AWG(Ph)+1x#12AWG(N)+1x#12AWG(Gnd)", lengthM: 30, poles: 1 });
     expect(r.dropPct).toBeCloseTo(2.4864, 3);
   });
 

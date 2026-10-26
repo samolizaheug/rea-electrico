@@ -137,6 +137,16 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
     if (cs.breakerId && cs.protection.ratingA !== undefined) {
       const br = sized.elements.find((x) => x.id === cs.breakerId)!;
       if (typeof br.params.forcedRatingA !== "number") br.params.forcedRatingA = cs.protection.ratingA;
+      // Polos del interruptor = conductores de fase del circuito (1F2H: 1, 1F3H o entre fases: 2, trifásico: 3).
+      const poles = Number(br.params.poles);
+      if (Number.isFinite(poles) && poles !== cs.wiring.phases) {
+        issues.push({ severity: "warning", code: "polos-interruptor", message: `${br.tag}: tiene ${poles} polo(s) y el circuito ${cs.tag} lleva ${cs.wiring.phases} conductor(es) de fase.`, elementIds: [br.id, cs.cableId] });
+      }
+      // El marco del interruptor no puede ser menor que su capacidad de disparo.
+      const frame = n(br.params.frameA);
+      if (frame > 0 && frame < cs.protection.ratingA) {
+        issues.push({ severity: "error", code: "marco-interruptor", message: `${br.tag}: la corriente de marco (${frame} A) es menor que la capacidad de disparo (${cs.protection.ratingA} A).`, elementIds: [br.id] });
+      }
     }
   }
   const loadFlow = runLoadFlow(sized, registry, norm, { mode: "nominal" });

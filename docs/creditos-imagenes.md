@@ -39,8 +39,10 @@ Fotografías de la ayuda visual de opciones (apps/web/public/ayuda/). Todas tien
 | conduit-rmc-inoxidable.jpg | [Industrial stainless steel tubes](https://pixabay.com/photos/tube-pipes-stainless-steel-481504/) | martinelle | [Licencia de Pixabay](https://pixabay.com/service/license-summary/) | Pixabay |
 | charola-escalera-cables.jpg | [Electricity technique piping](https://pixabay.com/photos/electricity-technique-piping-1269204/) | aileino | [Licencia de Pixabay](https://pixabay.com/service/license-summary/) | Pixabay |
 | conduit-ductos-polietileno.jpg | [Conduit pipes coils rolls](https://pixabay.com/photos/conduit-pipes-coils-rolls-colours-166802/) | pdpics | [Licencia de Pixabay](https://pixabay.com/service/license-summary/) | Pixabay |
+| conduit-pvc-wikipedia.jpg | [Plastic tubing.jpg](https://commons.wikimedia.org/wiki/File:Plastic_tubing.jpg) | Paul Goyette | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | Wikimedia Commons |
+| charola-perforada.jpg | [German tray 1.jpg](https://commons.wikimedia.org/wiki/File:German_tray_1.jpg) | Achim Hering | Public domain | Wikimedia Commons |
 
-**Sin foto libre** (se buscó en Wikimedia Commons, Openverse, Flickr, DVIDS, Unsplash, Pexels y Pixabay sin encontrar una foto con licencia libre que muestre ese material): PVC cédula 80, PVC tipo A, IMC, RMC de aluminio, EMT de aluminio y charola de fondo sólido. En la copia local se muestran las fotos de referencia del catálogo del Ing. RGLR.
+**Fotos representativas.** No existe una foto con licencia libre de PVC cédula 80, PVC tipo A, IMC, RMC y EMT de aluminio ni de charola de fondo sólido (se buscó en Wikipedia/Wikimedia Commons, Openverse, Flickr, DVIDS, Unsplash, Pexels y Pixabay). Esas opciones muestran la foto más cercana (PVC cédula 40 de Wikipedia, RMC/EMT de acero, charola de fondo perforado de Wikipedia) con un pie que lo indica y explica en qué se distingue el material real. En la copia local se ven las fotos de referencia del catálogo del Ing. RGLR.
 
 ## Fotos de referencia locales (no publicadas)
 

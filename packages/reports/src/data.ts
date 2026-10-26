@@ -244,8 +244,18 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
       return [`MT ${String(el?.params.insulationKV ?? "")} kV${size}`, `${fmt(flow.currentA)} A`];
     }
     case "breaker": {
-      const r = [...sizing.circuits.values()].find((c) => c.breakerId === elementId)?.protection.ratingA;
-      return r !== undefined ? [`${r} A`] : [];
+      // Polos · marco/ajuste · capacidad interruptiva, p. ej. «3P», «100/100A», «18 kA».
+      const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
+      const r = [...sizing.circuits.values()].find((c) => c.breakerId === elementId)?.protection.ratingA ?? num(el?.params.forcedRatingA);
+      if (!el) return r !== undefined ? [`${r} A`] : [];
+      const fuse = String(el.params.deviceType ?? "").startsWith("fusible");
+      const frame = num(el.params.frameA) ?? r;
+      const ka = num(el.params.interruptingKA);
+      return [
+        `${String(el.params.poles ?? "3")}P`,
+        ...(r === undefined ? [] : [fuse ? `${r} A` : `${frame}/${r}A`]),
+        ...(ka !== undefined ? [`${fmt(ka, ka % 1 ? 1 : 0)} kA`] : []),
+      ];
     }
     case "transformer":
       return flow ? [`${fmt(flow.power?.sKVA)} kVA`, `ΔV ${fmt(flow.dropPct, 2)} %`] : [];
@@ -261,10 +271,47 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
     case "utility":
     case "generator":
       return flow ? [`${fmt(flow.power?.sKVA)} kVA · ${fmt(flow.currentA)} A`] : [];
-    default:
+    default: {
       if (!flow) return [];
-      return [`${fmt(flow.currentA)} A · ${fmt(flow.voltage?.pct, 1)} %`];
+      const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
+      const load = el && loadPlate(el.type, el.params);
+      if (!load) return [`${fmt(flow.currentA)} A · ${fmt(flow.voltage?.pct, 1)} %`];
+      // Capacidad · fases - tensión nominal · corriente (FLA en motores), como en los diagramas unifilares de proyecto.
+      const fla = el.type === "motor" && flow.ratedCurrentA !== undefined;
+      return [load.capacity, load.phasesVoltage, fla ? `${fmt(flow.ratedCurrentA, 2)} A (FLA)` : `${fmt(flow.currentA, 2)} A`];
+    }
   }
+}
+
+const num = (v: unknown): number | undefined => (typeof v === "number" && Number.isFinite(v) ? v : undefined);
+const trim = (v: number, d = 2) => String(Number(v.toFixed(d)));
+
+/**
+ * Datos de placa de una carga para el diagrama: capacidad en su unidad (HP o kW en motores, W en
+ * contactos y alumbrado, kW o kVA en cargas genéricas) y «fases - tensión», p. ej. «3Ph - 460 V».
+ */
+export function loadPlate(type: string, p: Record<string, unknown>): { capacity: string; phasesVoltage: string } | undefined {
+  const sys = String(p.system ?? "");
+  const phases = sys.startsWith("3F") ? "3Ph" : sys.startsWith("1F") ? "1Ph" : "";
+  const v = num(p.voltageV);
+  const phasesVoltage = [phases, v !== undefined ? `${trim(v, 1)} V` : ""].filter(Boolean).join(" - ");
+  const qty = num(p.quantity) ?? 1;
+  let capacity: string | undefined;
+  if (type === "motor") {
+    const pw = num(p.ratedPower);
+    if (pw !== undefined) capacity = `${trim(pw)} ${p.ratedPowerUnit === "kW" ? "kW" : "HP"}`;
+  } else if (type === "luminaire") {
+    const w = num(p.wattsPerUnit);
+    if (w !== undefined) capacity = `${trim(qty * w, 0)} W`;
+  } else if (type === "receptacle") {
+    const va = num(p.vaPerOutlet);
+    const pf = num(p.powerFactor);
+    if (va !== undefined) capacity = pf !== undefined ? `${trim(qty * va * pf, 0)} W` : `${trim(qty * va, 0)} VA`;
+  } else if (type === "generic-load" || type === "grouped-load") {
+    const pw = num(p.power);
+    if (pw !== undefined) capacity = `${trim(pw)} ${p.powerUnit === "kVA" ? "kVA" : "kW"}`;
+  }
+  return capacity === undefined ? undefined : { capacity, phasesVoltage };
 }
 
 // ---------------------------------------------------------------- Tablas normativas

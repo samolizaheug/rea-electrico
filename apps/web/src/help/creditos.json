@@ -278,5 +278,21 @@
     "license": "Licencia de Pixabay",
     "licenseUrl": "https://pixabay.com/service/license-summary/",
     "source": "https://pixabay.com/photos/conduit-pipes-coils-rolls-colours-166802/"
+  },
+  "conduit-pvc-wikipedia": {
+    "file": "conduit-pvc-wikipedia.jpg",
+    "title": "File:Plastic tubing.jpg",
+    "author": "Paul Goyette",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Plastic_tubing.jpg"
+  },
+  "charola-perforada": {
+    "file": "charola-perforada.jpg",
+    "title": "File:German tray 1.jpg",
+    "author": "Achim Hering",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:German_tray_1.jpg"
   }
 }

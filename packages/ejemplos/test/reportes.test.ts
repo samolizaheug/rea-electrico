@@ -24,6 +24,11 @@ describe("reportes del sistema de ejemplo", () => {
     expect(svg).toContain("3x#2/0AWG(Ph)");
     expect(svg).not.toContain("2/0 AWG (");
     expect(svg).toMatch(/216\.\d\/124\.\d V/);
+    // Cargas: capacidad · fases - tensión · corriente (FLA en motores); alumbrado y contactos en W.
+    for (const s of ["50 HP", "3Ph - 460 V", "65.00 A (FLA)", "1000 W", "1Ph - 127 V", "15 kW", "40 kVA"]) expect(svg).toContain(s);
+    // Interruptores: polos · marco/ajuste · capacidad interruptiva.
+    for (const s of ["3P", "1P", "200/200A", "25 kA", "10 kA"]) expect(svg).toContain(s);
+    expect(input.sizing.issues.filter((i) => i.code === "polos-interruptor" || i.code === "marco-interruptor")).toEqual([]);
     expect(svg).toContain("NOM-001-SEDE-2012");
     // Proporción alto/ancho leída del SVG (1 sería el valor por omisión si faltara width/height).
     expect(svgAspect(svg)).not.toBe(1);

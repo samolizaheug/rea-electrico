@@ -35,6 +35,7 @@ export function sistemaEjemplo(): Project {
   const motor = (tag: string, x: number, y: number, hp: number) =>
     add(tag, "motor", x, y, { ratedPower: hp, ratedPowerUnit: "hp", voltageV: 460, system: "3F3H", powerFactor: 0.85, currentSource: "tabla" });
 
+  // Capacidades interruptivas: datos de entrada de ejemplo (no son valores de norma ni de cálculo).
   // Fuente y transformador principal.
   add("ACOM-1", "utility", 580, 0, { voltageV: 23000, system: "3F3H", operatingVoltagePu: 1 });
   add("TR-1", "transformer", 580, 100, { ratedKVA: 750, primaryVoltageV: 23000, primarySystem: "3F3H", secondaryVoltageV: 480, system: "3F4H", connection: "Dyn1", impedancePct: 5.75, xrSource: "placa", xrRatio: 6, tapPct: 0 });
@@ -43,20 +44,20 @@ export function sistemaEjemplo(): Project {
   wire("TR-1.secondary", "TG.bus");
 
   // Alimentador al CCM.
-  add("INT-1", "breaker", 300, 320);
+  add("INT-1", "breaker", 300, 320, { interruptingKA: 25 });
   cable("AL-1", 300, 420, "2/0", 40, "conduit-rmc-acero");
   add("CCM-1", "mcc", 100, 540, { voltageV: 480, system: "3F3H" });
   wire("TG.bus", "INT-1.line");
   wire("INT-1.load", "AL-1.from");
   wire("AL-1.to", "CCM-1.bus");
-  add("INT-11", "breaker", 120, 620);
+  add("INT-11", "breaker", 120, 620, { interruptingKA: 25 });
   cable("AL-11", 120, 720, "4", 25, "conduit-rmc-acero");
   motor("M-01", 120, 840, 50);
-  add("INT-12", "breaker", 300, 620);
+  add("INT-12", "breaker", 300, 620, { interruptingKA: 25 });
   cable("AL-12", 300, 720, "8", 30, "conduit-rmc-acero");
   add("VFD-01", "vfd", 300, 840, { inputVoltageV: 480, efficiencyPct: 97, inputPowerFactor: 0.95 });
   motor("M-02", 300, 960, 25);
-  add("INT-13", "breaker", 480, 620);
+  add("INT-13", "breaker", 480, 620, { interruptingKA: 25 });
   cable("AL-13", 480, 720, "12", 30, "conduit-rmc-acero");
   motor("M-03", 480, 840, 10);
   for (const [i, c, l] of [["INT-11", "AL-11", "M-01"], ["INT-12", "AL-12", "VFD-01"], ["INT-13", "AL-13", "M-03"]] as const) {
@@ -67,7 +68,7 @@ export function sistemaEjemplo(): Project {
   wire("VFD-01.out", "M-02.in");
 
   // Alimentador al TR-2 y TAB-A.
-  add("INT-2", "breaker", 780, 320);
+  add("INT-2", "breaker", 780, 320, { interruptingKA: 25 });
   cable("AL-2", 780, 420, "2", 20, "conduit-emt-acero");
   add("TR-2", "transformer", 780, 520, { ratedKVA: 75, primaryVoltageV: 480, primarySystem: "3F3H", secondaryVoltageV: 220, system: "3F4H", connection: "Dyn1", impedancePct: 4, xrSource: "placa", xrRatio: 2, tapPct: 0 });
   cable("AL-3", 780, 640, "250", 10, "conduit-pvc-40");
@@ -77,13 +78,13 @@ export function sistemaEjemplo(): Project {
   wire("AL-2.to", "TR-2.primary");
   wire("TR-2.secondary", "AL-3.from");
   wire("AL-3.to", "TAB-A.bus");
-  add("INT-21", "breaker", 680, 840);
+  add("INT-21", "breaker", 680, 840, { poles: "1", interruptingKA: 10 });
   cable("AL-21", 680, 940, "12", 30, "conduit-pvc-40");
   add("L-01", "luminaire", 680, 1060, { quantity: 20, wattsPerUnit: 50, powerFactor: 0.9, voltageV: 127, system: "1F2H", phase: "A" });
-  add("INT-22", "breaker", 860, 840);
+  add("INT-22", "breaker", 860, 840, { poles: "1", interruptingKA: 10 });
   cable("AL-22", 860, 940, "12", 25, "conduit-pvc-40");
   add("C-01", "receptacle", 860, 1060, { quantity: 8, vaPerOutlet: 180, powerFactor: 0.9, voltageV: 127, system: "1F2H", phase: "B" });
-  add("INT-23", "breaker", 1020, 840);
+  add("INT-23", "breaker", 1020, 840, { interruptingKA: 10 });
   cable("AL-23", 1020, 940, "6", 40, "conduit-pvc-40");
   add("CG-01", "generic-load", 1020, 1060, { power: 15, powerUnit: "kW", powerFactor: 0.9, voltageV: 220, system: "3F3H" });
   for (const [i, c, l] of [["INT-21", "AL-21", "L-01"], ["INT-22", "AL-22", "C-01"], ["INT-23", "AL-23", "CG-01"]] as const) {
@@ -93,16 +94,16 @@ export function sistemaEjemplo(): Project {
   }
 
   // Alimentador a TAB-B.
-  add("INT-4", "breaker", 1260, 320);
+  add("INT-4", "breaker", 1260, 320, { interruptingKA: 25 });
   cable("AL-4", 1260, 420, "4", 50, "conduit-pvc-40");
   add("TAB-B", "panelboard", 1230, 540, { voltageV: 480, system: "3F4H", boardUse: "alumbrado-contactos" });
   wire("TG.bus", "INT-4.line");
   wire("INT-4.load", "AL-4.from");
   wire("AL-4.to", "TAB-B.bus");
-  add("INT-41", "breaker", 1240, 620);
+  add("INT-41", "breaker", 1240, 620, { poles: "1", interruptingKA: 18 });
   cable("AL-41", 1240, 720, "12", 40, "conduit-pvc-40");
   add("L-02", "luminaire", 1240, 840, { quantity: 30, wattsPerUnit: 100, powerFactor: 0.9, voltageV: 277, system: "1F2H", phase: "A" });
-  add("INT-42", "breaker", 1420, 620);
+  add("INT-42", "breaker", 1420, 620, { interruptingKA: 18 });
   cable("AL-42", 1420, 720, "6", 20, "conduit-pvc-40");
   add("CA-01", "grouped-load", 1400, 840, { description: "Equipos de proceso", power: 40, powerUnit: "kVA", powerFactor: 0.9, voltageV: 480, system: "3F3H" });
   for (const [i, c, l] of [["INT-41", "AL-41", "L-02"], ["INT-42", "AL-42", "CA-01"]] as const) {

@@ -14,6 +14,7 @@ export type ParamValue = number | string | boolean | null;
 export type ParamUnit =
   | "V"
   | "A"
+  | "kA"
   | "VA"
   | "kVA"
   | "MVA"
