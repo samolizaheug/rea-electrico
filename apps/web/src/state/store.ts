@@ -1,4 +1,5 @@
 import {
+  setConnectionSection,
   ModelError,
   addElement,
   connect,
@@ -75,7 +76,10 @@ interface EditorState {
 
   // Edición
   add(type: string, position: { x: number; y: number }): string | null;
-  connectPorts(a: PortRef, b: PortRef): void;
+  /** Conecta dos puertos; busSection = sección del CCM si se conectó al punto de una sección. */
+  connectPorts(a: PortRef, b: PortRef, busSection?: number): void;
+  /** Cambia la sección del CCM de una conexión existente. */
+  setConnectionSection(connectionId: string, section: number | null): void;
   remove(elementIds: string[], connectionIds: string[]): void;
   moveTransient(moves: { id: string; x: number; y: number }[]): void;
   /** Cambia la longitud de una barra mientras se arrastra su extremo (se confirma con commitDrag). */
@@ -160,9 +164,13 @@ export const useEditor = create<EditorState>((set, get) => {
       if (id) set({ selection: { elements: [id], connections: [] } });
       return id;
     },
-    connectPorts: (a, b) => {
-      apply((p) => connect(p, registry, a, b).project);
+    connectPorts: (a, b, busSection) => {
+      apply((p) => {
+        const r = connect(p, registry, a, b);
+        return busSection !== undefined && r.connectionId ? setConnectionSection(r.project, r.connectionId, busSection) : r.project;
+      });
     },
+    setConnectionSection: (connectionId, section) => apply((p) => setConnectionSection(p, connectionId, section)),
     remove: (elementIds, connectionIds) => {
       if (!elementIds.length && !connectionIds.length) return;
       apply((p) => {

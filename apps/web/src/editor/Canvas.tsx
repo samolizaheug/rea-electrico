@@ -105,7 +105,12 @@ export function Canvas() {
 
   const onConnect = useCallback(
     (c: FlowConnection) => {
-      connectPorts({ elementId: c.source, portId: portOfHandle(c.sourceHandle) }, { elementId: c.target, portId: portOfHandle(c.targetHandle) });
+      // Punto k (≥ 1) de un CCM = barra de la sección k: la conexión recuerda esa sección.
+      const project = useEditor.getState().history.present;
+      const isMcc = (id: string) => project.elements.find((e) => e.id === id)?.type === "mcc";
+      const idx = (h: string | null | undefined) => Number((h ?? "").split("@")[1] ?? 0);
+      const section = isMcc(c.source) && idx(c.sourceHandle) > 0 ? idx(c.sourceHandle) : isMcc(c.target) && idx(c.targetHandle) > 0 ? idx(c.targetHandle) : undefined;
+      connectPorts({ elementId: c.source, portId: portOfHandle(c.sourceHandle) }, { elementId: c.target, portId: portOfHandle(c.targetHandle) }, section);
     },
     [connectPorts],
   );

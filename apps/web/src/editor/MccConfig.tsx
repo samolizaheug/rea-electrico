@@ -62,16 +62,22 @@ export function MccConfig({ element }: { element: ProjectElement }) {
             <div key={i} className="mcc-section">
               <div className="mcc-vbar" />
               <span className="mcc-tag">S{i + 1}</span>
-              {perSection ? (
-                <NumberInput id={`mcc-v-${i}`} unit="A" value={vertical[i] ?? null} onCommit={(v) => setVertical(i, v)} />
-              ) : (
-                <span className="mcc-value">{common !== null ? `${common} A` : "—"}</span>
-              )}
+              <span className="mcc-value">{(perSection ? vertical[i] : common) != null ? `${perSection ? vertical[i] : common} A` : "—"}</span>
             </div>
           ))}
         </div>
       </div>
 
+      {perSection ? (
+        <div className="mcc-list">
+          {Array.from({ length: sections }, (_, i) => (
+            <label key={i} className="mcc-list-row" htmlFor={`mcc-v-${i}`}>
+              <span className="mcc-tag">S{i + 1}</span>
+              <NumberInput id={`mcc-v-${i}`} unit="A" value={vertical[i] ?? null} onCommit={(v) => setVertical(i, v)} />
+            </label>
+          ))}
+        </div>
+      ) : null}
       {!perSection ? (
         <label className="mcc-field" htmlFor="mcc-v">
           <span>{t("mcc.vertical")}</span>

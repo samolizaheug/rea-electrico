@@ -1,3 +1,4 @@
+import { mccLayout } from "@rea/symbols";
 import { useEffect, useState } from "react";
 import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
@@ -40,10 +41,24 @@ export function Inspector() {
   if (!el && selection.connections.length === 1) {
     const c = project.connections.find((x) => x.id === selection.connections[0]);
     const tagOf = (id: string) => project.elements.find((e) => e.id === id)?.tag ?? "?";
+    const mccOf = (x: { a: { elementId: string }; b: { elementId: string } }) => project.elements.find((e) => (e.id === x.a.elementId || e.id === x.b.elementId) && e.type === "mcc");
     return (
       <aside className="inspector">
         <h2>{t("inspector.connection")}</h2>
         {c ? <p>{t("inspector.connectionBetween", { a: `${tagOf(c.a.elementId)}.${c.a.portId}`, b: `${tagOf(c.b.elementId)}.${c.b.portId}` })}</p> : null}
+        {c && mccOf(c) ? (
+          <div className="field">
+            <label htmlFor="conn-section">{t("mcc.connectionSection")}</label>
+            <select id="conn-section" value={c.busSection ?? ""} onChange={(e) => ed.setConnectionSection(c.id, e.target.value === "" ? null : Number(e.target.value))}>
+              <option value="">{t("mcc.byPosition")}</option>
+              {Array.from({ length: mccLayout(mccOf(c)!.params).sections }, (_, i) => (
+                <option key={i} value={i + 1}>
+                  S{i + 1}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : null}
         <div className="actions">
           <button className="danger" onClick={() => ed.remove([], selection.connections)}>
             {t("inspector.delete")}

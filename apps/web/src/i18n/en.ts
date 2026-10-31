@@ -33,6 +33,8 @@ export const en: Messages = {
   "inspector.disconnect": "Disconnect",
   "help.options": "Show options with pictures",
   "help.explain": "Show explanation",
+  "mcc.connectionSection": "MCC section it leaves from",
+  "mcc.byPosition": "From the position on the drawing",
   "mcc.title": "MCC buses",
   "mcc.sections": "Sections",
   "mcc.less": "Remove section",

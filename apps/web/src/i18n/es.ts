@@ -31,6 +31,8 @@ export const es = {
   "inspector.disconnect": "Desconectar",
   "help.options": "Ver opciones con imagen",
   "help.explain": "Ver explicación",
+  "mcc.connectionSection": "Sección del CCM de la que sale",
+  "mcc.byPosition": "Según la posición en el dibujo",
   "mcc.title": "Barras del CCM",
   "mcc.sections": "Secciones",
   "mcc.less": "Quitar sección",

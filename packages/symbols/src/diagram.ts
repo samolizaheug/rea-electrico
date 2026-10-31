@@ -109,7 +109,8 @@ export function mccSymbol(base: SymbolDef, width: number, params: Record<string,
     ...base,
     width: w,
     height: MCC_HEIGHT,
-    ports: { bus: [{ x: w / 2, y: 0, side: "top" }, { x: w / 2, y: MCC_HEIGHT, side: "bottom" }] },
+    // Punto 0: acometida arriba; punto k (1 … n): centro de la barra de la sección k.
+    ports: { bus: [{ x: w / 2, y: 0, side: "top" }, ...segments.map(([a, b]) => ({ x: (a + b) / 2, y: MCC_SECTION_BUS_Y, side: "bottom" as const }))] },
     shapes,
     bus: { halfLength: inner / 2 - 4, halfThickness: MCC_SECTION_BUS_Y - MCC_HEIGHT / 2, segments },
   };
@@ -142,7 +143,9 @@ export function syncMccSections(project: Project, registry: ElementRegistry): Pr
       const g = nodeGeometry(project, registry, other.elementId);
       const n = project.diagram.nodes[other.elementId];
       if (!g || !n) continue;
-      const s = mccSectionAt(project, registry, bus.elementId, n.x + g.width / 2);
+      // La sección elegida al conectar manda; si no se eligió, la de la posición en el dibujo.
+      const sections = mccLayout(project.elements.find((e) => e.id === bus.elementId)!.params).sections;
+      const s = c.busSection !== undefined ? Math.min(c.busSection, sections) : mccSectionAt(project, registry, bus.elementId, n.x + g.width / 2);
       if (s !== undefined) updates.set(other.elementId, s);
     }
   }
@@ -219,6 +222,13 @@ export function chooseAnchors(project: Project, registry: ElementRegistry, c: Co
   const as = absoluteAnchors(project, registry, c.a);
   const bs = absoluteAnchors(project, registry, c.b);
   let best = { a: 0, b: 0, d: Infinity };
+  // Conexión a una sección de CCM: el punto es el de esa sección.
+  if (c.busSection !== undefined) {
+    const mccA = project.elements.find((e) => e.id === c.a.elementId)?.type === "mcc";
+    const mccB = project.elements.find((e) => e.id === c.b.elementId)?.type === "mcc";
+    if (mccA && c.busSection < as.length) return { a: c.busSection, b: 0 };
+    if (mccB && c.busSection < bs.length) return { a: 0, b: c.busSection };
+  }
   as.forEach((pa, ai) =>
     bs.forEach((pb, bi) => {
       const d = Math.hypot(pa.x - pb.x, pa.y - pb.y);
@@ -234,12 +244,14 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v
  * Derivación desde una barra: sale perpendicular a la barra en el punto más cercano al otro
  * extremo del conductor (como se dibuja en un unifilar).
  */
-export function busTap(bus: BusGeometry, other: { x: number; y: number }): WirePoint {
+export function busTap(bus: BusGeometry, other: { x: number; y: number }, section?: number): WirePoint {
   if (bus.horizontal) {
-    const below = other.y >= bus.cy;
+    const below = other.y >= bus.cy || (section !== undefined && !!bus.segments?.length);
     if (below && bus.segments?.length) {
-      // CCM: la derivación sale de la barra de la sección que está sobre el circuito (o la más cercana).
-      const seg = bus.segments.find(([a, b]) => other.x >= a && other.x <= b) ?? bus.segments.reduce((best, s) => (Math.abs((s[0] + s[1]) / 2 - other.x) < Math.abs((best[0] + best[1]) / 2 - other.x) ? s : best));
+      // CCM: la derivación sale de la barra de la sección elegida al conectar; si no hay, de la que está
+      // sobre el circuito (o la más cercana).
+      const chosen = section !== undefined ? bus.segments[Math.min(section, bus.segments.length) - 1] : undefined;
+      const seg = chosen ?? bus.segments.find(([a, b]) => other.x >= a && other.x <= b) ?? bus.segments.reduce((best, s) => (Math.abs((s[0] + s[1]) / 2 - other.x) < Math.abs((best[0] + best[1]) / 2 - other.x) ? s : best));
       return { x: clamp(other.x, seg[0], seg[1]), y: bus.cy + bus.halfThickness, side: "bottom" };
     }
     return { x: clamp(other.x, bus.cx - bus.halfLength, bus.cx + bus.halfLength), y: bus.cy + (below ? bus.halfThickness : -bus.halfThickness), side: below ? "bottom" : "top" };
@@ -255,7 +267,7 @@ export function wireEnds(project: Project, registry: ElementRegistry, c: Connect
   let b = absoluteAnchors(project, registry, c.b)[idx.b]!;
   const busA = busGeometry(project, registry, c.a.elementId);
   const busB = busA ? null : busGeometry(project, registry, c.b.elementId);
-  if (busA) a = busTap(busA, b);
-  else if (busB) b = busTap(busB, a);
+  if (busA) a = busTap(busA, b, busA.segments ? c.busSection : undefined);
+  else if (busB) b = busTap(busB, a, busB.segments ? c.busSection : undefined);
   return { a, b };
 }

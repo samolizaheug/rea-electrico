@@ -87,6 +87,8 @@ export const connectionSchema = z.object({
   id,
   a: portRefSchema,
   b: portRefSchema,
+  /** Solo conexiones a un CCM: sección elegida al conectar (barra de sección de la que se deriva). */
+  busSection: z.number().int().positive().optional(),
 });
 
 export const pointSchema = z.object({ x: z.number().finite(), y: z.number().finite() });

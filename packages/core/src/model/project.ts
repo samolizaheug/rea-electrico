@@ -239,6 +239,18 @@ export function samePort(x: PortRef, y: PortRef): boolean {
 }
 
 /** Conexiones que llegan a un puerto. */
+/** Fija (o quita, con null) la sección del CCM de una conexión. */
+export function setConnectionSection(project: Project, connectionId: string, section: number | null): Project {
+  return touch({
+    ...project,
+    connections: project.connections.map((c) => {
+      if (c.id !== connectionId) return c;
+      const { busSection: _old, ...rest } = c;
+      return section === null ? rest : { ...rest, busSection: section };
+    }),
+  });
+}
+
 export function connectionsAt(project: Project, ref: PortRef): Connection[] {
   return project.connections.filter((c) => samePort(c.a, ref) || samePort(c.b, ref));
 }

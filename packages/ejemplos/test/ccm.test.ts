@@ -1,7 +1,7 @@
-import { createDefaultRegistry, moveElement, type Project } from "@rea/core";
+import { createDefaultRegistry, moveElement, setConnectionSection, type Project } from "@rea/core";
 import { runSizing } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
-import { mccSectionAt, nodeGeometry, syncMccSections } from "@rea/symbols";
+import { busGeometry, mccSectionAt, nodeGeometry, syncMccSections, wireEnds } from "@rea/symbols";
 import { describe, expect, it } from "vitest";
 import { sistemaEjemplo } from "../src";
 
@@ -22,6 +22,25 @@ describe("barras del CCM (secciones, bus vertical y horizontal)", () => {
     const g = nodeGeometry(p, registry, ccm(p).id)!;
     expect(g.symbol.shapes.filter((s) => s.k === "text" && /^S\d$/.test(s.text)).length).toBe(3);
     expect(mccSectionAt(p, registry, ccm(p).id, p.diagram.nodes[ccm(p).id]!.x + 5)).toBe(1);
+  });
+
+  it("la sección elegida al conectar manda sobre la posición y el cable sale de esa barra", () => {
+    const p = sistemaEjemplo();
+    const int13 = byTag(p, "INT-13");
+    const conn = p.connections.find((c) => [c.a.elementId, c.b.elementId].includes(int13.id) && [c.a.elementId, c.b.elementId].includes(ccm(p).id))!;
+    const q = syncMccSections(setConnectionSection(p, conn.id, 1), registry);
+    expect(byTag(q, "INT-13").params.mccSection).toBe(1);
+    // El extremo del cable en el CCM cae en la barra de la sección 1.
+    const ends = wireEnds(q, registry, q.connections.find((c) => c.id === conn.id)!);
+    const end = conn.a.elementId === ccm(q).id ? ends.a : ends.b;
+    const seg1 = busGeometry(q, registry, ccm(q).id)!.segments![0]!;
+    expect(end.x).toBeGreaterThanOrEqual(seg1[0]);
+    expect(end.x).toBeLessThanOrEqual(seg1[1]);
+    // Mover INT-13 ya no cambia su sección (la eligió el usuario).
+    const moved = syncMccSections(moveElement(q, int13.id, 480, q.diagram.nodes[int13.id]!.y), registry);
+    expect(byTag(moved, "INT-13").params.mccSection).toBe(1);
+    // El símbolo tiene un punto de conexión por sección (más la acometida).
+    expect(nodeGeometry(q, registry, ccm(q).id)!.anchors.bus!.length).toBe(1 + 3);
   });
 
   it("carga por sección y total con 430-24 (cálculo a mano)", () => {
