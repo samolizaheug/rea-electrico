@@ -68,6 +68,23 @@ export function mccLayout(params: Record<string, unknown>): { sections: number; 
   return { sections, vertical };
 }
 
+/**
+ * Bordes izquierdos de cada sección y su ancho, dentro de la envolvente (coordenadas del símbolo).
+ * Con anchos guardados (de «Distribuir cargas») se reparten en proporción; si no, secciones iguales.
+ */
+export function mccSectionEdges(width: number, sections: number, sectionWidths?: number[]): { x0: number; w: number }[] {
+  const inner = Math.max(width, 160) - 2 * MCC_BOX.x;
+  const ws = sectionWidths && sectionWidths.length === sections ? sectionWidths : Array.from({ length: sections }, () => 1);
+  const total = ws.reduce((s, x) => s + x, 0);
+  let x = MCC_BOX.x;
+  return ws.map((v) => {
+    const w = (v / total) * inner;
+    const r = { x0: x, w };
+    x += w;
+    return r;
+  });
+}
+
 /** Ancho por omisión de un CCM: crece con el número de secciones. */
 export function mccDefaultWidth(sections: number): number {
   return Math.max(160, sections * MCC_MIN_SECTION_WIDTH);
@@ -78,11 +95,11 @@ export function mccDefaultWidth(sections: number): number {
  * su bus vertical, sale de la envolvente y termina en una barra de sección, de la que se derivan los
  * circuitos de esa sección. Etiqueta «S1 / 300 A» junto al bus vertical.
  */
-export function mccSymbol(base: SymbolDef, width: number, params: Record<string, unknown>): SymbolDef {
+export function mccSymbol(base: SymbolDef, width: number, params: Record<string, unknown>, sectionWidths?: number[]): SymbolDef {
   const { sections, vertical } = mccLayout(params);
   const w = Math.max(width, 160);
   const inner = w - 2 * MCC_BOX.x;
-  const cw = inner / sections;
+  const edges = mccSectionEdges(w, sections, sectionWidths);
   const L = (x1: number, y1: number, x2: number, y2: number, lw?: number) => ({ k: "line" as const, x1, y1, x2, y2, w: lw });
   const shapes: SymbolDef["shapes"] = [
     { k: "rect", x: MCC_BOX.x, y: MCC_BOX.top, w: inner, h: MCC_BOX.bottom - MCC_BOX.top },
@@ -91,7 +108,7 @@ export function mccSymbol(base: SymbolDef, width: number, params: Record<string,
   ];
   const segments: [number, number][] = [];
   for (let i = 0; i < sections; i++) {
-    const x0 = MCC_BOX.x + i * cw;
+    const { x0, w: cw } = edges[i]!;
     if (i > 0) shapes.push(L(x0, MCC_BOX.top, x0, MCC_BOX.bottom, 1));
     const vx = x0 + cw / 2;
     const seg: [number, number] = [x0 + 8, x0 + cw - 8];
@@ -122,9 +139,10 @@ export function mccSectionAt(project: Project, registry: ElementRegistry, mccId:
   const n = project.diagram.nodes[mccId];
   const g = nodeGeometry(project, registry, mccId);
   if (!el || !n || !g || g.rotation !== 0) return undefined;
-  const { sections } = mccLayout(el.params);
-  const cw = (g.width - 2 * MCC_BOX.x) / sections;
-  return Math.min(sections, Math.max(1, Math.floor((x - n.x - MCC_BOX.x) / cw) + 1));
+  const edges = mccSectionEdges(g.width, mccLayout(el.params).sections, n.sectionWidths);
+  const rel = x - n.x;
+  const i = edges.findIndex((e) => rel < e.x0 + e.w);
+  return i === -1 ? edges.length : Math.max(1, i + 1);
 }
 
 /**
@@ -167,7 +185,7 @@ export function nodeGeometry(project: Project, registry: ElementRegistry, elemen
   const base = symbolFor(def, project.settings.symbology);
   const symbol =
     el.type === "mcc"
-      ? mccSymbol(base, node.length ?? mccDefaultWidth(mccLayout(el.params).sections), el.params)
+      ? mccSymbol(base, node.length ?? mccDefaultWidth(mccLayout(el.params).sections), el.params, node.sectionWidths)
       : base.bus && node.length
         ? stretchBusSymbol(base, node.length)
         : base;

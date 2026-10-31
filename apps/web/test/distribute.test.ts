@@ -55,8 +55,13 @@ describe("distribuir cargas de una barra", () => {
       expect(cx).toBeGreaterThanOrEqual(a);
       expect(cx).toBeLessThanOrEqual(b);
     }
-    // El CCM se alargó (las secciones quedan del ancho de la más llena).
-    expect(q.diagram.nodes[ids.B!]!.length!).toBeGreaterThan(220);
+    // Cada sección toma el ancho de sus propias cargas: S2 (3 motores) es más ancha que S1 (2 motores).
+    const widths = q.diagram.nodes[ids.B!]!.sectionWidths!;
+    expect(widths.length).toBe(2);
+    expect(widths[1]!).toBeGreaterThan(widths[0]!);
+    expect(q.diagram.nodes[ids.B!]!.length!).toBe(8 + widths[0]! + widths[1]!);
+    // La barra de cada sección del dibujo coincide con esos anchos.
+    expect(segs[1]![1]! - segs[0]![0]!).toBeGreaterThan(widths[0]!);
   });
 
   it("tablero: separa los circuitos y alarga la barra; deshacer = proyecto original", () => {

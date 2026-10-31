@@ -1,7 +1,9 @@
-import { moveElement, resizeBus, type ElementRegistry, type Project } from "@rea/core";
+import { moveElement, resizeBus, setSectionWidths, type ElementRegistry, type Project } from "@rea/core";
 import { mccLayout, mccSectionAt, nodeGeometry } from "@rea/symbols";
 import { GRID } from "./geometry";
 
+/** Ancho mínimo de una sección de CCM (px), aun sin cargas. */
+const MCC_MIN_SECTION = 100;
 /** Separación mínima entre circuitos vecinos (px del diagrama), además de sus textos. */
 const GAP = 24;
 /** Ancho aproximado por carácter de la etiqueta (11 px negrita) y de los renglones de resultados (10 px). */
@@ -40,7 +42,7 @@ function extent(project: Project, registry: ElementRegistry, id: string, linesOf
  * Distribuye horizontalmente los circuitos que salen de una barra (tablero, barra o CCM): cada circuito
  * se mueve completo (interruptor, cable, carga y lo que cuelgue de ella) para que ni símbolos ni textos se
  * encimen, con la separación mínima, y la barra se alarga lo necesario. En un CCM se acomoda cada sección
- * por separado y todas quedan del ancho de la más llena.
+ * por separado y cada sección toma el ancho que piden sus propias cargas.
  */
 export function distributeBus(project: Project, registry: ElementRegistry, busId: string, linesOf: (id: string) => string[]): Project {
   const bus = project.elements.find((e) => e.id === busId);
@@ -101,11 +103,17 @@ export function distributeBus(project: Project, registry: ElementRegistry, busId
   const needOf = (list: Branch[]) => list.reduce((s, b) => s + ceilGrid(width(b)) + GAP, 0);
   let length: number;
   const startOf = new Map<number, number>();
+  let sectionWidths: number[] | null = null;
   if (isMcc) {
+    // Cada sección del ancho que piden sus propias cargas (las vacías, con el mínimo).
     const n = mccLayout(bus.params).sections;
-    const cw = Math.max(110, ...[...groups.values()].map((l) => needOf(l) + 16));
-    length = 8 + n * cw;
-    for (let k = 1; k <= n; k++) startOf.set(k, bn.x + 4 + (k - 1) * cw + 12);
+    sectionWidths = Array.from({ length: n }, (_, i) => ceilGrid(Math.max(MCC_MIN_SECTION, needOf(groups.get(i + 1) ?? []) + 16)));
+    length = 8 + sectionWidths.reduce((s, w) => s + w, 0);
+    let x = bn.x + 4;
+    sectionWidths.forEach((w, i) => {
+      startOf.set(i + 1, x + 12);
+      x += w;
+    });
   } else {
     startOf.set(1, bn.x + 16);
     length = needOf(groups.get(1)!) + 24;
@@ -127,5 +135,6 @@ export function distributeBus(project: Project, registry: ElementRegistry, busId
     }
   }
   const cur = p.diagram.nodes[busId]!;
-  return resizeBus(p, busId, ceilGrid(length), cur.x, cur.y);
+  p = resizeBus(p, busId, isMcc ? length : ceilGrid(length), cur.x, cur.y);
+  return isMcc ? setSectionWidths(p, busId, sectionWidths) : p;
 }

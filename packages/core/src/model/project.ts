@@ -279,6 +279,17 @@ export function resizeBus(project: Project, elementId: string, length: number, x
   };
 }
 
+/** Ancho dibujado de cada sección de un CCM (null = secciones iguales). */
+export function setSectionWidths(project: Project, elementId: string, widths: number[] | null): Project {
+  const node = project.diagram.nodes[elementId];
+  if (!node) throw new ModelError(`No existe el elemento "${elementId}" en el diagrama.`);
+  const { sectionWidths: _old, ...rest } = node;
+  return {
+    ...project,
+    diagram: { ...project.diagram, nodes: { ...project.diagram.nodes, [elementId]: widths ? { ...rest, sectionWidths: widths } : rest } },
+  };
+}
+
 /** Fragmento copiado (portapapeles): elementos, sus conexiones internas y su posición. */
 export interface Clip {
   elements: ProjectElement[];
