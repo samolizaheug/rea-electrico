@@ -1,4 +1,5 @@
 import { addElement, connect, createDefaultRegistry, createProject, resizeBus, type ParamValue, type Project } from "@rea/core";
+import { syncMccSections } from "@rea/symbols";
 
 /**
  * Sistema de ejemplo de la fase 1 (documento: docs/ejemplos/sistema-ejemplo.md).
@@ -46,18 +47,18 @@ export function sistemaEjemplo(): Project {
   // Alimentador al CCM.
   add("INT-1", "breaker", 300, 320, { interruptingKA: 25 });
   cable("AL-1", 300, 420, "2/0", 40, "conduit-rmc-acero");
-  add("CCM-1", "mcc", 100, 540, { voltageV: 480, system: "3F3H", sections: 2, horizontalBusA: 400, verticalBusA: 300 });
+  add("CCM-1", "mcc", 100, 500, { voltageV: 480, system: "3F3H", sections: 3, horizontalBusA: 400, verticalBusA: 300 });
   wire("TG.bus", "INT-1.line");
   wire("INT-1.load", "AL-1.from");
   wire("AL-1.to", "CCM-1.bus");
-  add("INT-11", "breaker", 120, 620, { interruptingKA: 25, mccSection: 1 });
+  add("INT-11", "breaker", 120, 620, { interruptingKA: 25 });
   cable("AL-11", 120, 720, "4", 25, "conduit-rmc-acero");
   motor("M-01", 120, 840, 50);
-  add("INT-12", "breaker", 300, 620, { interruptingKA: 25, mccSection: 1 });
+  add("INT-12", "breaker", 300, 620, { interruptingKA: 25 });
   cable("AL-12", 300, 720, "8", 30, "conduit-rmc-acero");
   add("VFD-01", "vfd", 300, 840, { inputVoltageV: 480, efficiencyPct: 97, inputPowerFactor: 0.95 });
   motor("M-02", 300, 960, 25);
-  add("INT-13", "breaker", 480, 620, { interruptingKA: 25, mccSection: 2 });
+  add("INT-13", "breaker", 480, 620, { interruptingKA: 25 });
   cable("AL-13", 480, 720, "12", 30, "conduit-rmc-acero");
   motor("M-03", 480, 840, 10);
   for (const [i, c, l] of [["INT-11", "AL-11", "M-01"], ["INT-12", "AL-12", "VFD-01"], ["INT-13", "AL-13", "M-03"]] as const) {
@@ -116,5 +117,6 @@ export function sistemaEjemplo(): Project {
     const n = p.diagram.nodes[ids[tag]!]!;
     p = resizeBus(p, ids[tag]!, length, n.x, n.y);
   }
-  return p;
+  // Sección del CCM de cada circuito según dónde está dibujado (como en el editor).
+  return syncMccSections(p, registry);
 }

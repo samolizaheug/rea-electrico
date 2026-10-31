@@ -1,4 +1,5 @@
 import { voltageText, type ElementRegistry, type Project } from "@rea/core";
+import { mccLayout } from "@rea/symbols";
 import { buildIslands, sizeShort, wiringText, type ElementFlow, type Island, type PanelSchedule, type SizingRunResult, type Trace } from "@rea/engine";
 import { getNormDataset, type VerificationStatus } from "@rea/norm-data";
 import { getReportLanguage, rs, type ReportStringKey } from "./strings";
@@ -276,7 +277,8 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
       // CCM: secciones y buses horizontal / vertical, p. ej. «2 secc. · BH 400 A · BV 300 A».
       if (type === "mcc" && el) {
         const h = num(el.params.horizontalBusA);
-        const v = String(el.params.verticalBusBySection ?? "").trim() || (num(el.params.verticalBusA) !== undefined ? String(num(el.params.verticalBusA)) : "");
+        const vs = mccLayout(el.params).vertical.filter((x): x is number => x !== undefined);
+        const v = vs.length && vs.every((x) => x === vs[0]) ? String(vs[0]) : vs.join("/");
         lines.push([`${trim(num(el.params.sections) ?? 1, 0)} secc.`, h !== undefined ? `BH ${h} A` : "", v ? `BV ${v} A` : ""].filter(Boolean).join(" · "));
       }
       return lines;

@@ -97,6 +97,9 @@ importers:
       '@rea/reports':
         specifier: workspace:*
         version: link:../reports
+      '@rea/symbols':
+        specifier: workspace:*
+        version: link:../symbols
     devDependencies:
       '@resvg/resvg-js':
         specifier: 2.6.2

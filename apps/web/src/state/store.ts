@@ -24,6 +24,7 @@ import {
   type ProjectSettings,
 } from "@rea/core";
 import { getNormModule } from "@rea/norms";
+import { mccDefaultWidth, syncMccSections } from "@rea/symbols";
 import { create } from "zustand";
 import { t } from "../i18n";
 import { commitFrom, initHistory, push, redo, replace, undo, type History } from "./history";
@@ -68,6 +69,8 @@ interface EditorState {
   replaceProject(next: Project): void;
   setMeta(changes: Partial<Pick<ProjectMeta, "name" | "client" | "location" | "author" | "description">>): void;
   setParams(elementId: string, changes: Record<string, ParamValue>): void;
+  /** Cambia las secciones de un CCM (y otros datos) y, si hace falta, lo alarga para que quepan. */
+  setMccSections(elementId: string, sections: number, changes: Record<string, ParamValue>): void;
   setElementNotes(elementId: string, notes: string): void;
 
   // Edición
@@ -96,7 +99,8 @@ export const useEditor = create<EditorState>((set, get) => {
   /** Aplica una operación del modelo como una entrada del historial; los errores del modelo se muestran como aviso. */
   const apply = (fn: (p: Project) => Project): boolean => {
     try {
-      const next = fn(get().history.present);
+      // La sección del CCM de cada circuito sale de dónde está dibujado (bajo qué sección).
+      const next = syncMccSections(fn(get().history.present), registry);
       set((s) => ({ history: push(s.history, next) }));
       return true;
     } catch (e) {
@@ -122,7 +126,7 @@ export const useEditor = create<EditorState>((set, get) => {
     setShowResults: (showResults) => set({ showResults }),
 
     newProject: (name) => set({ history: initHistory(createProject({ name })), selection: { elements: [], connections: [] } }),
-    loadProject: (p) => set({ history: initHistory(p), selection: { elements: [], connections: [] } }),
+    loadProject: (p) => set({ history: initHistory(syncMccSections(p, registry)), selection: { elements: [], connections: [] } }),
     duplicateCurrent: () => {
       set((s) => ({ history: initHistory(duplicateProject(s.history.present)) }));
       get().notify("info", t("msg.duplicated"));
@@ -135,6 +139,13 @@ export const useEditor = create<EditorState>((set, get) => {
     replaceProject: (next) => apply(() => next),
     setMeta: (changes) => apply((p) => updateMeta(p, changes)),
     setParams: (elementId, changes) => apply((p) => updateParams(p, elementId, changes)),
+    setMccSections: (elementId, sections, changes) =>
+      apply((p) => {
+        const q = updateParams(p, elementId, changes);
+        const n = q.diagram.nodes[elementId];
+        const need = mccDefaultWidth(sections);
+        return n && n.length !== undefined && n.length < need ? resizeBus(q, elementId, need, n.x, n.y) : q;
+      }),
     setElementNotes: (elementId, notes) => apply((p) => setNotes(p, elementId, notes)),
 
     add: (type, position) => {
@@ -174,7 +185,9 @@ export const useEditor = create<EditorState>((set, get) => {
     },
     commitDrag: () => {
       const { dragBase } = get();
-      if (dragBase) set((s) => ({ history: commitFrom(s.history, dragBase), dragBase: null }));
+      if (!dragBase) return;
+      const synced = syncMccSections(get().history.present, registry);
+      set((s) => ({ history: commitFrom(synced === s.history.present ? s.history : replace(s.history, synced), dragBase), dragBase: null }));
     },
     disconnectElements: (elementIds) => {
       const ids = new Set(elementIds);

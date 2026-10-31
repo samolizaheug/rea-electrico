@@ -20,7 +20,7 @@ export function TableView() {
 
   const def = registry.get(current);
   const rows = project.elements.filter((e) => e.type === current).sort((a, b) => a.tag.localeCompare(b.tag, "es", { numeric: true }));
-  const params = def.params.filter((p) => rows.some((r) => isParamActive(p, r.params)));
+  const params = def.params.filter((p) => !p.automatic && rows.some((r) => isParamActive(p, r.params)));
 
   return (
     <div className="table-view">

@@ -108,7 +108,8 @@ export function checkMccs(
     }
 
     const t = designOf(out[0]!, `${m.tag} total`, out);
-    const hA = num(m.params.horizontalBusA);
+    // Proyectos anteriores guardaban la capacidad del CCM en «busRatingA».
+    const hA = num(m.params.horizontalBusA) ?? num(m.params.busRatingA);
     if (hA !== undefined && t.designA > hA + 1e-9) {
       issues.push({ severity: "warning", code: "ccm-bus-horizontal", message: `${m.tag}: la carga total calculada (${fmtNum(t.designA, 1)} A, ${t.rule}) excede el bus horizontal de ${hA} A.`, elementIds: [m.id] });
     }

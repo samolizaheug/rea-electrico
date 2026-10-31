@@ -4,6 +4,7 @@ import { registry } from "../state/registry";
 import { useEditor } from "../state/store";
 import { optionContext, useValidation } from "../state/validation";
 import { ParamField, TextInput } from "./fields";
+import { MccConfig } from "./MccConfig";
 
 /** Panel de propiedades: se construye a partir de la definición del tipo de elemento. */
 export function ElementProperties({ element }: { element: ProjectElement }) {
@@ -16,7 +17,9 @@ export function ElementProperties({ element }: { element: ProjectElement }) {
   // Agrupar parámetros visibles respetando el orden de la definición.
   const groups = new Map<string, typeof def.params>();
   for (const p of def.params) {
-    if (!isParamActive(p, element.params)) continue;
+    if (!isParamActive(p, element.params) || p.automatic) continue;
+    // Los buses del CCM se configuran en el panel gráfico (MccConfig).
+    if (element.type === "mcc" && p.group === "Barras del CCM") continue;
     const g = p.group ?? "General";
     (groups.get(g) ?? groups.set(g, []).get(g)!).push(p);
   }
@@ -41,6 +44,8 @@ export function ElementProperties({ element }: { element: ProjectElement }) {
           ))}
         </section>
       ) : null}
+      {element.type === "mcc" ? <MccConfig element={element} /> : null}
+      {typeof element.params.mccSection === "number" ? <p className="muted small">{t("mcc.breakerSection", { n: element.params.mccSection })}</p> : null}
       {[...groups.entries()].map(([group, params]) => (
         <fieldset key={group}>
           <legend>{lib(group)}</legend>

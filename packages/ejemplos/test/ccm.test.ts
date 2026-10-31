@@ -1,26 +1,43 @@
-import { createDefaultRegistry, type Project } from "@rea/core";
+import { createDefaultRegistry, moveElement, type Project } from "@rea/core";
 import { runSizing } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
+import { mccSectionAt, nodeGeometry, syncMccSections } from "@rea/symbols";
 import { describe, expect, it } from "vitest";
 import { sistemaEjemplo } from "../src";
 
 const registry = createDefaultRegistry();
 const ccm = (p: Project) => p.elements.find((e) => e.tag === "CCM-1")!;
+const byTag = (p: Project, tag: string) => p.elements.find((e) => e.tag === tag)!;
 const run = (p: Project) => runSizing(p, registry, nom001Sede2012);
 
 describe("barras del CCM (secciones, bus vertical y horizontal)", () => {
+  it("la sección de cada interruptor sale de dónde está dibujado bajo el CCM", () => {
+    const p = sistemaEjemplo();
+    expect(["INT-11", "INT-12", "INT-13"].map((t) => byTag(p, t).params.mccSection)).toEqual([1, 2, 3]);
+    // Mover INT-13 bajo la primera sección la cambia de sección.
+    const int13 = byTag(p, "INT-13");
+    const moved = syncMccSections(moveElement(p, int13.id, 110, p.diagram.nodes[int13.id]!.y), registry);
+    expect(byTag(moved, "INT-13").params.mccSection).toBe(1);
+    // El símbolo se dibuja por secciones (3 buses verticales con su etiqueta).
+    const g = nodeGeometry(p, registry, ccm(p).id)!;
+    expect(g.symbol.shapes.filter((s) => s.k === "text" && /^S\d$/.test(s.text)).length).toBe(3);
+    expect(mccSectionAt(p, registry, ccm(p).id, p.diagram.nodes[ccm(p).id]!.x + 5)).toBe(1);
+  });
+
   it("carga por sección y total con 430-24 (cálculo a mano)", () => {
     const p = sistemaEjemplo();
     const r = run(p);
     const c = r.mcc!.get(ccm(p).id)!;
-    // Sección 1: M-01 (65 A) y VFD-01 (31.36 A) → 1.25 · 65 + 31.36 = 112.61 A.
-    // Sección 2: M-03 (14 A) → 1.25 · 14 = 17.5 A. Total = 126.61 A (igual que el alimentador AL-1).
+    // S1: M-01 (65 A) → 1.25 · 65 = 81.25 A. S2: VFD-01 (31.36 A, 430-122) → 1.25 · 31.36 = 39.2 A.
+    // S3: M-03 (14 A) → 1.25 · 14 = 17.5 A. Total = 1.25 · 65 + 31.36 + 14 = 126.61 A (igual que AL-1).
     expect(c.sections.map((s) => [s.section, s.circuits])).toEqual([
-      [1, ["INT-11", "INT-12"]],
-      [2, ["INT-13"]],
+      [1, ["INT-11"]],
+      [2, ["INT-12"]],
+      [3, ["INT-13"]],
     ]);
-    expect(c.sections[0]!.designA).toBeCloseTo(112.61, 1);
-    expect(c.sections[1]!.designA).toBeCloseTo(17.5, 2);
+    expect(c.sections[0]!.designA).toBeCloseTo(81.25, 2);
+    expect(c.sections[1]!.designA).toBeCloseTo(39.2, 2);
+    expect(c.sections[2]!.designA).toBeCloseTo(17.5, 2);
     expect(c.total.designA).toBeCloseTo(126.61, 1);
     expect(c.feederProtectionA).toBe(200);
     expect(r.issues.filter((i) => i.code.startsWith("ccm"))).toEqual([]);
@@ -28,25 +45,25 @@ describe("barras del CCM (secciones, bus vertical y horizontal)", () => {
 
   it("advierte si una sección excede su bus vertical o el total excede el horizontal", () => {
     const p = sistemaEjemplo();
-    Object.assign(ccm(p).params, { verticalBusA: 100, horizontalBusA: 120 });
+    Object.assign(ccm(p).params, { verticalBusA: 80, horizontalBusA: 120 });
     const codes = run(p).issues.filter((i) => i.code.startsWith("ccm")).map((i) => `${i.code}:${i.severity}`);
-    expect(codes).toContain("ccm-bus-vertical:warning"); // sección 1: 112.61 A > 100 A
+    expect(codes).toContain("ccm-bus-vertical:warning"); // S1: 81.25 A > 80 A
     expect(codes).toContain("ccm-bus-horizontal:warning"); // total 126.61 A > 120 A
     expect(codes).toContain("ccm-430-94:error"); // INT-1 de 200 A > 120 A
   });
 
-  it("bus vertical distinto por sección, sección faltante y sección inexistente", () => {
+  it("bus vertical distinto por sección, sección faltante y capacidad anterior «busRatingA»", () => {
     const p = sistemaEjemplo();
-    Object.assign(ccm(p).params, { verticalBusBySection: "300, 15" });
+    Object.assign(ccm(p).params, { verticalBusBySection: "300, 300, 15" });
     let issues = run(p).issues.filter((i) => i.code.startsWith("ccm"));
-    expect(issues.map((i) => i.message)).toEqual([expect.stringMatching(/^CCM-1 sección 2: .*excede el bus vertical de 15 A/)]);
+    expect(issues.map((i) => i.message)).toEqual([expect.stringMatching(/^CCM-1 sección 3: .*excede el bus vertical de 15 A/)]);
 
-    p.elements.find((e) => e.tag === "INT-13")!.params.mccSection = null;
+    byTag(p, "INT-13").params.mccSection = null;
     issues = run(p).issues.filter((i) => i.code.startsWith("ccm"));
     expect(issues.some((i) => /indique la «Sección del CCM» en INT-13/.test(i.message))).toBe(true);
 
-    p.elements.find((e) => e.tag === "INT-13")!.params.mccSection = 5;
-    issues = run(p).issues.filter((i) => i.code.startsWith("ccm"));
-    expect(issues.some((i) => i.severity === "error" && /sección 5, pero CCM-1 tiene 2/.test(i.message))).toBe(true);
+    const q = sistemaEjemplo();
+    Object.assign(ccm(q).params, { horizontalBusA: null, busRatingA: 150 });
+    expect(run(q).mcc!.get(ccm(q).id)!.total.ratingA).toBe(150);
   });
 });

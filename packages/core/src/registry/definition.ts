@@ -43,6 +43,8 @@ interface ParamBase {
   group?: string;
   required?: boolean;
   visibleWhen?: VisibleWhen;
+  /** Lo asigna la aplicación (p. ej. desde el diagrama); no se captura en el panel de propiedades. */
+  automatic?: boolean;
 }
 
 export interface NumberParamDef extends ParamBase {

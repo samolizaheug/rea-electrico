@@ -131,7 +131,7 @@ function LengthInput({ id, value, onCommit }: { id: string; value: number | null
   );
 }
 
-function NumberInput({ id, unit, value, onCommit }: { id: string; unit?: string; value: number | null; onCommit(v: ParamValue): void }) {
+export function NumberInput({ id, unit, value, onCommit }: { id: string; unit?: string; value: number | null; onCommit(v: ParamValue): void }) {
   const [text, setText] = useState(value === null ? "" : String(value));
   const [bad, setBad] = useState(false);
   useEffect(() => {

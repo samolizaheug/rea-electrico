@@ -65,7 +65,8 @@ export const mcc: ElementTypeDefinition = {
   symbols: { ANSI: "ansi/mcc", IEC: "iec/mcc" },
   calcBehavior: "bus.board",
   params: [
-    ...boardParams("fuerza"),
+    // En el CCM la capacidad de barras es el bus horizontal (barra común de potencia), más abajo.
+    ...boardParams("fuerza").filter((p) => p.key !== "busRatingA"),
     {
       key: "sections",
       label: "Número de secciones",
@@ -190,7 +191,8 @@ export const breaker: ElementTypeDefinition = {
       min: 1,
       integer: true,
       group: "CCM",
-      description: "Solo si este interruptor sale de un CCM: número de la sección vertical donde está instalado. Con un CCM de una sola sección se toma la 1.",
+      automatic: true,
+      description: "Sección vertical del CCM de la que sale este interruptor; se asigna según dónde está dibujado.",
     },
     {
       key: "frameA",

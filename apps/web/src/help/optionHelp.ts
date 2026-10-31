@@ -293,6 +293,28 @@ export interface ParamHelp {
 }
 
 const PARAM_HELP: Record<string, ParamHelp> = {
+  mccConfig: {
+    intro: L(
+      "Un CCM se arma con secciones verticales unidas por el bus horizontal (barra común de potencia). Cada sección tiene su bus vertical, del que se alimentan los arrancadores instalados en ella. En el diagrama, cada interruptor queda en la sección bajo la que lo dibujes.",
+      "An MCC is built from vertical sections joined by the horizontal bus (common power bus). Each section has its own vertical bus feeding the starters installed in it. On the diagram, each breaker belongs to the section it is drawn under.",
+    ),
+    cases: [
+      {
+        label: L("Bus horizontal", "Horizontal bus"),
+        text: L(
+          "Valor nominal de la barra común marcado en el CCM (NOM 430-98(a)). Se compara con la carga total del CCM calculada como alimentador (430-24); la protección que alimenta al CCM no debe excederlo (430-94).",
+          "Common power bus rating marked on the MCC (NOM 430-98(a)). Compared with the total MCC load calculated as a feeder (430-24); the protection feeding the MCC must not exceed it (430-94).",
+        ),
+      },
+      {
+        label: L("Bus vertical", "Vertical bus"),
+        text: L(
+          "Valor nominal del bus vertical de cada sección (dato del fabricante). Se compara con la carga de los circuitos de esa sección calculada con 430-24. Si una sección es distinta (caso especial), active la opción y capture cada una.",
+          "Vertical bus rating of each section (manufacturer data). Compared with the load of the circuits in that section calculated with 430-24. If one section differs (special case), enable the option and enter each one.",
+        ),
+      },
+    ],
+  },
   serviceFactor: {
     intro: L(
       "Factor de servicio (FS): cuántas veces la potencia de placa puede entregar el motor en forma continua, a tensión y frecuencia nominales, sin dañarse (FS 1.15 → 115 % de la potencia). Es un margen para sobrecargas ocasionales, no para operar siempre por encima de la placa. Se lee en la placa del motor.",
