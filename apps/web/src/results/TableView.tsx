@@ -4,7 +4,7 @@ import { Control } from "../editor/fields";
 import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor, useProject } from "../state/store";
-import { useValidation } from "../state/validation";
+import { optionContext, useValidation } from "../state/validation";
 import { f1, resultBadge } from "./format";
 
 /** Vista en tabla: todos los elementos de un tipo, con sus parámetros editables y sus resultados. */
@@ -72,7 +72,7 @@ export function TableView() {
                             id={`t-${el.id}-${p.key}`}
                             def={p}
                             value={el.params[p.key] ?? null}
-                            providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider, el.params) : undefined}
+                            providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider, optionContext(el.params, v.topology, el.id)) : undefined}
                             onCommit={(value) => ed.setParams(el.id, p.key === "installationMethod" ? { installationMethod: value, racewaySize: null } : { [p.key]: value })}
                           />
                         ) : (

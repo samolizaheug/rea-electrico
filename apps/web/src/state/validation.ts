@@ -6,6 +6,7 @@ import {
   scheduleIssues,
   validateDesignCriteria,
   validateTopology,
+  ZONE_VOLTAGE_PARAM,
   type ElementFlow,
   type NormModule,
   type PanelSchedule,
@@ -51,22 +52,36 @@ export function normOf(project: Project): NormModule {
   return getNormModule(project.settings.norm.id, project.settings.norm.edition);
 }
 
+/** Parámetros de un elemento con el contexto que usan las opciones de la norma (tensión de su zona). */
+export function optionContext(params: Record<string, ParamValue>, topology: TopologyReport, elementId: string): Record<string, ParamValue> {
+  return { ...params, [ZONE_VOLTAGE_PARAM]: topology.zoneVoltageV.get(elementId) ?? null };
+}
+
 export function computeValidation(project: Project): ValidationState {
   const norm = normOf(project);
-  const resolve = (provider: string, params: Record<string, ParamValue>) => norm.options(provider, params)?.map((o) => o.value);
   const issues: UiIssue[] = [];
   const paramIssues = new Map<string, ParamIssue[]>();
+  const topology = validateTopology(project, registry, DEFAULT_EQUIPMENT_VOLTAGE);
 
   for (const el of project.elements) {
     const def = registry.tryGet(el.type);
     if (!def) continue;
-    const list = validateParams(def, el.params, resolve).filter((i) => !i.message.startsWith("Parámetro desconocido"));
+    const ctx = optionContext(el.params, topology, el.id);
+    // Las opciones deshabilitadas en este contexto no se aceptan; el mensaje explica por qué.
+    const resolve = (provider: string) => norm.options(provider, ctx)?.filter((o) => !o.disabled).map((o) => o.value);
+    const list = validateParams(def, el.params, resolve)
+      .filter((i) => !i.message.startsWith("Parámetro desconocido"))
+      .map((i) => {
+        const p = def.params.find((x) => x.key === i.key);
+        if (p?.kind !== "enum" || Array.isArray(p.options)) return i;
+        const o = norm.options(p.options.provider, ctx)?.find((x) => x.value === el.params[i.key] && x.disabled);
+        return o ? { ...i, message: `${p.label}: ${o.value} ${o.note ?? "no aplica en este contexto"}.` } : i;
+      });
     if (!list.length) continue;
     paramIssues.set(el.id, list);
     for (const i of list) issues.push({ severity: i.severity, origin: "parametros", message: `${el.tag}: ${i.message}`, elementIds: [el.id], paramKey: i.key });
   }
 
-  const topology = validateTopology(project, registry, DEFAULT_EQUIPMENT_VOLTAGE);
   for (const i of topology.issues) issues.push({ severity: i.severity, origin: "topologia", message: i.message, elementIds: i.elementIds });
   for (const i of validateDesignCriteria(project, norm.voltageDrop)) issues.push({ severity: i.severity, origin: "criterios", message: i.message, elementIds: [] });
 

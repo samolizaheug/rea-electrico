@@ -57,6 +57,7 @@ export const libraryEn: Record<string, string> = {
   "Corta duración": "Short-time",
   "Cortocircuito (fase posterior)": "Short circuit (later phase)",
   "Dato de placa": "Nameplate data",
+  "Aislamientos de conductores de media tensión de la norma activa (NOM-001-SEDE-2012, Tabla 310-104(c)).": "Medium-voltage conductor insulations of the active standard (NOM-001-SEDE-2012, Table 310-104(c)).",
   "Corriente de marco": "Frame current",
   "Capacidad interruptiva": "Interrupting rating",
   "Tamaño de marco del interruptor (dato del fabricante). Vacío = igual a la capacidad de disparo. En el diagrama se muestra como marco/ajuste.": "Breaker frame size (manufacturer data). Empty = same as the trip rating. Shown on the diagram as frame/trip.",

@@ -31,23 +31,24 @@ import t28 from "../data/nom-001-sede-2012/tabla-220-88.json";
 import t29 from "../data/nom-001-sede-2012/tabla-250-122.json";
 import t30 from "../data/nom-001-sede-2012/tabla-250-66.json";
 import t31 from "../data/nom-001-sede-2012/tabla-310-104-a.json";
-import t32 from "../data/nom-001-sede-2012/tabla-310-15-b-16.json";
-import t33 from "../data/nom-001-sede-2012/tabla-310-15-b-17.json";
-import t34 from "../data/nom-001-sede-2012/tabla-310-15-b-2-a.json";
-import t35 from "../data/nom-001-sede-2012/tabla-310-15-b-2-b.json";
-import t36 from "../data/nom-001-sede-2012/tabla-310-15-b-3-a.json";
-import t37 from "../data/nom-001-sede-2012/tabla-392-22-a.json";
-import t38 from "../data/nom-001-sede-2012/tabla-430-22-e.json";
-import t39 from "../data/nom-001-sede-2012/tabla-430-247.json";
-import t40 from "../data/nom-001-sede-2012/tabla-430-248.json";
-import t41 from "../data/nom-001-sede-2012/tabla-430-250.json";
-import t42 from "../data/nom-001-sede-2012/tabla-430-52.json";
-import v43 from "../data/nom-001-sede-2012/verificacion.json";
-import t44 from "../data/nom-002-sede-2010/tabla-2.json";
-import v45 from "../data/nom-002-sede-2010/verificacion.json";
+import t32 from "../data/nom-001-sede-2012/tabla-310-104-c.json";
+import t33 from "../data/nom-001-sede-2012/tabla-310-15-b-16.json";
+import t34 from "../data/nom-001-sede-2012/tabla-310-15-b-17.json";
+import t35 from "../data/nom-001-sede-2012/tabla-310-15-b-2-a.json";
+import t36 from "../data/nom-001-sede-2012/tabla-310-15-b-2-b.json";
+import t37 from "../data/nom-001-sede-2012/tabla-310-15-b-3-a.json";
+import t38 from "../data/nom-001-sede-2012/tabla-392-22-a.json";
+import t39 from "../data/nom-001-sede-2012/tabla-430-22-e.json";
+import t40 from "../data/nom-001-sede-2012/tabla-430-247.json";
+import t41 from "../data/nom-001-sede-2012/tabla-430-248.json";
+import t42 from "../data/nom-001-sede-2012/tabla-430-250.json";
+import t43 from "../data/nom-001-sede-2012/tabla-430-52.json";
+import v44 from "../data/nom-001-sede-2012/verificacion.json";
+import t45 from "../data/nom-002-sede-2010/tabla-2.json";
+import v46 from "../data/nom-002-sede-2010/verificacion.json";
 
 export const rawCatalog: Record<string, { tables: unknown[]; verification: unknown }> = {
   "iec-60364-2001": { tables: [t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10], verification: v11 },
-  "nom-001-sede-2012": { tables: [t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42], verification: v43 },
-  "nom-002-sede-2010": { tables: [t44], verification: v45 },
+  "nom-001-sede-2012": { tables: [t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42, t43], verification: v44 },
+  "nom-002-sede-2010": { tables: [t45], verification: v46 },
 };

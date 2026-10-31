@@ -64,6 +64,12 @@ export const DEFAULT_EQUIPMENT_VOLTAGE: EquipmentVoltageCriteria = {
   },
 };
 
+/**
+ * Parámetro de contexto que la interfaz agrega al consultar opciones: tensión nominal (V) de la zona en
+ * que está el elemento (cables, interruptores), según la topología. No se guarda en el proyecto.
+ */
+export const ZONE_VOLTAGE_PARAM = "__zoneVoltageV";
+
 /** Resultado de una consulta a tablas de la norma, con su traza. */
 /** `warnings`: avisos que deben aparecer como advertencias del proyecto (p. ej. un valor aproximado). */
 export type Lookup<T> = ({ ok: true } & T & { refs: string[]; notes: string[]; warnings?: string[] }) | { ok: false; error: string };

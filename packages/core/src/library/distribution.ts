@@ -422,6 +422,16 @@ export const mvCable: ElementTypeDefinition = {
       description: "Tensión nominal entre fases del cable; debe ser igual o mayor que la del sistema.",
     },
     {
+      key: "insulationType",
+      label: "Tipo de aislamiento",
+      kind: "enum",
+      options: { provider: "norm:mvInsulationTypes" },
+      default: "MV-90",
+      required: true,
+      group: "Conductor",
+      description: "Aislamientos de conductores de media tensión de la norma activa (NOM-001-SEDE-2012, Tabla 310-104(c)).",
+    },
+    {
       key: "insulationLevelPct",
       label: "Nivel de aislamiento",
       kind: "enum",

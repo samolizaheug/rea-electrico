@@ -1,6 +1,6 @@
 import type { ConductorDecision, DropEvaluator, NormSizing, ProtectionDecision, SizingCircuit, TraceStep } from "@rea/engine";
 import { fmtNum } from "@rea/engine";
-import { conductorElectrodoTierra, getNormDataset, proteccionMaxConductorPequeno } from "@rea/norm-data";
+import { conductorElectrodoTierra, conductorElectrodoTierraAl, getNormDataset, proteccionMaxConductorPequeno } from "@rea/norm-data";
 import { racewayMethod } from "./raceways";
 
 /**
@@ -403,15 +403,19 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
   // ---- Conductor de puesta a tierra de equipos (250-122).
   let egc: ConductorDecision["egc"];
   if (c.params.includeEgc !== false) {
-    if (p.ratingA === undefined && c.transformerSecondary && material === "Cu") {
+    if (p.ratingA === undefined && c.transformerSecondary) {
       // Secundario de un sistema derivado separado, lado de alimentación de la primera protección:
       // puente de unión del lado de alimentación según 250-102(c)(1)/(2) con la Tabla 250-66 (por canalización),
-      // y 12.5 % del área de fase si ésta excede 557 mm² (1100 kcmil) de cobre.
-      const g = conductorElectrodoTierra(chosen.areaMm2);
-      const gSteps = [`fase ${chosen.designation} (${fmtNum(chosen.areaMm2, 2)} mm²${npar > 1 ? " por canalización" : ""}) → ${g.cu} Cu (${g.cuMm2} mm²)`];
-      let designation = g.cu;
-      let area = g.cuMm2;
-      if (chosen.areaMm2 > 557 + 1e-9) {
+      // del mismo material que las fases, y 12.5 % del área de fase si ésta excede 557 mm² (1100 kcmil)
+      // de cobre o 887 mm² (1750 kcmil) de aluminio.
+      const al = material === "Al";
+      const g = al ? conductorElectrodoTierraAl(chosen.areaMm2) : conductorElectrodoTierra(chosen.areaMm2);
+      const gSteps = [
+        `fase ${chosen.designation} ${al ? "Al" : "Cu"} (${fmtNum(chosen.areaMm2, 2)} mm²${npar > 1 ? " por canalización" : ""}) → ${al ? `${g.al} Al (${g.alMm2} mm²)` : `${g.cu} Cu (${g.cuMm2} mm²)`}`,
+      ];
+      let designation = al ? g.al : g.cu;
+      let area = al ? g.alMm2 : g.cuMm2;
+      if (chosen.areaMm2 > (al ? 887 : 557) + 1e-9) {
         const need = 0.125 * chosen.areaMm2;
         const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= need - 1e-6 && r.strands > 1);
         if (up && (up.areaMm2 ?? 0) > area) {
@@ -422,6 +426,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
       }
       const sys = t8.data.rows.find((r) => r.designation === designation)?.system ?? "AWG";
       egc = { designation, system: sys, areaMm2: area, perRaceway: npar > 1 };
+      if (al) gSteps.push("puente de aluminio, del mismo material que las fases (columna de aluminio de la Tabla 250-66)");
       steps.push({
         label: "Puente de unión del lado de alimentación (secundario del transformador)",
         substitution: gSteps.join(" ; "),
@@ -431,9 +436,7 @@ function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator)
     } else if (p.ratingA === undefined) {
       issues.push({
         severity: "info",
-        message: c.transformerSecondary
-          ? `${c.tag}: conductores de aluminio del secundario; el puente de unión según 250-102(c)(3) y la Tabla 250-66 no se calcula aún para aluminio.`
-          : `${c.tag}: sin protección en el origen; el conductor de puesta a tierra no se dimensiona con la Tabla 250-122.`,
+        message: `${c.tag}: sin protección en el origen; el conductor de puesta a tierra no se dimensiona con la Tabla 250-122.`,
       });
     } else {
       const t122 = data().table("tabla-250-122", "egc-size");

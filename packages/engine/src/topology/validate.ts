@@ -40,6 +40,8 @@ export interface TopologyReport {
   energized: Set<string>;
   /** Fuente que alimenta a cada elemento energizado (id del elemento fuente). */
   sourceOf: Map<string, string>;
+  /** Tensión nominal (V) de la zona en la que está cada elemento transparente a la tensión (cables, interruptores). */
+  zoneVoltageV: Map<string, number>;
 }
 
 /** Diferencia máxima entre tensiones nominales de elementos de distribución en la misma zona. */
@@ -83,10 +85,10 @@ export function validateTopology(
 
   const unconnected = checkUnconnected(ctx, issues);
   const { energized, sourceOf } = checkEnergization(ctx, issues, unconnected);
-  checkVoltages(ctx, issues, equipment);
+  const zoneVoltageV = checkVoltages(ctx, issues, equipment);
 
   issues.sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "error" ? -1 : 1));
-  return { issues, energized, sourceOf };
+  return { issues, energized, sourceOf, zoneVoltageV };
 }
 
 // ---------------------------------------------------------------- 1. Puertos sin conectar
@@ -257,7 +259,7 @@ interface Decl {
 
 const DIST_PRIORITY: Record<string, number> = { source: 0, transformer: 1, converter: 2, bus: 3 };
 
-function checkVoltages(ctx: Ctx, issues: TopologyIssue[], equipment: EquipmentVoltageCriteria) {
+function checkVoltages(ctx: Ctx, issues: TopologyIssue[], equipment: EquipmentVoltageCriteria): Map<string, number> {
   const zones = new DisjointSets();
   for (const c of ctx.project.connections) zones.union(pk(c.a.elementId, c.a.portId), pk(c.b.elementId, c.b.portId));
   for (const { el, def } of ctx.els) {
@@ -283,6 +285,19 @@ function checkVoltages(ctx: Ctx, issues: TopologyIssue[], equipment: EquipmentVo
   }
 
   const fmtV = (v: number) => `${Number.isInteger(v) ? v : v.toFixed(1)} V`;
+
+  // Tensión de la zona de cada elemento transparente (la fija la declaración de distribución de mayor prioridad).
+  const zoneRef = new Map<string, number>();
+  for (const [root, decls] of byZone) {
+    const ref = decls.filter((d) => d.dist).sort((a, b) => DIST_PRIORITY[a.role]! - DIST_PRIORITY[b.role]!)[0];
+    if (ref) zoneRef.set(root, ref.v);
+  }
+  const zoneVoltageV = new Map<string, number>();
+  for (const { el, def } of ctx.els) {
+    if (!def.voltageTransparent || !def.ports[0]) continue;
+    const v = zoneRef.get(zones.find(pk(el.id, def.ports[0].id)));
+    if (v !== undefined) zoneVoltageV.set(el.id, v);
+  }
 
   for (const decls of byZone.values()) {
     const dists = decls.filter((d) => d.dist).sort((a, b) => DIST_PRIORITY[a.role]! - DIST_PRIORITY[b.role]!);
@@ -338,6 +353,7 @@ function checkVoltages(ctx: Ctx, issues: TopologyIssue[], equipment: EquipmentVo
       }
     }
   }
+  return zoneVoltageV;
 }
 
 /** Tensión que el sistema de referencia entrega a una carga según su sistema y fase de conexión. */

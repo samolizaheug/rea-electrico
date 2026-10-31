@@ -1,5 +1,5 @@
 import type { EnumOption, ParamValue } from "@rea/core";
-import type { NormModule, VoltageDropCriteria } from "@rea/engine";
+import { ZONE_VOLTAGE_PARAM, type NormModule, type VoltageDropCriteria } from "@rea/engine";
 import { getNormDataset } from "@rea/norm-data";
 import { nomCalc } from "./calc";
 import { nomSizing } from "./sizing";
@@ -45,6 +45,26 @@ function insulationOptions(): EnumOption[] {
       value: r.type,
       label: `${r.type} (${r.ratings.map((x) => `${x.temperatureC} °C ${x.locations.toLowerCase().replace("lugares ", "")}`).join("; ")})`,
     }));
+}
+
+/** Tabla 310-104(c): aislamientos de media tensión, con la denominación de la NOM (90, 105). */
+function mvInsulationOptions(): EnumOption[] {
+  return data()
+    .table("tabla-310-104-c", "rows-table")
+    .data.rows.map((r) => {
+      const den = String(r.denominacion).replace("*", "");
+      const extra = String(r.denominacion).includes("*") ? "; solo si el diseño exige más de 90 °C" : "";
+      return { value: `MV-${den}`, label: `${den} (MV-${den}) — ${String(r.nombre_generico).toLowerCase()}, ${r.temperatura_max_C} °C, ${String(r.aplicaciones).toLowerCase()}${extra}` };
+    });
+}
+
+/** En media tensión (> 1000 V) los aislamientos de la Tabla 310-104(a) no aplican: se muestran deshabilitados. */
+function lvInsulationFor(params?: Record<string, ParamValue>): EnumOption[] {
+  const base = cached("norm:insulationTypes", insulationOptions);
+  const v = params?.[ZONE_VOLTAGE_PARAM];
+  if (!(typeof v === "number" && v > 1000)) return base;
+  const note = `no aplica en media tensión (${v} V): la Tabla 310-104(a) es para baja tensión; use el elemento «Cable de media tensión» (Tabla 310-104(c))`;
+  return base.map((o) => ({ ...o, disabled: true, note }));
 }
 
 function sizeOptions(): EnumOption[] {
@@ -111,7 +131,9 @@ export const nom001Sede2012: NormModule = {
   options(provider, params) {
     switch (provider) {
       case "norm:insulationTypes":
-        return cached(provider, insulationOptions);
+        return lvInsulationFor(params);
+      case "norm:mvInsulationTypes":
+        return cached(provider, mvInsulationOptions);
       case "norm:installationMethods":
         return cached(provider, methodOptions);
       case "norm:conductorSizes":

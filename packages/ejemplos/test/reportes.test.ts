@@ -2,7 +2,7 @@ import ExcelJS from "exceljs";
 import { createDefaultRegistry } from "@rea/core";
 import { panelSchedules, runSizing, scheduleIssues } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
-import { buildWorkbook, circuitRows, diagramSvg, elementReports, isDraft, memoriaDocDefinition, setReportLanguage, sizeText, svgAspect, toDisplayLength, type ReportInput } from "@rea/reports";
+import { buildWorkbook, circuitRows, diagramSvg, elementReports, isDraft, memoriaDocDefinition, normTables, setReportLanguage, sizeText, svgAspect, toDisplayLength, type ReportInput } from "@rea/reports";
 import { renderPdf } from "@rea/reports/src/node";
 import { describe, expect, it } from "vitest";
 import { sistemaEjemplo } from "../src";
@@ -76,8 +76,10 @@ describe("reportes del sistema de ejemplo", () => {
     expect(al21.traces[0]!.steps.some((s) => s.refs?.some((r) => r.includes("310-15")))).toBe(true);
   });
 
-  it("no es borrador: tablas verificadas y sin errores", () => {
-    expect(isDraft(input)).toBe(false);
+  it("es borrador solo mientras haya tablas por verificar o errores", () => {
+    const pendientes = normTables(input.norm).filter((t) => t.status === "por_verificar");
+    expect(isDraft(input)).toBe(pendientes.length > 0);
+    expect(pendientes.map((t) => t.id).every((id) => id === "tabla-310-104-c")).toBe(true);
     expect(isDraft({ ...input, issues: [{ severity: "error", message: "x" }] })).toBe(true);
   });
 

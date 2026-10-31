@@ -96,4 +96,18 @@ describe("dimensionamiento del sistema de ejemplo: verificación de los calibres
     expect(step.result).toBe("2 AWG");
     expect(step.refs).toContain("NOM-001-SEDE-2012 Tabla 250-66 (p. 122 del PDF)");
   });
+
+  it("secundario de TR-2 en aluminio: el puente sale de la columna de aluminio de la Tabla 250-66", () => {
+    const p = sistemaEjemplo();
+    const al3 = p.elements.find((e) => e.tag === "AL-3")!;
+    al3.params.material = "Al";
+    al3.params.forcedSize = "250";
+    const r = runSizing(p, registry, nom001Sede2012);
+    const c = [...r.circuits.values()].find((x) => x.tag === "AL-3")!;
+    // 250 kcmil Al está en el renglón «4/0 o 250» de aluminio → puente 2 AWG Al (33.6 mm²).
+    expect(c.conductor.egc).toMatchObject({ designation: "2", system: "AWG" });
+    const step = c.conductor.steps.find((s) => s.label.startsWith("Puente de unión"))!;
+    expect(step.substitution).toContain("2 Al");
+    expect(r.issues.some((i) => /no se calcula aún para aluminio/.test(i.message))).toBe(false);
+  });
 });

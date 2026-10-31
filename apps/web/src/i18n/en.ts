@@ -45,6 +45,7 @@ export const en: Messages = {
   "inspector.tab.propiedades": "Properties",
   "inspector.tab.resultados": "Results and calculations",
   "field.auto": "(automatic)",
+  "field.optionDisabled": "not applicable here",
   "field.none": "—",
   "field.noNormData": "The active code has no data for these options.",
   "field.notApplicable": "Not applicable to the selected installation method.",

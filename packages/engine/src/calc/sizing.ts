@@ -66,7 +66,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
       else if (vLL <= 1000)
         issues.push({ severity: "warning", code: "cable-mt-en-bt", message: `${el.tag}: cable de media tensión en un circuito de ${fmtNum(vLL, 0)} V; para baja tensión use «Alimentador (cable)», que sí se dimensiona.`, elementIds: [el.id] });
       else
-        issues.push({ severity: "info", code: "cable-mt", message: `${el.tag}: cable de media tensión (${fmtNum(vLL / 1000, 2)} kV, clase ${kv} kV): no se dimensiona ni se incluye su impedancia en la fase 1.`, elementIds: [el.id] });
+        issues.push({ severity: "info", code: "cable-mt", message: `${el.tag}: cable de media tensión (${fmtNum(vLL / 1000, 2)} kV, clase ${kv} kV${typeof el.params.insulationType === "string" ? `, aislamiento ${el.params.insulationType}` : ""}): no se dimensiona ni se incluye su impedancia en la fase 1.`, elementIds: [el.id] });
     }
 
     // ---- Circuitos.

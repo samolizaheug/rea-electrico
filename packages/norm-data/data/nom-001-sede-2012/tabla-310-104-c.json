@@ -1,0 +1,76 @@
+{
+  "id": "nom-001-sede-2012/tabla-310-104-c",
+  "norm": {
+    "id": "nom-001-sede",
+    "edition": "2012"
+  },
+  "reference": {
+    "table": "Tabla 310-104(c)",
+    "article": "310-104",
+    "title": "Aislamientos y aplicaciones de los conductores de media tensión"
+  },
+  "source": {
+    "document": "NOM-001-SEDE-2012 Instalaciones Electricas (utilizacion).pdf",
+    "sha256": "7774318D1549550F2E07733DEE10485486AD17BCDA71361C737C8B68309BCBA1",
+    "publication": "DOF 29/11/2012",
+    "pages": [
+      193,
+      194
+    ],
+    "method": "transcripcion-manual",
+    "extractor": "Texto del PDF (pdfjs) con posiciones, páginas 193-194; transcrito sin modificar."
+  },
+  "notes": [
+    "* Cuando las condiciones de diseño exigen temperaturas del aislamiento mayores que de 90 ºC (nota de la tabla).",
+    "La NOM publica la denominación como «90» y «105»; en los anexos de la misma NOM aparece como «MV-90»."
+  ],
+  "errata": [],
+  "kind": "rows-table",
+  "data": {
+    "columns": [
+      {
+        "key": "nombre_generico",
+        "label": "Nombre genérico"
+      },
+      {
+        "key": "denominacion",
+        "label": "Denominación del cable de media tensión"
+      },
+      {
+        "key": "temperatura_max_C",
+        "label": "Temperatura máxima de operación",
+        "unit": "°C"
+      },
+      {
+        "key": "aplicaciones",
+        "label": "Aplicaciones previstas"
+      },
+      {
+        "key": "aislamiento",
+        "label": "Aislamiento"
+      },
+      {
+        "key": "cubierta_exterior",
+        "label": "Cubierta exterior"
+      }
+    ],
+    "rows": [
+      {
+        "nombre_generico": "Dieléctrico sólido de media tensión",
+        "denominacion": "90",
+        "temperatura_max_C": 90,
+        "aplicaciones": "Lugares secos o mojados",
+        "aislamiento": "Termoplástico o termofijo",
+        "cubierta_exterior": "Cubierta, termoplástica o cubierta metálica o armadura"
+      },
+      {
+        "nombre_generico": "Dieléctrico sólido de media tensión",
+        "denominacion": "105*",
+        "temperatura_max_C": 105,
+        "aplicaciones": "Lugares secos o mojados",
+        "aislamiento": "Termoplástico o termofijo",
+        "cubierta_exterior": "Cubierta, termoplástica o cubierta metálica o armadura"
+      }
+    ]
+  }
+}

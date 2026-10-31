@@ -76,8 +76,9 @@ export function Control({ id, def, value, providerOptions, onCommit }: { id: str
       }
       const render = (list: EnumOption[]) =>
         list.map((o) => (
-          <option key={o.value} value={o.value}>
+          <option key={o.value} value={o.value} disabled={o.disabled} title={o.note}>
             {lib(o.label)}
+            {o.disabled ? ` — ${t("field.optionDisabled")}` : ""}
           </option>
         ));
       return (

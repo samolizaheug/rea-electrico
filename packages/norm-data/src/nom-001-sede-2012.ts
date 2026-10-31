@@ -74,6 +74,22 @@ export function conductorElectrodoTierra(areaAcometidaCuMm2: number): ConCita<{ 
   return { cu: String(r.gec_cu_awg), cuMm2: Number(r.gec_cu_mm2), al: String(r.gec_al_awg), alMm2: Number(r.gec_al_mm2), cita: citaNom("tabla-250-66") };
 }
 
+/**
+ * Tabla 250-66 por la columna de conductores de ALUMINIO: «1/0 o menor», «2/0 o 3/0», «4/0 o 250»,
+ * «más de 250 a 500», «más de 500 a 900», «más de 900 a 1750» y «más de 1750» (kcmil). Los límites
+ * se comparan por el área de esas designaciones en el Capítulo 10, Tabla 8 (1/0, 3/0, 250, 500, 900
+ * y 1750 kcmil).
+ */
+export function conductorElectrodoTierraAl(areaAcometidaAlMm2: number): ConCita<{ cu: string; cuMm2: number; al: string; alMm2: number; rango: string }> {
+  const t = rows("tabla-250-66");
+  const t8 = ds().table("cap10-tabla-8", "conductor-properties").data.rows;
+  const areaDe = (d: string) => t8.find((r) => r.designation === d && r.strands > 1)?.areaMm2 ?? Number.NaN;
+  const limites = ["1/0", "3/0", "250", "500", "900", "1750"].map(areaDe);
+  const i = limites.findIndex((l) => areaAcometidaAlMm2 <= l + 1e-6);
+  const r = t[i === -1 ? t.length - 1 : i]!;
+  return { cu: String(r.gec_cu_awg), cuMm2: Number(r.gec_cu_mm2), al: String(r.gec_al_awg), alMm2: Number(r.gec_al_mm2), rango: String(r.acometida_al_awg), cita: citaNom("tabla-250-66") };
+}
+
 // ---------------------------------------------------------------- Cargas (Art. 220)
 
 /** Carga mínima de alumbrado general por tipo de inmueble (Tabla 220-12), VA/m². */

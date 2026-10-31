@@ -43,6 +43,7 @@ export const es = {
   "inspector.tab.propiedades": "Propiedades",
   "inspector.tab.resultados": "Resultados y memoria",
   "field.auto": "(automático)",
+  "field.optionDisabled": "no aplica aquí",
   "field.none": "—",
   "field.noNormData": "La norma activa no tiene datos para estas opciones.",
   "field.notApplicable": "No aplica para el método de instalación elegido.",

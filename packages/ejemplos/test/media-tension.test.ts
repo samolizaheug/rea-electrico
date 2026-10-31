@@ -1,5 +1,5 @@
 import { addElement, connect, createDefaultRegistry, createProject, type ParamValue, type Project } from "@rea/core";
-import { DEFAULT_EQUIPMENT_VOLTAGE, runSizing, validateTopology } from "@rea/engine";
+import { DEFAULT_EQUIPMENT_VOLTAGE, runSizing, validateTopology, ZONE_VOLTAGE_PARAM } from "@rea/engine";
 import { nom001Sede2012 } from "@rea/norms";
 import { describe, expect, it } from "vitest";
 
@@ -50,5 +50,25 @@ describe("cable de media tensión", () => {
   it("clase de aislamiento menor que la tensión del sistema: error", () => {
     const s = runSizing(sistema("15").p, registry, nom001Sede2012);
     expect(s.issues.some((i) => i.severity === "error" && i.code === "aislamiento-mt")).toBe(true);
+  });
+});
+
+describe("aislamientos de media tensión (NOM Tabla 310-104(c))", () => {
+  it("el cable MT ofrece las denominaciones 90 y 105 de la norma", () => {
+    const opts = nom001Sede2012.options("norm:mvInsulationTypes", {})!;
+    expect(opts.map((o) => o.value)).toEqual(["MV-90", "MV-105"]);
+    expect(opts[1]!.label).toContain("solo si el diseño exige más de 90 °C");
+  });
+
+  it("la topología da la tensión de cada cable y en media tensión los aislamientos de baja tensión quedan deshabilitados", () => {
+    const { p, id } = sistema("25");
+    const topo = validateTopology(p, registry, DEFAULT_EQUIPMENT_VOLTAGE);
+    expect(topo.zoneVoltageV.get(id("MT-1"))).toBe(23000);
+    expect(topo.zoneVoltageV.get(id("AL"))).toBe(220);
+    const mt = nom001Sede2012.options("norm:insulationTypes", { [ZONE_VOLTAGE_PARAM]: 23000 })!;
+    expect(mt.length).toBeGreaterThan(0);
+    expect(mt.every((o) => o.disabled && /media tensión/.test(o.note ?? ""))).toBe(true);
+    const bt = nom001Sede2012.options("norm:insulationTypes", { [ZONE_VOLTAGE_PARAM]: 220 })!;
+    expect(bt.some((o) => o.disabled)).toBe(false);
   });
 });

@@ -2,7 +2,7 @@ import { isParamActive, voltageText, type ProjectElement } from "@rea/core";
 import { lib, t } from "../i18n";
 import { registry } from "../state/registry";
 import { useEditor } from "../state/store";
-import { useValidation } from "../state/validation";
+import { optionContext, useValidation } from "../state/validation";
 import { ParamField, TextInput } from "./fields";
 
 /** Panel de propiedades: se construye a partir de la definición del tipo de elemento. */
@@ -49,7 +49,7 @@ export function ElementProperties({ element }: { element: ProjectElement }) {
               key={p.key}
               def={p}
               value={element.params[p.key] ?? null}
-              providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider, element.params) : undefined}
+              providerOptions={p.kind === "enum" && !Array.isArray(p.options) ? v.norm.options(p.options.provider, optionContext(element.params, v.topology, element.id)) : undefined}
               issues={paramIssues.filter((i) => i.key === p.key)}
               hint={voltageHint(p.key)}
               onCommit={(value) =>

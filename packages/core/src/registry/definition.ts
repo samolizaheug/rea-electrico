@@ -61,6 +61,10 @@ export interface EnumOption {
   label: string;
   /** Agrupación opcional para mostrar en la lista (p. ej. "Tubo conduit no metálico"). */
   group?: string;
+  /** La opción se muestra pero no se puede elegir en este contexto (p. ej. aislamiento de baja tensión en media tensión). */
+  disabled?: boolean;
+  /** Motivo por el que la opción no aplica. */
+  note?: string;
 }
 
 /**
