@@ -168,12 +168,11 @@ describe("canalizaciones (Capítulo 10 Tabla 4 y Tabla 392-22(a))", () => {
 });
 
 /** Tablas capturadas que aún no revisa el usuario (no se registra la verificación en su nombre). */
-const PENDIENTES = ["tabla-310-104-c"];
+const PENDIENTES: string[] = [];
 
 describe("estado de verificación", () => {
   it("todas las tablas tienen una verificación vigente (huella igual a los datos actuales)", () => {
     for (const id of nom.ids()) {
-      // Pendiente de revisión del Ing. RGLR (capturada el 2026-10-31); la prueba pasa también cuando se verifique.
       if (PENDIENTES.includes(id)) continue;
       expect(nom.status(id).status, id).toBe("verificado");
     }

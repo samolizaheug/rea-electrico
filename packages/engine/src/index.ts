@@ -11,4 +11,5 @@ export { buildIslands, type Island, type NetEdge, type NetNode } from "./calc/ne
 export * from "./calc/loadflow";
 export * from "./calc/sizing";
 export * from "./calc/schedules";
+export * from "./calc/mcc";
 export { DisjointSets } from "./topology/dsu";

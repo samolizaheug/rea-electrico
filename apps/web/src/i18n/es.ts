@@ -30,6 +30,7 @@ export const es = {
   "inspector.delete": "Eliminar",
   "inspector.disconnect": "Desconectar",
   "help.options": "Ver opciones con imagen",
+  "help.explain": "Ver explicación",
   "help.close": "Cerrar",
   "help.pickHint": "Haga clic en una opción para elegirla; las miniaturas muestran variantes. Fotos con licencia libre (Wikimedia Commons, Flickr, Unsplash, Pexels, Pixabay) y esquemas propios; en la copia local pueden aparecer fotos de referencia de fabricantes.",
   "help.noImage": "Sin imagen",

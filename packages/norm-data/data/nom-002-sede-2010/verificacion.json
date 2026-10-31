@@ -3,5 +3,12 @@
     "id": "nom-002-sede",
     "edition": "2010"
   },
-  "tables": {}
+  "tables": {
+    "tabla-2": {
+      "status": "verificado",
+      "fingerprint": "6c92c1fa0921534b1438aaf195a9bb2ba5dd4bec51e363038091f3efccfc697c",
+      "by": "Ing. RGLR",
+      "date": "2026-10-31"
+    }
+  }
 }

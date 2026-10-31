@@ -1,7 +1,7 @@
 import type { EnumOption, ParamValue } from "@rea/core";
 import { useEffect, useState } from "react";
 import { lib, t } from "../i18n";
-import { helpFor, loadLocalPhotos, photosOf, pick, sourceSite, type LocalPhoto, type OptionHelp, type PublicPhoto } from "./optionHelp";
+import { helpFor, loadLocalPhotos, paramHelp, photosOf, pick, sourceSite, type LocalPhoto, type OptionHelp, type PublicPhoto } from "./optionHelp";
 
 /**
  * Botón «?» junto a un combo: abre un cuadro con todas las opciones ilustradas
@@ -33,6 +33,48 @@ export function OptionHelpButton({ paramKey, label, options, value, onCommit }: 
   );
 }
 
+/** Botón «?» de un campo numérico: explica qué significa y cuándo aplica cada caso. */
+export function ParamHelpButton({ paramKey, label }: { paramKey: string; label: string }) {
+  const [open, setOpen] = useState(false);
+  const help = paramHelp(paramKey);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+  if (!help) return null;
+  return (
+    <>
+      <button type="button" className="help-btn" title={t("help.explain")} aria-label={t("help.explain")} onClick={() => setOpen(true)}>
+        ?
+      </button>
+      {open ? (
+        <div className="help-backdrop" onClick={() => setOpen(false)}>
+          <div className="help-dialog" role="dialog" aria-modal="true" aria-label={label} onClick={(e) => e.stopPropagation()}>
+            <header>
+              <h3>{label}</h3>
+              <button type="button" onClick={() => setOpen(false)}>
+                {t("help.close")}
+              </button>
+            </header>
+            <p>{pick(help.intro)}</p>
+            <div className="help-grid">
+              {help.cases.map((c) => (
+                <div key={c.label.es} className="help-card static">
+                  <strong>{pick(c.label)}</strong>
+                  <span className="help-text">{pick(c.text)}</span>
+                </div>
+              ))}
+            </div>
+            {help.source ? <p className="muted small">{pick(help.source)}</p> : null}
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function OptionHelpDialog({ label, options, value, help, onClose, onPick }: { label: string; options: EnumOption[]; value: ParamValue; help: NonNullable<ReturnType<typeof helpFor>>; onClose(): void; onPick(v: string): void }) {
   const [local, setLocal] = useState<Record<string, LocalPhoto[]>>({});
   useEffect(() => {
@@ -42,6 +84,8 @@ function OptionHelpDialog({ label, options, value, help, onClose, onPick }: { la
       alive = false;
     };
   }, []);
+  // Listas sin fotos ni esquemas (p. ej. letra de diseño): tarjetas solo con texto.
+  const hasMedia = options.some((o) => (local[o.value]?.length ?? 0) > 0 || (help[o.value] && (photosOf(help[o.value]!).length > 0 || help[o.value]!.svg)));
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -59,7 +103,7 @@ function OptionHelpDialog({ label, options, value, help, onClose, onPick }: { la
         <p className="muted small">{t("help.pickHint")}</p>
         <div className="help-grid">
           {options.map((o) => (
-            <OptionCard key={o.value} option={o} help={help[o.value]} local={local[o.value] ?? []} selected={o.value === value} onPick={onPick} />
+            <OptionCard key={o.value} option={o} help={help[o.value]} local={local[o.value] ?? []} selected={o.value === value} onPick={onPick} showMedia={hasMedia} />
           ))}
         </div>
       </div>
@@ -70,7 +114,7 @@ function OptionHelpDialog({ label, options, value, help, onClose, onPick }: { la
 /** Una foto de la galería de una opción: local (de referencia) o libre (con licencia). */
 type GalleryItem = { key: string; src: string; alt: string; local?: LocalPhoto; free?: PublicPhoto };
 
-function OptionCard({ option, help: h, local, selected, onPick }: { option: EnumOption; help: OptionHelp | undefined; local: LocalPhoto[]; selected: boolean; onPick(v: string): void }) {
+function OptionCard({ option, help: h, local, selected, onPick, showMedia }: { option: EnumOption; help: OptionHelp | undefined; local: LocalPhoto[]; selected: boolean; onPick(v: string): void; showMedia: boolean }) {
   const [variant, setVariant] = useState(0);
   // Las fotos locales de referencia (si existen) sustituyen a las libres; si no, se usan las libres.
   const gallery: GalleryItem[] = local.length
@@ -86,7 +130,7 @@ function OptionCard({ option, help: h, local, selected, onPick }: { option: Enum
       onClick={() => onPick(option.value)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onPick(option.value))}
     >
-      <div className="help-media">
+      {showMedia ? <div className="help-media">
         {item ? (
           <img src={item.src} alt={item.alt} loading="lazy" />
         ) : h?.svg ? (
@@ -94,7 +138,7 @@ function OptionCard({ option, help: h, local, selected, onPick }: { option: Enum
         ) : (
           <span className="muted small">{t("help.noImage")}</span>
         )}
-      </div>
+      </div> : null}
       {gallery.length > 1 ? (
         <div className="help-variants" onClick={(e) => e.stopPropagation()}>
           {gallery.map((p, i) => (

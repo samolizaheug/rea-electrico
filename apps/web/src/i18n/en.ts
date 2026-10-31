@@ -32,6 +32,7 @@ export const en: Messages = {
   "inspector.delete": "Delete",
   "inspector.disconnect": "Disconnect",
   "help.options": "Show options with pictures",
+  "help.explain": "Show explanation",
   "help.close": "Close",
   "help.pickHint": "Click an option to choose it; thumbnails show variants. Free-license photos (Wikimedia Commons, Flickr, Unsplash, Pexels, Pixabay) and own sketches; the local copy may also show manufacturer reference photos.",
   "help.noImage": "No picture",

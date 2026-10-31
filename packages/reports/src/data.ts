@@ -188,7 +188,7 @@ export function elementReport(elementId: string, sizing: SizingRunResult, regist
   const flow: ElementFlow | undefined = sizing.loadFlow.elements.get(elementId);
   const circuit = sizing.circuits.get(elementId);
   const asBreaker = [...sizing.circuits.values()].find((c) => c.breakerId === elementId);
-  if (!flow && !circuit && !asBreaker) return null;
+  if (!flow && !circuit && !asBreaker && !sizing.mcc?.has(elementId)) return null;
 
   const facts: [string, string][] = [];
   if (flow?.currentA !== undefined) facts.push([rs("current"), `${fmt(flow.currentA, 2)} A`]);
@@ -201,6 +201,12 @@ export function elementReport(elementId: string, sizing: SizingRunResult, regist
   }
   if (flow?.dropPct !== undefined) facts.push([rs("drop"), `${fmt(flow.dropPct, 3)} %`]);
   if (flow?.cumulativeDropPct !== undefined) facts.push([rs("cumulative"), `${fmt(flow.cumulativeDropPct, 3)} %`]);
+  const mcc = sizing.mcc?.get(elementId);
+  if (mcc) {
+    const busTxt = (a: number | undefined) => (a !== undefined ? ` · ${rs("mccBus")} ${a} A` : "");
+    facts.push([rs("mccHorizontal"), `${rs("mccLoad")} ${fmt(mcc.total.designA, 2)} A (${mcc.total.rule})${busTxt(mcc.total.ratingA)}`]);
+    for (const s of mcc.sections) facts.push([`${rs("mccSection")} ${s.section}`, `${s.circuits.join(", ")} — ${rs("mccLoad")} ${fmt(s.designA, 2)} A${busTxt(s.ratingA)}`]);
+  }
   if (circuit) {
     const c = circuit.conductor;
     facts.push([rs("designCurrent"), `${fmt(circuit.protection.designA, 2)} A (${circuit.protection.rule})`]);
@@ -265,8 +271,15 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
     {
       // Con neutro: línea a línea / fase a neutro, p. ej. «216.2/124.8 V (98.29 %)».
       if (!flow?.voltage) return [];
-      const system = sizing.sizedProject.elements.find((e) => e.id === elementId)?.params.system;
-      return [`${voltageText(flow.voltage.v, system, 1)} (${fmt(flow.voltage.pct, 2)} %)`];
+      const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
+      const lines = [`${voltageText(flow.voltage.v, el?.params.system, 1)} (${fmt(flow.voltage.pct, 2)} %)`];
+      // CCM: secciones y buses horizontal / vertical, p. ej. «2 secc. · BH 400 A · BV 300 A».
+      if (type === "mcc" && el) {
+        const h = num(el.params.horizontalBusA);
+        const v = String(el.params.verticalBusBySection ?? "").trim() || (num(el.params.verticalBusA) !== undefined ? String(num(el.params.verticalBusA)) : "");
+        lines.push([`${trim(num(el.params.sections) ?? 1, 0)} secc.`, h !== undefined ? `BH ${h} A` : "", v ? `BV ${v} A` : ""].filter(Boolean).join(" · "));
+      }
+      return lines;
     }
     case "utility":
     case "generator":

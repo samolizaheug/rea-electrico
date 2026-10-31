@@ -158,6 +158,9 @@ export interface SizingCircuit {
   downstreamMotorProtection: { elementId: string; tag: string; ratingA: number; flcA: number }[];
   /** Conductores del circuito: fases y si lleva neutro (según lo que alimenta). */
   wiring: Wiring;
+  /** Tableros, CCM o barras de donde sale el circuito y a los que llega. */
+  originBusIds?: string[];
+  destinationBusIds?: string[];
 }
 
 /** Configuración de conductores de un circuito (sin contar el de puesta a tierra). */

@@ -243,6 +243,38 @@ const HELP: Record<string, Record<string, OptionHelp>> = {
     "100": { text: L("Nivel de aislamiento 100 %: sistemas donde las fallas a tierra se liberan rápido (protección que opera en menos de 1 minuto).", "100 % insulation level: systems where ground faults are cleared quickly (protection operates in under 1 minute).") },
     "133": { text: L("Nivel de aislamiento 133 %: cuando la falla a tierra puede durar más de 1 minuto (p. ej. sistemas no aterrizados).", "133 % insulation level: when a ground fault may last more than 1 minute (e.g. ungrounded systems).") },
   },
+  designLetter: {
+    B: {
+      text: L(
+        "Diseño B: par de arranque y corriente de arranque normales. Es el motor de uso general (bombas y ventiladores centrífugos, compresores, máquinas herramienta). Con letra B, C, D o E se permite usar los conductores con su ampacidad a 75 °C (NOM 110-14(c)(1)(a)(4)).",
+        "Design B: normal starting torque and normal starting current. General-purpose motor (centrifugal pumps and fans, compressors, machine tools). With letter B, C, D or E conductors may be used at their 75 °C ampacity (NOM 110-14(c)(1)(a)(4)).",
+      ),
+    },
+    C: {
+      text: L(
+        "Diseño C: alto par de arranque con corriente de arranque normal. Para cargas que arrancan con carga: bandas transportadoras cargadas, compresores reciprocantes, trituradoras, agitadores. Conductores a 75 °C permitidos (110-14(c)(1)(a)(4)).",
+        "Design C: high starting torque with normal starting current. For loads that start loaded: loaded conveyors, reciprocating compressors, crushers, agitators. Conductors at 75 °C permitted (110-14(c)(1)(a)(4)).",
+      ),
+    },
+    D: {
+      text: L(
+        "Diseño D: muy alto par de arranque y alto deslizamiento. Para cargas de gran inercia o de impacto: prensas, punzonadoras, grúas, elevadores, cizallas. Conductores a 75 °C permitidos (110-14(c)(1)(a)(4)).",
+        "Design D: very high starting torque and high slip. For high-inertia or impact loads: presses, punch presses, cranes, hoists, shears. Conductors at 75 °C permitted (110-14(c)(1)(a)(4)).",
+      ),
+    },
+    E: {
+      text: L(
+        "Diseño E: alta eficiencia, con corriente de arranque mayor que la del diseño B; revisar que la protección instantánea no dispare al arrancar. Conductores a 75 °C permitidos (110-14(c)(1)(a)(4)).",
+        "Design E: high efficiency, with higher starting current than design B; check that instantaneous protection does not trip on starting. Conductors at 75 °C permitted (110-14(c)(1)(a)(4)).",
+      ),
+    },
+    desconocida: {
+      text: L(
+        "Sin letra de diseño en la placa (la NOM 430-7(a)(9) la exige en motores B, C o D). Para circuitos de 100 A o menos se toma la ampacidad del conductor a 60 °C (110-14(c)(1)(a)).",
+        "No design letter on the nameplate (NOM 430-7(a)(9) requires it on B, C or D motors). For circuits of 100 A or less the conductor ampacity is taken at 60 °C (110-14(c)(1)(a)).",
+      ),
+    },
+  },
   boardUse: {
     distribucion: { text: L("Tablero de distribución: alimenta otros tableros o equipos grandes.", "Distribution board: feeds other panels or large equipment.") },
     "alumbrado-contactos": { text: L("Tablero de alumbrado y contactos: circuitos derivados de alumbrado y receptáculos.", "Lighting and receptacle panel: lighting and receptacle branch circuits.") },
@@ -252,6 +284,46 @@ const HELP: Record<string, Record<string, OptionHelp>> = {
 
 /** Parámetros que comparten la ayuda de otro (p. ej. todos los «sistema»). */
 const ALIASES: Record<string, string> = { primarySystem: "system", inputSystem: "system" };
+
+/** Ayuda de un campo numérico (no es una lista de opciones): explicación y casos. */
+export interface ParamHelp {
+  intro: { es: string; en: string };
+  cases: { label: { es: string; en: string }; text: { es: string; en: string } }[];
+  source?: { es: string; en: string };
+}
+
+const PARAM_HELP: Record<string, ParamHelp> = {
+  serviceFactor: {
+    intro: L(
+      "Factor de servicio (FS): cuántas veces la potencia de placa puede entregar el motor en forma continua, a tensión y frecuencia nominales, sin dañarse (FS 1.15 → 115 % de la potencia). Es un margen para sobrecargas ocasionales, no para operar siempre por encima de la placa. Se lee en la placa del motor.",
+      "Service factor (SF): how many times the nameplate power the motor can deliver continuously, at rated voltage and frequency, without damage (SF 1.15 → 115 % of power). It is a margin for occasional overloads, not for permanent operation above nameplate. Read it on the motor nameplate.",
+    ),
+    cases: [
+      {
+        label: L("FS 1.15 o más", "SF 1.15 or more"),
+        text: L(
+          "Motores de uso general (1.15 es lo más común; algunos 1.25). Relevador de sobrecarga de hasta 125 % de la corriente de placa (NOM 430-32(a)(1)); si no basta para arrancar, hasta 140 % (430-32(c)).",
+          "General-purpose motors (1.15 is most common; some 1.25). Overload relay up to 125 % of nameplate current (NOM 430-32(a)(1)); if not enough to start, up to 140 % (430-32(c)).",
+        ),
+      },
+      {
+        label: L("FS 1.0", "SF 1.0"),
+        text: L(
+          "Sin margen de sobrecarga (común en motores a prueba de explosión, de corriente continua o diseñados para variador). Relevador de hasta 115 % (430-32(a)(1)) y hasta 130 % para arrancar (430-32(c)), salvo que la placa marque un aumento de temperatura de 40 °C o menos (entonces 125 % / 140 %).",
+          "No overload margin (common in explosion-proof, DC or inverter-duty motors). Overload relay up to 115 % (430-32(a)(1)) and up to 130 % for starting (430-32(c)), unless the nameplate marks a temperature rise of 40 °C or less (then 125 % / 140 %).",
+        ),
+      },
+    ],
+    source: L(
+      "La fase 1 registra el dato para la memoria; el relevador de sobrecarga se selecciona con estos porcentajes.",
+      "Phase 1 records the value for the report; the overload relay is selected with these percentages.",
+    ),
+  },
+};
+
+export function paramHelp(paramKey: string): ParamHelp | undefined {
+  return PARAM_HELP[paramKey];
+}
 
 export function helpFor(paramKey: string): Record<string, OptionHelp> | undefined {
   return HELP[ALIASES[paramKey] ?? paramKey];

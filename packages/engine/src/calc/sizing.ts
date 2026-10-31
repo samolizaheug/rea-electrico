@@ -1,4 +1,5 @@
 import type { ElementRegistry, Project, ProjectElement } from "@rea/core";
+import { checkMccs, type MccCheck } from "./mcc";
 import type { ConductorDecision, NormModule, ProtectionDecision, SizingCircuit, SizingLoadItem, Wiring } from "../norm-module";
 import { fmtNum } from "../trace";
 import { runLoadFlow, type LoadFlowIssue, type LoadFlowResult } from "./loadflow";
@@ -33,6 +34,8 @@ export interface SizingRunResult {
   /** Flujo de carga con los calibres seleccionados. */
   loadFlow: LoadFlowResult;
   issues: LoadFlowIssue[];
+  /** Verificación de barras de los CCM (por id del CCM). */
+  mcc?: Map<string, MccCheck>;
 }
 
 const n = (v: unknown, fb = NaN) => (typeof v === "number" ? v : fb);
@@ -50,6 +53,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
   const els = new Map(project.elements.map((e) => [e.id, e]));
   const defOf = (id: string) => registry.get(els.get(id)!.type);
   const settings = project.settings;
+  const allCircuits: SizingCircuit[] = [];
 
   for (const island of buildIslands(project, registry)) {
     const cableEdges = island.order.map((id) => island.parentEdge.get(id)).filter((e): e is NetEdge => !!e && defOf(e.elementId).calcBehavior === "branch.cable");
@@ -72,6 +76,7 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
     // ---- Circuitos.
     const circuitOf = new Map<string, SizingCircuit>();
     for (const e of cableEdges) circuitOf.set(e.elementId, buildCircuit(e, island, project, els, defOf, base, norm));
+    allCircuits.push(...circuitOf.values());
 
     // ---- Protecciones (de aguas abajo hacia la fuente).
     const protections = new Map<string, ProtectionDecision>();
@@ -149,9 +154,11 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
       }
     }
   }
+  const mccRun = checkMccs(project, allCircuits, (id) => circuits.get(id)?.protection.ratingA, norm);
+  issues.push(...mccRun.issues);
   const loadFlow = runLoadFlow(sized, registry, norm, { mode: "nominal" });
   issues.push(...loadFlow.issues.filter((i) => ["caida-total", "tension-terminales", "bomba-contra-incendio", "dato-aproximado"].includes(i.code)));
-  return { calculated: true, circuits, sizedProject: sized, loadFlow, issues };
+  return { calculated: true, circuits, sizedProject: sized, loadFlow, issues, mcc: mccRun.checks };
 }
 
 function limitSource(value: number, crit?: { pct: number; source: string }): string {
@@ -293,6 +300,8 @@ function buildCircuit(
     transformerSecondary,
     downstreamMotorProtection: [],
     wiring,
+    originBusIds: originNode.buses,
+    destinationBusIds: child.buses,
   };
 }
 

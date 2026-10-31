@@ -76,10 +76,9 @@ describe("reportes del sistema de ejemplo", () => {
     expect(al21.traces[0]!.steps.some((s) => s.refs?.some((r) => r.includes("310-15")))).toBe(true);
   });
 
-  it("es borrador solo mientras haya tablas por verificar o errores", () => {
-    const pendientes = normTables(input.norm).filter((t) => t.status === "por_verificar");
-    expect(isDraft(input)).toBe(pendientes.length > 0);
-    expect(pendientes.map((t) => t.id).every((id) => id === "tabla-310-104-c")).toBe(true);
+  it("no es borrador: tablas verificadas y sin errores", () => {
+    expect(normTables(input.norm).filter((t) => t.status === "por_verificar")).toEqual([]);
+    expect(isDraft(input)).toBe(false);
     expect(isDraft({ ...input, issues: [{ severity: "error", message: "x" }] })).toBe(true);
   });
 

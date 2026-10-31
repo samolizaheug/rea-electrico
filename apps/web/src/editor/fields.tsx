@@ -1,7 +1,8 @@
 import type { EnumOption, ParamDef, ParamIssue, ParamValue } from "@rea/core";
 import { useEffect, useState } from "react";
 import { fromDisplayLength, toDisplayLength } from "@rea/reports/src/units";
-import { OptionHelpButton } from "../help/OptionHelpDialog";
+import { OptionHelpButton, ParamHelpButton } from "../help/OptionHelpDialog";
+import { paramHelp } from "../help/optionHelp";
 import { lib, t } from "../i18n";
 import { useProject } from "../state/store";
 
@@ -37,6 +38,11 @@ export function ParamField({ def, value, providerOptions, issues, hint, onCommit
         <span className="control-help">
           <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
           <OptionHelpButton paramKey={def.key} label={lib(def.label)} options={(Array.isArray(def.options) ? def.options : providerOptions) ?? []} value={value} onCommit={onCommit} />
+        </span>
+      ) : paramHelp(def.key) ? (
+        <span className="control-help">
+          <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
+          <ParamHelpButton paramKey={def.key} label={lib(def.label)} />
         </span>
       ) : (
         <Control id={id} def={def} value={value} providerOptions={providerOptions} onCommit={onCommit} />
