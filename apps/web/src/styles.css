@@ -900,3 +900,6 @@ input[aria-invalid="true"] {
 .mcc-section .input-unit { width: 100%; }
 .mcc-section input { width: 100%; min-width: 0; }
 .mcc-check { display: flex; gap: 6px; align-items: center; font-size: 0.85em; }
+.mcc-field { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+.mcc-field .input-unit { max-width: 180px; }
+.mcc-field input { width: 100%; }

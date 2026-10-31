@@ -51,8 +51,10 @@ export function stretchBusSymbol(s: SymbolDef, width: number): SymbolDef {
 // ---------------------------------------------------------------- CCM por secciones
 
 const MCC_MIN_SECTION_WIDTH = 110;
-const MCC_HEIGHT = 84;
-const MCC_BOX = { x: 4, top: 6, bottom: 78 };
+const MCC_HEIGHT = 104;
+const MCC_BOX = { x: 4, top: 6, bottom: 60 };
+/** Altura de las barras de sección (debajo de la envolvente), de donde se derivan los circuitos. */
+const MCC_SECTION_BUS_Y = 100;
 
 /** Datos de secciones de un CCM a partir de sus parámetros. */
 export function mccLayout(params: Record<string, unknown>): { sections: number; vertical: (number | undefined)[] } {
@@ -72,8 +74,9 @@ export function mccDefaultWidth(sections: number): number {
 }
 
 /**
- * Símbolo de CCM dibujado por secciones: envolvente, bus horizontal arriba y, en cada sección, su bus
- * vertical con la etiqueta «S1 · 300 A». Las derivaciones salen por abajo en cualquier punto.
+ * Símbolo de CCM dibujado por secciones: envolvente con el bus horizontal arriba; de cada sección baja
+ * su bus vertical, sale de la envolvente y termina en una barra de sección, de la que se derivan los
+ * circuitos de esa sección. Etiqueta «S1 / 300 A» junto al bus vertical.
  */
 export function mccSymbol(base: SymbolDef, width: number, params: Record<string, unknown>): SymbolDef {
   const { sections, vertical } = mccLayout(params);
@@ -86,14 +89,21 @@ export function mccSymbol(base: SymbolDef, width: number, params: Record<string,
     L(MCC_BOX.x + 4, 16, w - MCC_BOX.x - 4, 16, 4),
     { k: "text", x: w - MCC_BOX.x - 16, y: 11, text: "CCM", size: 7 },
   ];
+  const segments: [number, number][] = [];
   for (let i = 0; i < sections; i++) {
     const x0 = MCC_BOX.x + i * cw;
     if (i > 0) shapes.push(L(x0, MCC_BOX.top, x0, MCC_BOX.bottom, 1));
-    const vx = x0 + Math.min(18, cw * 0.2);
-    shapes.push(L(vx, 16, vx, MCC_BOX.bottom - 4, 3), { k: "circle", cx: vx, cy: 16, r: 2.5, fill: true });
-    const tx = vx + (x0 + cw - vx) / 2;
-    shapes.push({ k: "text", x: tx, y: 40, text: `S${i + 1}`, size: 10 });
-    if (vertical[i] !== undefined) shapes.push({ k: "text", x: tx, y: 56, text: `${vertical[i]} A`, size: 9, weight: "normal" });
+    const vx = x0 + cw / 2;
+    const seg: [number, number] = [x0 + 8, x0 + cw - 8];
+    segments.push(seg);
+    shapes.push(
+      L(vx, 16, vx, MCC_SECTION_BUS_Y, 3),
+      { k: "circle", cx: vx, cy: 16, r: 2.5, fill: true },
+      L(seg[0], MCC_SECTION_BUS_Y, seg[1], MCC_SECTION_BUS_Y, 4),
+    );
+    const tx = vx + Math.min(26, cw / 4);
+    shapes.push({ k: "text", x: tx, y: 31, text: `S${i + 1}`, size: 10 });
+    if (vertical[i] !== undefined) shapes.push({ k: "text", x: tx, y: 46, text: `${vertical[i]} A`, size: 9, weight: "normal" });
   }
   return {
     ...base,
@@ -101,7 +111,7 @@ export function mccSymbol(base: SymbolDef, width: number, params: Record<string,
     height: MCC_HEIGHT,
     ports: { bus: [{ x: w / 2, y: 0, side: "top" }, { x: w / 2, y: MCC_HEIGHT, side: "bottom" }] },
     shapes,
-    bus: { halfLength: inner / 2 - 4, halfThickness: MCC_HEIGHT / 2 - MCC_BOX.top },
+    bus: { halfLength: inner / 2 - 4, halfThickness: MCC_SECTION_BUS_Y - MCC_HEIGHT / 2, segments },
   };
 }
 
@@ -169,6 +179,8 @@ export interface BusGeometry {
   horizontal: boolean;
   halfLength: number;
   halfThickness: number;
+  /** CCM: tramos absolutos (x1, x2) de las barras de sección; las derivaciones de abajo salen de ellos. */
+  segments?: [number, number][];
 }
 
 export function busGeometry(project: Project, registry: ElementRegistry, elementId: string): BusGeometry | null {
@@ -181,6 +193,7 @@ export function busGeometry(project: Project, registry: ElementRegistry, element
     horizontal: g.rotation === 0 || g.rotation === 180,
     halfLength: g.symbol.bus.halfLength,
     halfThickness: g.symbol.bus.halfThickness,
+    segments: g.rotation === 0 ? g.symbol.bus.segments?.map(([a, b]) => [n.x + a, n.x + b] as [number, number]) : undefined,
   };
 }
 
@@ -224,6 +237,11 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v
 export function busTap(bus: BusGeometry, other: { x: number; y: number }): WirePoint {
   if (bus.horizontal) {
     const below = other.y >= bus.cy;
+    if (below && bus.segments?.length) {
+      // CCM: la derivación sale de la barra de la sección que está sobre el circuito (o la más cercana).
+      const seg = bus.segments.find(([a, b]) => other.x >= a && other.x <= b) ?? bus.segments.reduce((best, s) => (Math.abs((s[0] + s[1]) / 2 - other.x) < Math.abs((best[0] + best[1]) / 2 - other.x) ? s : best));
+      return { x: clamp(other.x, seg[0], seg[1]), y: bus.cy + bus.halfThickness, side: "bottom" };
+    }
     return { x: clamp(other.x, bus.cx - bus.halfLength, bus.cx + bus.halfLength), y: bus.cy + (below ? bus.halfThickness : -bus.halfThickness), side: below ? "bottom" : "top" };
   }
   const right = other.x >= bus.cx;

@@ -31,7 +31,12 @@ export interface SymbolDef {
    * Las derivaciones se dibujan perpendiculares a la barra en cualquier punto de `halfLength`
    * alrededor del centro, partiendo a `halfThickness` del eje.
    */
-  bus?: { halfLength: number; halfThickness: number };
+  bus?: {
+    halfLength: number;
+    halfThickness: number;
+    /** CCM: tramos (x inicial, x final, en coordenadas del símbolo) de las barras de sección, abajo. */
+    segments?: [number, number][];
+  };
 }
 
 export type Rotation = 0 | 90 | 180 | 270;

@@ -73,10 +73,10 @@ export function MccConfig({ element }: { element: ProjectElement }) {
       </div>
 
       {!perSection ? (
-        <div className="mcc-row">
+        <label className="mcc-field" htmlFor="mcc-v">
           <span>{t("mcc.vertical")}</span>
           <NumberInput id="mcc-v" unit="A" value={common} onCommit={(v) => set({ verticalBusA: v })} />
-        </div>
+        </label>
       ) : null}
       <label className="mcc-check">
         <input

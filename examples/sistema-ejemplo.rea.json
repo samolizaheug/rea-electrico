@@ -2,14 +2,14 @@
   "format": "rea-electrico/proyecto",
   "schemaVersion": 1,
   "meta": {
-    "id": "prj_633b39d79032",
+    "id": "prj_d82a207202a6",
     "name": "Sistema de ejemplo fase 1",
     "client": "Ejemplo",
     "location": "México",
     "author": "Ing. RGLR",
     "description": "Sistema resuelto a mano para verificar el motor de cálculo (docs/ejemplos/sistema-ejemplo.md).",
-    "createdAt": "2026-10-31T18:40:39.003Z",
-    "updatedAt": "2026-10-31T18:40:39.008Z"
+    "createdAt": "2026-10-31T19:50:10.658Z",
+    "updatedAt": "2026-10-31T19:50:10.663Z"
   },
   "settings": {
     "norm": {
@@ -38,7 +38,7 @@
   },
   "elements": [
     {
-      "id": "el_1f9b603cd531",
+      "id": "el_51b2362f72ee",
       "type": "utility",
       "tag": "ACOM-1",
       "tagLocked": true,
@@ -51,7 +51,7 @@
       }
     },
     {
-      "id": "el_6f241aaccfbd",
+      "id": "el_d47075f5fd33",
       "type": "transformer",
       "tag": "TR-1",
       "tagLocked": true,
@@ -70,7 +70,7 @@
       }
     },
     {
-      "id": "el_c8ec6f899d3d",
+      "id": "el_c5a16dedea0a",
       "type": "panelboard",
       "tag": "TG",
       "tagLocked": true,
@@ -83,7 +83,7 @@
       }
     },
     {
-      "id": "el_7a1468c5118c",
+      "id": "el_f66a36bd1f57",
       "type": "breaker",
       "tag": "INT-1",
       "tagLocked": true,
@@ -98,7 +98,7 @@
       }
     },
     {
-      "id": "el_4c237700bc53",
+      "id": "el_2ecfc609a4bf",
       "type": "cable",
       "tag": "AL-1",
       "tagLocked": true,
@@ -120,7 +120,7 @@
       }
     },
     {
-      "id": "el_fdc36d13b6b9",
+      "id": "el_3584f96695e3",
       "type": "mcc",
       "tag": "CCM-1",
       "tagLocked": true,
@@ -136,7 +136,7 @@
       }
     },
     {
-      "id": "el_89d784f8c7c3",
+      "id": "el_1cbbed8e250b",
       "type": "breaker",
       "tag": "INT-11",
       "tagLocked": true,
@@ -151,7 +151,7 @@
       }
     },
     {
-      "id": "el_5c3c3eab59a6",
+      "id": "el_1018d28611d1",
       "type": "cable",
       "tag": "AL-11",
       "tagLocked": true,
@@ -173,7 +173,7 @@
       }
     },
     {
-      "id": "el_88f6bab38002",
+      "id": "el_d63ca60216c0",
       "type": "motor",
       "tag": "M-01",
       "tagLocked": true,
@@ -199,7 +199,7 @@
       }
     },
     {
-      "id": "el_292b218e7efd",
+      "id": "el_6da2a652b8a7",
       "type": "breaker",
       "tag": "INT-12",
       "tagLocked": true,
@@ -214,7 +214,7 @@
       }
     },
     {
-      "id": "el_cc25d7be0d9d",
+      "id": "el_3d7ed41409c1",
       "type": "cable",
       "tag": "AL-12",
       "tagLocked": true,
@@ -236,7 +236,7 @@
       }
     },
     {
-      "id": "el_ca32f119c22e",
+      "id": "el_d3244300c04a",
       "type": "vfd",
       "tag": "VFD-01",
       "tagLocked": true,
@@ -248,7 +248,7 @@
       }
     },
     {
-      "id": "el_142141a2229f",
+      "id": "el_3df761bcb655",
       "type": "motor",
       "tag": "M-02",
       "tagLocked": true,
@@ -274,7 +274,7 @@
       }
     },
     {
-      "id": "el_2b3802a8420b",
+      "id": "el_ab6de8c25c2a",
       "type": "breaker",
       "tag": "INT-13",
       "tagLocked": true,
@@ -289,7 +289,7 @@
       }
     },
     {
-      "id": "el_b83bf5a6da5a",
+      "id": "el_0c4be5514dbf",
       "type": "cable",
       "tag": "AL-13",
       "tagLocked": true,
@@ -311,7 +311,7 @@
       }
     },
     {
-      "id": "el_f7813d63d37f",
+      "id": "el_d501059a5301",
       "type": "motor",
       "tag": "M-03",
       "tagLocked": true,
@@ -337,7 +337,7 @@
       }
     },
     {
-      "id": "el_a25cd354d4d8",
+      "id": "el_fca2275e6735",
       "type": "breaker",
       "tag": "INT-2",
       "tagLocked": true,
@@ -352,7 +352,7 @@
       }
     },
     {
-      "id": "el_673e5f368427",
+      "id": "el_504e1f998642",
       "type": "cable",
       "tag": "AL-2",
       "tagLocked": true,
@@ -374,7 +374,7 @@
       }
     },
     {
-      "id": "el_51f21b4b7474",
+      "id": "el_6632b425efd6",
       "type": "transformer",
       "tag": "TR-2",
       "tagLocked": true,
@@ -393,7 +393,7 @@
       }
     },
     {
-      "id": "el_52159416150e",
+      "id": "el_fef3068d2865",
       "type": "cable",
       "tag": "AL-3",
       "tagLocked": true,
@@ -415,7 +415,7 @@
       }
     },
     {
-      "id": "el_f60059c3ec06",
+      "id": "el_387096c4a928",
       "type": "panelboard",
       "tag": "TAB-A",
       "tagLocked": true,
@@ -428,7 +428,7 @@
       }
     },
     {
-      "id": "el_f6cc314a5b21",
+      "id": "el_196426ddd968",
       "type": "breaker",
       "tag": "INT-21",
       "tagLocked": true,
@@ -443,7 +443,7 @@
       }
     },
     {
-      "id": "el_ef2a22016d4c",
+      "id": "el_8fde9c6b59ed",
       "type": "cable",
       "tag": "AL-21",
       "tagLocked": true,
@@ -465,7 +465,7 @@
       }
     },
     {
-      "id": "el_bce971de6de8",
+      "id": "el_2ae7c284241e",
       "type": "luminaire",
       "tag": "L-01",
       "tagLocked": true,
@@ -481,7 +481,7 @@
       }
     },
     {
-      "id": "el_ba9797d91d59",
+      "id": "el_c9e08d0db88a",
       "type": "breaker",
       "tag": "INT-22",
       "tagLocked": true,
@@ -496,7 +496,7 @@
       }
     },
     {
-      "id": "el_c4d130791b95",
+      "id": "el_e5aeffc3e46f",
       "type": "cable",
       "tag": "AL-22",
       "tagLocked": true,
@@ -518,7 +518,7 @@
       }
     },
     {
-      "id": "el_4240bd7be8c0",
+      "id": "el_b57fbee0c5f1",
       "type": "receptacle",
       "tag": "C-01",
       "tagLocked": true,
@@ -535,7 +535,7 @@
       }
     },
     {
-      "id": "el_014ca1eba378",
+      "id": "el_ef9a4bb7924f",
       "type": "breaker",
       "tag": "INT-23",
       "tagLocked": true,
@@ -550,7 +550,7 @@
       }
     },
     {
-      "id": "el_3119f40b7940",
+      "id": "el_e0422736fda5",
       "type": "cable",
       "tag": "AL-23",
       "tagLocked": true,
@@ -572,7 +572,7 @@
       }
     },
     {
-      "id": "el_1e1a908266c9",
+      "id": "el_fdbc237fe27d",
       "type": "generic-load",
       "tag": "CG-01",
       "tagLocked": true,
@@ -590,7 +590,7 @@
       }
     },
     {
-      "id": "el_dcb662b26b6b",
+      "id": "el_89ab9c970553",
       "type": "breaker",
       "tag": "INT-4",
       "tagLocked": true,
@@ -605,7 +605,7 @@
       }
     },
     {
-      "id": "el_198e44b8e918",
+      "id": "el_01b3d6ebb39f",
       "type": "cable",
       "tag": "AL-4",
       "tagLocked": true,
@@ -627,7 +627,7 @@
       }
     },
     {
-      "id": "el_9637593d05b6",
+      "id": "el_7d8251f74381",
       "type": "panelboard",
       "tag": "TAB-B",
       "tagLocked": true,
@@ -640,7 +640,7 @@
       }
     },
     {
-      "id": "el_3fbd95714712",
+      "id": "el_b5a29e6cbd66",
       "type": "breaker",
       "tag": "INT-41",
       "tagLocked": true,
@@ -655,7 +655,7 @@
       }
     },
     {
-      "id": "el_a600d6ccb6ef",
+      "id": "el_4290f07215f8",
       "type": "cable",
       "tag": "AL-41",
       "tagLocked": true,
@@ -677,7 +677,7 @@
       }
     },
     {
-      "id": "el_a6ce9014ff82",
+      "id": "el_18650b72beca",
       "type": "luminaire",
       "tag": "L-02",
       "tagLocked": true,
@@ -693,7 +693,7 @@
       }
     },
     {
-      "id": "el_2d5ef4bbca22",
+      "id": "el_cbdf62a7803c",
       "type": "breaker",
       "tag": "INT-42",
       "tagLocked": true,
@@ -708,7 +708,7 @@
       }
     },
     {
-      "id": "el_70deae560e15",
+      "id": "el_0caeeb50f51c",
       "type": "cable",
       "tag": "AL-42",
       "tagLocked": true,
@@ -730,7 +730,7 @@
       }
     },
     {
-      "id": "el_4be81caa04dd",
+      "id": "el_401f7f688c17",
       "type": "grouped-load",
       "tag": "CA-01",
       "tagLocked": true,
@@ -751,739 +751,739 @@
   ],
   "connections": [
     {
-      "id": "cn_f7e1b6e71e9e",
+      "id": "cn_9f2db08a9d7d",
       "a": {
-        "elementId": "el_1f9b603cd531",
+        "elementId": "el_51b2362f72ee",
         "portId": "out"
       },
       "b": {
-        "elementId": "el_6f241aaccfbd",
+        "elementId": "el_d47075f5fd33",
         "portId": "primary"
       }
     },
     {
-      "id": "cn_8b72d53e45e9",
+      "id": "cn_4ced57b2be30",
       "a": {
-        "elementId": "el_6f241aaccfbd",
+        "elementId": "el_d47075f5fd33",
         "portId": "secondary"
       },
       "b": {
-        "elementId": "el_c8ec6f899d3d",
+        "elementId": "el_c5a16dedea0a",
         "portId": "bus"
       }
     },
     {
-      "id": "cn_2412a3886935",
+      "id": "cn_a2c6efad7697",
       "a": {
-        "elementId": "el_c8ec6f899d3d",
+        "elementId": "el_c5a16dedea0a",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_7a1468c5118c",
+        "elementId": "el_f66a36bd1f57",
         "portId": "line"
       }
     },
     {
-      "id": "cn_b6044bc87f93",
+      "id": "cn_5a9ae1c83869",
       "a": {
-        "elementId": "el_7a1468c5118c",
+        "elementId": "el_f66a36bd1f57",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_4c237700bc53",
+        "elementId": "el_2ecfc609a4bf",
         "portId": "from"
       }
     },
     {
-      "id": "cn_53046d432eb3",
+      "id": "cn_f48c18469e92",
       "a": {
-        "elementId": "el_4c237700bc53",
+        "elementId": "el_2ecfc609a4bf",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_fdc36d13b6b9",
+        "elementId": "el_3584f96695e3",
         "portId": "bus"
       }
     },
     {
-      "id": "cn_b0aee1fc95da",
+      "id": "cn_ac9dc25a26a6",
       "a": {
-        "elementId": "el_fdc36d13b6b9",
+        "elementId": "el_3584f96695e3",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_89d784f8c7c3",
+        "elementId": "el_1cbbed8e250b",
         "portId": "line"
       }
     },
     {
-      "id": "cn_62f13d981010",
+      "id": "cn_140c6cbdb4ed",
       "a": {
-        "elementId": "el_89d784f8c7c3",
+        "elementId": "el_1cbbed8e250b",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_5c3c3eab59a6",
+        "elementId": "el_1018d28611d1",
         "portId": "from"
       }
     },
     {
-      "id": "cn_37b3fb01132f",
+      "id": "cn_dbf818d260b0",
       "a": {
-        "elementId": "el_5c3c3eab59a6",
+        "elementId": "el_1018d28611d1",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_88f6bab38002",
+        "elementId": "el_d63ca60216c0",
         "portId": "in"
       }
     },
     {
-      "id": "cn_c55de13d7f2b",
+      "id": "cn_d40ec09ba763",
       "a": {
-        "elementId": "el_fdc36d13b6b9",
+        "elementId": "el_3584f96695e3",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_292b218e7efd",
+        "elementId": "el_6da2a652b8a7",
         "portId": "line"
       }
     },
     {
-      "id": "cn_da98e46ffcca",
+      "id": "cn_26c8316ead1b",
       "a": {
-        "elementId": "el_292b218e7efd",
+        "elementId": "el_6da2a652b8a7",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_cc25d7be0d9d",
+        "elementId": "el_3d7ed41409c1",
         "portId": "from"
       }
     },
     {
-      "id": "cn_b9d4837802c1",
+      "id": "cn_04b9483ec356",
       "a": {
-        "elementId": "el_cc25d7be0d9d",
+        "elementId": "el_3d7ed41409c1",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_ca32f119c22e",
+        "elementId": "el_d3244300c04a",
         "portId": "in"
       }
     },
     {
-      "id": "cn_3c5b4c43491c",
+      "id": "cn_3b865e2a6f45",
       "a": {
-        "elementId": "el_fdc36d13b6b9",
+        "elementId": "el_3584f96695e3",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_2b3802a8420b",
+        "elementId": "el_ab6de8c25c2a",
         "portId": "line"
       }
     },
     {
-      "id": "cn_cc1be70ad672",
+      "id": "cn_05d33e2d6067",
       "a": {
-        "elementId": "el_2b3802a8420b",
+        "elementId": "el_ab6de8c25c2a",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_b83bf5a6da5a",
+        "elementId": "el_0c4be5514dbf",
         "portId": "from"
       }
     },
     {
-      "id": "cn_9f51438c0638",
+      "id": "cn_1bc25e9e55ee",
       "a": {
-        "elementId": "el_b83bf5a6da5a",
+        "elementId": "el_0c4be5514dbf",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_f7813d63d37f",
+        "elementId": "el_d501059a5301",
         "portId": "in"
       }
     },
     {
-      "id": "cn_cfbf3f9848f4",
+      "id": "cn_5ce584347987",
       "a": {
-        "elementId": "el_ca32f119c22e",
+        "elementId": "el_d3244300c04a",
         "portId": "out"
       },
       "b": {
-        "elementId": "el_142141a2229f",
+        "elementId": "el_3df761bcb655",
         "portId": "in"
       }
     },
     {
-      "id": "cn_0273d1b39a0b",
+      "id": "cn_0ed3caa65342",
       "a": {
-        "elementId": "el_c8ec6f899d3d",
+        "elementId": "el_c5a16dedea0a",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_a25cd354d4d8",
+        "elementId": "el_fca2275e6735",
         "portId": "line"
       }
     },
     {
-      "id": "cn_e337ff7c69da",
+      "id": "cn_ea33ec262523",
       "a": {
-        "elementId": "el_a25cd354d4d8",
+        "elementId": "el_fca2275e6735",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_673e5f368427",
+        "elementId": "el_504e1f998642",
         "portId": "from"
       }
     },
     {
-      "id": "cn_06b2bf8d3dd1",
+      "id": "cn_531a95ed90bb",
       "a": {
-        "elementId": "el_673e5f368427",
+        "elementId": "el_504e1f998642",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_51f21b4b7474",
+        "elementId": "el_6632b425efd6",
         "portId": "primary"
       }
     },
     {
-      "id": "cn_9104001a8337",
+      "id": "cn_4160068cd545",
       "a": {
-        "elementId": "el_51f21b4b7474",
+        "elementId": "el_6632b425efd6",
         "portId": "secondary"
       },
       "b": {
-        "elementId": "el_52159416150e",
+        "elementId": "el_fef3068d2865",
         "portId": "from"
       }
     },
     {
-      "id": "cn_b3ea6447c4cd",
+      "id": "cn_d94b3f7e3e55",
       "a": {
-        "elementId": "el_52159416150e",
+        "elementId": "el_fef3068d2865",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_f60059c3ec06",
+        "elementId": "el_387096c4a928",
         "portId": "bus"
       }
     },
     {
-      "id": "cn_1043e8c30cef",
+      "id": "cn_7e0285972f5c",
       "a": {
-        "elementId": "el_f60059c3ec06",
+        "elementId": "el_387096c4a928",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_f6cc314a5b21",
+        "elementId": "el_196426ddd968",
         "portId": "line"
       }
     },
     {
-      "id": "cn_bfeb5ae372b9",
+      "id": "cn_7a5ca076e2dc",
       "a": {
-        "elementId": "el_f6cc314a5b21",
+        "elementId": "el_196426ddd968",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_ef2a22016d4c",
+        "elementId": "el_8fde9c6b59ed",
         "portId": "from"
       }
     },
     {
-      "id": "cn_e6e5b1e77793",
+      "id": "cn_eb4184afadb2",
       "a": {
-        "elementId": "el_ef2a22016d4c",
+        "elementId": "el_8fde9c6b59ed",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_bce971de6de8",
+        "elementId": "el_2ae7c284241e",
         "portId": "in"
       }
     },
     {
-      "id": "cn_b6e71d7a1cff",
+      "id": "cn_d00100f07e12",
       "a": {
-        "elementId": "el_f60059c3ec06",
+        "elementId": "el_387096c4a928",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_ba9797d91d59",
+        "elementId": "el_c9e08d0db88a",
         "portId": "line"
       }
     },
     {
-      "id": "cn_5ce970396809",
+      "id": "cn_32fea5c6a70a",
       "a": {
-        "elementId": "el_ba9797d91d59",
+        "elementId": "el_c9e08d0db88a",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_c4d130791b95",
+        "elementId": "el_e5aeffc3e46f",
         "portId": "from"
       }
     },
     {
-      "id": "cn_929d0fe0d8ce",
+      "id": "cn_0e589a20a05a",
       "a": {
-        "elementId": "el_c4d130791b95",
+        "elementId": "el_e5aeffc3e46f",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_4240bd7be8c0",
+        "elementId": "el_b57fbee0c5f1",
         "portId": "in"
       }
     },
     {
-      "id": "cn_dfbf0fef6b91",
+      "id": "cn_07aef2aa6951",
       "a": {
-        "elementId": "el_f60059c3ec06",
+        "elementId": "el_387096c4a928",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_014ca1eba378",
+        "elementId": "el_ef9a4bb7924f",
         "portId": "line"
       }
     },
     {
-      "id": "cn_c099d0848e43",
+      "id": "cn_855e320b2ecd",
       "a": {
-        "elementId": "el_014ca1eba378",
+        "elementId": "el_ef9a4bb7924f",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_3119f40b7940",
+        "elementId": "el_e0422736fda5",
         "portId": "from"
       }
     },
     {
-      "id": "cn_791836139f11",
+      "id": "cn_6a1e5ce7a568",
       "a": {
-        "elementId": "el_3119f40b7940",
+        "elementId": "el_e0422736fda5",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_1e1a908266c9",
+        "elementId": "el_fdbc237fe27d",
         "portId": "in"
       }
     },
     {
-      "id": "cn_f7cde42659cc",
+      "id": "cn_409c0e2b3e31",
       "a": {
-        "elementId": "el_c8ec6f899d3d",
+        "elementId": "el_c5a16dedea0a",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_dcb662b26b6b",
+        "elementId": "el_89ab9c970553",
         "portId": "line"
       }
     },
     {
-      "id": "cn_16a48e4848fc",
+      "id": "cn_780eca18c7c3",
       "a": {
-        "elementId": "el_dcb662b26b6b",
+        "elementId": "el_89ab9c970553",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_198e44b8e918",
+        "elementId": "el_01b3d6ebb39f",
         "portId": "from"
       }
     },
     {
-      "id": "cn_6d8ba5c0f2dd",
+      "id": "cn_e5251d4daa28",
       "a": {
-        "elementId": "el_198e44b8e918",
+        "elementId": "el_01b3d6ebb39f",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_9637593d05b6",
+        "elementId": "el_7d8251f74381",
         "portId": "bus"
       }
     },
     {
-      "id": "cn_45fcff30f054",
+      "id": "cn_5f9faa9fb624",
       "a": {
-        "elementId": "el_9637593d05b6",
+        "elementId": "el_7d8251f74381",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_3fbd95714712",
+        "elementId": "el_b5a29e6cbd66",
         "portId": "line"
       }
     },
     {
-      "id": "cn_edaad69bda7d",
+      "id": "cn_982beabe4f6d",
       "a": {
-        "elementId": "el_3fbd95714712",
+        "elementId": "el_b5a29e6cbd66",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_a600d6ccb6ef",
+        "elementId": "el_4290f07215f8",
         "portId": "from"
       }
     },
     {
-      "id": "cn_ff1f4323955c",
+      "id": "cn_5d513ff50132",
       "a": {
-        "elementId": "el_a600d6ccb6ef",
+        "elementId": "el_4290f07215f8",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_a6ce9014ff82",
+        "elementId": "el_18650b72beca",
         "portId": "in"
       }
     },
     {
-      "id": "cn_76e1eb6c03cc",
+      "id": "cn_6799352a578e",
       "a": {
-        "elementId": "el_9637593d05b6",
+        "elementId": "el_7d8251f74381",
         "portId": "bus"
       },
       "b": {
-        "elementId": "el_2d5ef4bbca22",
+        "elementId": "el_cbdf62a7803c",
         "portId": "line"
       }
     },
     {
-      "id": "cn_c3215a7c4ff2",
+      "id": "cn_5c952abfcec5",
       "a": {
-        "elementId": "el_2d5ef4bbca22",
+        "elementId": "el_cbdf62a7803c",
         "portId": "load"
       },
       "b": {
-        "elementId": "el_70deae560e15",
+        "elementId": "el_0caeeb50f51c",
         "portId": "from"
       }
     },
     {
-      "id": "cn_a9dfefed8190",
+      "id": "cn_0890641072b2",
       "a": {
-        "elementId": "el_70deae560e15",
+        "elementId": "el_0caeeb50f51c",
         "portId": "to"
       },
       "b": {
-        "elementId": "el_4be81caa04dd",
+        "elementId": "el_401f7f688c17",
         "portId": "in"
       }
     }
   ],
   "diagram": {
     "nodes": {
-      "el_1f9b603cd531": {
+      "el_51b2362f72ee": {
         "x": 580,
         "y": 0,
         "rotation": 0
       },
-      "el_6f241aaccfbd": {
+      "el_d47075f5fd33": {
         "x": 580,
         "y": 100,
         "rotation": 0
       },
-      "el_c8ec6f899d3d": {
+      "el_c5a16dedea0a": {
         "x": 300,
         "y": 240,
         "rotation": 0,
         "length": 1000
       },
-      "el_7a1468c5118c": {
+      "el_f66a36bd1f57": {
         "x": 300,
         "y": 320,
         "rotation": 0
       },
-      "el_4c237700bc53": {
+      "el_2ecfc609a4bf": {
         "x": 300,
         "y": 420,
         "rotation": 0
       },
-      "el_fdc36d13b6b9": {
+      "el_3584f96695e3": {
         "x": 100,
         "y": 500,
         "rotation": 0,
         "length": 440
       },
-      "el_89d784f8c7c3": {
+      "el_1cbbed8e250b": {
         "x": 120,
         "y": 620,
         "rotation": 0
       },
-      "el_5c3c3eab59a6": {
+      "el_1018d28611d1": {
         "x": 120,
         "y": 720,
         "rotation": 0
       },
-      "el_88f6bab38002": {
+      "el_d63ca60216c0": {
         "x": 120,
         "y": 840,
         "rotation": 0
       },
-      "el_292b218e7efd": {
+      "el_6da2a652b8a7": {
         "x": 300,
         "y": 620,
         "rotation": 0
       },
-      "el_cc25d7be0d9d": {
+      "el_3d7ed41409c1": {
         "x": 300,
         "y": 720,
         "rotation": 0
       },
-      "el_ca32f119c22e": {
+      "el_d3244300c04a": {
         "x": 300,
         "y": 840,
         "rotation": 0
       },
-      "el_142141a2229f": {
+      "el_3df761bcb655": {
         "x": 300,
         "y": 960,
         "rotation": 0
       },
-      "el_2b3802a8420b": {
+      "el_ab6de8c25c2a": {
         "x": 480,
         "y": 620,
         "rotation": 0
       },
-      "el_b83bf5a6da5a": {
+      "el_0c4be5514dbf": {
         "x": 480,
         "y": 720,
         "rotation": 0
       },
-      "el_f7813d63d37f": {
+      "el_d501059a5301": {
         "x": 480,
         "y": 840,
         "rotation": 0
       },
-      "el_a25cd354d4d8": {
+      "el_fca2275e6735": {
         "x": 780,
         "y": 320,
         "rotation": 0
       },
-      "el_673e5f368427": {
+      "el_504e1f998642": {
         "x": 780,
         "y": 420,
         "rotation": 0
       },
-      "el_51f21b4b7474": {
+      "el_6632b425efd6": {
         "x": 780,
         "y": 520,
         "rotation": 0
       },
-      "el_52159416150e": {
+      "el_fef3068d2865": {
         "x": 780,
         "y": 640,
         "rotation": 0
       },
-      "el_f60059c3ec06": {
+      "el_387096c4a928": {
         "x": 660,
         "y": 760,
         "rotation": 0,
         "length": 400
       },
-      "el_f6cc314a5b21": {
+      "el_196426ddd968": {
         "x": 680,
         "y": 840,
         "rotation": 0
       },
-      "el_ef2a22016d4c": {
+      "el_8fde9c6b59ed": {
         "x": 680,
         "y": 940,
         "rotation": 0
       },
-      "el_bce971de6de8": {
+      "el_2ae7c284241e": {
         "x": 680,
         "y": 1060,
         "rotation": 0
       },
-      "el_ba9797d91d59": {
+      "el_c9e08d0db88a": {
         "x": 860,
         "y": 840,
         "rotation": 0
       },
-      "el_c4d130791b95": {
+      "el_e5aeffc3e46f": {
         "x": 860,
         "y": 940,
         "rotation": 0
       },
-      "el_4240bd7be8c0": {
+      "el_b57fbee0c5f1": {
         "x": 860,
         "y": 1060,
         "rotation": 0
       },
-      "el_014ca1eba378": {
+      "el_ef9a4bb7924f": {
         "x": 1020,
         "y": 840,
         "rotation": 0
       },
-      "el_3119f40b7940": {
+      "el_e0422736fda5": {
         "x": 1020,
         "y": 940,
         "rotation": 0
       },
-      "el_1e1a908266c9": {
+      "el_fdbc237fe27d": {
         "x": 1020,
         "y": 1060,
         "rotation": 0
       },
-      "el_dcb662b26b6b": {
+      "el_89ab9c970553": {
         "x": 1260,
         "y": 320,
         "rotation": 0
       },
-      "el_198e44b8e918": {
+      "el_01b3d6ebb39f": {
         "x": 1260,
         "y": 420,
         "rotation": 0
       },
-      "el_9637593d05b6": {
+      "el_7d8251f74381": {
         "x": 1230,
         "y": 540,
         "rotation": 0,
         "length": 240
       },
-      "el_3fbd95714712": {
+      "el_b5a29e6cbd66": {
         "x": 1240,
         "y": 620,
         "rotation": 0
       },
-      "el_a600d6ccb6ef": {
+      "el_4290f07215f8": {
         "x": 1240,
         "y": 720,
         "rotation": 0
       },
-      "el_a6ce9014ff82": {
+      "el_18650b72beca": {
         "x": 1240,
         "y": 840,
         "rotation": 0
       },
-      "el_2d5ef4bbca22": {
+      "el_cbdf62a7803c": {
         "x": 1420,
         "y": 620,
         "rotation": 0
       },
-      "el_70deae560e15": {
+      "el_0caeeb50f51c": {
         "x": 1420,
         "y": 720,
         "rotation": 0
       },
-      "el_4be81caa04dd": {
+      "el_401f7f688c17": {
         "x": 1400,
         "y": 840,
         "rotation": 0
       }
     },
     "wires": {
-      "cn_f7e1b6e71e9e": {
+      "cn_9f2db08a9d7d": {
         "waypoints": []
       },
-      "cn_8b72d53e45e9": {
+      "cn_4ced57b2be30": {
         "waypoints": []
       },
-      "cn_2412a3886935": {
+      "cn_a2c6efad7697": {
         "waypoints": []
       },
-      "cn_b6044bc87f93": {
+      "cn_5a9ae1c83869": {
         "waypoints": []
       },
-      "cn_53046d432eb3": {
+      "cn_f48c18469e92": {
         "waypoints": []
       },
-      "cn_b0aee1fc95da": {
+      "cn_ac9dc25a26a6": {
         "waypoints": []
       },
-      "cn_62f13d981010": {
+      "cn_140c6cbdb4ed": {
         "waypoints": []
       },
-      "cn_37b3fb01132f": {
+      "cn_dbf818d260b0": {
         "waypoints": []
       },
-      "cn_c55de13d7f2b": {
+      "cn_d40ec09ba763": {
         "waypoints": []
       },
-      "cn_da98e46ffcca": {
+      "cn_26c8316ead1b": {
         "waypoints": []
       },
-      "cn_b9d4837802c1": {
+      "cn_04b9483ec356": {
         "waypoints": []
       },
-      "cn_3c5b4c43491c": {
+      "cn_3b865e2a6f45": {
         "waypoints": []
       },
-      "cn_cc1be70ad672": {
+      "cn_05d33e2d6067": {
         "waypoints": []
       },
-      "cn_9f51438c0638": {
+      "cn_1bc25e9e55ee": {
         "waypoints": []
       },
-      "cn_cfbf3f9848f4": {
+      "cn_5ce584347987": {
         "waypoints": []
       },
-      "cn_0273d1b39a0b": {
+      "cn_0ed3caa65342": {
         "waypoints": []
       },
-      "cn_e337ff7c69da": {
+      "cn_ea33ec262523": {
         "waypoints": []
       },
-      "cn_06b2bf8d3dd1": {
+      "cn_531a95ed90bb": {
         "waypoints": []
       },
-      "cn_9104001a8337": {
+      "cn_4160068cd545": {
         "waypoints": []
       },
-      "cn_b3ea6447c4cd": {
+      "cn_d94b3f7e3e55": {
         "waypoints": []
       },
-      "cn_1043e8c30cef": {
+      "cn_7e0285972f5c": {
         "waypoints": []
       },
-      "cn_bfeb5ae372b9": {
+      "cn_7a5ca076e2dc": {
         "waypoints": []
       },
-      "cn_e6e5b1e77793": {
+      "cn_eb4184afadb2": {
         "waypoints": []
       },
-      "cn_b6e71d7a1cff": {
+      "cn_d00100f07e12": {
         "waypoints": []
       },
-      "cn_5ce970396809": {
+      "cn_32fea5c6a70a": {
         "waypoints": []
       },
-      "cn_929d0fe0d8ce": {
+      "cn_0e589a20a05a": {
         "waypoints": []
       },
-      "cn_dfbf0fef6b91": {
+      "cn_07aef2aa6951": {
         "waypoints": []
       },
-      "cn_c099d0848e43": {
+      "cn_855e320b2ecd": {
         "waypoints": []
       },
-      "cn_791836139f11": {
+      "cn_6a1e5ce7a568": {
         "waypoints": []
       },
-      "cn_f7cde42659cc": {
+      "cn_409c0e2b3e31": {
         "waypoints": []
       },
-      "cn_16a48e4848fc": {
+      "cn_780eca18c7c3": {
         "waypoints": []
       },
-      "cn_6d8ba5c0f2dd": {
+      "cn_e5251d4daa28": {
         "waypoints": []
       },
-      "cn_45fcff30f054": {
+      "cn_5f9faa9fb624": {
         "waypoints": []
       },
-      "cn_edaad69bda7d": {
+      "cn_982beabe4f6d": {
         "waypoints": []
       },
-      "cn_ff1f4323955c": {
+      "cn_5d513ff50132": {
         "waypoints": []
       },
-      "cn_76e1eb6c03cc": {
+      "cn_6799352a578e": {
         "waypoints": []
       },
-      "cn_c3215a7c4ff2": {
+      "cn_5c952abfcec5": {
         "waypoints": []
       },
-      "cn_a9dfefed8190": {
+      "cn_0890641072b2": {
         "waypoints": []
       }
     }
