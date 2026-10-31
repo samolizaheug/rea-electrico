@@ -1,5 +1,6 @@
 import { ReactFlowProvider } from "@xyflow/react";
 import { useEffect } from "react";
+import { GRID } from "./editor/geometry";
 import { Inspector } from "./editor/Inspector";
 import { Palette } from "./editor/Palette";
 import { Toolbar } from "./editor/Toolbar";
@@ -29,8 +30,17 @@ function useShortcuts() {
       else if (mod && k === "d") {
         ed.copy();
         ed.paste();
-      } else if (!mod && k === "r") ed.rotate(ed.selection.elements);
-      else return;
+      } else if (mod && k === "a") ed.selectAll();
+      else if (!mod && k === "r") ed.rotate(ed.selection.elements);
+      else if (!mod && k === "v") ed.setTool("select");
+      else if (!mod && k === "h") ed.setTool("pan");
+      else if (!mod && e.key.startsWith("Arrow") && ed.selection.elements.length) {
+        // Un cuadro de rejilla; con Shift, cinco.
+        const step = (e.shiftKey ? 5 : 1) * GRID;
+        const d = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[e.key];
+        if (!d) return;
+        ed.nudgeSelection(d[0]!, d[1]!);
+      } else return;
       e.preventDefault();
     };
     window.addEventListener("keydown", onKey);

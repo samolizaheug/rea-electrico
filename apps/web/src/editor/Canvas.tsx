@@ -5,6 +5,7 @@ import {
   Controls,
   MiniMap,
   ReactFlow,
+  SelectionMode,
   useReactFlow,
   type Connection as FlowConnection,
   type Edge,
@@ -12,7 +13,8 @@ import {
   type Node,
   type NodeChange,
 } from "@xyflow/react";
-import { useCallback, useMemo, type DragEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { t } from "../i18n";
 import { useEditor, useProject } from "../state/store";
 import { useValidation } from "../state/validation";
 import { ElementNode } from "./ElementNode";
@@ -33,6 +35,46 @@ export function Canvas() {
 
   const validation = useValidation();
   const issuesOpen = useEditor((s) => s.issuesOpen);
+  const tool = useEditor((s) => s.tool);
+  const setTool = useEditor((s) => s.setTool);
+
+  // Espacio sostenido = mover la vista temporalmente (como en programas de dibujo).
+  const [space, setSpace] = useState(false);
+  useEffect(() => {
+    const typing = (el: EventTarget | null) => {
+      const h = el as HTMLElement | null;
+      return !!h && (h.tagName === "INPUT" || h.tagName === "TEXTAREA" || h.tagName === "SELECT" || h.isContentEditable);
+    };
+    const down = (e: KeyboardEvent) => {
+      if (e.code === "Space" && !typing(e.target)) {
+        if (!e.repeat) setSpace(true);
+        e.preventDefault();
+      }
+    };
+    const up = (e: KeyboardEvent) => {
+      if (e.code === "Space") setSpace(false);
+    };
+    const blur = () => setSpace(false);
+    window.addEventListener("keydown", down);
+    window.addEventListener("keyup", up);
+    window.addEventListener("blur", blur);
+    return () => {
+      window.removeEventListener("keydown", down);
+      window.removeEventListener("keyup", up);
+      window.removeEventListener("blur", blur);
+    };
+  }, []);
+
+  // Cuadro de selección según la dirección (como AutoCAD): hacia la derecha = solo lo que queda completo
+  // adentro (ventana); hacia la izquierda = todo lo que toque (captura).
+  const boxStart = useRef<number | null>(null);
+  const [crossing, setCrossing] = useState(false);
+  const onPointerMove = useCallback((e: ReactPointerEvent) => {
+    if (boxStart.current === null) return;
+    const next = e.clientX < boxStart.current;
+    setCrossing((c) => (c === next ? c : next));
+  }, []);
+  const panning = tool === "pan" || space;
   const nodes: Node[] = useMemo(() => {
     const selected = new Set(selection.elements);
     return project.elements.map((el) => {
@@ -128,7 +170,12 @@ export function Canvas() {
   );
 
   return (
-    <div className="canvas" onDragOver={(e) => e.preventDefault()} onDrop={onDrop}>
+    <div
+      className={`canvas ${crossing ? "box-crossing" : "box-window"}${panning ? " tool-pan" : ""}`}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={onDrop}
+      onPointerMove={onPointerMove}
+    >
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -144,7 +191,18 @@ export function Canvas() {
         snapGrid={[GRID, GRID]}
         deleteKeyCode={["Delete", "Backspace"]}
         multiSelectionKeyCode={["Shift", "Control", "Meta"]}
-        selectionKeyCode="Shift"
+        selectionKeyCode={panning && !space ? "Shift" : null}
+        selectionOnDrag={!panning}
+        panOnDrag={panning ? true : [1]}
+        selectionMode={crossing ? SelectionMode.Partial : SelectionMode.Full}
+        onSelectionStart={(e) => {
+          boxStart.current = e.clientX;
+          setCrossing(false);
+        }}
+        onSelectionEnd={() => {
+          boxStart.current = null;
+        }}
+        disableKeyboardA11y
         minZoom={0.1}
         maxZoom={4}
         fitView
@@ -152,6 +210,21 @@ export function Canvas() {
       >
         <Background variant={BackgroundVariant.Lines} gap={GRID} color="var(--grid)" />
         <Controls showInteractive={false} />
+        <div className="canvas-tools" role="group" aria-label="Herramienta">
+          <button type="button" className={tool === "select" ? "active" : ""} aria-pressed={tool === "select"} title={t("canvas.toolSelectHelp")} onClick={() => setTool("select")}>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2.5 2" />
+              <path d="M7 6 L7 14 L9.2 11.8 L10.8 15 L12 14.4 L10.4 11.3 L13.4 11.1 Z" fill="currentColor" />
+            </svg>
+            {t("canvas.toolSelect")}
+          </button>
+          <button type="button" className={tool === "pan" ? "active" : ""} aria-pressed={tool === "pan"} title={t("canvas.toolPanHelp")} onClick={() => setTool("pan")}>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M8 1.5v13M1.5 8h13M8 1.5 6 3.5M8 1.5l2 2M8 14.5l-2-2M8 14.5l2-2M1.5 8l2-2M1.5 8l2 2M14.5 8l-2-2M14.5 8l-2 2" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
+            {t("canvas.toolPan")}
+          </button>
+        </div>
         <MiniMap pannable zoomable className="minimap" />
       </ReactFlow>
       {issuesOpen ? <IssuesPanel onClose={() => useEditor.getState().setIssuesOpen(false)} /> : null}

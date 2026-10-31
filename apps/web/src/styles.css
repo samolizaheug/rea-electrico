@@ -908,3 +908,70 @@ input[aria-invalid="true"] {
 .mcc-list-row { display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 8px; }
 .mcc-list-row .input-unit { max-width: 180px; }
 .mcc-list-row input { width: 100%; }
+
+/* Herramienta del lienzo (Seleccionar / Mano) */
+.canvas-tools {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 5;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--panel, #fff);
+  border: 1px solid var(--border, #d0d4dc);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+.canvas-tools button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.canvas-tools button:hover {
+  background: var(--accent-soft);
+}
+.canvas-tools button.active {
+  background: var(--accent, #2563eb);
+  color: #fff;
+}
+.canvas.tool-pan .react-flow__pane {
+  cursor: grab;
+}
+.canvas.tool-pan .react-flow__pane:active {
+  cursor: grabbing;
+}
+.canvas:not(.tool-pan) .react-flow__pane {
+  cursor: crosshair;
+}
+/* Ventana (hacia la derecha): azul continuo. Captura (hacia la izquierda): verde punteado. */
+.canvas.box-window .react-flow__selection {
+  background: rgb(37 99 235 / 0.08);
+  border: 1px solid #2563eb;
+}
+.canvas.box-crossing .react-flow__selection {
+  background: rgb(22 163 74 / 0.08);
+  border: 1px dashed #16a34a;
+}
+.align-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.align-grid button {
+  font-size: 12px;
+  padding: 4px 6px;
+}
+.inspector h3.small {
+  font-size: 13px;
+  margin: 12px 0 6px;
+}

@@ -26,6 +26,7 @@ import {
 } from "@rea/core";
 import { getNormModule } from "@rea/norms";
 import { mccDefaultWidth, syncMccSections } from "@rea/symbols";
+import { alignElements, nudgeElements, spreadElements, type AlignMode } from "../editor/arrange";
 import { distributeBus } from "../editor/distribute";
 import { resultBadge } from "../results/format";
 import { validationFor } from "./validation";
@@ -61,6 +62,9 @@ interface EditorState {
   /** Mostrar resultados del cálculo sobre el diagrama. */
   showResults: boolean;
   setShowResults(v: boolean): void;
+  /** Herramienta del lienzo: «select» = arrastrar en vacío dibuja un cuadro; «pan» = arrastrar mueve la vista. */
+  tool: "select" | "pan";
+  setTool(tool: EditorState["tool"]): void;
 
   // Proyecto
   newProject(name: string): void;
@@ -99,10 +103,25 @@ interface EditorState {
   undo(): void;
   redo(): void;
   select(sel: Selection): void;
+  /** Selecciona todos los elementos y cables. */
+  selectAll(): void;
+  /** Mueve la selección (un paso de deshacer). */
+  nudgeSelection(dx: number, dy: number): void;
+  alignSelection(mode: AlignMode): void;
+  spreadSelection(axis: "x" | "y"): void;
   notify(kind: Toast["kind"], text: string): void;
 }
 
 let toastSeq = 0;
+
+const TOOL_KEY = "rea.tool";
+function readTool(): "select" | "pan" {
+  try {
+    return localStorage.getItem(TOOL_KEY) === "pan" ? "pan" : "select";
+  } catch {
+    return "select";
+  }
+}
 
 export const useEditor = create<EditorState>((set, get) => {
   /** Aplica una operación del modelo como una entrada del historial; los errores del modelo se muestran como aviso. */
@@ -133,6 +152,15 @@ export const useEditor = create<EditorState>((set, get) => {
     setView: (view) => set({ view }),
     showResults: true,
     setShowResults: (showResults) => set({ showResults }),
+    tool: readTool(),
+    setTool: (tool) => {
+      try {
+        localStorage.setItem(TOOL_KEY, tool);
+      } catch {
+        // Sin almacenamiento: el modo solo dura esta sesión.
+      }
+      set({ tool });
+    },
 
     newProject: (name) => set({ history: initHistory(createProject({ name })), selection: { elements: [], connections: [] } }),
     loadProject: (p) => set({ history: initHistory(syncMccSections(p, registry)), selection: { elements: [], connections: [] } }),
@@ -243,6 +271,22 @@ export const useEditor = create<EditorState>((set, get) => {
     undo: () => set((s) => ({ history: undo(s.history), selection: { elements: [], connections: [] } })),
     redo: () => set((s) => ({ history: redo(s.history), selection: { elements: [], connections: [] } })),
     select: (selection) => set({ selection }),
+    selectAll: () => {
+      const p = get().history.present;
+      set({ selection: { elements: p.elements.map((e) => e.id), connections: p.connections.map((c) => c.id) } });
+    },
+    nudgeSelection: (dx, dy) => {
+      const ids = get().selection.elements;
+      if (ids.length) apply((p) => nudgeElements(p, ids, dx, dy));
+    },
+    alignSelection: (mode) => {
+      const ids = get().selection.elements;
+      if (ids.length > 1) apply((p) => alignElements(p, registry, ids, mode));
+    },
+    spreadSelection: (axis) => {
+      const ids = get().selection.elements;
+      if (ids.length > 2) apply((p) => spreadElements(p, registry, ids, axis));
+    },
     notify: (kind, text) => set({ toast: { id: ++toastSeq, kind, text } }),
   };
 });
