@@ -5,7 +5,7 @@ import { distributeBus } from "../src/editor/distribute";
 
 const registry = createDefaultRegistry();
 
-function build(busType: "mcc" | "panelboard", motors: { tag: string; x: number; section?: number }[], params: Record<string, ParamValue> = {}) {
+function build(busType: "mcc" | "panelboard", motors: { tag: string; x: number; section?: number }[], params: Record<string, ParamValue> = {}, feederX?: number) {
   let p: Project = createProject({ name: "dist" });
   const ids: Record<string, string> = {};
   const add = (tag: string, type: string, x: number, y: number, pr: Record<string, ParamValue> = {}) => {
@@ -14,6 +14,10 @@ function build(busType: "mcc" | "panelboard", motors: { tag: string; x: number; 
     ids[tag] = r.elementId;
   };
   add("B", busType, 100, 100, { voltageV: 480, system: "3F3H", ...params });
+  if (feederX !== undefined) {
+    add("F", "breaker", feederX, 20);
+    p = connect(p, registry, { elementId: ids.F!, portId: "load" }, { elementId: ids.B!, portId: "bus" }).project;
+  }
   for (const m of motors) {
     add(m.tag, "motor", m.x, 300, { ratedPower: 15, ratedPowerUnit: "hp", voltageV: 480, system: "3F3H" });
     const r = connect(p, registry, { elementId: ids.B!, portId: "bus" }, { elementId: ids[m.tag]!, portId: "in" });
@@ -81,5 +85,24 @@ describe("distribuir cargas de una barra", () => {
     }
     // La función no modifica el proyecto de entrada.
     expect(p.diagram.nodes[ids["M-02"]!]!.x).toBe(125);
+  });
+
+  it("la barra queda centrada en su alimentación y las cargas centradas debajo", () => {
+    const motors = [
+      { tag: "M-01", x: 120 },
+      { tag: "M-02", x: 125 },
+      { tag: "M-03", x: 130 },
+    ];
+    for (const type of ["panelboard", "mcc"] as const) {
+      const { p, ids } = build(type, motors, {}, 600);
+      const fx = p.diagram.nodes[ids.F!]!.x + nodeGeometry(p, registry, ids.F!)!.width / 2;
+      const q = distributeBus(p, registry, ids.B!, (id) => (id === ids.B ? [] : LINES));
+      // La alimentación no se mueve y la barra queda centrada en ella.
+      expect(q.diagram.nodes[ids.F!]!.x).toBe(p.diagram.nodes[ids.F!]!.x);
+      expect(busGeometry(q, registry, ids.B!)!.cx).toBeCloseTo(fx, 6);
+      // Las cargas quedan centradas bajo la barra (tolerancia de medio cuadro de rejilla).
+      const centers = motors.map((m) => q.diagram.nodes[ids[m.tag]!]!.x + nodeGeometry(q, registry, ids[m.tag]!)!.width / 2);
+      expect(Math.abs((Math.min(...centers) + Math.max(...centers)) / 2 - fx)).toBeLessThanOrEqual(10);
+    }
   });
 });

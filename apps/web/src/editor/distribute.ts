@@ -42,7 +42,8 @@ function extent(project: Project, registry: ElementRegistry, id: string, linesOf
  * Distribuye horizontalmente los circuitos que salen de una barra (tablero, barra o CCM): cada circuito
  * se mueve completo (interruptor, cable, carga y lo que cuelgue de ella) para que ni símbolos ni textos se
  * encimen, con la separación mínima, y la barra se alarga lo necesario. En un CCM se acomoda cada sección
- * por separado y cada sección toma el ancho que piden sus propias cargas.
+ * por separado y cada sección toma el ancho que piden sus propias cargas. La barra queda centrada en su
+ * alimentación y los circuitos centrados debajo (en un CCM, dentro de cada sección).
  */
 export function distributeBus(project: Project, registry: ElementRegistry, busId: string, linesOf: (id: string) => string[]): Project {
   const bus = project.elements.find((e) => e.id === busId);
@@ -101,40 +102,60 @@ export function distributeBus(project: Project, registry: ElementRegistry, busId
 
   // Ancho de cada grupo y posición de inicio.
   const needOf = (list: Branch[]) => list.reduce((s, b) => s + ceilGrid(width(b)) + GAP, 0);
+  /** Ancho que ocupan los circuitos de un grupo (sin la separación del último). */
+  const spanOf = (list: Branch[]) => Math.max(0, needOf(list) - GAP);
+  // La barra queda centrada en su alimentación (o donde ya estaba su centro, si no tiene).
+  const center = feederXs.length ? (Math.min(...feederXs) + Math.max(...feederXs)) / 2 : bn.x + bg.width / 2;
   let length: number;
+  let busX: number;
   const startOf = new Map<number, number>();
   let sectionWidths: number[] | null = null;
   if (isMcc) {
-    // Cada sección del ancho que piden sus propias cargas (las vacías, con el mínimo).
+    // Cada sección del ancho que piden sus propias cargas (las vacías, con el mínimo),
+    // con sus circuitos centrados dentro de ella.
     const n = mccLayout(bus.params).sections;
     sectionWidths = Array.from({ length: n }, (_, i) => ceilGrid(Math.max(MCC_MIN_SECTION, needOf(groups.get(i + 1) ?? []) + 16)));
     length = 8 + sectionWidths.reduce((s, w) => s + w, 0);
-    let x = bn.x + 4;
+    busX = center - length / 2;
+    let x = busX + 4;
     sectionWidths.forEach((w, i) => {
-      startOf.set(i + 1, x + 12);
+      startOf.set(i + 1, x + (w - spanOf(groups.get(i + 1) ?? [])) / 2);
       x += w;
     });
   } else {
-    startOf.set(1, bn.x + 16);
-    length = needOf(groups.get(1)!) + 24;
+    // Circuitos centrados bajo la barra; la barra no se acorta por debajo de su símbolo
+    // ni deja fuera a ninguna de sus alimentaciones. Longitud múltiplo de 2 cuadros para que el centro no se mueva.
+    const span = spanOf(groups.get(1)!);
+    length = Math.max(160, span + 40, ...feederXs.map((x) => 2 * Math.abs(x - center) + 40));
+    length = Math.ceil(length / (2 * GRID)) * 2 * GRID;
+    busX = center - length / 2;
+    startOf.set(1, center - span / 2);
   }
-  // La barra no se acorta por debajo de su símbolo ni deja fuera a su alimentación.
-  length = Math.max(length, isMcc ? 0 : 160, ...feederXs.map((x) => x - bn.x + 40));
 
   let p = project;
   for (const [k, list] of groups) {
-    let cursor = startOf.get(k) ?? bn.x + 16;
-    for (const b of list) {
+    const start = startOf.get(k) ?? bn.x + 16;
+    // Primero se acomodan en fila; luego el grupo completo se recorre para que su centro real
+    // (ya con el redondeo a la rejilla de cada circuito) caiga en el centro buscado.
+    let cursor = start;
+    const dxs = list.map((b) => {
       const dx = Math.round((cursor - b.minX) / GRID) * GRID;
+      cursor = Math.max(b.maxX + dx + GAP, b.minX + dx + ceilGrid(width(b)) + GAP);
+      return dx;
+    });
+    const lo = Math.min(...list.map((b, i) => b.minX + dxs[i]!));
+    const hi = Math.max(...list.map((b, i) => b.maxX + dxs[i]!));
+    const fix = Math.round((start + spanOf(list) / 2 - (lo + hi) / 2) / GRID) * GRID;
+    list.forEach((b, i) => {
+      const dx = dxs[i]! + fix;
+      if (!dx) return;
       for (const id of b.ids) {
         const nn = p.diagram.nodes[id]!;
-        if (dx) p = moveElement(p, id, nn.x + dx, nn.y);
+        p = moveElement(p, id, nn.x + dx, nn.y);
       }
-      cursor = b.maxX + dx + GAP;
-      cursor = Math.max(cursor, b.minX + dx + ceilGrid(width(b)) + GAP);
-    }
+    });
   }
   const cur = p.diagram.nodes[busId]!;
-  p = resizeBus(p, busId, isMcc ? length : ceilGrid(length), cur.x, cur.y);
+  p = resizeBus(p, busId, length, busX, cur.y);
   return isMcc ? setSectionWidths(p, busId, sectionWidths) : p;
 }
