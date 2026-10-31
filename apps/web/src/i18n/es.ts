@@ -29,6 +29,8 @@ export const es = {
   "inspector.rotate": "Girar 90°",
   "inspector.delete": "Eliminar",
   "inspector.disconnect": "Desconectar",
+  "inspector.distribute": "Distribuir cargas",
+  "inspector.distributeHelp": "Separa horizontalmente los circuitos que salen de esta barra (con todo lo que cuelga de ellos) para que ni símbolos ni textos se encimen, y alarga la barra lo necesario. En un CCM acomoda cada sección. Se deshace con Ctrl+Z.",
   "help.options": "Ver opciones con imagen",
   "help.explain": "Ver explicación",
   "mcc.connectionSection": "Sección del CCM de la que sale",

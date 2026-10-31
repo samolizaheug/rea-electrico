@@ -31,6 +31,8 @@ export const en: Messages = {
   "inspector.rotate": "Rotate 90°",
   "inspector.delete": "Delete",
   "inspector.disconnect": "Disconnect",
+  "inspector.distribute": "Distribute loads",
+  "inspector.distributeHelp": "Spreads the circuits leaving this bus (with everything below them) so that symbols and texts do not overlap, and lengthens the bus as needed. In an MCC each section is arranged. Undo with Ctrl+Z.",
   "help.options": "Show options with pictures",
   "help.explain": "Show explanation",
   "mcc.connectionSection": "MCC section it leaves from",

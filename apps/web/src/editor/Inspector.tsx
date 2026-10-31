@@ -100,6 +100,11 @@ export function Inspector() {
         >
           {t("inspector.disconnect")}
         </button>
+        {def.electricalRole === "bus" ? (
+          <button title={t("inspector.distributeHelp")} onClick={() => ed.distributeBus(el.id)}>
+            {t("inspector.distribute")}
+          </button>
+        ) : null}
         <button className="danger" onClick={() => ed.remove([el.id], [])}>
           {t("inspector.delete")}
         </button>

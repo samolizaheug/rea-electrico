@@ -525,6 +525,7 @@ table.grid tfoot td {
 }
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   margin: 12px 0;
 }

@@ -26,6 +26,9 @@ import {
 } from "@rea/core";
 import { getNormModule } from "@rea/norms";
 import { mccDefaultWidth, syncMccSections } from "@rea/symbols";
+import { distributeBus } from "../editor/distribute";
+import { resultBadge } from "../results/format";
+import { validationFor } from "./validation";
 import { create } from "zustand";
 import { t } from "../i18n";
 import { commitFrom, initHistory, push, redo, replace, undo, type History } from "./history";
@@ -80,6 +83,8 @@ interface EditorState {
   connectPorts(a: PortRef, b: PortRef, busSection?: number): void;
   /** Cambia la sección del CCM de una conexión existente. */
   setConnectionSection(connectionId: string, section: number | null): void;
+  /** Separa los circuitos de una barra, tablero o CCM para que no se encimen (un paso de deshacer). */
+  distributeBus(busId: string): void;
   remove(elementIds: string[], connectionIds: string[]): void;
   moveTransient(moves: { id: string; x: number; y: number }[]): void;
   /** Cambia la longitud de una barra mientras se arrastra su extremo (se confirma con commitDrag). */
@@ -171,6 +176,16 @@ export const useEditor = create<EditorState>((set, get) => {
       });
     },
     setConnectionSection: (connectionId, section) => apply((p) => setConnectionSection(p, connectionId, section)),
+    distributeBus: (busId) =>
+      apply((p) => {
+        // Los textos que ocupan espacio son la etiqueta y los renglones de resultados (si hay cálculo).
+        const results = validationFor(p).results;
+        const linesOf = (id: string) => {
+          const el = p.elements.find((x) => x.id === id);
+          return el && results ? resultBadge(id, el.type, results) : [];
+        };
+        return distributeBus(p, registry, busId, linesOf);
+      }),
     remove: (elementIds, connectionIds) => {
       if (!elementIds.length && !connectionIds.length) return;
       apply((p) => {
