@@ -26,7 +26,7 @@ import {
 } from "@rea/core";
 import { getNormModule } from "@rea/norms";
 import { mccDefaultWidth, syncMccSections } from "@rea/symbols";
-import { alignElements, nudgeElements, spreadElements, type AlignMode } from "../editor/arrange";
+import { nudgeElements } from "../editor/arrange";
 import { distributeBus } from "../editor/distribute";
 import { resultBadge } from "../results/format";
 import { validationFor } from "./validation";
@@ -107,8 +107,6 @@ interface EditorState {
   selectAll(): void;
   /** Mueve la selección (un paso de deshacer). */
   nudgeSelection(dx: number, dy: number): void;
-  alignSelection(mode: AlignMode): void;
-  spreadSelection(axis: "x" | "y"): void;
   notify(kind: Toast["kind"], text: string): void;
 }
 
@@ -278,14 +276,6 @@ export const useEditor = create<EditorState>((set, get) => {
     nudgeSelection: (dx, dy) => {
       const ids = get().selection.elements;
       if (ids.length) apply((p) => nudgeElements(p, ids, dx, dy));
-    },
-    alignSelection: (mode) => {
-      const ids = get().selection.elements;
-      if (ids.length > 1) apply((p) => alignElements(p, registry, ids, mode));
-    },
-    spreadSelection: (axis) => {
-      const ids = get().selection.elements;
-      if (ids.length > 2) apply((p) => spreadElements(p, registry, ids, axis));
     },
     notify: (kind, text) => set({ toast: { id: ++toastSeq, kind, text } }),
   };

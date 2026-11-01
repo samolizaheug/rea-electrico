@@ -28,23 +28,6 @@ export function Inspector() {
         <h2>{t("inspector.title")}</h2>
         <p>{t("inspector.multi", { n: selection.elements.length })}</p>
         <p className="hint">{t("inspector.multiHelp")}</p>
-        <h3 className="small" title={t("inspector.alignHelp")}>{t("inspector.align")}</h3>
-        <div className="align-grid">
-          {(["left", "center", "right", "top", "middle", "bottom"] as const).map((m) => (
-            <button key={m} type="button" title={t("inspector.alignHelp")} onClick={() => ed.alignSelection(m)}>
-              {t(`inspector.align.${m}`)}
-            </button>
-          ))}
-        </div>
-        <h3 className="small">{t("inspector.spread")}</h3>
-        <div className="actions">
-          <button type="button" disabled={selection.elements.length < 3} onClick={() => ed.spreadSelection("x")}>
-            {t("inspector.spread.x")}
-          </button>
-          <button type="button" disabled={selection.elements.length < 3} onClick={() => ed.spreadSelection("y")}>
-            {t("inspector.spread.y")}
-          </button>
-        </div>
         <div className="actions">
           <button onClick={() => ed.rotate(selection.elements)}>{t("inspector.rotate")}</button>
           <button title={t("inspector.disconnectHelp")} onClick={() => ed.disconnectElements(selection.elements)}>{t("inspector.disconnect")}</button>

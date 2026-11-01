@@ -291,9 +291,8 @@ export function resultBadge(elementId: string, type: string, sizing: SizingRunRe
       const el = sizing.sizedProject.elements.find((e) => e.id === elementId);
       const load = el && loadPlate(el.type, el.params);
       if (!load) return [`${fmt(flow.currentA)} A · ${fmt(flow.voltage?.pct, 1)} %`];
-      // Capacidad · fases - tensión nominal · corriente (FLA en motores), como en los diagramas unifilares de proyecto.
-      const fla = el.type === "motor" && flow.ratedCurrentA !== undefined;
-      return [load.capacity, load.phasesVoltage, fla ? `${fmt(flow.ratedCurrentA, 2)} A (FLA)` : `${fmt(flow.currentA, 2)} A`];
+      // Capacidad · fases - tensión nominal · corriente calculada (con su factor de demanda), igual en todas las cargas.
+      return [load.capacity, load.phasesVoltage, `${fmt(flow.currentA, 2)} A`];
     }
   }
 }

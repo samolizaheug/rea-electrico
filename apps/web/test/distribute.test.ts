@@ -27,7 +27,7 @@ function build(busType: "mcc" | "panelboard", motors: { tag: string; x: number; 
 }
 
 /** Extensión de cada motor con su etiqueta debajo (tag + 3 renglones como en el diagrama). */
-const LINES = ["15 HP", "3Ph - 480 V", "21.00 A (FLA)"];
+const LINES = ["15 HP", "3Ph - 480 V", "21.00 A"];
 const span = (p: Project, id: string) => {
   const n = p.diagram.nodes[id]!;
   const g = nodeGeometry(p, registry, id)!;
