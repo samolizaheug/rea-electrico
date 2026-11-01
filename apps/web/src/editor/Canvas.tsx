@@ -9,12 +9,15 @@ import {
   useReactFlow,
   type Connection as FlowConnection,
   type Edge,
+  type FinalConnectionState,
   type EdgeChange,
   type Node,
   type NodeChange,
 } from "@xyflow/react";
 import { useCallback, useEffect, useMemo, useRef, useState, type DragEvent, type PointerEvent as ReactPointerEvent } from "react";
 import { t } from "../i18n";
+import { registry } from "../state/registry";
+import { busAtPoint } from "./busSnap";
 import { useEditor, useProject } from "../state/store";
 import { useValidation } from "../state/validation";
 import { ElementNode } from "./ElementNode";
@@ -70,11 +73,24 @@ export function Canvas() {
   const boxStart = useRef<number | null>(null);
   const [crossing, setCrossing] = useState(false);
   const onPointerMove = useCallback((e: ReactPointerEvent) => {
+    if (dragFrom.current !== null) {
+      const p = flow.screenToFlowPosition({ x: e.clientX, y: e.clientY });
+      const hit = busAtPoint(useEditor.getState().history.present, registry, p.x, p.y, snapTolerance(), dragFrom.current);
+      const id = hit?.busId ?? null;
+      setSnapBus((cur) => (cur === id ? cur : id));
+    }
     if (boxStart.current === null) return;
     const next = e.clientX < boxStart.current;
     setCrossing((c) => (c === next ? c : next));
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flow]);
   const panning = tool === "pan" || space;
+  // Barra a la que se conectará el cable que se está arrastrando si se suelta aquí.
+  const [snapBus, setSnapBus] = useState<string | null>(null);
+  const dragFrom = useRef<string | null>(null);
+  /** Tolerancia de 24 px en pantalla, en unidades del diagrama. */
+  const snapTolerance = () => 24 / flow.getViewport().zoom;
+
   const nodes: Node[] = useMemo(() => {
     const selected = new Set(selection.elements);
     return project.elements.map((el) => {
@@ -85,9 +101,10 @@ export function Canvas() {
         position: { x: n.x, y: n.y },
         data: { issue: validation.byElement.get(el.id) ?? null },
         selected: selected.has(el.id),
+        ...(snapBus === el.id ? { className: "snap-target" } : {}),
       };
     });
-  }, [project, selection.elements, validation]);
+  }, [project, selection.elements, validation, snapBus]);
 
   const edges: Edge[] = useMemo(() => {
     const selected = new Set(selection.connections);
@@ -157,6 +174,23 @@ export function Canvas() {
     [connectPorts],
   );
 
+  // Soltar el cable en cualquier parte de una barra (no solo en su punto de conexión) también conecta.
+  const onConnectEnd = useCallback(
+    (e: MouseEvent | TouchEvent, state: FinalConnectionState) => {
+      dragFrom.current = null;
+      setSnapBus(null);
+      if (state.isValid || !state.fromNode || !state.fromHandle) return;
+      const pt = "changedTouches" in e ? e.changedTouches[0] : e;
+      if (!pt) return;
+      const p = flow.screenToFlowPosition({ x: pt.clientX, y: pt.clientY });
+      const hit = busAtPoint(useEditor.getState().history.present, registry, p.x, p.y, snapTolerance(), state.fromNode.id);
+      if (!hit) return;
+      connectPorts({ elementId: state.fromNode.id, portId: portOfHandle(state.fromHandle.id) }, { elementId: hit.busId, portId: hit.portId }, hit.section);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [flow, connectPorts],
+  );
+
   const onDrop = useCallback(
     (e: DragEvent) => {
       e.preventDefault();
@@ -184,6 +218,10 @@ export function Canvas() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
+        onConnectStart={(_, p) => {
+          dragFrom.current = p.nodeId ?? null;
+        }}
+        onConnectEnd={onConnectEnd}
         onDelete={({ nodes: n, edges: e }) => remove(n.map((x) => x.id), e.map((x) => x.id))}
         isValidConnection={(c) => c.source !== c.target}
         connectionMode={ConnectionMode.Loose}

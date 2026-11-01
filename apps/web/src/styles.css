@@ -961,3 +961,10 @@ input[aria-invalid="true"] {
   background: rgb(22 163 74 / 0.08);
   border: 1px dashed #16a34a;
 }
+
+/* Barra a la que se conectará el cable si se suelta aquí. */
+.react-flow__node.snap-target {
+  outline: 2px dashed var(--accent);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
