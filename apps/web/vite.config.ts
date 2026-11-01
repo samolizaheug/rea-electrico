@@ -1,8 +1,21 @@
 import react from "@vitejs/plugin-react";
+import { execSync } from "node:child_process";
 import { defineConfig } from "vite";
+
+/** Versión visible en la barra de estado: commit y fecha de la compilación (para saber si el navegador ya tiene la última). */
+function appVersion(): string {
+  let commit = "local";
+  try {
+    commit = execSync("git rev-parse --short HEAD").toString().trim();
+  } catch {
+    // Sin git: se queda como «local».
+  }
+  return `${commit} · ${new Date().toISOString().slice(0, 10)}`;
+}
 
 export default defineConfig({
   plugins: [react()],
+  define: { __APP_VERSION__: JSON.stringify(appVersion()) },
   // Rutas relativas: el sitio funciona igual en la raíz de un dominio o en una subcarpeta
   // (p. ej. https://usuario.github.io/rea-electrico/ en GitHub Pages).
   base: "./",

@@ -99,6 +99,7 @@ function StatusBar() {
         {v.norm.label} · {p.settings.symbology}
       </span>
       <span className="muted">{t("status.saved")}</span>
+      <span className="muted" title="Versión publicada (commit · fecha)">v {typeof __APP_VERSION__ === "string" ? __APP_VERSION__ : "dev"}</span>
     </footer>
   );
 }
