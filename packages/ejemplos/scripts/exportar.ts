@@ -5,9 +5,11 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { serializeProject } from "@rea/core";
-import { sistemaEjemplo } from "../src";
+import { EJEMPLOS } from "../src";
 
 const dir = fileURLToPath(new URL("../../../examples/", import.meta.url));
 mkdirSync(dir, { recursive: true });
-writeFileSync(`${dir}sistema-ejemplo.rea.json`, serializeProject(sistemaEjemplo()), "utf8");
-console.log(`Ejemplo exportado en ${dir}sistema-ejemplo.rea.json`);
+for (const e of EJEMPLOS) {
+  writeFileSync(`${dir}${e.id}.rea.json`, serializeProject(e.build()), "utf8");
+  console.log(`Ejemplo exportado en ${dir}${e.id}.rea.json`);
+}

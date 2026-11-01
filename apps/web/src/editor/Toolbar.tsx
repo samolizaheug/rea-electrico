@@ -1,4 +1,5 @@
 import { ProjectFormatError } from "@rea/core";
+import { EJEMPLOS } from "@rea/ejemplos";
 import { useReactFlow } from "@xyflow/react";
 import { useEffect, useRef, useState } from "react";
 import { t } from "../i18n";
@@ -57,6 +58,13 @@ export function Toolbar() {
           {t("toolbar.new")}
         </button>
         <button onClick={() => fileInput.current?.click()}>{t("toolbar.open")}</button>
+        <ExamplesMenu
+          onLoaded={() => {
+            // Dos ajustes: el segundo, ya medidos los símbolos del proyecto nuevo.
+            setTimeout(() => flow.fitView({ padding: 0.1 }), 60);
+            setTimeout(() => flow.fitView({ padding: 0.1 }), 400);
+          }}
+        />
         <button onClick={() => ed.notify("info", t("msg.saved", { file: downloadProject(useEditor.getState().history.present) }))}>
           {t("toolbar.save")}
         </button>
@@ -103,5 +111,64 @@ export function Toolbar() {
         </select>
       </label>
     </header>
+  );
+}
+
+/** Menú de proyectos de ejemplo: abre una copia nueva del ejemplo (reemplaza el proyecto abierto). */
+function ExamplesMenu({ onLoaded }: { onLoaded(): void }) {
+  const [open, setOpen] = useState(false);
+  const [at, setAt] = useState({ left: 0, top: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: MouseEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", close);
+    document.addEventListener("keydown", esc);
+    return () => {
+      document.removeEventListener("mousedown", close);
+      document.removeEventListener("keydown", esc);
+    };
+  }, [open]);
+  return (
+    <div className="examples-menu" ref={ref}>
+      <button
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={(e) => {
+          // La barra se desplaza horizontalmente y recortaría la lista: se coloca fija bajo el botón.
+          const r = e.currentTarget.getBoundingClientRect();
+          setAt({ left: Math.max(8, Math.min(r.left, window.innerWidth - 436)), top: r.bottom + 4 });
+          setOpen((o) => !o);
+        }}
+      >
+        {t("toolbar.examples")} ▾
+      </button>
+      {open ? (
+        <div className="examples-list" role="menu" style={{ left: at.left, top: at.top }}>
+          <p className="hint">{t("examples.hint")}</p>
+          {EJEMPLOS.map((e) => (
+            <button
+              key={e.id}
+              role="menuitem"
+              className="example-item"
+              onClick={() => {
+                if (!confirm(t("confirm.example", { name: e.title }))) return;
+                const ed = useEditor.getState();
+                ed.loadProject(e.build());
+                ed.notify("info", t("msg.opened", { name: e.title }));
+                setOpen(false);
+                onLoaded();
+              }}
+            >
+              <strong>{e.title}</strong>
+              <span>{e.summary}</span>
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }

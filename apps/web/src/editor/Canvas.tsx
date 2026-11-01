@@ -241,7 +241,7 @@ export function Canvas() {
           boxStart.current = null;
         }}
         disableKeyboardA11y
-        minZoom={0.1}
+        minZoom={0.05}
         maxZoom={4}
         fitView
         proOptions={{ hideAttribution: true }}

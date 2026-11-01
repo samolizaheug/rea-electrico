@@ -1,0 +1,4182 @@
+{
+  "format": "rea-electrico/proyecto",
+  "schemaVersion": 2,
+  "meta": {
+    "id": "prj_1708b5ded237",
+    "name": "Ejemplo 4 · Edificio comercial de 4 pisos",
+    "client": "Ejemplo",
+    "location": "México",
+    "author": "Ing. RGLR",
+    "description": "Transformador de 750 kVA a 220/127 V (secundario con conductores en paralelo automáticos), un tablero por piso a distancias crecientes, alumbrado y contactos monofásicos repartidos por fase, aire acondicionado, elevadores y equipo hidroneumático.",
+    "createdAt": "2026-11-01T02:18:55.898Z",
+    "updatedAt": "2026-11-01T02:18:55.907Z"
+  },
+  "settings": {
+    "norm": {
+      "id": "nom-001-sede",
+      "edition": "2012"
+    },
+    "symbology": "ANSI",
+    "units": {
+      "conductorSize": "mm2",
+      "length": "m"
+    },
+    "language": "es",
+    "frequencyHz": 60,
+    "ambient": {
+      "airC": 30,
+      "groundC": 20
+    },
+    "voltageDrop": {
+      "branchPct": 3,
+      "feederPct": 3,
+      "totalPct": 5
+    },
+    "phaseUnbalance": {
+      "maxPct": 5
+    },
+    "conductors": {
+      "maxSingleSize": "500"
+    }
+  },
+  "elements": [
+    {
+      "id": "el_64b06dc961d6",
+      "type": "utility",
+      "tag": "ACOM-1",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 23000,
+        "system": "3F3H",
+        "operatingVoltagePu": 1,
+        "shortCircuitMVA": 300,
+        "xrRatio": null
+      }
+    },
+    {
+      "id": "el_d3c5a92f7f3c",
+      "type": "transformer",
+      "tag": "TR-1",
+      "tagLocked": true,
+      "params": {
+        "ratedKVA": 750,
+        "primaryVoltageV": 23000,
+        "primarySystem": "3F3H",
+        "secondaryVoltageV": 220,
+        "system": "3F4H",
+        "connection": "Dyn1",
+        "impedancePct": 5.75,
+        "xrSource": "placa",
+        "xrRatio": 6,
+        "loadLossesW": null,
+        "tapPct": -2.5
+      }
+    },
+    {
+      "id": "el_fd653df0930f",
+      "type": "cable",
+      "tag": "AL-S1",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 8,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "charola-escalera",
+        "racewaySize": null,
+        "trayCableType": "unipolar",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_3bc96c4a862d",
+      "type": "panelboard",
+      "tag": "TG",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F4H",
+        "busRatingA": null,
+        "boardUse": "distribucion",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_e9658b8ee8db",
+      "type": "breaker",
+      "tag": "INT-P1",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_6ab893a280fc",
+      "type": "cable",
+      "tag": "AL-P1",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_b6967b93e788",
+      "type": "panelboard",
+      "tag": "TAB-P1",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F4H",
+        "busRatingA": null,
+        "boardUse": "alumbrado-contactos",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_9ad7b222a890",
+      "type": "breaker",
+      "tag": "INT-101",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_aec5bc1b2e51",
+      "type": "cable",
+      "tag": "AL-101",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_db8ea4e8ed0a",
+      "type": "luminaire",
+      "tag": "L-101",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_8a7a06dd55b4",
+      "type": "breaker",
+      "tag": "INT-104",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_0b9567e2423d",
+      "type": "cable",
+      "tag": "AL-104",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_467d0139bba7",
+      "type": "receptacle",
+      "tag": "C-101",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_dc6a1fdaa9b9",
+      "type": "breaker",
+      "tag": "INT-102",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_a4b7b7403223",
+      "type": "cable",
+      "tag": "AL-102",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_5eeb33b19d4b",
+      "type": "luminaire",
+      "tag": "L-102",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_5eae4f0a4f32",
+      "type": "breaker",
+      "tag": "INT-105",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_a0f892070bab",
+      "type": "cable",
+      "tag": "AL-105",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_cae2446ddf98",
+      "type": "receptacle",
+      "tag": "C-102",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_fd3285a46820",
+      "type": "breaker",
+      "tag": "INT-103",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_92774ff64f71",
+      "type": "cable",
+      "tag": "AL-103",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_9c157809e2bc",
+      "type": "luminaire",
+      "tag": "L-103",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_5820e3925bd0",
+      "type": "breaker",
+      "tag": "INT-106",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_77cbd2c53460",
+      "type": "cable",
+      "tag": "AL-106",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_2dbc71047af0",
+      "type": "receptacle",
+      "tag": "C-103",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_606196e1c7ce",
+      "type": "breaker",
+      "tag": "INT-107",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_8aab81a0cd3e",
+      "type": "cable",
+      "tag": "AL-107",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 20,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_6104dfae6bfe",
+      "type": "generic-load",
+      "tag": "AA-1",
+      "tagLocked": true,
+      "params": {
+        "power": 15,
+        "powerUnit": "kW",
+        "powerFactor": 0.9,
+        "voltageV": 220,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "nonLinear": false,
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_d7c12a115261",
+      "type": "breaker",
+      "tag": "INT-P2",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_286fbca263cb",
+      "type": "cable",
+      "tag": "AL-P2",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 45,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_20f97caa5041",
+      "type": "panelboard",
+      "tag": "TAB-P2",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F4H",
+        "busRatingA": null,
+        "boardUse": "alumbrado-contactos",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_2af74e7160f2",
+      "type": "breaker",
+      "tag": "INT-201",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_d7b410f13c19",
+      "type": "cable",
+      "tag": "AL-201",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_e72943396661",
+      "type": "luminaire",
+      "tag": "L-201",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_e3806aa3fef7",
+      "type": "breaker",
+      "tag": "INT-204",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_46b19d3a4b9e",
+      "type": "cable",
+      "tag": "AL-204",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_5d7306eae218",
+      "type": "receptacle",
+      "tag": "C-201",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_852258e9fe3f",
+      "type": "breaker",
+      "tag": "INT-202",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_d12dd39395fe",
+      "type": "cable",
+      "tag": "AL-202",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_e6ac9831a2bf",
+      "type": "luminaire",
+      "tag": "L-202",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_867fda565fa2",
+      "type": "breaker",
+      "tag": "INT-205",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_4879c8b79277",
+      "type": "cable",
+      "tag": "AL-205",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_9ea292dc02c8",
+      "type": "receptacle",
+      "tag": "C-202",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_ae253642b4cc",
+      "type": "breaker",
+      "tag": "INT-203",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_58fc09a144c4",
+      "type": "cable",
+      "tag": "AL-203",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_e11ddcebaf53",
+      "type": "luminaire",
+      "tag": "L-203",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_7c447af8a839",
+      "type": "breaker",
+      "tag": "INT-206",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_7ae018de6733",
+      "type": "cable",
+      "tag": "AL-206",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_da7461ead5a4",
+      "type": "receptacle",
+      "tag": "C-203",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_73f600515533",
+      "type": "breaker",
+      "tag": "INT-207",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_55fd1517b969",
+      "type": "cable",
+      "tag": "AL-207",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 20,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_0f6e0c012691",
+      "type": "generic-load",
+      "tag": "AA-2",
+      "tagLocked": true,
+      "params": {
+        "power": 15,
+        "powerUnit": "kW",
+        "powerFactor": 0.9,
+        "voltageV": 220,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "nonLinear": false,
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_6e28af3ba2b2",
+      "type": "breaker",
+      "tag": "INT-P3",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_e07265027895",
+      "type": "cable",
+      "tag": "AL-P3",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 60,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_22aca1e27714",
+      "type": "panelboard",
+      "tag": "TAB-P3",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F4H",
+        "busRatingA": null,
+        "boardUse": "alumbrado-contactos",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_47b8c66c245d",
+      "type": "breaker",
+      "tag": "INT-301",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_fc599379241b",
+      "type": "cable",
+      "tag": "AL-301",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_d195ea35f4dd",
+      "type": "luminaire",
+      "tag": "L-301",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_3c086f5a9208",
+      "type": "breaker",
+      "tag": "INT-304",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_ded07169da38",
+      "type": "cable",
+      "tag": "AL-304",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_e2db0535e4e1",
+      "type": "receptacle",
+      "tag": "C-301",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_8b531d1062ef",
+      "type": "breaker",
+      "tag": "INT-302",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_9267d71c8f8d",
+      "type": "cable",
+      "tag": "AL-302",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_046f7d3d9978",
+      "type": "luminaire",
+      "tag": "L-302",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_3438f433d3bd",
+      "type": "breaker",
+      "tag": "INT-305",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_d18974851651",
+      "type": "cable",
+      "tag": "AL-305",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_61643d5fa96c",
+      "type": "receptacle",
+      "tag": "C-302",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_82bc15faef4a",
+      "type": "breaker",
+      "tag": "INT-303",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_0ae1c4d523e4",
+      "type": "cable",
+      "tag": "AL-303",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_170c07fc3e99",
+      "type": "luminaire",
+      "tag": "L-303",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_7af17b7958e5",
+      "type": "breaker",
+      "tag": "INT-306",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_fabf2eb995d1",
+      "type": "cable",
+      "tag": "AL-306",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_f89736a9c475",
+      "type": "receptacle",
+      "tag": "C-303",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_992d53ca6476",
+      "type": "breaker",
+      "tag": "INT-307",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_6c61551d98da",
+      "type": "cable",
+      "tag": "AL-307",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 20,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_613d720a508a",
+      "type": "generic-load",
+      "tag": "AA-3",
+      "tagLocked": true,
+      "params": {
+        "power": 15,
+        "powerUnit": "kW",
+        "powerFactor": 0.9,
+        "voltageV": 220,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "nonLinear": false,
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_cb316ab92c6d",
+      "type": "breaker",
+      "tag": "INT-P4",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_073d1b57dea6",
+      "type": "cable",
+      "tag": "AL-P4",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 75,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_cc60c20baaed",
+      "type": "panelboard",
+      "tag": "TAB-P4",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F4H",
+        "busRatingA": null,
+        "boardUse": "alumbrado-contactos",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_5cdb30793293",
+      "type": "breaker",
+      "tag": "INT-401",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_3a4e70c4ed86",
+      "type": "cable",
+      "tag": "AL-401",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_c0439347a0ae",
+      "type": "luminaire",
+      "tag": "L-401",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_14c7b891dd3d",
+      "type": "breaker",
+      "tag": "INT-404",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_b9db07193e6a",
+      "type": "cable",
+      "tag": "AL-404",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_ef18eb0ae476",
+      "type": "receptacle",
+      "tag": "C-401",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "A",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_8cb86ad01692",
+      "type": "breaker",
+      "tag": "INT-402",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_f18d4f176f0b",
+      "type": "cable",
+      "tag": "AL-402",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_c2dc59f288db",
+      "type": "luminaire",
+      "tag": "L-402",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_50282ba75499",
+      "type": "breaker",
+      "tag": "INT-405",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_21bb9f6e5af7",
+      "type": "cable",
+      "tag": "AL-405",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_c8846bb9744b",
+      "type": "receptacle",
+      "tag": "C-402",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "B",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_cb4699ccda4a",
+      "type": "breaker",
+      "tag": "INT-403",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_c0d50276ba4d",
+      "type": "cable",
+      "tag": "AL-403",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 30,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_89ecb8705459",
+      "type": "luminaire",
+      "tag": "L-403",
+      "tagLocked": true,
+      "params": {
+        "quantity": 30,
+        "wattsPerUnit": 36,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto"
+      }
+    },
+    {
+      "id": "el_2bc3e9a5c756",
+      "type": "breaker",
+      "tag": "INT-406",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "1",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_47811d3930ab",
+      "type": "cable",
+      "tag": "AL-406",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_8925c0172277",
+      "type": "receptacle",
+      "tag": "C-403",
+      "tagLocked": true,
+      "params": {
+        "quantity": 8,
+        "vaPerOutlet": 180,
+        "powerFactor": 0.9,
+        "voltageV": 127,
+        "system": "1F2H",
+        "phase": "C",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_df0fab0bb85a",
+      "type": "breaker",
+      "tag": "INT-407",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 10,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_1b0f2699a379",
+      "type": "cable",
+      "tag": "AL-407",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 20,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_497c5e0f7712",
+      "type": "generic-load",
+      "tag": "AA-4",
+      "tagLocked": true,
+      "params": {
+        "power": 15,
+        "powerUnit": "kW",
+        "powerFactor": 0.9,
+        "voltageV": 220,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "nonLinear": false,
+        "sensitiveElectronic": false
+      }
+    },
+    {
+      "id": "el_17157ce7bb68",
+      "type": "breaker",
+      "tag": "INT-EL",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_d470eac5f3a3",
+      "type": "cable",
+      "tag": "AL-EL",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 60,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_3d4aa3fec19c",
+      "type": "panelboard",
+      "tag": "TAB-EL",
+      "tagLocked": true,
+      "params": {
+        "voltageV": 220,
+        "system": "3F3H",
+        "busRatingA": null,
+        "boardUse": "fuerza",
+        "ratedFor100Pct": false
+      }
+    },
+    {
+      "id": "el_90963e38809d",
+      "type": "breaker",
+      "tag": "INT-EL1",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 25,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_5a275c2e7619",
+      "type": "cable",
+      "tag": "AL-EL1",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 10,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_cae5c8444029",
+      "type": "motor",
+      "tag": "M-EL1",
+      "tagLocked": true,
+      "params": {
+        "ratedPower": 30,
+        "ratedPowerUnit": "hp",
+        "voltageV": 230,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "motorType": "jaula",
+        "currentSource": "tabla",
+        "nameplateCurrentA": null,
+        "efficiencyPct": null,
+        "powerFactor": 0.85,
+        "serviceFactor": 1.15,
+        "designLetter": "B",
+        "starting": "directo",
+        "firePump": false,
+        "dutyClass": "continuo",
+        "dutyRating": "continuo"
+      }
+    },
+    {
+      "id": "el_97ba253b51ed",
+      "type": "breaker",
+      "tag": "INT-EL2",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 25,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_8bb3cbcdb896",
+      "type": "cable",
+      "tag": "AL-EL2",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 10,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_0f79c6b0ca2b",
+      "type": "motor",
+      "tag": "M-EL2",
+      "tagLocked": true,
+      "params": {
+        "ratedPower": 30,
+        "ratedPowerUnit": "hp",
+        "voltageV": 230,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "motorType": "jaula",
+        "currentSource": "tabla",
+        "nameplateCurrentA": null,
+        "efficiencyPct": null,
+        "powerFactor": 0.85,
+        "serviceFactor": 1.15,
+        "designLetter": "B",
+        "starting": "directo",
+        "firePump": false,
+        "dutyClass": "continuo",
+        "dutyRating": "continuo"
+      }
+    },
+    {
+      "id": "el_9f3c7cc93910",
+      "type": "breaker",
+      "tag": "INT-HN",
+      "tagLocked": true,
+      "params": {
+        "deviceType": "itm",
+        "poles": "3",
+        "forcedRatingA": null,
+        "mccSection": null,
+        "frameA": null,
+        "interruptingKA": 35,
+        "state": "cerrado"
+      }
+    },
+    {
+      "id": "el_8549db7fea13",
+      "type": "cable",
+      "tag": "AL-HN",
+      "tagLocked": true,
+      "params": {
+        "lengthM": 25,
+        "material": "Cu",
+        "insulationType": "THHW-LS",
+        "installationMethod": "conduit-pvc-40",
+        "racewaySize": null,
+        "trayCableType": "multiconductor",
+        "trayCovered": false,
+        "conductorsPerPhase": null,
+        "ambientTempC": null,
+        "groupedConductors": null,
+        "terminalTempC": "auto",
+        "circuitKind": "auto",
+        "forcedSize": null,
+        "includeEgc": true
+      }
+    },
+    {
+      "id": "el_c81d4d019146",
+      "type": "motor",
+      "tag": "M-HN",
+      "tagLocked": true,
+      "params": {
+        "ratedPower": 10,
+        "ratedPowerUnit": "hp",
+        "voltageV": 230,
+        "system": "3F3H",
+        "phase": "ABC",
+        "demandFactor": 1,
+        "continuous": "auto",
+        "motorType": "jaula",
+        "currentSource": "tabla",
+        "nameplateCurrentA": null,
+        "efficiencyPct": null,
+        "powerFactor": 0.85,
+        "serviceFactor": 1.15,
+        "designLetter": "B",
+        "starting": "directo",
+        "firePump": false,
+        "dutyClass": "continuo",
+        "dutyRating": "continuo"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "id": "cn_bdd052884683",
+      "a": {
+        "elementId": "el_64b06dc961d6",
+        "portId": "out"
+      },
+      "b": {
+        "elementId": "el_d3c5a92f7f3c",
+        "portId": "primary"
+      }
+    },
+    {
+      "id": "cn_4f002465c63f",
+      "a": {
+        "elementId": "el_d3c5a92f7f3c",
+        "portId": "secondary"
+      },
+      "b": {
+        "elementId": "el_fd653df0930f",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_327e17b19653",
+      "a": {
+        "elementId": "el_fd653df0930f",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_9b5e22ca9797",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_e9658b8ee8db",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_63620f457684",
+      "a": {
+        "elementId": "el_e9658b8ee8db",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_6ab893a280fc",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_35085f31d8b2",
+      "a": {
+        "elementId": "el_6ab893a280fc",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_4edc010554c9",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_9ad7b222a890",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_7870cb09dbf3",
+      "a": {
+        "elementId": "el_9ad7b222a890",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_aec5bc1b2e51",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_bf47567e7c16",
+      "a": {
+        "elementId": "el_aec5bc1b2e51",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_db8ea4e8ed0a",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_9ab8f11b86ce",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_8a7a06dd55b4",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_6954075e6a69",
+      "a": {
+        "elementId": "el_8a7a06dd55b4",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_0b9567e2423d",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_ad511625b6d4",
+      "a": {
+        "elementId": "el_0b9567e2423d",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_467d0139bba7",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_e14f63877afa",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_dc6a1fdaa9b9",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_0c0815662a01",
+      "a": {
+        "elementId": "el_dc6a1fdaa9b9",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_a4b7b7403223",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_c19a242e0a7e",
+      "a": {
+        "elementId": "el_a4b7b7403223",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_5eeb33b19d4b",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_2ba0ed315987",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_5eae4f0a4f32",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_86c89216c53d",
+      "a": {
+        "elementId": "el_5eae4f0a4f32",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_a0f892070bab",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_0a3a795caa50",
+      "a": {
+        "elementId": "el_a0f892070bab",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_cae2446ddf98",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_a631d70cda2e",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_fd3285a46820",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_03bc5aeee532",
+      "a": {
+        "elementId": "el_fd3285a46820",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_92774ff64f71",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_150caa4b67f0",
+      "a": {
+        "elementId": "el_92774ff64f71",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_9c157809e2bc",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_fbec494adfa1",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_5820e3925bd0",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_a474564d3bf4",
+      "a": {
+        "elementId": "el_5820e3925bd0",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_77cbd2c53460",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_3cf5aabe8924",
+      "a": {
+        "elementId": "el_77cbd2c53460",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_2dbc71047af0",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_3a7488be4285",
+      "a": {
+        "elementId": "el_b6967b93e788",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_606196e1c7ce",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_110f63b34ae8",
+      "a": {
+        "elementId": "el_606196e1c7ce",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_8aab81a0cd3e",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_90eb8ca97ea8",
+      "a": {
+        "elementId": "el_8aab81a0cd3e",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_6104dfae6bfe",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_9268fead19e0",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_d7c12a115261",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_e50b8014e6ec",
+      "a": {
+        "elementId": "el_d7c12a115261",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_286fbca263cb",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_826990afa44c",
+      "a": {
+        "elementId": "el_286fbca263cb",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_22a18afc27f1",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_2af74e7160f2",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_a2362ae33d7d",
+      "a": {
+        "elementId": "el_2af74e7160f2",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_d7b410f13c19",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_90204ac877cf",
+      "a": {
+        "elementId": "el_d7b410f13c19",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_e72943396661",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_05d8b13982d1",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_e3806aa3fef7",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_354642bbd963",
+      "a": {
+        "elementId": "el_e3806aa3fef7",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_46b19d3a4b9e",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_ca4a9fbf0959",
+      "a": {
+        "elementId": "el_46b19d3a4b9e",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_5d7306eae218",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_cb8e5376c218",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_852258e9fe3f",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_7c7dab97c6a8",
+      "a": {
+        "elementId": "el_852258e9fe3f",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_d12dd39395fe",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_a5c3a94aec62",
+      "a": {
+        "elementId": "el_d12dd39395fe",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_e6ac9831a2bf",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_b480d0104305",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_867fda565fa2",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_b9c21fbe71b6",
+      "a": {
+        "elementId": "el_867fda565fa2",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_4879c8b79277",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_5339618f1f5d",
+      "a": {
+        "elementId": "el_4879c8b79277",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_9ea292dc02c8",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_71890c4d57a3",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_ae253642b4cc",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_8937265ef209",
+      "a": {
+        "elementId": "el_ae253642b4cc",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_58fc09a144c4",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_cf257358a52d",
+      "a": {
+        "elementId": "el_58fc09a144c4",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_e11ddcebaf53",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_013d01f6ad0e",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_7c447af8a839",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_2b85070c3812",
+      "a": {
+        "elementId": "el_7c447af8a839",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_7ae018de6733",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_a6017ce3c5ca",
+      "a": {
+        "elementId": "el_7ae018de6733",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_da7461ead5a4",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_5ce6c47db42e",
+      "a": {
+        "elementId": "el_20f97caa5041",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_73f600515533",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_9857ca35c209",
+      "a": {
+        "elementId": "el_73f600515533",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_55fd1517b969",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_8e87ea7000b5",
+      "a": {
+        "elementId": "el_55fd1517b969",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_0f6e0c012691",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_ef7146163426",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_6e28af3ba2b2",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_1955d9255622",
+      "a": {
+        "elementId": "el_6e28af3ba2b2",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_e07265027895",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_7765f4480242",
+      "a": {
+        "elementId": "el_e07265027895",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_6c94b54f5a9b",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_47b8c66c245d",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_72edc01efb1b",
+      "a": {
+        "elementId": "el_47b8c66c245d",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_fc599379241b",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_819c16ace8e0",
+      "a": {
+        "elementId": "el_fc599379241b",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_d195ea35f4dd",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_886bfd80cd11",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_3c086f5a9208",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_2054c2ebf86f",
+      "a": {
+        "elementId": "el_3c086f5a9208",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_ded07169da38",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_637d2193d96e",
+      "a": {
+        "elementId": "el_ded07169da38",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_e2db0535e4e1",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_97db27474935",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_8b531d1062ef",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_d1fc14e8a6be",
+      "a": {
+        "elementId": "el_8b531d1062ef",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_9267d71c8f8d",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_5ba8ecd1e0c8",
+      "a": {
+        "elementId": "el_9267d71c8f8d",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_046f7d3d9978",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_31ab6f7c385a",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_3438f433d3bd",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_844e61ca03d8",
+      "a": {
+        "elementId": "el_3438f433d3bd",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_d18974851651",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_6b61a28ad6ec",
+      "a": {
+        "elementId": "el_d18974851651",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_61643d5fa96c",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_92da7181f516",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_82bc15faef4a",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_3917a0e23098",
+      "a": {
+        "elementId": "el_82bc15faef4a",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_0ae1c4d523e4",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_1db6c95e59a9",
+      "a": {
+        "elementId": "el_0ae1c4d523e4",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_170c07fc3e99",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_4ef90704dea1",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_7af17b7958e5",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_ba53b88f3049",
+      "a": {
+        "elementId": "el_7af17b7958e5",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_fabf2eb995d1",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_d3529936285a",
+      "a": {
+        "elementId": "el_fabf2eb995d1",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_f89736a9c475",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_9c768bec8ee0",
+      "a": {
+        "elementId": "el_22aca1e27714",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_992d53ca6476",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_ea703fb908f6",
+      "a": {
+        "elementId": "el_992d53ca6476",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_6c61551d98da",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_3bb6d9a83ac1",
+      "a": {
+        "elementId": "el_6c61551d98da",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_613d720a508a",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_744f830b1677",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_cb316ab92c6d",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_3a29c6a56b50",
+      "a": {
+        "elementId": "el_cb316ab92c6d",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_073d1b57dea6",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_fed24fb227a1",
+      "a": {
+        "elementId": "el_073d1b57dea6",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_0471ddea2855",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_5cdb30793293",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_2845933326a1",
+      "a": {
+        "elementId": "el_5cdb30793293",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_3a4e70c4ed86",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_db3d1c07c48e",
+      "a": {
+        "elementId": "el_3a4e70c4ed86",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_c0439347a0ae",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_4b1f5ffe91f3",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_14c7b891dd3d",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_717c88c3969b",
+      "a": {
+        "elementId": "el_14c7b891dd3d",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_b9db07193e6a",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_a33c00e82dc1",
+      "a": {
+        "elementId": "el_b9db07193e6a",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_ef18eb0ae476",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_e0228db7cd4b",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_8cb86ad01692",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_e79375058e59",
+      "a": {
+        "elementId": "el_8cb86ad01692",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_f18d4f176f0b",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_604c4d746f0e",
+      "a": {
+        "elementId": "el_f18d4f176f0b",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_c2dc59f288db",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_072e2f54b3c8",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_50282ba75499",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_04e29dd420ca",
+      "a": {
+        "elementId": "el_50282ba75499",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_21bb9f6e5af7",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_e1b29fa009c8",
+      "a": {
+        "elementId": "el_21bb9f6e5af7",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_c8846bb9744b",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_7becc0e79808",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_cb4699ccda4a",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_459aafb49c32",
+      "a": {
+        "elementId": "el_cb4699ccda4a",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_c0d50276ba4d",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_f6e8faa953c8",
+      "a": {
+        "elementId": "el_c0d50276ba4d",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_89ecb8705459",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_8a878834acbb",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_2bc3e9a5c756",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_7d93fadc397a",
+      "a": {
+        "elementId": "el_2bc3e9a5c756",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_47811d3930ab",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_2b1948a2b1d7",
+      "a": {
+        "elementId": "el_47811d3930ab",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_8925c0172277",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_1dd1f7aacbae",
+      "a": {
+        "elementId": "el_cc60c20baaed",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_df0fab0bb85a",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_4cfe33f1a76e",
+      "a": {
+        "elementId": "el_df0fab0bb85a",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_1b0f2699a379",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_f27a3c8fd5a8",
+      "a": {
+        "elementId": "el_1b0f2699a379",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_497c5e0f7712",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_4af21357d940",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_17157ce7bb68",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_0fc3d6f5d539",
+      "a": {
+        "elementId": "el_17157ce7bb68",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_d470eac5f3a3",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_8ff5e5957066",
+      "a": {
+        "elementId": "el_d470eac5f3a3",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_3d4aa3fec19c",
+        "portId": "bus"
+      }
+    },
+    {
+      "id": "cn_301313a80f22",
+      "a": {
+        "elementId": "el_3d4aa3fec19c",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_90963e38809d",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_0626e6283f16",
+      "a": {
+        "elementId": "el_90963e38809d",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_5a275c2e7619",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_933a0638bfd3",
+      "a": {
+        "elementId": "el_5a275c2e7619",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_cae5c8444029",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_7cb093c07a2b",
+      "a": {
+        "elementId": "el_3d4aa3fec19c",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_97ba253b51ed",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_7d1d51275327",
+      "a": {
+        "elementId": "el_97ba253b51ed",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_8bb3cbcdb896",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_21d4bbb758a6",
+      "a": {
+        "elementId": "el_8bb3cbcdb896",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_0f79c6b0ca2b",
+        "portId": "in"
+      }
+    },
+    {
+      "id": "cn_f0b48e79fe27",
+      "a": {
+        "elementId": "el_3bc96c4a862d",
+        "portId": "bus"
+      },
+      "b": {
+        "elementId": "el_9f3c7cc93910",
+        "portId": "line"
+      }
+    },
+    {
+      "id": "cn_302129c4c7fa",
+      "a": {
+        "elementId": "el_9f3c7cc93910",
+        "portId": "load"
+      },
+      "b": {
+        "elementId": "el_8549db7fea13",
+        "portId": "from"
+      }
+    },
+    {
+      "id": "cn_76c214b6a806",
+      "a": {
+        "elementId": "el_8549db7fea13",
+        "portId": "to"
+      },
+      "b": {
+        "elementId": "el_c81d4d019146",
+        "portId": "in"
+      }
+    }
+  ],
+  "diagram": {
+    "nodes": {
+      "el_64b06dc961d6": {
+        "x": 2692.5,
+        "y": 0,
+        "rotation": 0
+      },
+      "el_d3c5a92f7f3c": {
+        "x": 2692.5,
+        "y": 106,
+        "rotation": 0
+      },
+      "el_fd653df0930f": {
+        "x": 2692.5,
+        "y": 252,
+        "rotation": 0
+      },
+      "el_3bc96c4a862d": {
+        "x": 290,
+        "y": 378,
+        "rotation": 0,
+        "length": 4845
+      },
+      "el_e9658b8ee8db": {
+        "x": 592.5,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_6ab893a280fc": {
+        "x": 592.5,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_b6967b93e788": {
+        "x": 27.5,
+        "y": 714,
+        "rotation": 0,
+        "length": 1170
+      },
+      "el_9ad7b222a890": {
+        "x": 67.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_aec5bc1b2e51": {
+        "x": 67.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_db8ea4e8ed0a": {
+        "x": 67.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_8a7a06dd55b4": {
+        "x": 242.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_0b9567e2423d": {
+        "x": 242.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_467d0139bba7": {
+        "x": 242.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_dc6a1fdaa9b9": {
+        "x": 417.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_a4b7b7403223": {
+        "x": 417.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_5eeb33b19d4b": {
+        "x": 417.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_5eae4f0a4f32": {
+        "x": 592.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_a0f892070bab": {
+        "x": 592.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_cae2446ddf98": {
+        "x": 592.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_fd3285a46820": {
+        "x": 767.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_92774ff64f71": {
+        "x": 767.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_9c157809e2bc": {
+        "x": 767.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_5820e3925bd0": {
+        "x": 942.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_77cbd2c53460": {
+        "x": 942.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_2dbc71047af0": {
+        "x": 942.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_606196e1c7ce": {
+        "x": 1117.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_8aab81a0cd3e": {
+        "x": 1117.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_6104dfae6bfe": {
+        "x": 1117.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_d7c12a115261": {
+        "x": 1817.5,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_286fbca263cb": {
+        "x": 1817.5,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_20f97caa5041": {
+        "x": 1252.5,
+        "y": 714,
+        "rotation": 0,
+        "length": 1170
+      },
+      "el_2af74e7160f2": {
+        "x": 1292.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_d7b410f13c19": {
+        "x": 1292.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_e72943396661": {
+        "x": 1292.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_e3806aa3fef7": {
+        "x": 1467.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_46b19d3a4b9e": {
+        "x": 1467.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_5d7306eae218": {
+        "x": 1467.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_852258e9fe3f": {
+        "x": 1642.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_d12dd39395fe": {
+        "x": 1642.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_e6ac9831a2bf": {
+        "x": 1642.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_867fda565fa2": {
+        "x": 1817.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_4879c8b79277": {
+        "x": 1817.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_9ea292dc02c8": {
+        "x": 1817.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_ae253642b4cc": {
+        "x": 1992.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_58fc09a144c4": {
+        "x": 1992.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_e11ddcebaf53": {
+        "x": 1992.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_7c447af8a839": {
+        "x": 2167.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_7ae018de6733": {
+        "x": 2167.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_da7461ead5a4": {
+        "x": 2167.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_73f600515533": {
+        "x": 2342.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_55fd1517b969": {
+        "x": 2342.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_0f6e0c012691": {
+        "x": 2342.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_6e28af3ba2b2": {
+        "x": 3042.5,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_e07265027895": {
+        "x": 3042.5,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_22aca1e27714": {
+        "x": 2477.5,
+        "y": 714,
+        "rotation": 0,
+        "length": 1170
+      },
+      "el_47b8c66c245d": {
+        "x": 2517.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_fc599379241b": {
+        "x": 2517.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_d195ea35f4dd": {
+        "x": 2517.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_3c086f5a9208": {
+        "x": 2692.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_ded07169da38": {
+        "x": 2692.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_e2db0535e4e1": {
+        "x": 2692.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_8b531d1062ef": {
+        "x": 2867.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_9267d71c8f8d": {
+        "x": 2867.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_046f7d3d9978": {
+        "x": 2867.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_3438f433d3bd": {
+        "x": 3042.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_d18974851651": {
+        "x": 3042.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_61643d5fa96c": {
+        "x": 3042.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_82bc15faef4a": {
+        "x": 3217.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_0ae1c4d523e4": {
+        "x": 3217.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_170c07fc3e99": {
+        "x": 3217.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_7af17b7958e5": {
+        "x": 3392.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_fabf2eb995d1": {
+        "x": 3392.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_f89736a9c475": {
+        "x": 3392.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_992d53ca6476": {
+        "x": 3567.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_6c61551d98da": {
+        "x": 3567.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_613d720a508a": {
+        "x": 3567.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_cb316ab92c6d": {
+        "x": 4267.5,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_073d1b57dea6": {
+        "x": 4267.5,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_cc60c20baaed": {
+        "x": 3702.5,
+        "y": 714,
+        "rotation": 0,
+        "length": 1170
+      },
+      "el_5cdb30793293": {
+        "x": 3742.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_3a4e70c4ed86": {
+        "x": 3742.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_c0439347a0ae": {
+        "x": 3742.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_14c7b891dd3d": {
+        "x": 3917.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_b9db07193e6a": {
+        "x": 3917.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_ef18eb0ae476": {
+        "x": 3917.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_8cb86ad01692": {
+        "x": 4092.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_f18d4f176f0b": {
+        "x": 4092.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_c2dc59f288db": {
+        "x": 4092.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_50282ba75499": {
+        "x": 4267.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_21bb9f6e5af7": {
+        "x": 4267.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_c8846bb9744b": {
+        "x": 4267.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_cb4699ccda4a": {
+        "x": 4442.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_c0d50276ba4d": {
+        "x": 4442.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_89ecb8705459": {
+        "x": 4442.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_2bc3e9a5c756": {
+        "x": 4617.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_47811d3930ab": {
+        "x": 4617.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_8925c0172277": {
+        "x": 4617.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_df0fab0bb85a": {
+        "x": 4792.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_1b0f2699a379": {
+        "x": 4792.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_497c5e0f7712": {
+        "x": 4792.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_17157ce7bb68": {
+        "x": 5055,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_d470eac5f3a3": {
+        "x": 5055,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_3d4aa3fec19c": {
+        "x": 4927.5,
+        "y": 714,
+        "rotation": 0,
+        "length": 295
+      },
+      "el_90963e38809d": {
+        "x": 4967.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_5a275c2e7619": {
+        "x": 4967.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_cae5c8444029": {
+        "x": 4967.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_97ba253b51ed": {
+        "x": 5142.5,
+        "y": 818,
+        "rotation": 0
+      },
+      "el_8bb3cbcdb896": {
+        "x": 5142.5,
+        "y": 924,
+        "rotation": 0
+      },
+      "el_0f79c6b0ca2b": {
+        "x": 5142.5,
+        "y": 1050,
+        "rotation": 0
+      },
+      "el_9f3c7cc93910": {
+        "x": 5317.5,
+        "y": 482,
+        "rotation": 0
+      },
+      "el_8549db7fea13": {
+        "x": 5317.5,
+        "y": 588,
+        "rotation": 0
+      },
+      "el_c81d4d019146": {
+        "x": 5317.5,
+        "y": 714,
+        "rotation": 0
+      }
+    },
+    "wires": {
+      "cn_bdd052884683": {
+        "waypoints": []
+      },
+      "cn_4f002465c63f": {
+        "waypoints": []
+      },
+      "cn_327e17b19653": {
+        "waypoints": []
+      },
+      "cn_9b5e22ca9797": {
+        "waypoints": []
+      },
+      "cn_63620f457684": {
+        "waypoints": []
+      },
+      "cn_35085f31d8b2": {
+        "waypoints": []
+      },
+      "cn_4edc010554c9": {
+        "waypoints": []
+      },
+      "cn_7870cb09dbf3": {
+        "waypoints": []
+      },
+      "cn_bf47567e7c16": {
+        "waypoints": []
+      },
+      "cn_9ab8f11b86ce": {
+        "waypoints": []
+      },
+      "cn_6954075e6a69": {
+        "waypoints": []
+      },
+      "cn_ad511625b6d4": {
+        "waypoints": []
+      },
+      "cn_e14f63877afa": {
+        "waypoints": []
+      },
+      "cn_0c0815662a01": {
+        "waypoints": []
+      },
+      "cn_c19a242e0a7e": {
+        "waypoints": []
+      },
+      "cn_2ba0ed315987": {
+        "waypoints": []
+      },
+      "cn_86c89216c53d": {
+        "waypoints": []
+      },
+      "cn_0a3a795caa50": {
+        "waypoints": []
+      },
+      "cn_a631d70cda2e": {
+        "waypoints": []
+      },
+      "cn_03bc5aeee532": {
+        "waypoints": []
+      },
+      "cn_150caa4b67f0": {
+        "waypoints": []
+      },
+      "cn_fbec494adfa1": {
+        "waypoints": []
+      },
+      "cn_a474564d3bf4": {
+        "waypoints": []
+      },
+      "cn_3cf5aabe8924": {
+        "waypoints": []
+      },
+      "cn_3a7488be4285": {
+        "waypoints": []
+      },
+      "cn_110f63b34ae8": {
+        "waypoints": []
+      },
+      "cn_90eb8ca97ea8": {
+        "waypoints": []
+      },
+      "cn_9268fead19e0": {
+        "waypoints": []
+      },
+      "cn_e50b8014e6ec": {
+        "waypoints": []
+      },
+      "cn_826990afa44c": {
+        "waypoints": []
+      },
+      "cn_22a18afc27f1": {
+        "waypoints": []
+      },
+      "cn_a2362ae33d7d": {
+        "waypoints": []
+      },
+      "cn_90204ac877cf": {
+        "waypoints": []
+      },
+      "cn_05d8b13982d1": {
+        "waypoints": []
+      },
+      "cn_354642bbd963": {
+        "waypoints": []
+      },
+      "cn_ca4a9fbf0959": {
+        "waypoints": []
+      },
+      "cn_cb8e5376c218": {
+        "waypoints": []
+      },
+      "cn_7c7dab97c6a8": {
+        "waypoints": []
+      },
+      "cn_a5c3a94aec62": {
+        "waypoints": []
+      },
+      "cn_b480d0104305": {
+        "waypoints": []
+      },
+      "cn_b9c21fbe71b6": {
+        "waypoints": []
+      },
+      "cn_5339618f1f5d": {
+        "waypoints": []
+      },
+      "cn_71890c4d57a3": {
+        "waypoints": []
+      },
+      "cn_8937265ef209": {
+        "waypoints": []
+      },
+      "cn_cf257358a52d": {
+        "waypoints": []
+      },
+      "cn_013d01f6ad0e": {
+        "waypoints": []
+      },
+      "cn_2b85070c3812": {
+        "waypoints": []
+      },
+      "cn_a6017ce3c5ca": {
+        "waypoints": []
+      },
+      "cn_5ce6c47db42e": {
+        "waypoints": []
+      },
+      "cn_9857ca35c209": {
+        "waypoints": []
+      },
+      "cn_8e87ea7000b5": {
+        "waypoints": []
+      },
+      "cn_ef7146163426": {
+        "waypoints": []
+      },
+      "cn_1955d9255622": {
+        "waypoints": []
+      },
+      "cn_7765f4480242": {
+        "waypoints": []
+      },
+      "cn_6c94b54f5a9b": {
+        "waypoints": []
+      },
+      "cn_72edc01efb1b": {
+        "waypoints": []
+      },
+      "cn_819c16ace8e0": {
+        "waypoints": []
+      },
+      "cn_886bfd80cd11": {
+        "waypoints": []
+      },
+      "cn_2054c2ebf86f": {
+        "waypoints": []
+      },
+      "cn_637d2193d96e": {
+        "waypoints": []
+      },
+      "cn_97db27474935": {
+        "waypoints": []
+      },
+      "cn_d1fc14e8a6be": {
+        "waypoints": []
+      },
+      "cn_5ba8ecd1e0c8": {
+        "waypoints": []
+      },
+      "cn_31ab6f7c385a": {
+        "waypoints": []
+      },
+      "cn_844e61ca03d8": {
+        "waypoints": []
+      },
+      "cn_6b61a28ad6ec": {
+        "waypoints": []
+      },
+      "cn_92da7181f516": {
+        "waypoints": []
+      },
+      "cn_3917a0e23098": {
+        "waypoints": []
+      },
+      "cn_1db6c95e59a9": {
+        "waypoints": []
+      },
+      "cn_4ef90704dea1": {
+        "waypoints": []
+      },
+      "cn_ba53b88f3049": {
+        "waypoints": []
+      },
+      "cn_d3529936285a": {
+        "waypoints": []
+      },
+      "cn_9c768bec8ee0": {
+        "waypoints": []
+      },
+      "cn_ea703fb908f6": {
+        "waypoints": []
+      },
+      "cn_3bb6d9a83ac1": {
+        "waypoints": []
+      },
+      "cn_744f830b1677": {
+        "waypoints": []
+      },
+      "cn_3a29c6a56b50": {
+        "waypoints": []
+      },
+      "cn_fed24fb227a1": {
+        "waypoints": []
+      },
+      "cn_0471ddea2855": {
+        "waypoints": []
+      },
+      "cn_2845933326a1": {
+        "waypoints": []
+      },
+      "cn_db3d1c07c48e": {
+        "waypoints": []
+      },
+      "cn_4b1f5ffe91f3": {
+        "waypoints": []
+      },
+      "cn_717c88c3969b": {
+        "waypoints": []
+      },
+      "cn_a33c00e82dc1": {
+        "waypoints": []
+      },
+      "cn_e0228db7cd4b": {
+        "waypoints": []
+      },
+      "cn_e79375058e59": {
+        "waypoints": []
+      },
+      "cn_604c4d746f0e": {
+        "waypoints": []
+      },
+      "cn_072e2f54b3c8": {
+        "waypoints": []
+      },
+      "cn_04e29dd420ca": {
+        "waypoints": []
+      },
+      "cn_e1b29fa009c8": {
+        "waypoints": []
+      },
+      "cn_7becc0e79808": {
+        "waypoints": []
+      },
+      "cn_459aafb49c32": {
+        "waypoints": []
+      },
+      "cn_f6e8faa953c8": {
+        "waypoints": []
+      },
+      "cn_8a878834acbb": {
+        "waypoints": []
+      },
+      "cn_7d93fadc397a": {
+        "waypoints": []
+      },
+      "cn_2b1948a2b1d7": {
+        "waypoints": []
+      },
+      "cn_1dd1f7aacbae": {
+        "waypoints": []
+      },
+      "cn_4cfe33f1a76e": {
+        "waypoints": []
+      },
+      "cn_f27a3c8fd5a8": {
+        "waypoints": []
+      },
+      "cn_4af21357d940": {
+        "waypoints": []
+      },
+      "cn_0fc3d6f5d539": {
+        "waypoints": []
+      },
+      "cn_8ff5e5957066": {
+        "waypoints": []
+      },
+      "cn_301313a80f22": {
+        "waypoints": []
+      },
+      "cn_0626e6283f16": {
+        "waypoints": []
+      },
+      "cn_933a0638bfd3": {
+        "waypoints": []
+      },
+      "cn_7cb093c07a2b": {
+        "waypoints": []
+      },
+      "cn_7d1d51275327": {
+        "waypoints": []
+      },
+      "cn_21d4bbb758a6": {
+        "waypoints": []
+      },
+      "cn_f0b48e79fe27": {
+        "waypoints": []
+      },
+      "cn_302129c4c7fa": {
+        "waypoints": []
+      },
+      "cn_76c214b6a806": {
+        "waypoints": []
+      }
+    }
+  }
+}
