@@ -26,9 +26,22 @@ export function serializeProject(project: Project): string {
 
 /**
  * Migraciones de esquema: cada entrada lleva un documento de la versión N a la N+1.
- * Hoy solo existe la versión 1; las futuras se agregan aquí sin romper archivos antiguos.
+ * Las futuras se agregan aquí sin romper archivos antiguos.
  */
-const migrations: Record<number, (doc: Record<string, unknown>) => Record<string, unknown>> = {};
+const migrations: Record<number, (doc: Record<string, unknown>) => Record<string, unknown>> = {
+  // 1 → 2: «Conductores por fase» vacío = automático. Los cables con 1 (el valor por omisión anterior)
+  // pasan a automático para que el cálculo pueda usar conductores en paralelo.
+  1: (doc) => ({
+    ...doc,
+    schemaVersion: 2,
+    elements: Array.isArray(doc.elements)
+      ? doc.elements.map((e: Record<string, unknown>) => {
+          const params = e.params as Record<string, unknown> | undefined;
+          return e.type === "cable" && params?.conductorsPerPhase === 1 ? { ...e, params: { ...params, conductorsPerPhase: null } } : e;
+        })
+      : doc.elements,
+  }),
+};
 
 function migrate(doc: Record<string, unknown>): Record<string, unknown> {
   let current = doc;

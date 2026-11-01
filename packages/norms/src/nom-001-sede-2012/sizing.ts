@@ -213,260 +213,316 @@ interface Candidate {
 }
 
 
+/** Máximo de conductores por fase que se prueban en automático (límite del campo del cable). */
+const MAX_PARALLEL = 12;
+
+/**
+ * Conductor del circuito. Con «Conductores por fase» capturado se respeta tal cual; vacío = automático:
+ * un conductor por fase hasta el calibre máximo del proyecto y, si no cumple, el menor número de
+ * conductores en paralelo que cumpla ampacidad, protección y caída de tensión.
+ */
 function conductor(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator): ConductorDecision {
-  const steps: TraceStep[] = [];
-  const issues: ConductorDecision["issues"] = [];
-  const material = c.params.material === "Al" ? "Al" : "Cu";
-  const npar = Math.max(1, n(c.params.conductorsPerPhase, 1));
-  const method = racewayMethod(c.params.installationMethod);
-  const fail = (msg: string): ConductorDecision => {
-    issues.push({ severity: "error", message: `${c.tag}: ${msg}` });
-    return { designation: "—", system: "", areaMm2: 0, conductorsPerPhase: npar, material, ampacityA: 0, governing: "ampacidad", dropPct: NaN, steps, issues };
-  };
-  if (!method) return fail("método de instalación no reconocido.");
-  if (c.vNomLL > 2000) return fail(`circuito de ${fmtNum(c.vNomLL / 1000, 2)} kV: los cables de baja tensión de la Tabla 310-15(b)(16) llegan a 2000 V; use el elemento «Cable de media tensión».`);
-
-  // ---- Temperatura del conductor (Tabla 310-104(a)).
-  const ins = data().table("tabla-310-104-a", "insulation-types").data.rows.find((r) => r.type === c.params.insulationType);
-  if (!ins) return fail(`tipo de aislamiento "${String(c.params.insulationType)}" no está en la Tabla 310-104(a).`);
-  const tCondRaw = Math.max(...ins.ratings.map((r) => r.temperatureC));
-  const tCond = tCondRaw >= 90 ? 90 : tCondRaw >= 75 ? 75 : 60;
-  steps.push({ label: "Temperatura nominal del conductor", substitution: `${ins.type}: ${ins.ratings.map((r) => `${r.temperatureC} °C ${r.locations.toLowerCase()}`).join("; ")}`, result: `${tCond} °C`, refs: [cite("tabla-310-104-a"), "Se toma la mayor temperatura del aislamiento; en lugares mojados aplica la indicada para ellos."] });
-
-  // ---- Temperatura de terminales (110-14(c)).
-  const single = c.items.length === 1 ? c.items[0]! : undefined;
-  const motorLetter = single?.kind === "motor" && ["B", "C", "D", "E"].includes(single.motor!.designLetter);
-  const circuitRating = p.ratingA ?? p.designA;
-  let tTerm: number;
-  let tTermWhy: string;
-  const tp = String(c.params.terminalTempC ?? "auto");
-  if (tp !== "auto") {
-    tTerm = Number(tp);
-    tTermWhy = "valor capturado por el usuario";
-  } else if (motorLetter) {
-    tTerm = 75;
-    tTermWhy = `motor con letra de diseño ${single!.motor!.designLetter}: se permiten 75 °C (110-14(c)(1)(a)(4))`;
-  } else if (circuitRating <= 100) {
-    tTerm = 60;
-    tTermWhy = `circuito de ${fmtNum(circuitRating, 0)} A ≤ 100 A (110-14(c)(1)(a))`;
-  } else {
-    tTerm = 75;
-    tTermWhy = `circuito de ${fmtNum(circuitRating, 0)} A > 100 A (110-14(c)(1)(b))`;
-  }
-  tTerm = Math.min(tTerm, tCond);
-  steps.push({ label: "Temperatura de terminales", substitution: tTermWhy, result: `${tTerm} °C`, refs: ["NOM-001-SEDE-2012 110-14(c)"] });
-
-  // ---- Factor por temperatura ambiente (Tabla 310-15(b)(2)(a)).
-  const tc = data().table("tabla-310-15-b-2-a", "temperature-correction");
-  const tRow = tc.data.rows.find((r) => (r.ambientFromC === null ? c.ambientC <= r.ambientToC : c.ambientC >= r.ambientFromC && c.ambientC <= r.ambientToC + 0.999));
-  const ft = tRow?.factors[tc.data.temperaturesC.indexOf(tCond)] ?? null;
-  if (ft === null) return fail(`un conductor de ${tCond} °C no puede operar a ${c.ambientC} °C de ambiente (Tabla 310-15(b)(2)(a)).`);
-  steps.push({ label: "Factor de corrección por temperatura ambiente", substitution: `${c.ambientC} °C (${c.ambientSource}), columna de ${tCond} °C`, result: `${ft}`, refs: [cite("tabla-310-15-b-2-a")] });
-
-  // ---- Conductores portadores de corriente y factor de agrupamiento.
-  const nonLinear = c.items.some((i) => i.nonLinear);
-  const perSet = c.m === 1 ? 2 : c.system === "3F4H" && nonLinear ? 4 : 3;
-  const grouped = n(c.params.groupedConductors);
-  const count = Number.isFinite(grouped) ? grouped : perSet;
-  const tray = method.value.startsWith("charola-");
-  const trayType = String(c.params.trayCableType ?? "multiconductor");
-  const adj = data().table("tabla-310-15-b-3-a", "adjustment-factors");
-  const factorFor = (k: number) => (k <= 3 ? 1 : (adj.data.rows.find((r) => k >= r.conductorsFrom && (r.conductorsTo === null || k <= r.conductorsTo))?.percent ?? 35) / 100);
-  let fa = 1;
-  let faWhy: string;
-  if (method.value === "aire-libre") faWhy = "conductores al aire libre: sin factor de agrupamiento";
-  else if (tray && trayType === "unipolar") faWhy = "charola con cables de un solo conductor: no se aplica 310-15(b)(3)(a) (392-80(a)(2))";
-  else if (method.value === "ducto-metalico") {
-    fa = count > 30 ? factorFor(count) : 1;
-    faWhy = `${count} conductores portadores de corriente en ducto metálico (376-22(b): factores solo con más de 30)`;
-  } else {
-    fa = factorFor(count);
-    faWhy = `${count} conductores portadores de corriente ${tray ? "en el cable multiconductor (392-80(a)(1)(a))" : "en la canalización"}${perSet === 4 ? " (neutro con carga no lineal, 310-15(b)(5)(3))" : ""}`;
-  }
-  steps.push({ label: "Factor de ajuste por agrupamiento", substitution: faWhy, result: `${fa}`, refs: [cite("tabla-310-15-b-3-a")] });
-
-  // ---- Tabla de ampacidad y factor de charola (392-80).
-  const covered = c.params.trayCovered === true;
-  let tableId = method.ampacityTable ?? "tabla-310-15-b-16";
-  let trayFactor = (_d: string) => 1;
-  if (tray) {
-    if (trayType === "unipolar") {
-      tableId = "tabla-310-15-b-17";
-      trayFactor = (d) => (isAtLeast(d, "600") ? (covered ? 0.7 : 0.75) : covered ? 0.6 : 0.65);
-      steps.push({ label: "Charola con cables de un solo conductor", result: `Tabla 310-15(b)(17) × ${covered ? "0.60 (1/0–500) / 0.70 (≥ 600 kcmil)" : "0.65 (1/0–500) / 0.75 (≥ 600 kcmil)"}`, refs: ["NOM-001-SEDE-2012 392-80(a)(2)(a)(b)", "Calibres menores a 1/0 no se permiten como conductores individuales en charola (392-10(b)(1))."] });
-    } else {
-      tableId = "tabla-310-15-b-16";
-      trayFactor = () => (covered ? 0.95 : 1);
-      steps.push({ label: "Charola con cable multiconductor", result: `Tabla 310-15(b)(16)${covered ? " × 0.95 (tapa sólida, 392-80(a)(1)(b))" : ""}`, refs: ["NOM-001-SEDE-2012 392-80(a)(1)"] });
-    }
-  }
-  const amp = data().table(tableId, "ampacity");
-  const t9 = data().table("cap10-tabla-9", "ac-impedance");
-  const t8 = data().table("cap10-tabla-8", "conductor-properties");
-  const colCond = amp.data.temperaturesC.indexOf(tCond);
-  const colTerm = amp.data.temperaturesC.indexOf(tTerm);
-  const mat = material === "Cu" ? "cu" : "al";
-  const area = (d: string) => t8.data.rows.find((r) => r.designation === d)?.areaMm2 ?? amp.data.rows.find((r) => r.designation === d)!.areaMm2!;
-
-  const candidates: Candidate[] = [];
-  for (const r of amp.data.rows) {
-    if (["18", "16"].includes(r.designation)) continue;
-    if (npar > 1 && !isAtLeast(r.designation, "1/0")) continue;
-    if (tray && trayType === "unipolar" && !isAtLeast(r.designation, "1/0")) continue;
-    if (!t9.data.rows.some((x) => x.designation === r.designation)) continue;
-    const aCond = r[mat][colCond];
-    const aTerm = r[mat][colTerm];
-    if (aCond === null || aCond === undefined || aTerm === null || aTerm === undefined) continue;
-    const ampCond = aCond * ft * fa * trayFactor(r.designation) * npar;
-    const ampTerm = aTerm * npar;
-    candidates.push({ designation: r.designation, base: aCond, system: r.system, areaMm2: area(r.designation), ampTerm, ampCond, ampFinal: Math.min(ampCond, ampTerm) });
-  }
-  if (!candidates.length) return fail("no hay calibres disponibles para estas condiciones.");
-
-  const motorCircuit = !p.protectsConductor;
-  const check = (cand: Candidate): { ok: boolean; reasons: string[]; byProtection: boolean } => {
-    const reasons: string[] = [];
-    let byProtection = false;
-    if (cand.ampTerm < p.designA - 1e-9) reasons.push(`ampacidad a ${tTerm} °C ${A(cand.ampTerm)} < corriente de diseño ${A(p.designA)} (110-14(c))`);
-    const need = motorCircuit ? p.designA : p.loadA;
-    if (cand.ampFinal < need - 1e-9) reasons.push(`ampacidad corregida ${A(cand.ampFinal)} < ${motorCircuit ? "corriente de diseño" : "carga"} ${A(need)} (310-15(b))`);
-    if (p.protectsConductor && p.ratingA !== undefined) {
-      const okProt = p.ratingA > 800 || !p.nextHigherAllowed ? cand.ampFinal >= p.ratingA - 1e-9 : (nextStd(cand.ampFinal) ?? Infinity) >= p.ratingA - 1e-9;
-      if (!okProt) {
-        reasons.push(`no queda protegido por ${p.ratingA} A con ampacidad ${A(cand.ampFinal)} (240-4${p.nextHigherAllowed ? "(b)" : p.ratingA > 800 ? "(c)" : "(b)(1)"})`);
-        byProtection = true;
+  const fixed = n(c.params.conductorsPerPhase);
+  if (Number.isFinite(fixed) && fixed >= 1) return conductorWith(c, p, drop, Math.round(fixed), null, false).decision;
+  const maxSize = c.maxSingleConductor ?? null;
+  let last: { decision: ConductorDecision; retry: boolean } | undefined;
+  for (let k = 1; k <= MAX_PARALLEL; k++) {
+    const attempt = conductorWith(c, p, drop, k, maxSize, true);
+    // Con más conductores apareció otro impedimento (p. ej. un calibre fijado menor que 1/0, que no se
+    // permite en paralelo): se queda el resultado anterior.
+    if (k > 1 && !attempt.retry && attempt.decision.issues.some((i) => i.severity === "error")) break;
+    last = attempt;
+    if (!last.retry) {
+      if (k > 1) {
+        last.decision.steps.unshift({
+          label: "Conductores en paralelo (automático)",
+          substitution: `con ${k - 1} conductor(es) por fase${maxSize ? ` de hasta ${maxSize} kcmil (calibre máximo por conductor de los criterios del proyecto)` : ""} no se cumple ampacidad, protección o caída de tensión`,
+          result: `${k} conductores por fase`,
+          refs: ["NOM-001-SEDE-2012 310-10(h): conductores en paralelo de 1/0 AWG o mayores, de igual longitud, material, área y aislamiento", "Se considera cada juego en su propia canalización (agrupamiento por canalización)."],
+        });
       }
-      // 240-4(d): el DOF solo publica los incisos de cobre (los de aluminio no aparecen).
-      const small = material === "Cu" ? proteccionMaxConductorPequeno(cand.designation) : null;
-      if (small && p.ratingA > small.maxA) {
-        reasons.push(`${cand.designation} AWG Cu admite protección de hasta ${small.maxA} A (${small.cita.texto})`);
-        byProtection = true;
-      }
-    }
-    return { ok: reasons.length === 0, reasons, byProtection };
-  };
-
-  const ampLine = (cand: Candidate) =>
-    `${cand.designation} ${cand.system}${npar > 1 ? ` × ${npar}` : ""}: ${tCond} °C → ${fmtNum(cand.base, 0)} A · ${ft} · ${fa}${tray ? ` · ${trayFactor(cand.designation)}` : ""}${npar > 1 ? ` · ${npar}` : ""} = ${A(cand.ampCond)} ; terminales ${tTerm} °C: ${A(cand.ampTerm)} ; ampacidad = ${A(cand.ampFinal)}`;
-
-  const forced = typeof c.params.forcedSize === "string" ? c.params.forcedSize : null;
-  let chosen: Candidate;
-  let governing: ConductorDecision["governing"];
-  let minAmpCand: Candidate | undefined;
-  if (forced) {
-    const cand = candidates.find((x) => x.designation === forced);
-    if (!cand) return fail(`el calibre fijado ${forced} no está disponible en estas condiciones.`);
-    const r = check(cand);
-    steps.push({ label: "Verificación del calibre fijado", substitution: ampLine(cand), result: r.ok ? "Cumple ampacidad y protección" : `No cumple: ${r.reasons.join("; ")}` });
-    if (!r.ok) for (const reason of r.reasons) issues.push({ severity: "error", message: `${c.tag}: calibre ${forced} — ${reason}.` });
-    chosen = cand;
-    governing = "fijado";
-    minAmpCand = candidates.find((x) => check(x).ok);
-  } else {
-    // Mínimo por ampacidad y protección.
-    let firstAmpOnly: Candidate | undefined;
-    for (const cand of candidates) {
-      const r = check(cand);
-      if (!firstAmpOnly && r.reasons.every((x) => x.includes("240-4"))) firstAmpOnly = cand;
-      if (r.ok) {
-        minAmpCand = cand;
-        break;
-      }
-    }
-    if (!minAmpCand) return fail(`ningún calibre (hasta ${candidates.at(-1)!.designation}${npar > 1 ? ` × ${npar}` : ""}) cumple; considere conductores en paralelo.`);
-    governing = firstAmpOnly && firstAmpOnly !== minAmpCand ? "proteccion" : "ampacidad";
-    steps.push({ label: "Calibre mínimo por ampacidad y protección", substitution: ampLine(minAmpCand), result: `${minAmpCand.designation} ${minAmpCand.system}`, refs: [cite(tableId), "310-15(b)", "240-4"] });
-    chosen = minAmpCand;
-  }
-
-  // ---- Caída de tensión: se aumenta el calibre hasta cumplir.
-  let dr = drop(chosen.designation, npar);
-  if ("error" in dr) return fail(dr.error);
-  if (!forced) {
-    let idx = candidates.indexOf(chosen);
-    while (dr.pct > dr.limitPct + 1e-9 && idx < candidates.length - 1) {
-      idx++;
-      const next = drop(candidates[idx]!.designation, npar);
-      if ("error" in next) return fail(next.error);
-      dr = next;
-      chosen = candidates[idx]!;
-      governing = "caida-de-tension";
+      return last.decision;
     }
   }
-  steps.push({
-    label: "Caída de tensión con el calibre elegido",
-    result: `${fmtNum(dr.pct, 3)} % ${dr.pct <= dr.limitPct + 1e-9 ? "≤" : ">"} ${dr.limitPct} % (${dr.limitSource})`,
+  const d = last!.decision;
+  d.issues.unshift({
+    severity: "error",
+    message: `${c.tag}: no hay combinación posible: se probaron de 1 a ${MAX_PARALLEL} conductores por fase${maxSize ? ` de hasta ${maxSize} kcmil` : ""} y ninguna cumple; revise los datos del circuito (carga, tensión, longitud, método de instalación, temperatura).`,
   });
-  if (dr.pct > dr.limitPct + 1e-9) issues.push({ severity: "error", message: `${c.tag}: caída de tensión ${fmtNum(dr.pct, 2)} % > ${dr.limitPct} % (${dr.limitSource})${forced ? " con el calibre fijado" : "; ni el mayor calibre disponible cumple, considere conductores en paralelo"}.` });
-  if (governing === "caida-de-tension") steps.push({ label: "Calibre aumentado por caída de tensión", result: `${chosen.designation} ${chosen.system}` });
+  return d;
+}
 
-  // ---- Conductor de puesta a tierra de equipos (250-122).
-  let egc: ConductorDecision["egc"];
-  if (c.params.includeEgc !== false) {
-    if (p.ratingA === undefined && c.transformerSecondary) {
-      // Secundario de un sistema derivado separado, lado de alimentación de la primera protección:
-      // puente de unión del lado de alimentación según 250-102(c)(1)/(2) con la Tabla 250-66 (por canalización),
-      // del mismo material que las fases, y 12.5 % del área de fase si ésta excede 557 mm² (1100 kcmil)
-      // de cobre o 887 mm² (1750 kcmil) de aluminio.
-      const al = material === "Al";
-      const g = al ? conductorElectrodoTierraAl(chosen.areaMm2) : conductorElectrodoTierra(chosen.areaMm2);
-      const gSteps = [
-        `fase ${chosen.designation} ${al ? "Al" : "Cu"} (${fmtNum(chosen.areaMm2, 2)} mm²${npar > 1 ? " por canalización" : ""}) → ${al ? `${g.al} Al (${g.alMm2} mm²)` : `${g.cu} Cu (${g.cuMm2} mm²)`}`,
-      ];
-      let designation = al ? g.al : g.cu;
-      let area = al ? g.alMm2 : g.cuMm2;
-      if (chosen.areaMm2 > (al ? 887 : 557) + 1e-9) {
-        const need = 0.125 * chosen.areaMm2;
-        const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= need - 1e-6 && r.strands > 1);
-        if (up && (up.areaMm2 ?? 0) > area) {
-          gSteps.push(`12.5 % del área de fase (250-102(c)(1)): ${fmtNum(need, 2)} mm² → ${up.designation}`);
-          designation = up.designation;
-          area = up.areaMm2 ?? area;
-        }
-      }
-      const sys = t8.data.rows.find((r) => r.designation === designation)?.system ?? "AWG";
-      egc = { designation, system: sys, areaMm2: area, perRaceway: npar > 1 };
-      if (al) gSteps.push("puente de aluminio, del mismo material que las fases (columna de aluminio de la Tabla 250-66)");
-      steps.push({
-        label: "Puente de unión del lado de alimentación (secundario del transformador)",
-        substitution: gSteps.join(" ; "),
-        result: `${designation} ${sys}${npar > 1 ? " en cada canalización (250-102(c)(2))" : ""}`,
-        refs: [g.cita.texto, "NOM-001-SEDE-2012 250-30(a) y 250-102(c)", "No se usa la Tabla 250-122: no hay protección en el origen de estos conductores."],
-      });
-    } else if (p.ratingA === undefined) {
-      issues.push({
-        severity: "info",
-        message: `${c.tag}: sin protección en el origen; el conductor de puesta a tierra no se dimensiona con la Tabla 250-122.`,
-      });
+/** Selección con un número dado de conductores por fase. retry = no cumplió por ampacidad, protección o caída. */
+function conductorWith(c: SizingCircuit, p: ProtectionDecision, drop: DropEvaluator, npar: number, maxSize: string | null, auto: boolean): { decision: ConductorDecision; retry: boolean } {
+  let retry = false;
+  const decision = conductorSelect();
+  return { decision, retry };
+
+  function conductorSelect(): ConductorDecision {
+    const steps: TraceStep[] = [];
+    const issues: ConductorDecision["issues"] = [];
+    const material = c.params.material === "Al" ? "Al" : "Cu";
+    const method = racewayMethod(c.params.installationMethod);
+    const fail = (msg: string): ConductorDecision => {
+      issues.push({ severity: "error", message: `${c.tag}: ${msg}` });
+      return { designation: "—", system: "", areaMm2: 0, conductorsPerPhase: npar, material, ampacityA: 0, governing: "ampacidad", dropPct: NaN, steps, issues };
+    };
+    if (!method) return fail("método de instalación no reconocido.");
+    if (c.vNomLL > 2000) return fail(`circuito de ${fmtNum(c.vNomLL / 1000, 2)} kV: los cables de baja tensión de la Tabla 310-15(b)(16) llegan a 2000 V; use el elemento «Cable de media tensión».`);
+
+    // ---- Temperatura del conductor (Tabla 310-104(a)).
+    const ins = data().table("tabla-310-104-a", "insulation-types").data.rows.find((r) => r.type === c.params.insulationType);
+    if (!ins) return fail(`tipo de aislamiento "${String(c.params.insulationType)}" no está en la Tabla 310-104(a).`);
+    const tCondRaw = Math.max(...ins.ratings.map((r) => r.temperatureC));
+    const tCond = tCondRaw >= 90 ? 90 : tCondRaw >= 75 ? 75 : 60;
+    steps.push({ label: "Temperatura nominal del conductor", substitution: `${ins.type}: ${ins.ratings.map((r) => `${r.temperatureC} °C ${r.locations.toLowerCase()}`).join("; ")}`, result: `${tCond} °C`, refs: [cite("tabla-310-104-a"), "Se toma la mayor temperatura del aislamiento; en lugares mojados aplica la indicada para ellos."] });
+
+    // ---- Temperatura de terminales (110-14(c)).
+    const single = c.items.length === 1 ? c.items[0]! : undefined;
+    const motorLetter = single?.kind === "motor" && ["B", "C", "D", "E"].includes(single.motor!.designLetter);
+    const circuitRating = p.ratingA ?? p.designA;
+    let tTerm: number;
+    let tTermWhy: string;
+    const tp = String(c.params.terminalTempC ?? "auto");
+    if (tp !== "auto") {
+      tTerm = Number(tp);
+      tTermWhy = "valor capturado por el usuario";
+    } else if (motorLetter) {
+      tTerm = 75;
+      tTermWhy = `motor con letra de diseño ${single!.motor!.designLetter}: se permiten 75 °C (110-14(c)(1)(a)(4))`;
+    } else if (circuitRating <= 100) {
+      tTerm = 60;
+      tTermWhy = `circuito de ${fmtNum(circuitRating, 0)} A ≤ 100 A (110-14(c)(1)(a))`;
     } else {
-      const t122 = data().table("tabla-250-122", "egc-size");
-      const row = t122.data.rows.find((r) => r.maxRatingA >= p.ratingA! - 1e-9);
-      if (!row) issues.push({ severity: "error", message: `${c.tag}: la Tabla 250-122 no cubre protecciones de ${p.ratingA} A.` });
-      else {
-        let g = material === "Al" && row.al ? row.al : row.cu;
-        const gSteps = [`${p.ratingA} A → ${g.designation} ${g.system} ${material === "Al" && row.al ? "Al" : "Cu"} (${g.areaMm2} mm²)`];
-        if (material === "Al" && !row.al) gSteps.push("la tabla no da aluminio para esta protección: se usa cobre");
-        // 250-122(b): aumento proporcional si la fase es mayor que el mínimo con ampacidad suficiente
-        // (sea por caída de tensión o porque el usuario fijó un calibre mayor).
-        if (minAmpCand && chosen.areaMm2 > minAmpCand.areaMm2 + 1e-9) {
-          const ratio = chosen.areaMm2 / minAmpCand.areaMm2;
-          const needArea = (g.areaMm2 ?? 0) * ratio;
-          const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= needArea - 1e-6 && r.strands > 1) ?? t8.data.rows.at(-1)!;
-          gSteps.push(`aumento proporcional (250-122(b)): ${fmtNum(g.areaMm2 ?? 0, 2)} · ${fmtNum(chosen.areaMm2, 2)} / ${fmtNum(minAmpCand.areaMm2, 2)} = ${fmtNum(needArea, 2)} mm² → ${up.designation}`);
-          g = { designation: up.designation, system: up.system, areaMm2: up.areaMm2 };
-        }
-        // 250-122(a): no mayor que los conductores del circuito.
-        if ((g.areaMm2 ?? 0) > chosen.areaMm2) {
-          gSteps.push(`no se exige mayor que la fase (250-122(a)) → ${chosen.designation}`);
-          g = { designation: chosen.designation, system: chosen.system as typeof g.system, areaMm2: chosen.areaMm2 };
-        }
-        egc = { designation: g.designation, system: g.system, areaMm2: g.areaMm2 ?? 0, perRaceway: npar > 1 };
-        steps.push({ label: "Conductor de puesta a tierra de equipos", substitution: gSteps.join(" ; "), result: `${g.designation} ${g.system}${npar > 1 ? " en cada canalización (250-122(f))" : ""}`, refs: [cite("tabla-250-122"), ...(motorCircuit && c.items.length === 1 ? ["250-122(d)(1)"] : [])] });
+      tTerm = 75;
+      tTermWhy = `circuito de ${fmtNum(circuitRating, 0)} A > 100 A (110-14(c)(1)(b))`;
+    }
+    tTerm = Math.min(tTerm, tCond);
+    steps.push({ label: "Temperatura de terminales", substitution: tTermWhy, result: `${tTerm} °C`, refs: ["NOM-001-SEDE-2012 110-14(c)"] });
+
+    // ---- Factor por temperatura ambiente (Tabla 310-15(b)(2)(a)).
+    const tc = data().table("tabla-310-15-b-2-a", "temperature-correction");
+    const tRow = tc.data.rows.find((r) => (r.ambientFromC === null ? c.ambientC <= r.ambientToC : c.ambientC >= r.ambientFromC && c.ambientC <= r.ambientToC + 0.999));
+    const ft = tRow?.factors[tc.data.temperaturesC.indexOf(tCond)] ?? null;
+    if (ft === null) return fail(`un conductor de ${tCond} °C no puede operar a ${c.ambientC} °C de ambiente (Tabla 310-15(b)(2)(a)).`);
+    steps.push({ label: "Factor de corrección por temperatura ambiente", substitution: `${c.ambientC} °C (${c.ambientSource}), columna de ${tCond} °C`, result: `${ft}`, refs: [cite("tabla-310-15-b-2-a")] });
+
+    // ---- Conductores portadores de corriente y factor de agrupamiento.
+    const nonLinear = c.items.some((i) => i.nonLinear);
+    const perSet = c.m === 1 ? 2 : c.system === "3F4H" && nonLinear ? 4 : 3;
+    const grouped = n(c.params.groupedConductors);
+    const count = Number.isFinite(grouped) ? grouped : perSet;
+    const tray = method.value.startsWith("charola-");
+    const trayType = String(c.params.trayCableType ?? "multiconductor");
+    const adj = data().table("tabla-310-15-b-3-a", "adjustment-factors");
+    const factorFor = (k: number) => (k <= 3 ? 1 : (adj.data.rows.find((r) => k >= r.conductorsFrom && (r.conductorsTo === null || k <= r.conductorsTo))?.percent ?? 35) / 100);
+    let fa = 1;
+    let faWhy: string;
+    if (method.value === "aire-libre") faWhy = "conductores al aire libre: sin factor de agrupamiento";
+    else if (tray && trayType === "unipolar") faWhy = "charola con cables de un solo conductor: no se aplica 310-15(b)(3)(a) (392-80(a)(2))";
+    else if (method.value === "ducto-metalico") {
+      fa = count > 30 ? factorFor(count) : 1;
+      faWhy = `${count} conductores portadores de corriente en ducto metálico (376-22(b): factores solo con más de 30)`;
+    } else {
+      fa = factorFor(count);
+      faWhy = `${count} conductores portadores de corriente ${tray ? "en el cable multiconductor (392-80(a)(1)(a))" : "en la canalización"}${perSet === 4 ? " (neutro con carga no lineal, 310-15(b)(5)(3))" : ""}`;
+    }
+    steps.push({ label: "Factor de ajuste por agrupamiento", substitution: faWhy, result: `${fa}`, refs: [cite("tabla-310-15-b-3-a")] });
+
+    // ---- Tabla de ampacidad y factor de charola (392-80).
+    const covered = c.params.trayCovered === true;
+    let tableId = method.ampacityTable ?? "tabla-310-15-b-16";
+    let trayFactor = (_d: string) => 1;
+    if (tray) {
+      if (trayType === "unipolar") {
+        tableId = "tabla-310-15-b-17";
+        trayFactor = (d) => (isAtLeast(d, "600") ? (covered ? 0.7 : 0.75) : covered ? 0.6 : 0.65);
+        steps.push({ label: "Charola con cables de un solo conductor", result: `Tabla 310-15(b)(17) × ${covered ? "0.60 (1/0–500) / 0.70 (≥ 600 kcmil)" : "0.65 (1/0–500) / 0.75 (≥ 600 kcmil)"}`, refs: ["NOM-001-SEDE-2012 392-80(a)(2)(a)(b)", "Calibres menores a 1/0 no se permiten como conductores individuales en charola (392-10(b)(1))."] });
+      } else {
+        tableId = "tabla-310-15-b-16";
+        trayFactor = () => (covered ? 0.95 : 1);
+        steps.push({ label: "Charola con cable multiconductor", result: `Tabla 310-15(b)(16)${covered ? " × 0.95 (tapa sólida, 392-80(a)(1)(b))" : ""}`, refs: ["NOM-001-SEDE-2012 392-80(a)(1)"] });
       }
     }
-  }
+    const amp = data().table(tableId, "ampacity");
+    const t9 = data().table("cap10-tabla-9", "ac-impedance");
+    const t8 = data().table("cap10-tabla-8", "conductor-properties");
+    const colCond = amp.data.temperaturesC.indexOf(tCond);
+    const colTerm = amp.data.temperaturesC.indexOf(tTerm);
+    const mat = material === "Cu" ? "cu" : "al";
+    const area = (d: string) => t8.data.rows.find((r) => r.designation === d)?.areaMm2 ?? amp.data.rows.find((r) => r.designation === d)!.areaMm2!;
 
-  return { designation: chosen.designation, system: chosen.system, areaMm2: chosen.areaMm2, conductorsPerPhase: npar, material, ampacityA: chosen.ampFinal, governing, dropPct: dr.pct, egc, steps, issues };
+    const candidates: Candidate[] = [];
+    for (const r of amp.data.rows) {
+      if (["18", "16"].includes(r.designation)) continue;
+      if (npar > 1 && !isAtLeast(r.designation, "1/0")) continue;
+      // Automático: no se pasa del calibre máximo por conductor del proyecto.
+      if (maxSize && r.system === "kcmil" && !isAtLeast(maxSize, r.designation)) continue;
+      if (tray && trayType === "unipolar" && !isAtLeast(r.designation, "1/0")) continue;
+      if (!t9.data.rows.some((x) => x.designation === r.designation)) continue;
+      const aCond = r[mat][colCond];
+      const aTerm = r[mat][colTerm];
+      if (aCond === null || aCond === undefined || aTerm === null || aTerm === undefined) continue;
+      const ampCond = aCond * ft * fa * trayFactor(r.designation) * npar;
+      const ampTerm = aTerm * npar;
+      candidates.push({ designation: r.designation, base: aCond, system: r.system, areaMm2: area(r.designation), ampTerm, ampCond, ampFinal: Math.min(ampCond, ampTerm) });
+    }
+    if (!candidates.length) return fail("no hay calibres disponibles para estas condiciones.");
+
+    const motorCircuit = !p.protectsConductor;
+    const check = (cand: Candidate): { ok: boolean; reasons: string[]; byProtection: boolean } => {
+      const reasons: string[] = [];
+      let byProtection = false;
+      if (cand.ampTerm < p.designA - 1e-9) reasons.push(`ampacidad a ${tTerm} °C ${A(cand.ampTerm)} < corriente de diseño ${A(p.designA)} (110-14(c))`);
+      const need = motorCircuit ? p.designA : p.loadA;
+      if (cand.ampFinal < need - 1e-9) reasons.push(`ampacidad corregida ${A(cand.ampFinal)} < ${motorCircuit ? "corriente de diseño" : "carga"} ${A(need)} (310-15(b))`);
+      if (p.protectsConductor && p.ratingA !== undefined) {
+        const okProt = p.ratingA > 800 || !p.nextHigherAllowed ? cand.ampFinal >= p.ratingA - 1e-9 : (nextStd(cand.ampFinal) ?? Infinity) >= p.ratingA - 1e-9;
+        if (!okProt) {
+          reasons.push(`no queda protegido por ${p.ratingA} A con ampacidad ${A(cand.ampFinal)} (240-4${p.nextHigherAllowed ? "(b)" : p.ratingA > 800 ? "(c)" : "(b)(1)"})`);
+          byProtection = true;
+        }
+        // 240-4(d): el DOF solo publica los incisos de cobre (los de aluminio no aparecen).
+        const small = material === "Cu" ? proteccionMaxConductorPequeno(cand.designation) : null;
+        if (small && p.ratingA > small.maxA) {
+          reasons.push(`${cand.designation} AWG Cu admite protección de hasta ${small.maxA} A (${small.cita.texto})`);
+          byProtection = true;
+        }
+      }
+      return { ok: reasons.length === 0, reasons, byProtection };
+    };
+
+    const ampLine = (cand: Candidate) =>
+      `${cand.designation} ${cand.system}${npar > 1 ? ` × ${npar}` : ""}: ${tCond} °C → ${fmtNum(cand.base, 0)} A · ${ft} · ${fa}${tray ? ` · ${trayFactor(cand.designation)}` : ""}${npar > 1 ? ` · ${npar}` : ""} = ${A(cand.ampCond)} ; terminales ${tTerm} °C: ${A(cand.ampTerm)} ; ampacidad = ${A(cand.ampFinal)}`;
+
+    const forced = typeof c.params.forcedSize === "string" ? c.params.forcedSize : null;
+    let chosen: Candidate;
+    let governing: ConductorDecision["governing"];
+    let minAmpCand: Candidate | undefined;
+    if (forced) {
+      const cand = candidates.find((x) => x.designation === forced);
+      if (!cand) return fail(`el calibre fijado ${forced} no está disponible en estas condiciones.`);
+      const r = check(cand);
+      steps.push({ label: "Verificación del calibre fijado", substitution: ampLine(cand), result: r.ok ? "Cumple ampacidad y protección" : `No cumple: ${r.reasons.join("; ")}` });
+      if (!r.ok) {
+        retry = true;
+        for (const reason of r.reasons) issues.push({ severity: "error", message: `${c.tag}: calibre ${forced} — ${reason}.` });
+      }
+      chosen = cand;
+      governing = "fijado";
+      minAmpCand = candidates.find((x) => check(x).ok);
+    } else {
+      // Mínimo por ampacidad y protección.
+      let firstAmpOnly: Candidate | undefined;
+      for (const cand of candidates) {
+        const r = check(cand);
+        if (!firstAmpOnly && r.reasons.every((x) => x.includes("240-4"))) firstAmpOnly = cand;
+        if (r.ok) {
+          minAmpCand = cand;
+          break;
+        }
+      }
+      if (!minAmpCand) {
+        retry = true;
+        return fail(`ningún calibre (hasta ${candidates.at(-1)!.designation}${npar > 1 ? ` × ${npar}` : ""}) cumple${auto ? "" : "; considere conductores en paralelo"}.`);
+      }
+      governing = firstAmpOnly && firstAmpOnly !== minAmpCand ? "proteccion" : "ampacidad";
+      steps.push({ label: "Calibre mínimo por ampacidad y protección", substitution: ampLine(minAmpCand), result: `${minAmpCand.designation} ${minAmpCand.system}`, refs: [cite(tableId), "310-15(b)", "240-4"] });
+      chosen = minAmpCand;
+    }
+
+    // ---- Caída de tensión: se aumenta el calibre hasta cumplir.
+    let dr = drop(chosen.designation, npar);
+    if ("error" in dr) return fail(dr.error);
+    if (!forced) {
+      let idx = candidates.indexOf(chosen);
+      while (dr.pct > dr.limitPct + 1e-9 && idx < candidates.length - 1) {
+        idx++;
+        const next = drop(candidates[idx]!.designation, npar);
+        if ("error" in next) return fail(next.error);
+        dr = next;
+        chosen = candidates[idx]!;
+        governing = "caida-de-tension";
+      }
+    }
+    steps.push({
+      label: "Caída de tensión con el calibre elegido",
+      result: `${fmtNum(dr.pct, 3)} % ${dr.pct <= dr.limitPct + 1e-9 ? "≤" : ">"} ${dr.limitPct} % (${dr.limitSource})`,
+    });
+    if (dr.pct > dr.limitPct + 1e-9) {
+      retry = true;
+      issues.push({ severity: "error", message: `${c.tag}: caída de tensión ${fmtNum(dr.pct, 2)} % > ${dr.limitPct} % (${dr.limitSource})${forced ? " con el calibre fijado" : auto ? "" : "; ni el mayor calibre disponible cumple, considere conductores en paralelo"}.` });
+    }
+    if (governing === "caida-de-tension") steps.push({ label: "Calibre aumentado por caída de tensión", result: `${chosen.designation} ${chosen.system}` });
+
+    // ---- Conductor de puesta a tierra de equipos (250-122).
+    let egc: ConductorDecision["egc"];
+    if (c.params.includeEgc !== false) {
+      if (p.ratingA === undefined && c.transformerSecondary) {
+        // Secundario de un sistema derivado separado, lado de alimentación de la primera protección:
+        // puente de unión del lado de alimentación según 250-102(c)(1)/(2) con la Tabla 250-66 (por canalización),
+        // del mismo material que las fases, y 12.5 % del área de fase si ésta excede 557 mm² (1100 kcmil)
+        // de cobre o 887 mm² (1750 kcmil) de aluminio.
+        const al = material === "Al";
+        const g = al ? conductorElectrodoTierraAl(chosen.areaMm2) : conductorElectrodoTierra(chosen.areaMm2);
+        const gSteps = [
+          `fase ${chosen.designation} ${al ? "Al" : "Cu"} (${fmtNum(chosen.areaMm2, 2)} mm²${npar > 1 ? " por canalización" : ""}) → ${al ? `${g.al} Al (${g.alMm2} mm²)` : `${g.cu} Cu (${g.cuMm2} mm²)`}`,
+        ];
+        let designation = al ? g.al : g.cu;
+        let area = al ? g.alMm2 : g.cuMm2;
+        if (chosen.areaMm2 > (al ? 887 : 557) + 1e-9) {
+          const need = 0.125 * chosen.areaMm2;
+          const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= need - 1e-6 && r.strands > 1);
+          if (up && (up.areaMm2 ?? 0) > area) {
+            gSteps.push(`12.5 % del área de fase (250-102(c)(1)): ${fmtNum(need, 2)} mm² → ${up.designation}`);
+            designation = up.designation;
+            area = up.areaMm2 ?? area;
+          }
+        }
+        const sys = t8.data.rows.find((r) => r.designation === designation)?.system ?? "AWG";
+        egc = { designation, system: sys, areaMm2: area, perRaceway: npar > 1 };
+        if (al) gSteps.push("puente de aluminio, del mismo material que las fases (columna de aluminio de la Tabla 250-66)");
+        steps.push({
+          label: "Puente de unión del lado de alimentación (secundario del transformador)",
+          substitution: gSteps.join(" ; "),
+          result: `${designation} ${sys}${npar > 1 ? " en cada canalización (250-102(c)(2))" : ""}`,
+          refs: [g.cita.texto, "NOM-001-SEDE-2012 250-30(a) y 250-102(c)", "No se usa la Tabla 250-122: no hay protección en el origen de estos conductores."],
+        });
+      } else if (p.ratingA === undefined) {
+        issues.push({
+          severity: "info",
+          message: `${c.tag}: sin protección en el origen; el conductor de puesta a tierra no se dimensiona con la Tabla 250-122.`,
+        });
+      } else {
+        const t122 = data().table("tabla-250-122", "egc-size");
+        const row = t122.data.rows.find((r) => r.maxRatingA >= p.ratingA! - 1e-9);
+        if (!row) issues.push({ severity: "error", message: `${c.tag}: la Tabla 250-122 no cubre protecciones de ${p.ratingA} A.` });
+        else {
+          let g = material === "Al" && row.al ? row.al : row.cu;
+          const gSteps = [`${p.ratingA} A → ${g.designation} ${g.system} ${material === "Al" && row.al ? "Al" : "Cu"} (${g.areaMm2} mm²)`];
+          if (material === "Al" && !row.al) gSteps.push("la tabla no da aluminio para esta protección: se usa cobre");
+          // 250-122(b): aumento proporcional si la fase es mayor que el mínimo con ampacidad suficiente
+          // (sea por caída de tensión o porque el usuario fijó un calibre mayor).
+          if (minAmpCand && chosen.areaMm2 > minAmpCand.areaMm2 + 1e-9) {
+            const ratio = chosen.areaMm2 / minAmpCand.areaMm2;
+            const needArea = (g.areaMm2 ?? 0) * ratio;
+            const up = t8.data.rows.find((r) => (r.areaMm2 ?? 0) >= needArea - 1e-6 && r.strands > 1) ?? t8.data.rows.at(-1)!;
+            gSteps.push(`aumento proporcional (250-122(b)): ${fmtNum(g.areaMm2 ?? 0, 2)} · ${fmtNum(chosen.areaMm2, 2)} / ${fmtNum(minAmpCand.areaMm2, 2)} = ${fmtNum(needArea, 2)} mm² → ${up.designation}`);
+            g = { designation: up.designation, system: up.system, areaMm2: up.areaMm2 };
+          }
+          // 250-122(a): no mayor que los conductores del circuito.
+          if ((g.areaMm2 ?? 0) > chosen.areaMm2) {
+            gSteps.push(`no se exige mayor que la fase (250-122(a)) → ${chosen.designation}`);
+            g = { designation: chosen.designation, system: chosen.system as typeof g.system, areaMm2: chosen.areaMm2 };
+          }
+          egc = { designation: g.designation, system: g.system, areaMm2: g.areaMm2 ?? 0, perRaceway: npar > 1 };
+          steps.push({ label: "Conductor de puesta a tierra de equipos", substitution: gSteps.join(" ; "), result: `${g.designation} ${g.system}${npar > 1 ? " en cada canalización (250-122(f))" : ""}`, refs: [cite("tabla-250-122"), ...(motorCircuit && c.items.length === 1 ? ["250-122(d)(1)"] : [])] });
+        }
+      }
+    }
+
+    return { designation: chosen.designation, system: chosen.system, areaMm2: chosen.areaMm2, conductorsPerPhase: npar, material, ampacityA: chosen.ampFinal, governing, dropPct: dr.pct, egc, steps, issues };
+  }
 }
 
 /** Compara calibres por área: ¿d es mayor o igual que ref? */

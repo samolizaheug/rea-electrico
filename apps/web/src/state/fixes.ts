@@ -167,7 +167,12 @@ function candidates(issue: UiIssue, project: Project, v: ValidationState): Group
           label: `${cable.tag}: ${n} conductores por fase en paralelo (antes ${cur})`,
           apply: setParams(cable.id, { conductorsPerPhase: n }),
         }));
-        return [{ kind: "paralelo", fixes, monotonic: true }];
+        // Primero, dejar que el cálculo elija el número de conductores (campo vacío = automático).
+        const auto = { label: `${cable.tag}: conductores por fase ${cur} → automático`, apply: setParams(cable.id, { conductorsPerPhase: null }) };
+        return [
+          { kind: "automatico", fixes: [auto] },
+          { kind: "paralelo", fixes, monotonic: true },
+        ];
       }
       if (!isDropMessage(issue.message)) return [];
       return voltageGroups(project, v, issue.elementIds);

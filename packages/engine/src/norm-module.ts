@@ -160,6 +160,11 @@ export interface SizingCircuit {
   wiring: Wiring;
   /** Tableros, CCM o barras de donde sale el circuito y a los que llega. */
   originBusIds?: string[];
+  /**
+   * Calibre máximo por conductor antes de usar conductores en paralelo (criterio del proyecto);
+   * null = sin límite. Solo aplica si «Conductores por fase» está vacío (automático).
+   */
+  maxSingleConductor?: string | null;
   destinationBusIds?: string[];
 }
 

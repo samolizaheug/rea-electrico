@@ -59,18 +59,16 @@ describe("soluciones propuestas en el panel de validación", () => {
     expect(fixes[0]!.label).toMatch(/^AL-41: calibre /);
   });
 
-  it("ningún calibre cumple: propone conductores en paralelo", () => {
+  it("número de conductores capturado que no alcanza: propone dejarlo automático", () => {
     let p = sistemaEjemplo();
-    // Carga muy grande en el tablero TAB-A: el alimentador AL-4 no alcanza con un solo conductor.
-    const load = p.elements.find((e) => e.type === "generic-load")!;
-    p = updateParams(p, load.id, { power: 400, powerUnit: "kW" });
-    // Sin calibre fijado en el circuito de la carga ni en el secundario, para que el cálculo lo elija.
-    for (const tag of ["AL-23", "AL-3"]) p = updateParams(p, byTag(p, tag).id, { forcedSize: null });
-    const issue = computeValidation(p).issues.find((i) => i.code === "dimensionamiento" && /ningún calibre/.test(i.message));
-    expect(issue, computeValidation(p).issues.map((i) => i.message).join(" | ")).toBeDefined();
+    p = updateParams(p, byTag(p, "CG-01").id, { power: 400, powerUnit: "kW" });
+    for (const tag of ["AL-23", "AL-3"]) p = updateParams(p, byTag(p, tag).id, { forcedSize: null, conductorsPerPhase: null });
+    p = updateParams(p, byTag(p, "AL-23").id, { conductorsPerPhase: 1 });
+    const issue = computeValidation(p).issues.find((i) => i.code === "dimensionamiento" && /AL-23: ningún calibre/.test(i.message));
+    expect(issue).toBeDefined();
     expect(hintFor(issue!, p)).toMatch(/ampacidad, no de longitud/);
     const fixes = check(p, issue!);
-    expect(fixes[0]!.label).toMatch(/conductores por fase en paralelo/);
+    expect(fixes.map((f) => f.label)).toContain("AL-23: conductores por fase 1 → automático");
   });
 
   it("todas las observaciones tienen una sugerencia", () => {

@@ -30,6 +30,7 @@ export const DEFAULT_SETTINGS: ProjectSettings = {
   ambient: { airC: 30, groundC: 20 },
   voltageDrop: { branchPct: 3, feederPct: 3, totalPct: 5 },
   phaseUnbalance: { maxPct: 5 },
+  conductors: { maxSingleSize: "500" },
 };
 
 /** Genera un identificador corto, legible y suficientemente único dentro de un proyecto. */

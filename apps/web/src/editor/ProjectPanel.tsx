@@ -150,6 +150,24 @@ export function ProjectPanel() {
           onCommit={(v) => ed.setSettings({ phaseUnbalance: { maxPct: v } })}
         />
         <span className="field-help">{t("project.unbalanceNote")}</span>
+        {s.norm.id.startsWith("nom") ? (
+          <>
+            <label htmlFor="set-maxsize">{t("project.maxSingleSize")}</label>
+            <select
+              id="set-maxsize"
+              value={s.conductors?.maxSingleSize ?? ""}
+              onChange={(e) => ed.setSettings({ conductors: { maxSingleSize: e.target.value || null } })}
+            >
+              {["250", "300", "350", "400", "500", "600", "750", "1000"].map((d) => (
+                <option key={d} value={d}>
+                  {d} kcmil
+                </option>
+              ))}
+              <option value="">{t("project.maxSingleSizeNone")}</option>
+            </select>
+            <span className="field-help">{t("project.maxSingleSizeNote")}</span>
+          </>
+        ) : null}
       </fieldset>
     </div>
   );

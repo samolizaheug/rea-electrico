@@ -351,11 +351,11 @@ export const cable: ElementTypeDefinition = {
       key: "conductorsPerPhase",
       label: "Conductores por fase (paralelo)",
       kind: "number",
-      default: 1,
+      default: null,
       min: 1,
       max: 12,
       integer: true,
-      required: true,
+      description: "Vacío = automático: el cálculo usa un conductor por fase hasta el calibre máximo de los criterios de diseño y, arriba de él, el menor número de conductores en paralelo que cumpla. Un número capturado se respeta tal cual.",
       group: "Conductor",
     },
     {

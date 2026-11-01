@@ -13,7 +13,7 @@ import { z } from "zod";
  */
 
 export const PROJECT_FORMAT = "rea-electrico/proyecto";
-export const CURRENT_SCHEMA_VERSION = 1;
+export const CURRENT_SCHEMA_VERSION = 2;
 
 const id = z.string().min(1).max(64).regex(/^[A-Za-z0-9_-]+$/, "Identificador con caracteres no permitidos");
 
@@ -52,6 +52,12 @@ export const projectSettingsSchema = z.object({
    * límite se emite una advertencia. Opcional en archivos anteriores (se toma 5 %).
    */
   phaseUnbalance: z.object({ maxPct: z.number().positive().max(100) }).default({ maxPct: 5 }),
+  /**
+   * Conductores en paralelo automáticos: calibre máximo por conductor antes de usar más de un conductor
+   * por fase (designación de la tabla de ampacidad, p. ej. "500" kcmil). null = sin límite (paralelo solo
+   * si ningún calibre alcanza). Criterio de diseño del proyecto, no de la norma.
+   */
+  conductors: z.object({ maxSingleSize: z.string().nullable() }).default({ maxSingleSize: "500" }),
 });
 
 export const projectMetaSchema = z.object({

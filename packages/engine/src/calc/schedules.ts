@@ -116,7 +116,7 @@ export function panelSchedules(project: Project, registry: ElementRegistry, flow
         const cableFlow = cable ? flow.elements.get(cable) : undefined;
         const head = els.get(e.elementId)!;
         const size = circ?.conductor.designation ?? (typeof cableEl?.params.forcedSize === "string" ? cableEl.params.forcedSize : undefined);
-        const npar = n(cableEl?.params.conductorsPerPhase, 1);
+        const npar = circ?.conductor.conductorsPerPhase ?? n(cableEl?.params.conductorsPerPhase, 1);
         const conductor = circ && circ.conductor.designation !== "—" ? wiringText(circ) : size && size !== "—" ? `${npar > 1 ? `${npar} × ` : ""}${size}` : undefined;
         const prot = circ?.protection.ratingA ?? (defOf(e.elementId).calcBehavior === "switch.protective" ? n(head.params.forcedRatingA) : NaN);
         const totalVA = va.a + va.b + va.c;

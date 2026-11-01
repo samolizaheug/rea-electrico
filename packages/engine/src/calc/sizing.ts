@@ -138,7 +138,10 @@ export function runSizing(project: Project, registry: ElementRegistry, norm: Nor
   const sized: Project = structuredClone(project);
   for (const cs of circuits.values()) {
     const cable = sized.elements.find((x) => x.id === cs.cableId)!;
-    if (cs.conductor.designation !== "—") cable.params.forcedSize = cs.conductor.designation;
+    if (cs.conductor.designation !== "—") {
+      cable.params.forcedSize = cs.conductor.designation;
+      cable.params.conductorsPerPhase = cs.conductor.conductorsPerPhase;
+    }
     if (cs.breakerId && cs.protection.ratingA !== undefined) {
       const br = sized.elements.find((x) => x.id === cs.breakerId)!;
       if (typeof br.params.forcedRatingA !== "number") br.params.forcedRatingA = cs.protection.ratingA;
@@ -300,6 +303,7 @@ function buildCircuit(
     transformerSecondary,
     downstreamMotorProtection: [],
     wiring,
+    maxSingleConductor: project.settings.conductors?.maxSingleSize ?? null,
     originBusIds: originNode.buses,
     destinationBusIds: child.buses,
   };
