@@ -13,6 +13,8 @@ export interface Fix {
  * los límites y artículos ya vienen en el mensaje de la observación.
  */
 const isDropMessage = (m: string) => /caída de tensión/.test(m);
+/** Ningún calibre alcanza la corriente: se resuelve con conductores en paralelo. */
+const isParallelMessage = (m: string) => /ningún calibre/.test(m);
 
 const HINTS: Record<string, string> = {
   parametro: "Corrija el dato marcado en «Propiedades» del elemento.",
@@ -58,22 +60,24 @@ export function hintFor(issue: UiIssue, project: Project): string {
     return `Corrija el campo «${label}» en «Propiedades» del elemento.`;
   }
   if (issue.code === "dimensionamiento" && isDropMessage(issue.message)) return HINTS["caida-tramo"]!;
+  if (issue.code === "dimensionamiento" && isParallelMessage(issue.message))
+    return "Es un problema de ampacidad, no de longitud: la corriente del circuito excede la del calibre más grande disponible en estas condiciones. Use conductores en paralelo («Conductores por fase») o reparta la carga en dos circuitos.";
   return (issue.code && HINTS[issue.code]) || "Revise los datos del elemento señalado.";
 }
 
 /** Tipos de observación para los que se buscan correcciones automáticas. */
 const FIXABLE = new Set(["dimensionamiento", "polos-interruptor", "marco-interruptor", "tension-terminales", "caida-tramo", "caida-total", "bomba-contra-incendio", "criterio-excede-norma", "aislamiento-mt"]);
 export const canSearchFix = (issue: UiIssue) =>
-  !!issue.code && FIXABLE.has(issue.code) && (issue.code !== "dimensionamiento" || isDropMessage(issue.message));
+  !!issue.code && FIXABLE.has(issue.code) && (issue.code !== "dimensionamiento" || isDropMessage(issue.message) || isParallelMessage(issue.message));
 
 const sameIds = (a: string[], b: string[]) => a.length === b.length && a.every((x) => b.includes(x));
 
 /** El dimensionamiento de un cable da varias observaciones distintas con el mismo código: se separan por tema. */
-const sameKind = (a: UiIssue, b: UiIssue) =>
+export const sameKind = (a: UiIssue, b: UiIssue) =>
   a.code === b.code &&
   sameIds(a.elementIds, b.elementIds) &&
   (b.setting === undefined || a.setting === b.setting) &&
-  (a.code !== "dimensionamiento" || isDropMessage(a.message) === isDropMessage(b.message));
+  (a.code !== "dimensionamiento" || (isDropMessage(a.message) === isDropMessage(b.message) && isParallelMessage(a.message) === isParallelMessage(b.message)));
 
 /** La observación desaparece y no aparecen errores nuevos. */
 function resolves(issue: UiIssue, base: ValidationState, next: ValidationState): boolean {
@@ -155,7 +159,17 @@ function candidates(issue: UiIssue, project: Project, v: ValidationState): Group
       return [{ kind: "aislamiento", fixes, monotonic: true }];
     }
     case "dimensionamiento":
-      if (!/caída de tensión/.test(issue.message)) return [];
+      if (isParallelMessage(issue.message)) {
+        const cable = issue.elementIds.map((x) => project.elements.find((e) => e.id === x)).find((e) => e?.type === "cable");
+        if (!cable) return [];
+        const cur = typeof cable.params.conductorsPerPhase === "number" ? cable.params.conductorsPerPhase : 1;
+        const fixes = Array.from({ length: 12 - cur }, (_, k) => cur + k + 1).map((n) => ({
+          label: `${cable.tag}: ${n} conductores por fase en paralelo (antes ${cur})`,
+          apply: setParams(cable.id, { conductorsPerPhase: n }),
+        }));
+        return [{ kind: "paralelo", fixes, monotonic: true }];
+      }
+      if (!isDropMessage(issue.message)) return [];
       return voltageGroups(project, v, issue.elementIds);
     case "tension-terminales":
     case "caida-tramo":
