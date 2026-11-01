@@ -968,3 +968,35 @@ input[aria-invalid="true"] {
   outline-offset: 6px;
   border-radius: 4px;
 }
+
+/* Cómo resolver cada observación del panel de validación. */
+.issue-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.issue-item:last-child {
+  border-bottom: 0;
+}
+.issue-help {
+  padding: 0 8px 0 30px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.issue-help p {
+  margin: 0 0 6px;
+}
+.issue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.issue-actions button {
+  font-size: 12px;
+  padding: 3px 10px;
+}
+.issue-actions button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}

@@ -107,6 +107,8 @@ interface EditorState {
   selectAll(): void;
   /** Mueve la selección (un paso de deshacer). */
   nudgeSelection(dx: number, dy: number): void;
+  /** Aplica una corrección propuesta por el panel de validación (un paso de deshacer). */
+  applyFix(label: string, fn: (p: Project) => Project): void;
   notify(kind: Toast["kind"], text: string): void;
 }
 
@@ -272,6 +274,9 @@ export const useEditor = create<EditorState>((set, get) => {
     selectAll: () => {
       const p = get().history.present;
       set({ selection: { elements: p.elements.map((e) => e.id), connections: p.connections.map((c) => c.id) } });
+    },
+    applyFix: (label, fn) => {
+      if (apply(fn)) get().notify("info", t("issues.applied", { label }));
     },
     nudgeSelection: (dx, dy) => {
       const ids = get().selection.elements;

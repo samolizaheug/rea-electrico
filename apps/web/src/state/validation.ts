@@ -25,6 +25,10 @@ export interface UiIssue {
   elementIds: string[];
   /** Parámetro afectado (solo en problemas de parámetros). */
   paramKey?: string;
+  /** Tipo de observación (código del motor de cálculo), para proponer cómo resolverla. */
+  code?: string;
+  /** Campo de la configuración del proyecto afectado (criterios de diseño). */
+  setting?: string;
 }
 
 /** Resultados del cálculo (flujo de carga + dimensionamiento + cuadros). */
@@ -79,11 +83,11 @@ export function computeValidation(project: Project): ValidationState {
       });
     if (!list.length) continue;
     paramIssues.set(el.id, list);
-    for (const i of list) issues.push({ severity: i.severity, origin: "parametros", message: `${el.tag}: ${i.message}`, elementIds: [el.id], paramKey: i.key });
+    for (const i of list) issues.push({ severity: i.severity, origin: "parametros", code: "parametro", message: `${el.tag}: ${i.message}`, elementIds: [el.id], paramKey: i.key });
   }
 
-  for (const i of topology.issues) issues.push({ severity: i.severity, origin: "topologia", message: i.message, elementIds: i.elementIds });
-  for (const i of validateDesignCriteria(project, norm.voltageDrop)) issues.push({ severity: i.severity, origin: "criterios", message: i.message, elementIds: [] });
+  for (const i of topology.issues) issues.push({ severity: i.severity, origin: "topologia", code: i.code, message: i.message, elementIds: i.elementIds });
+  for (const i of validateDesignCriteria(project, norm.voltageDrop)) issues.push({ severity: i.severity, origin: "criterios", code: i.code, setting: i.setting, message: i.message, elementIds: [] });
 
   // El cálculo se ejecuta solo si los datos y la topología no tienen errores.
   let results: Results | null = null;
@@ -93,9 +97,9 @@ export function computeValidation(project: Project): ValidationState {
     if (sizing.calculated) {
       const schedules = panelSchedules(project, registry, sizing.loadFlow, sizing);
       results = { sizing, schedules, flow: (id) => sizing.loadFlow.elements.get(id) };
-      for (const i of scheduleIssues(schedules)) issues.push({ severity: i.severity, origin: "calculo", message: i.message, elementIds: i.elementIds });
+      for (const i of scheduleIssues(schedules)) issues.push({ severity: i.severity, origin: "calculo", code: "desbalance", message: i.message, elementIds: i.elementIds });
     }
-    for (const i of sizing.issues) issues.push({ severity: i.severity, origin: "calculo", message: i.message, elementIds: i.elementIds });
+    for (const i of sizing.issues) issues.push({ severity: i.severity, origin: "calculo", code: i.code, message: i.message, elementIds: i.elementIds });
   }
 
   const rank = { error: 0, warning: 1, info: 2 } as const;
